@@ -48,9 +48,9 @@ require __DIR__.'/../vendor/autoload.php';
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
-die('bootstrap');
-$kernel = $app->make(Kernel::class);
 
+$kernel = $app->make(Kernel::class);
+die('Kernel');
 $response = $kernel->handle(
     $request = Request::capture()
 )->send();
