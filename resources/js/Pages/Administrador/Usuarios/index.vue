@@ -1,0 +1,62 @@
+<template>
+    <AdminLayout>
+        <div class="container">
+            <PageHeaderComponent title="Usuarios" />
+            <n-divider />
+            <FormularioUsuarioComponent btn_text="Nuevo usuario" />
+
+            <n-table :bordered="false" :single-line="false">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Op.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in usuarios">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.email }}</td>
+                        <td style="width: 180px">
+                            <n-space justify="end">
+                                <FormularioUsuarioComponent
+                                    btn_text="Editar"
+                                    :data="item"
+                                    :edit="true"
+                                />
+
+                                <n-popconfirm
+                                    :show-icon="false"
+                                    negative-text="No"
+                                    positive-text="Si"
+                                    @positive-click="eliminarUsuario(item.id)"
+                                >
+                                    <template #activator>
+                                        <n-button type="error" tertiary>
+                                            Eliminar
+                                        </n-button>
+                                    </template>
+                                    ¿ Seguro de elimnar al usuario ?
+                                </n-popconfirm>
+                            </n-space>
+                        </td>
+                    </tr>
+                </tbody>
+            </n-table>
+        </div>
+    </AdminLayout>
+</template>
+<script setup>
+import AdminLayout from "@/Layouts/AdminLayout.vue";
+import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
+import FormularioUsuarioComponent from "./Components/FormularioUsuarioComponent.vue";
+import { router } from "@inertiajs/vue3";
+const props = defineProps({
+    usuarios: Array,
+});
+const eliminarUsuario = (id) => {
+  router.delete("/admin/usuarios/" + id );
+};
+</script>
