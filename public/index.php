@@ -21,7 +21,7 @@ define('LARAVEL_START', microtime(true));
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
     require $maintenance;
 }
-die('hola3');
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
@@ -34,7 +34,7 @@ die('hola3');
 */
 
 require __DIR__.'/../vendor/autoload.php';
-
+die('hola4');
 /*
 |--------------------------------------------------------------------------
 | Run The Application
