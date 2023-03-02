@@ -18,7 +18,10 @@ use PHPUnit\TextUI\Output\Default\ResultPrinter as DefaultResultPrinter;
 use PHPUnit\TextUI\Output\TestDox\ResultPrinter as TestDoxResultPrinter;
 use PHPUnit\Util\DirectoryDoesNotExistException;
 use PHPUnit\Util\InvalidSocketException;
+<<<<<<< HEAD
 use SebastianBergmann\Timer\Duration;
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 use SebastianBergmann\Timer\ResourceUsageFormatter;
 
 /**
@@ -78,14 +81,22 @@ final class Facade
     /**
      * @psalm-param ?array<string, TestResultCollection> $testDoxResult
      */
+<<<<<<< HEAD
     public static function printResult(TestResult $result, ?array $testDoxResult, Duration $duration): void
+=======
+    public static function printResult(TestResult $result, ?array $testDoxResult): void
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     {
         if ($result->numberOfTestsRun() > 0) {
             if (self::$defaultProgressPrinter) {
                 self::$printer->print(PHP_EOL . PHP_EOL);
             }
 
+<<<<<<< HEAD
             self::$printer->print((new ResourceUsageFormatter)->resourceUsage($duration) . PHP_EOL . PHP_EOL);
+=======
+            self::$printer->print((new ResourceUsageFormatter)->resourceUsageSinceStartOfRequest() . PHP_EOL . PHP_EOL);
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         }
 
         if (self::$resultPrinter !== null) {

@@ -165,12 +165,17 @@ final class CodeUnitFindingVisitor extends NodeVisitorAbstract
             return '?' . $type->type;
         }
 
+<<<<<<< HEAD
         if ($type instanceof UnionType) {
             return $this->unionTypeAsString($type);
         }
 
         if ($type instanceof IntersectionType) {
             return $this->intersectionTypeAsString($type);
+=======
+        if ($type instanceof UnionType || $type instanceof IntersectionType) {
+            return $this->unionOrIntersectionAsString($type);
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         }
 
         return $type->toString();
@@ -287,6 +292,7 @@ final class CodeUnitFindingVisitor extends NodeVisitorAbstract
         return trim(rtrim($namespacedName, $name), '\\');
     }
 
+<<<<<<< HEAD
     private function unionTypeAsString(UnionType $node): string
     {
         $types = [];
@@ -322,5 +328,31 @@ final class CodeUnitFindingVisitor extends NodeVisitorAbstract
         }
 
         return $node->toString();
+=======
+    /**
+     * @psalm-param UnionType|IntersectionType $type
+     */
+    private function unionOrIntersectionAsString(ComplexType $type): string
+    {
+        if ($type instanceof UnionType) {
+            $separator = '|';
+        } else {
+            $separator = '&';
+        }
+
+        $types = [];
+
+        foreach ($type->types as $_type) {
+            if ($_type instanceof Name) {
+                $types[] = $_type->toCodeString();
+            } else {
+                assert($_type instanceof Identifier);
+
+                $types[] = $_type->toString();
+            }
+        }
+
+        return implode($separator, $types);
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     }
 }

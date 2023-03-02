@@ -4,12 +4,18 @@ declare(strict_types=1);
 
 namespace NunoMaduro\Collision\Adapters\Phpunit;
 
+<<<<<<< HEAD
 use Closure;
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 use NunoMaduro\Collision\Adapters\Phpunit\Printers\DefaultPrinter;
 use NunoMaduro\Collision\Exceptions\ShouldNotHappen;
 use NunoMaduro\Collision\Exceptions\TestException;
 use NunoMaduro\Collision\Writer;
+<<<<<<< HEAD
 use Pest\Expectation;
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 use PHPUnit\Event\Code\Throwable;
 use PHPUnit\Event\Telemetry\Info;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -17,14 +23,20 @@ use PHPUnit\Framework\IncompleteTestError;
 use PHPUnit\TestRunner\TestResult\TestResult as PHPUnitTestResult;
 use PHPUnit\TextUI\Configuration\Registry;
 use ReflectionClass;
+<<<<<<< HEAD
 use ReflectionFunction;
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use function Termwind\render;
 use function Termwind\renderUsing;
 use Termwind\Terminal;
 use function Termwind\terminal;
+<<<<<<< HEAD
 use Whoops\Exception\Frame;
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 use Whoops\Exception\Inspector;
 
 /**
@@ -43,7 +55,11 @@ final class Style
     /**
      * @var string[]
      */
+<<<<<<< HEAD
     private const TYPES = [TestResult::DEPRECATED, TestResult::FAIL, TestResult::WARN, TestResult::RISKY, TestResult::INCOMPLETE, TestResult::TODO, TestResult::SKIPPED, TestResult::PASS];
+=======
+    private const TYPES = [TestResult::DEPRECATED, TestResult::FAIL, TestResult::WARN, TestResult::RISKY, TestResult::INCOMPLETE, TestResult::TODO,  TestResult::SKIPPED, TestResult::PASS];
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 
     /**
      * Style constructor.
@@ -168,8 +184,12 @@ final class Style
                 <div class="mx-2 text-red">
                     <hr/>
                 </div>
+<<<<<<< HEAD
             HTML
             );
+=======
+            HTML);
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 
             $testCaseName = $testResult->testCaseName;
             $description = $testResult->description;
@@ -337,9 +357,12 @@ final class Style
             '/vendor\/coduo\/php-matcher\/src\/PHPUnit/',
             '/vendor\/sulu\/sulu\/src\/Sulu\/Bundle\/TestBundle\/Testing/',
             '/vendor\/webmozart\/assert/',
+<<<<<<< HEAD
 
             $this->ignorePestPipes(...),
             $this->ignorePestExtends(...),
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         ]);
 
         /** @var \Throwable $throwable */
@@ -437,6 +460,7 @@ final class Style
             </div>
         HTML, $seconds === '' ? '' : 'flex space-x-1 justify-between', $truncateClasses, $result->color, $result->icon, $description, $warning, $seconds));
     }
+<<<<<<< HEAD
 
     /**
      * @param  Frame  $frame
@@ -502,4 +526,6 @@ final class Style
 
         return false;
     }
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 }

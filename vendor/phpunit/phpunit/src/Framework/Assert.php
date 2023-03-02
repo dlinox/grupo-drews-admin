@@ -103,7 +103,11 @@ abstract class Assert
     /**
      * @throws ExpectationFailedException
      */
+<<<<<<< HEAD
     final public static function assertIsList(mixed $array, string $message = ''): void
+=======
+    final public static function assertIsList(array $array, string $message = ''): void
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     {
         static::assertThat(
             $array,
@@ -1824,9 +1828,15 @@ abstract class Assert
      *
      * @throws ExpectationFailedException
      */
+<<<<<<< HEAD
     final public static function assertJson(string $actual, string $message = ''): void
     {
         static::assertThat($actual, static::isJson(), $message);
+=======
+    final public static function assertJson(string $actualJson, string $message = ''): void
+    {
+        static::assertThat($actualJson, static::isJson(), $message);
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     }
 
     /**

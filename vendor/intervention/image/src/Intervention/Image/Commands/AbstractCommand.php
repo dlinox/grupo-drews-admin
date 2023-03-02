@@ -2,6 +2,11 @@
 
 namespace Intervention\Image\Commands;
 
+<<<<<<< HEAD
+=======
+use Intervention\Image\Commands\Argument;
+
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 abstract class AbstractCommand
 {
     /**

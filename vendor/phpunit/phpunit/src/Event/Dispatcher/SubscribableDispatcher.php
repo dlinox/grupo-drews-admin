@@ -20,9 +20,12 @@ interface SubscribableDispatcher extends Dispatcher
     public function registerSubscriber(Subscriber $subscriber): void;
 
     public function registerTracer(Tracer\Tracer $tracer): void;
+<<<<<<< HEAD
 
     /**
      * @psalm-param class-string $className
      */
     public function hasSubscriberFor(string $className): bool;
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 }

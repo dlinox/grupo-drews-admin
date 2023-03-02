@@ -11,6 +11,10 @@ namespace PHPUnit\Logging\JUnit;
 
 use function assert;
 use function basename;
+<<<<<<< HEAD
+=======
+use function class_exists;
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 use function is_int;
 use function sprintf;
 use function str_replace;
@@ -19,11 +23,18 @@ use DOMDocument;
 use DOMElement;
 use PHPUnit\Event\Code\Test;
 use PHPUnit\Event\Code\TestMethod;
+<<<<<<< HEAD
+=======
+use PHPUnit\Event\Code\Throwable;
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 use PHPUnit\Event\EventFacadeIsSealedException;
 use PHPUnit\Event\Facade;
 use PHPUnit\Event\InvalidArgumentException;
 use PHPUnit\Event\Telemetry\HRTime;
+<<<<<<< HEAD
 use PHPUnit\Event\Telemetry\Info;
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 use PHPUnit\Event\Test\Errored;
 use PHPUnit\Event\Test\Failed;
 use PHPUnit\Event\Test\Finished;
@@ -35,6 +46,11 @@ use PHPUnit\Event\TestSuite\Started;
 use PHPUnit\Event\UnknownSubscriberTypeException;
 use PHPUnit\TextUI\Output\Printer;
 use PHPUnit\Util\Xml;
+<<<<<<< HEAD
+=======
+use ReflectionClass;
+use ReflectionException;
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 
 /**
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
@@ -82,7 +98,10 @@ final class JunitXmlLogger
     private int $testSuiteLevel          = 0;
     private ?DOMElement $currentTestCase = null;
     private ?HRTime $time                = null;
+<<<<<<< HEAD
     private bool $prepared               = false;
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 
     /**
      * @throws EventFacadeIsSealedException
@@ -108,8 +127,18 @@ final class JunitXmlLogger
         $testSuite = $this->document->createElement('testsuite');
         $testSuite->setAttribute('name', $event->testSuite()->name());
 
+<<<<<<< HEAD
         if ($event->testSuite()->isForTestClass()) {
             $testSuite->setAttribute('file', $event->testSuite()->file());
+=======
+        if (class_exists($event->testSuite()->name(), false)) {
+            try {
+                $class = new ReflectionClass($event->testSuite()->name());
+
+                $testSuite->setAttribute('file', $class->getFileName());
+            } catch (ReflectionException) {
+            }
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         }
 
         if ($this->testSuiteLevel > 0) {
@@ -179,7 +208,10 @@ final class JunitXmlLogger
     public function testPrepared(Prepared $event): void
     {
         $this->createTestCase($event);
+<<<<<<< HEAD
         $this->prepared = true;
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     }
 
     /**
@@ -187,7 +219,36 @@ final class JunitXmlLogger
      */
     public function testFinished(Finished $event): void
     {
+<<<<<<< HEAD
         $this->handleFinish($event->telemetryInfo(), $event->numberOfAssertionsPerformed());
+=======
+        assert($this->currentTestCase !== null);
+        assert($this->time !== null);
+
+        $time = $event->telemetryInfo()->time()->duration($this->time)->asFloat();
+
+        $this->testSuiteAssertions[$this->testSuiteLevel] += $event->numberOfAssertionsPerformed();
+
+        $this->currentTestCase->setAttribute(
+            'assertions',
+            (string) $event->numberOfAssertionsPerformed()
+        );
+
+        $this->currentTestCase->setAttribute(
+            'time',
+            sprintf('%F', $time)
+        );
+
+        $this->testSuites[$this->testSuiteLevel]->appendChild(
+            $this->currentTestCase
+        );
+
+        $this->testSuiteTests[$this->testSuiteLevel]++;
+        $this->testSuiteTimes[$this->testSuiteLevel] += $time;
+
+        $this->currentTestCase = null;
+        $this->time            = null;
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     }
 
     /**
@@ -214,7 +275,11 @@ final class JunitXmlLogger
      */
     public function testErrored(Errored $event): void
     {
+<<<<<<< HEAD
         $this->handleFault($event, 'error');
+=======
+        $this->handleFault($event->test(), $event->throwable(), 'error');
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 
         $this->testSuiteErrors[$this->testSuiteLevel]++;
     }
@@ -225,12 +290,17 @@ final class JunitXmlLogger
      */
     public function testFailed(Failed $event): void
     {
+<<<<<<< HEAD
         $this->handleFault($event, 'failure');
+=======
+        $this->handleFault($event->test(), $event->throwable(), 'failure');
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 
         $this->testSuiteFailures[$this->testSuiteLevel]++;
     }
 
     /**
+<<<<<<< HEAD
      * @throws InvalidArgumentException
      */
     private function handleFinish(Info $telemetryInfo, int $numberOfAssertionsPerformed): void
@@ -265,6 +335,8 @@ final class JunitXmlLogger
     }
 
     /**
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
      * @throws EventFacadeIsSealedException
      * @throws UnknownSubscriberTypeException
      */
@@ -296,6 +368,7 @@ final class JunitXmlLogger
      * @throws InvalidArgumentException
      * @throws NoDataSetFromDataProviderException
      */
+<<<<<<< HEAD
     private function handleFault(Errored|Failed $event, string $type): void
     {
         if (!$this->prepared) {
@@ -307,6 +380,14 @@ final class JunitXmlLogger
         $buffer = $this->testAsString($event->test());
 
         $throwable = $event->throwable();
+=======
+    private function handleFault(Test $test, Throwable $throwable, string $type): void
+    {
+        assert($this->currentTestCase !== null);
+
+        $buffer = $this->testAsString($test);
+
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         $buffer .= trim(
             $throwable->description() . PHP_EOL .
             $throwable->stackTrace()
@@ -320,10 +401,13 @@ final class JunitXmlLogger
         $fault->setAttribute('type', $throwable->className());
 
         $this->currentTestCase->appendChild($fault);
+<<<<<<< HEAD
 
         if (!$this->prepared) {
             $this->handleFinish($event->telemetryInfo(), 0);
         }
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     }
 
     /**
@@ -332,7 +416,11 @@ final class JunitXmlLogger
      */
     private function handleIncompleteOrSkipped(MarkedIncomplete|Skipped $event): void
     {
+<<<<<<< HEAD
         if (!$this->prepared) {
+=======
+        if ($this->currentTestCase === null) {
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             $this->createTestCase($event);
         }
 
@@ -343,10 +431,13 @@ final class JunitXmlLogger
         $this->currentTestCase->appendChild($skipped);
 
         $this->testSuiteSkipped[$this->testSuiteLevel]++;
+<<<<<<< HEAD
 
         if (!$this->prepared) {
             $this->handleFinish($event->telemetryInfo(), 0);
         }
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     }
 
     /**
@@ -405,10 +496,15 @@ final class JunitXmlLogger
     /**
      * @throws InvalidArgumentException
      * @throws NoDataSetFromDataProviderException
+<<<<<<< HEAD
      *
      * @psalm-assert !null $this->currentTestCase
      */
     private function createTestCase(Prepared|MarkedIncomplete|Skipped|Errored|Failed $event): void
+=======
+     */
+    private function createTestCase(Prepared|MarkedIncomplete|Skipped $event): void
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     {
         $testCase = $this->document->createElement('testcase');
 

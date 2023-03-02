@@ -12,9 +12,15 @@ namespace PHPUnit\Metadata;
 use PHPUnit\Metadata\Version\Requirement;
 
 /**
+<<<<<<< HEAD
  * @psalm-immutable
  *
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+=======
+ * @internal This class is not covered by the backward compatibility promise for PHPUnit
+ *
+ * @psalm-immutable
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
  */
 abstract class Metadata
 {
@@ -63,6 +69,19 @@ abstract class Metadata
         return new BeforeClass(self::METHOD_LEVEL);
     }
 
+<<<<<<< HEAD
+=======
+    public static function codeCoverageIgnoreOnClass(): CodeCoverageIgnore
+    {
+        return new CodeCoverageIgnore(self::CLASS_LEVEL);
+    }
+
+    public static function codeCoverageIgnoreOnMethod(): CodeCoverageIgnore
+    {
+        return new CodeCoverageIgnore(self::METHOD_LEVEL);
+    }
+
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     /**
      * @psalm-param class-string $className
      */
@@ -404,6 +423,17 @@ abstract class Metadata
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * @psalm-assert-if-true CodeCoverageIgnore $this
+     */
+    public function isCodeCoverageIgnore(): bool
+    {
+        return false;
+    }
+
+    /**
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
      * @psalm-assert-if-true Covers $this
      */
     public function isCovers(): bool

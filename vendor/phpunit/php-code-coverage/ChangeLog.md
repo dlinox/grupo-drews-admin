@@ -2,12 +2,15 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+<<<<<<< HEAD
 ## [10.0.1] - 2023-02-25
 
 ### Fixed
 
 * [#981](https://github.com/sebastianbergmann/php-code-coverage/issues/981): `CodeUnitFindingVisitor` does not support DNF types
 
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 ## [10.0.0] - 2023-02-03
 
 ### Added
@@ -26,12 +29,15 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * This component no longer supports PHPDBG
 * This component no longer supports Xdebug 2
 
+<<<<<<< HEAD
 ## [9.2.25] - 2023-02-25
 
 ### Fixed
 
 * [#981](https://github.com/sebastianbergmann/php-code-coverage/issues/981): `CodeUnitFindingVisitor` does not support DNF types
 
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 ## [9.2.24] - 2023-01-26
 
 ### Changed
@@ -494,9 +500,14 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * This component is no longer supported on PHP 7.1
 
+<<<<<<< HEAD
 [10.0.1]: https://github.com/sebastianbergmann/php-code-coverage/compare/10.0.0...10.0.1
 [10.0.0]: https://github.com/sebastianbergmann/php-code-coverage/compare/9.2.24...10.0.0
 [9.2.25]: https://github.com/sebastianbergmann/php-code-coverage/compare/9.2.24...9.2.25
+=======
+[10.0.0]: https://github.com/sebastianbergmann/php-code-coverage/compare/9.2.24...10.0.0
+[9.2.24]: https://github.com/sebastianbergmann/php-code-coverage/compare/9.2.23...9.2.24
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 [9.2.24]: https://github.com/sebastianbergmann/php-code-coverage/compare/9.2.23...9.2.24
 [9.2.23]: https://github.com/sebastianbergmann/php-code-coverage/compare/9.2.22...9.2.23
 [9.2.22]: https://github.com/sebastianbergmann/php-code-coverage/compare/9.2.21...9.2.22

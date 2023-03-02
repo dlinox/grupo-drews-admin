@@ -9,6 +9,10 @@
  */
 namespace PHPUnit\Framework\MockObject;
 
+<<<<<<< HEAD
+=======
+use SebastianBergmann\Template\Exception as TemplateException;
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 use SebastianBergmann\Template\Template;
 
 /**
@@ -22,6 +26,7 @@ trait TemplateLoader
     private static array $templates = [];
 
     /**
+<<<<<<< HEAD
      * @psalm-suppress MissingThrowsDocblock
      */
     private function loadTemplate(string $template): Template
@@ -30,6 +35,24 @@ trait TemplateLoader
 
         if (!isset(self::$templates[$filename])) {
             self::$templates[$filename] = new Template($filename);
+=======
+     * @throws RuntimeException
+     */
+    private function loadTemplate(string $template): Template
+    {
+        $filename = __DIR__ . DIRECTORY_SEPARATOR . 'Generator' . DIRECTORY_SEPARATOR . $template;
+
+        if (!isset(self::$templates[$filename])) {
+            try {
+                self::$templates[$filename] = new Template($filename);
+            } catch (TemplateException $e) {
+                throw new RuntimeException(
+                    $e->getMessage(),
+                    $e->getCode(),
+                    $e
+                );
+            }
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         }
 
         return self::$templates[$filename];

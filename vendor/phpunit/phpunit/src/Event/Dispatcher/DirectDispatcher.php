@@ -10,10 +10,14 @@
 namespace PHPUnit\Event;
 
 use function array_key_exists;
+<<<<<<< HEAD
 use function dirname;
 use function sprintf;
 use function str_starts_with;
 use Throwable;
+=======
+use function sprintf;
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 
 /**
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
@@ -67,6 +71,7 @@ final class DirectDispatcher implements SubscribableDispatcher
     }
 
     /**
+<<<<<<< HEAD
      * @psalm-param class-string $className
      */
     public function hasSubscriberFor(string $className): bool
@@ -83,6 +88,8 @@ final class DirectDispatcher implements SubscribableDispatcher
     }
 
     /**
+=======
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
      * @throws UnknownEventTypeException
      */
     public function dispatch(Event $event): void
@@ -99,11 +106,15 @@ final class DirectDispatcher implements SubscribableDispatcher
         }
 
         foreach ($this->tracers as $tracer) {
+<<<<<<< HEAD
             try {
                 $tracer->trace($event);
             } catch (Throwable $t) {
                 $this->ignoreThrowablesFromThirdPartySubscribers($t);
             }
+=======
+            $tracer->trace($event);
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         }
 
         if (!array_key_exists($eventClassName, $this->subscribers)) {
@@ -111,6 +122,7 @@ final class DirectDispatcher implements SubscribableDispatcher
         }
 
         foreach ($this->subscribers[$eventClassName] as $subscriber) {
+<<<<<<< HEAD
             try {
                 $subscriber->notify($event);
             } catch (Throwable $t) {
@@ -126,6 +138,9 @@ final class DirectDispatcher implements SubscribableDispatcher
     {
         if (str_starts_with($t->getFile(), dirname(__DIR__, 2))) {
             throw $t;
+=======
+            $subscriber->notify($event);
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         }
     }
 }

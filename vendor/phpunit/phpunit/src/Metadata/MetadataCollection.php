@@ -19,11 +19,19 @@ use IteratorAggregate;
 use PHPUnit\Metadata\Parser\Registry as MetadataRegistry;
 
 /**
+<<<<<<< HEAD
  * @template-implements IteratorAggregate<int, Metadata>
  *
  * @psalm-immutable
  *
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+=======
+ * @internal This class is not covered by the backward compatibility promise for PHPUnit
+ *
+ * @template-implements IteratorAggregate<int, Metadata>
+ *
+ * @psalm-immutable
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
  */
 final class MetadataCollection implements Countable, IteratorAggregate
 {
@@ -180,6 +188,19 @@ final class MetadataCollection implements Countable, IteratorAggregate
         );
     }
 
+<<<<<<< HEAD
+=======
+    public function isCodeCoverageIgnore(): self
+    {
+        return new self(
+            ...array_filter(
+                $this->metadata,
+                static fn (Metadata $metadata): bool => $metadata->isCodeCoverageIgnore()
+            )
+        );
+    }
+
+>>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     public function isCovers(): self
     {
         return new self(
