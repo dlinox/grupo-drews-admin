@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
-die('hola;');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ die('hola;');
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
     require $maintenance;
 }
-
+die('hola3');
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
