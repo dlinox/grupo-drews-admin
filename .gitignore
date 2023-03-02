@@ -15,7 +15,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-vendor
+/vendor
 # Local Netlify folder
 .netlify
 /dist
