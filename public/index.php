@@ -34,7 +34,7 @@ if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php'))
 */
 
 require __DIR__.'/../vendor/autoload.php';
-die('hola4');
+
 /*
 |--------------------------------------------------------------------------
 | Run The Application
@@ -48,6 +48,7 @@ die('hola4');
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
+die('bootstrap');
 $kernel = $app->make(Kernel::class);
 
 $response = $kernel->handle(
