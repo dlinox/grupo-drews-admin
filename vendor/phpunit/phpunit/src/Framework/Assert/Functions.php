@@ -111,11 +111,7 @@ if (!function_exists('PHPUnit\Framework\assertIsList')) {
      *
      * @see Assert::assertIsList
      */
-<<<<<<< HEAD
     function assertIsList(mixed $array, string $message = ''): void
-=======
-    function assertIsList(array $array, string $message = ''): void
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     {
         Assert::assertIsList(...func_get_args());
     }
@@ -2099,11 +2095,7 @@ if (!function_exists('PHPUnit\Framework\assertJson')) {
      *
      * @see Assert::assertJson
      */
-<<<<<<< HEAD
     function assertJson(string $actual, string $message = ''): void
-=======
-    function assertJson(string $actualJson, string $message = ''): void
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     {
         Assert::assertJson(...func_get_args());
     }

@@ -19,10 +19,6 @@ use PHPUnit\Framework\Attributes\BackupGlobals;
 use PHPUnit\Framework\Attributes\BackupStaticProperties;
 use PHPUnit\Framework\Attributes\Before;
 use PHPUnit\Framework\Attributes\BeforeClass;
-<<<<<<< HEAD
-=======
-use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversFunction;
 use PHPUnit\Framework\Attributes\CoversNothing;
@@ -105,14 +101,6 @@ final class AttributeParser implements Parser
 
                     break;
 
-<<<<<<< HEAD
-=======
-                case CodeCoverageIgnore::class:
-                    $result[] = Metadata::codeCoverageIgnoreOnClass();
-
-                    break;
-
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
                 case CoversClass::class:
                     assert($attributeInstance instanceof CoversClass);
 
@@ -355,14 +343,6 @@ final class AttributeParser implements Parser
 
                     break;
 
-<<<<<<< HEAD
-=======
-                case CodeCoverageIgnore::class:
-                    $result[] = Metadata::codeCoverageIgnoreOnMethod();
-
-                    break;
-
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
                 case CoversNothing::class:
                     $result[] = Metadata::coversNothingOnMethod();
 

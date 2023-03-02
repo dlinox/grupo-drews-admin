@@ -42,8 +42,4 @@ class PsrResponseCommand extends AbstractCommand
 
         return true;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a

@@ -400,7 +400,6 @@ final class DispatchingEmitter implements Emitter
      */
     public function testAssertionSucceeded(mixed $value, Constraint\Constraint $constraint, string $message): void
     {
-<<<<<<< HEAD
         if (!$this->hasSubscriberFor(Test\AssertionSucceeded::class)) {
             return;
         }
@@ -409,12 +408,6 @@ final class DispatchingEmitter implements Emitter
             new Test\AssertionSucceeded(
                 $this->telemetryInfo(),
                 (new Exporter)->export($value),
-=======
-        $this->dispatcher->dispatch(
-            new Test\AssertionSucceeded(
-                $this->telemetryInfo(),
-                '',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
                 $constraint->toString(),
                 $constraint->count(),
                 $message,
@@ -428,13 +421,10 @@ final class DispatchingEmitter implements Emitter
      */
     public function testAssertionFailed(mixed $value, Constraint\Constraint $constraint, string $message): void
     {
-<<<<<<< HEAD
         if (!$this->hasSubscriberFor(Test\AssertionFailed::class)) {
             return;
         }
 
-=======
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         $this->dispatcher->dispatch(
             new Test\AssertionFailed(
                 $this->telemetryInfo(),
@@ -1066,7 +1056,6 @@ final class DispatchingEmitter implements Emitter
 
         return $info;
     }
-<<<<<<< HEAD
 
     /**
      * @psalm-param class-string $className
@@ -1079,6 +1068,4 @@ final class DispatchingEmitter implements Emitter
 
         return $this->dispatcher->hasSubscriberFor($className);
     }
-=======
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 }

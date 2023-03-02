@@ -116,12 +116,6 @@ final class CachingFileAnalyser implements FileAnalyser
         $this->write($filename, $this->cache[$filename]);
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * @return mixed
-     */
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     private function read(string $filename): array|false
     {
         $cacheFile = $this->cacheFile($filename);

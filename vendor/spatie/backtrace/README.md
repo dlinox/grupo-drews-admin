@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 
 [<img src="https://github-ads.s3.eu-central-1.amazonaws.com/support-ukraine.svg?t=1" />](https://supportukrainenow.org)
 
-=======
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 # A better PHP backtrace
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/backtrace.svg?style=flat-square)](https://packagist.org/packages/spatie/backtrace)
@@ -107,11 +104,7 @@ $frames = Backtrace::create()
 
 With this code, all frames before the frame that concerns `MyClass` will have been filtered out.
 
-<<<<<<< HEAD
 Alternatively, you can use the `offset` method, which will skip the given number of frames. In this example the first 2 frames will not end up in `$frames`.
-=======
-Alternatively, you can use the `offSet` method, which will skip the given number of frames. In this example the first 2 frames will not end up in `$frames`.
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 
 ```php
 $frames = Spatie\Backtrace\Backtrace::create()
@@ -151,11 +144,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-<<<<<<< HEAD
 Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for details.
-=======
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 
 ## Security Vulnerabilities
 

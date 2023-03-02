@@ -41,11 +41,6 @@ return array(
     'Symfony\\Component\\DomCrawler\\' => array($vendorDir . '/symfony/dom-crawler'),
     'Symfony\\Component\\CssSelector\\' => array($vendorDir . '/symfony/css-selector'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
-<<<<<<< HEAD
-    'Spatie\\LaravelIgnition\\' => array($vendorDir . '/spatie/laravel-ignition/src'),
-    'Spatie\\Ignition\\' => array($vendorDir . '/spatie/ignition/src'),
-    'Spatie\\FlareClient\\' => array($vendorDir . '/spatie/flare-client-php/src'),
-=======
     'Symfony\\Bridge\\PsrHttpMessage\\' => array($vendorDir . '/symfony/psr-http-message-bridge'),
     'Spatie\\TemporaryDirectory\\' => array($vendorDir . '/spatie/temporary-directory/src'),
     'Spatie\\Robots\\' => array($vendorDir . '/spatie/robots-txt/src'),
@@ -57,7 +52,6 @@ return array(
     'Spatie\\Export\\' => array($vendorDir . '/spatie/laravel-export/src'),
     'Spatie\\Crawler\\' => array($vendorDir . '/spatie/crawler/src'),
     'Spatie\\Browsershot\\' => array($vendorDir . '/spatie/browsershot/src'),
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     'Spatie\\Backtrace\\' => array($vendorDir . '/spatie/backtrace/src'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
     'Ramsey\\Collection\\' => array($vendorDir . '/ramsey/collection/src'),
@@ -70,10 +64,7 @@ return array(
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
-<<<<<<< HEAD
-=======
     'Nyholm\\Psr7\\' => array($vendorDir . '/nyholm/psr7/src'),
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     'NunoMaduro\\Collision\\' => array($vendorDir . '/nunomaduro/collision/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Masterminds\\' => array($vendorDir . '/masterminds/html5/src'),

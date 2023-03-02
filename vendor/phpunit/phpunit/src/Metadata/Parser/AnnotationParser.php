@@ -58,14 +58,6 @@ final class AnnotationParser implements Parser
 
                     break;
 
-<<<<<<< HEAD
-=======
-                case 'codeCoverageIgnore':
-                    $result[] = Metadata::codeCoverageIgnoreOnClass();
-
-                    break;
-
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
                 case 'covers':
                     foreach ($values as $value) {
                         $value = $this->cleanUpCoversOrUsesTarget($value);
@@ -204,14 +196,6 @@ final class AnnotationParser implements Parser
 
                     break;
 
-<<<<<<< HEAD
-=======
-                case 'codeCoverageIgnore':
-                    $result[] = Metadata::codeCoverageIgnoreOnMethod();
-
-                    break;
-
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
                 case 'covers':
                     foreach ($values as $value) {
                         $value = $this->cleanUpCoversOrUsesTarget($value);

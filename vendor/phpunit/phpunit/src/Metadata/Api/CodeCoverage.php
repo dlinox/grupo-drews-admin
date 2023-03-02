@@ -36,12 +36,9 @@ final class CodeCoverage
 {
     /**
      * @psalm-param class-string $className
-<<<<<<< HEAD
      * @psalm-param non-empty-string $methodName
      *
      * @psalm-return array<string,list<int>>|false
-=======
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
      *
      * @throws CodeCoverageException
      */
@@ -137,12 +134,9 @@ final class CodeCoverage
 
     /**
      * @psalm-param class-string $className
-<<<<<<< HEAD
      * @psalm-param non-empty-string $methodName
      *
      * @psalm-return array<string,list<int>>
-=======
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
      *
      * @throws CodeCoverageException
      */
@@ -225,10 +219,7 @@ final class CodeCoverage
 
     /**
      * @psalm-param class-string $className
-<<<<<<< HEAD
      * @psalm-param non-empty-string $methodName
-=======
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
      */
     public function shouldCodeCoverageBeCollectedFor(string $className, string $methodName): bool
     {

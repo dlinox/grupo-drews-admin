@@ -19,10 +19,7 @@ use PHPUnit\Event\Telemetry;
 final class AssertionSucceeded implements Event
 {
     private readonly Telemetry\Info $telemetryInfo;
-<<<<<<< HEAD
     private readonly string $value;
-=======
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     private readonly string $constraint;
     private readonly int $count;
     private readonly string $message;
@@ -30,10 +27,7 @@ final class AssertionSucceeded implements Event
     public function __construct(Telemetry\Info $telemetryInfo, string $value, string $constraint, int $count, string $message)
     {
         $this->telemetryInfo = $telemetryInfo;
-<<<<<<< HEAD
         $this->value         = $value;
-=======
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         $this->constraint    = $constraint;
         $this->count         = $count;
         $this->message       = $message;
@@ -44,18 +38,9 @@ final class AssertionSucceeded implements Event
         return $this->telemetryInfo;
     }
 
-<<<<<<< HEAD
     public function value(): string
     {
         return $this->value;
-=======
-    /**
-     * @deprecated https://github.com/sebastianbergmann/phpunit/issues/5183
-     */
-    public function value(): string
-    {
-        return '';
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     }
 
     public function count(): int
@@ -80,14 +65,9 @@ final class AssertionSucceeded implements Event
         }
 
         return sprintf(
-<<<<<<< HEAD
             'Assertion Succeeded (Constraint: %s, Value: %s%s)',
             $this->constraint,
             $this->value,
-=======
-            'Assertion Succeeded (Constraint: %s%s)',
-            $this->constraint,
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             $message
         );
     }

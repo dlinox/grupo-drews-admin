@@ -1020,14 +1020,11 @@ return array(
     'Hamcrest\\Type\\IsString' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
     'Hamcrest\\Util' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
     'Hamcrest\\Xml\\HasXPath' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
-<<<<<<< HEAD
-=======
     'Http\\Message\\MessageFactory' => $vendorDir . '/php-http/message-factory/src/MessageFactory.php',
     'Http\\Message\\RequestFactory' => $vendorDir . '/php-http/message-factory/src/RequestFactory.php',
     'Http\\Message\\ResponseFactory' => $vendorDir . '/php-http/message-factory/src/ResponseFactory.php',
     'Http\\Message\\StreamFactory' => $vendorDir . '/php-http/message-factory/src/StreamFactory.php',
     'Http\\Message\\UriFactory' => $vendorDir . '/php-http/message-factory/src/UriFactory.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     'Illuminate\\Auth\\Access\\AuthorizationException' => $vendorDir . '/laravel/framework/src/Illuminate/Auth/Access/AuthorizationException.php',
     'Illuminate\\Auth\\Access\\Events\\GateEvaluated' => $vendorDir . '/laravel/framework/src/Illuminate/Auth/Access/Events/GateEvaluated.php',
     'Illuminate\\Auth\\Access\\Gate' => $vendorDir . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',
@@ -2794,8 +2791,6 @@ return array(
     'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => $vendorDir . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
     'League\\MimeTypeDetection\\MimeTypeDetector' => $vendorDir . '/league/mime-type-detection/src/MimeTypeDetector.php',
     'League\\MimeTypeDetection\\OverridingExtensionToMimeTypeMap' => $vendorDir . '/league/mime-type-detection/src/OverridingExtensionToMimeTypeMap.php',
-<<<<<<< HEAD
-=======
     'Masterminds\\HTML5' => $vendorDir . '/masterminds/html5/src/HTML5.php',
     'Masterminds\\HTML5\\Elements' => $vendorDir . '/masterminds/html5/src/HTML5/Elements.php',
     'Masterminds\\HTML5\\Entities' => $vendorDir . '/masterminds/html5/src/HTML5/Entities.php',
@@ -2816,7 +2811,6 @@ return array(
     'Masterminds\\HTML5\\Serializer\\OutputRules' => $vendorDir . '/masterminds/html5/src/HTML5/Serializer/OutputRules.php',
     'Masterminds\\HTML5\\Serializer\\RulesInterface' => $vendorDir . '/masterminds/html5/src/HTML5/Serializer/RulesInterface.php',
     'Masterminds\\HTML5\\Serializer\\Traverser' => $vendorDir . '/masterminds/html5/src/HTML5/Serializer/Traverser.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     'Mockery' => $vendorDir . '/mockery/mockery/library/Mockery.php',
     'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => $vendorDir . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
     'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditions' => $vendorDir . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditions.php',
@@ -3109,8 +3103,6 @@ return array(
     'NunoMaduro\\Collision\\Provider' => $vendorDir . '/nunomaduro/collision/src/Provider.php',
     'NunoMaduro\\Collision\\SolutionsRepositories\\NullSolutionsRepository' => $vendorDir . '/nunomaduro/collision/src/SolutionsRepositories/NullSolutionsRepository.php',
     'NunoMaduro\\Collision\\Writer' => $vendorDir . '/nunomaduro/collision/src/Writer.php',
-<<<<<<< HEAD
-=======
     'Nyholm\\Psr7\\Factory\\HttplugFactory' => $vendorDir . '/nyholm/psr7/src/Factory/HttplugFactory.php',
     'Nyholm\\Psr7\\Factory\\Psr17Factory' => $vendorDir . '/nyholm/psr7/src/Factory/Psr17Factory.php',
     'Nyholm\\Psr7\\MessageTrait' => $vendorDir . '/nyholm/psr7/src/MessageTrait.php',
@@ -3121,7 +3113,6 @@ return array(
     'Nyholm\\Psr7\\Stream' => $vendorDir . '/nyholm/psr7/src/Stream.php',
     'Nyholm\\Psr7\\UploadedFile' => $vendorDir . '/nyholm/psr7/src/UploadedFile.php',
     'Nyholm\\Psr7\\Uri' => $vendorDir . '/nyholm/psr7/src/Uri.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     'PHPUnit\\Event\\Application\\Finished' => $vendorDir . '/phpunit/phpunit/src/Event/Events/Application/Finished.php',
     'PHPUnit\\Event\\Application\\FinishedSubscriber' => $vendorDir . '/phpunit/phpunit/src/Event/Events/Application/FinishedSubscriber.php',
     'PHPUnit\\Event\\Application\\Started' => $vendorDir . '/phpunit/phpunit/src/Event/Events/Application/Started.php',
@@ -3604,10 +3595,6 @@ return array(
     'PHPUnit\\Metadata\\BackupStaticProperties' => $vendorDir . '/phpunit/phpunit/src/Metadata/BackupStaticProperties.php',
     'PHPUnit\\Metadata\\Before' => $vendorDir . '/phpunit/phpunit/src/Metadata/Before.php',
     'PHPUnit\\Metadata\\BeforeClass' => $vendorDir . '/phpunit/phpunit/src/Metadata/BeforeClass.php',
-<<<<<<< HEAD
-=======
-    'PHPUnit\\Metadata\\CodeCoverageIgnore' => $vendorDir . '/phpunit/phpunit/src/Metadata/CodeCoverageIgnore.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     'PHPUnit\\Metadata\\Covers' => $vendorDir . '/phpunit/phpunit/src/Metadata/Covers.php',
     'PHPUnit\\Metadata\\CoversClass' => $vendorDir . '/phpunit/phpunit/src/Metadata/CoversClass.php',
     'PHPUnit\\Metadata\\CoversDefaultClass' => $vendorDir . '/phpunit/phpunit/src/Metadata/CoversDefaultClass.php',
@@ -4848,8 +4835,6 @@ return array(
     'Spatie\\Backtrace\\CodeSnippet' => $vendorDir . '/spatie/backtrace/src/CodeSnippet.php',
     'Spatie\\Backtrace\\File' => $vendorDir . '/spatie/backtrace/src/File.php',
     'Spatie\\Backtrace\\Frame' => $vendorDir . '/spatie/backtrace/src/Frame.php',
-<<<<<<< HEAD
-=======
     'Spatie\\Browsershot\\Browsershot' => $vendorDir . '/spatie/browsershot/src/Browsershot.php',
     'Spatie\\Browsershot\\Exceptions\\CouldNotTakeBrowsershot' => $vendorDir . '/spatie/browsershot/src/Exceptions/CouldNotTakeBrowsershot.php',
     'Spatie\\Browsershot\\Exceptions\\ElementNotFound' => $vendorDir . '/spatie/browsershot/src/Exceptions/ElementNotFound.php',
@@ -4888,7 +4873,6 @@ return array(
     'Spatie\\Export\\Jobs\\ExportPath' => $vendorDir . '/spatie/laravel-export/src/Jobs/ExportPath.php',
     'Spatie\\Export\\Jobs\\IncludeFile' => $vendorDir . '/spatie/laravel-export/src/Jobs/IncludeFile.php',
     'Spatie\\Export\\Traits\\NormalizedPath' => $vendorDir . '/spatie/laravel-export/src/Traits/NormalizedPath.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     'Spatie\\FlareClient\\Api' => $vendorDir . '/spatie/flare-client-php/src/Api.php',
     'Spatie\\FlareClient\\Concerns\\HasContext' => $vendorDir . '/spatie/flare-client-php/src/Concerns/HasContext.php',
     'Spatie\\FlareClient\\Concerns\\UsesTime' => $vendorDir . '/spatie/flare-client-php/src/Concerns/UsesTime.php',
@@ -4949,8 +4933,6 @@ return array(
     'Spatie\\Ignition\\Solutions\\SolutionTransformer' => $vendorDir . '/spatie/ignition/src/Solutions/SolutionTransformer.php',
     'Spatie\\Ignition\\Solutions\\SuggestCorrectVariableNameSolution' => $vendorDir . '/spatie/ignition/src/Solutions/SuggestCorrectVariableNameSolution.php',
     'Spatie\\Ignition\\Solutions\\SuggestImportSolution' => $vendorDir . '/spatie/ignition/src/Solutions/SuggestImportSolution.php',
-<<<<<<< HEAD
-=======
     'Spatie\\ImageOptimizer\\DummyLogger' => $vendorDir . '/spatie/image-optimizer/src/DummyLogger.php',
     'Spatie\\ImageOptimizer\\Image' => $vendorDir . '/spatie/image-optimizer/src/Image.php',
     'Spatie\\ImageOptimizer\\Optimizer' => $vendorDir . '/spatie/image-optimizer/src/Optimizer.php',
@@ -4971,7 +4953,6 @@ return array(
     'Spatie\\Image\\Image' => $vendorDir . '/spatie/image/src/Image.php',
     'Spatie\\Image\\ManipulationSequence' => $vendorDir . '/spatie/image/src/ManipulationSequence.php',
     'Spatie\\Image\\Manipulations' => $vendorDir . '/spatie/image/src/Manipulations.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     'Spatie\\LaravelIgnition\\Commands\\SolutionMakeCommand' => $vendorDir . '/spatie/laravel-ignition/src/Commands/SolutionMakeCommand.php',
     'Spatie\\LaravelIgnition\\Commands\\SolutionProviderMakeCommand' => $vendorDir . '/spatie/laravel-ignition/src/Commands/SolutionProviderMakeCommand.php',
     'Spatie\\LaravelIgnition\\Commands\\TestCommand' => $vendorDir . '/spatie/laravel-ignition/src/Commands/TestCommand.php',
@@ -5053,8 +5034,6 @@ return array(
     'Spatie\\LaravelIgnition\\Support\\StringComparator' => $vendorDir . '/spatie/laravel-ignition/src/Support/StringComparator.php',
     'Spatie\\LaravelIgnition\\Views\\BladeSourceMapCompiler' => $vendorDir . '/spatie/laravel-ignition/src/Views/BladeSourceMapCompiler.php',
     'Spatie\\LaravelIgnition\\Views\\ViewExceptionMapper' => $vendorDir . '/spatie/laravel-ignition/src/Views/ViewExceptionMapper.php',
-<<<<<<< HEAD
-=======
     'Spatie\\Robots\\Robots' => $vendorDir . '/spatie/robots-txt/src/Robots.php',
     'Spatie\\Robots\\RobotsHeaders' => $vendorDir . '/spatie/robots-txt/src/RobotsHeaders.php',
     'Spatie\\Robots\\RobotsMeta' => $vendorDir . '/spatie/robots-txt/src/RobotsMeta.php',
@@ -5062,7 +5041,6 @@ return array(
     'Spatie\\TemporaryDirectory\\Exceptions\\InvalidDirectoryName' => $vendorDir . '/spatie/temporary-directory/src/Exceptions/InvalidDirectoryName.php',
     'Spatie\\TemporaryDirectory\\Exceptions\\PathAlreadyExists' => $vendorDir . '/spatie/temporary-directory/src/Exceptions/PathAlreadyExists.php',
     'Spatie\\TemporaryDirectory\\TemporaryDirectory' => $vendorDir . '/spatie/temporary-directory/src/TemporaryDirectory.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     'Stringable' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
     'Symfony\\Bridge\\PsrHttpMessage\\ArgumentValueResolver\\PsrServerRequestResolver' => $vendorDir . '/symfony/psr-http-message-bridge/ArgumentValueResolver/PsrServerRequestResolver.php',
     'Symfony\\Bridge\\PsrHttpMessage\\EventListener\\PsrResponseListener' => $vendorDir . '/symfony/psr-http-message-bridge/EventListener/PsrResponseListener.php',

@@ -10,13 +10,9 @@
 namespace PHPUnit\Framework\Constraint;
 
 use function array_is_list;
-<<<<<<< HEAD
 use function gettype;
 use function is_array;
 use function strtolower;
-=======
-use function is_array;
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 
 /**
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
@@ -28,11 +24,7 @@ final class IsList extends Constraint
      */
     public function toString(): string
     {
-<<<<<<< HEAD
         return 'is a list';
-=======
-        return 'is list';
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     }
 
     /**
@@ -56,7 +48,6 @@ final class IsList extends Constraint
      */
     protected function failureDescription(mixed $other): string
     {
-<<<<<<< HEAD
         $type = strtolower(gettype($other));
 
         if ($type === 'double') {
@@ -72,8 +63,5 @@ final class IsList extends Constraint
             'boolean', 'float', 'null', 'resource', 'string' => 'a ' . $type . ' ' . $this->toString(),
             default => 'a value of ' . $type . ' ' . $this->toString(),
         };
-=======
-        return 'an array ' . $this->toString();
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
     }
 }

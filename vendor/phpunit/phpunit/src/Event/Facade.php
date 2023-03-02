@@ -100,11 +100,7 @@ final class Facade
 
     public static function seal(): void
     {
-<<<<<<< HEAD
         self::deferredDispatcher()->flush();
-=======
-        self::$deferringDispatcher->flush();
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 
         self::$sealed = true;
 

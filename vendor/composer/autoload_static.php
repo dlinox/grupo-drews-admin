@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
+class ComposerStaticInitf315892d7df89e80b04b4224dc7854b4
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -16,17 +16,11 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
-<<<<<<< HEAD
-        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-=======
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         '3bd81c9b8fcc150b69d8b63b4d2ccf23' => __DIR__ . '/..' . '/spatie/flare-client-php/src/helpers.php',
         '09f6b20656683369174dd6fa83b7e5fb' => __DIR__ . '/..' . '/symfony/polyfill-uuid/bootstrap.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
@@ -90,11 +84,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
             'Symfony\\Component\\DomCrawler\\' => 29,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
-<<<<<<< HEAD
-            'Spatie\\LaravelIgnition\\' => 23,
-            'Spatie\\Ignition\\' => 16,
-            'Spatie\\FlareClient\\' => 19,
-=======
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
             'Spatie\\TemporaryDirectory\\' => 26,
             'Spatie\\Robots\\' => 14,
@@ -106,7 +95,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
             'Spatie\\Export\\' => 14,
             'Spatie\\Crawler\\' => 15,
             'Spatie\\Browsershot\\' => 19,
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             'Spatie\\Backtrace\\' => 17,
         ),
         'R' => 
@@ -128,10 +116,7 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         ),
         'N' => 
         array (
-<<<<<<< HEAD
-=======
             'Nyholm\\Psr7\\' => 12,
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             'NunoMaduro\\Collision\\' => 21,
         ),
         'M' => 
@@ -345,8 +330,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
-<<<<<<< HEAD
-=======
         'Symfony\\Bridge\\PsrHttpMessage\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/psr-http-message-bridge',
@@ -359,13 +342,10 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         array (
             0 => __DIR__ . '/..' . '/spatie/robots-txt/src',
         ),
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'Spatie\\LaravelIgnition\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-ignition/src',
         ),
-<<<<<<< HEAD
-=======
         'Spatie\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/image/src',
@@ -374,7 +354,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         array (
             0 => __DIR__ . '/..' . '/spatie/image-optimizer/src',
         ),
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'Spatie\\Ignition\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/ignition/src',
@@ -383,8 +362,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         array (
             0 => __DIR__ . '/..' . '/spatie/flare-client-php/src',
         ),
-<<<<<<< HEAD
-=======
         'Spatie\\Export\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-export/src',
@@ -397,7 +374,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         array (
             0 => __DIR__ . '/..' . '/spatie/browsershot/src',
         ),
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'Spatie\\Backtrace\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/backtrace/src',
@@ -447,13 +423,10 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
-<<<<<<< HEAD
-=======
         'Nyholm\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/nyholm/psr7/src',
         ),
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'NunoMaduro\\Collision\\' => 
         array (
             0 => __DIR__ . '/..' . '/nunomaduro/collision/src',
@@ -1630,14 +1603,11 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
-<<<<<<< HEAD
-=======
         'Http\\Message\\MessageFactory' => __DIR__ . '/..' . '/php-http/message-factory/src/MessageFactory.php',
         'Http\\Message\\RequestFactory' => __DIR__ . '/..' . '/php-http/message-factory/src/RequestFactory.php',
         'Http\\Message\\ResponseFactory' => __DIR__ . '/..' . '/php-http/message-factory/src/ResponseFactory.php',
         'Http\\Message\\StreamFactory' => __DIR__ . '/..' . '/php-http/message-factory/src/StreamFactory.php',
         'Http\\Message\\UriFactory' => __DIR__ . '/..' . '/php-http/message-factory/src/UriFactory.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'Illuminate\\Auth\\Access\\AuthorizationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/AuthorizationException.php',
         'Illuminate\\Auth\\Access\\Events\\GateEvaluated' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Events/GateEvaluated.php',
         'Illuminate\\Auth\\Access\\Gate' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',
@@ -3404,8 +3374,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
         'League\\MimeTypeDetection\\MimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/MimeTypeDetector.php',
         'League\\MimeTypeDetection\\OverridingExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/OverridingExtensionToMimeTypeMap.php',
-<<<<<<< HEAD
-=======
         'Masterminds\\HTML5' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5.php',
         'Masterminds\\HTML5\\Elements' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Elements.php',
         'Masterminds\\HTML5\\Entities' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Entities.php',
@@ -3426,7 +3394,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         'Masterminds\\HTML5\\Serializer\\OutputRules' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Serializer/OutputRules.php',
         'Masterminds\\HTML5\\Serializer\\RulesInterface' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Serializer/RulesInterface.php',
         'Masterminds\\HTML5\\Serializer\\Traverser' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Serializer/Traverser.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditions' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditions.php',
@@ -3719,8 +3686,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         'NunoMaduro\\Collision\\Provider' => __DIR__ . '/..' . '/nunomaduro/collision/src/Provider.php',
         'NunoMaduro\\Collision\\SolutionsRepositories\\NullSolutionsRepository' => __DIR__ . '/..' . '/nunomaduro/collision/src/SolutionsRepositories/NullSolutionsRepository.php',
         'NunoMaduro\\Collision\\Writer' => __DIR__ . '/..' . '/nunomaduro/collision/src/Writer.php',
-<<<<<<< HEAD
-=======
         'Nyholm\\Psr7\\Factory\\HttplugFactory' => __DIR__ . '/..' . '/nyholm/psr7/src/Factory/HttplugFactory.php',
         'Nyholm\\Psr7\\Factory\\Psr17Factory' => __DIR__ . '/..' . '/nyholm/psr7/src/Factory/Psr17Factory.php',
         'Nyholm\\Psr7\\MessageTrait' => __DIR__ . '/..' . '/nyholm/psr7/src/MessageTrait.php',
@@ -3731,7 +3696,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         'Nyholm\\Psr7\\Stream' => __DIR__ . '/..' . '/nyholm/psr7/src/Stream.php',
         'Nyholm\\Psr7\\UploadedFile' => __DIR__ . '/..' . '/nyholm/psr7/src/UploadedFile.php',
         'Nyholm\\Psr7\\Uri' => __DIR__ . '/..' . '/nyholm/psr7/src/Uri.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'PHPUnit\\Event\\Application\\Finished' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/Finished.php',
         'PHPUnit\\Event\\Application\\FinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/FinishedSubscriber.php',
         'PHPUnit\\Event\\Application\\Started' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/Started.php',
@@ -4214,10 +4178,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         'PHPUnit\\Metadata\\BackupStaticProperties' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/BackupStaticProperties.php',
         'PHPUnit\\Metadata\\Before' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/Before.php',
         'PHPUnit\\Metadata\\BeforeClass' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/BeforeClass.php',
-<<<<<<< HEAD
-=======
-        'PHPUnit\\Metadata\\CodeCoverageIgnore' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/CodeCoverageIgnore.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'PHPUnit\\Metadata\\Covers' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/Covers.php',
         'PHPUnit\\Metadata\\CoversClass' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/CoversClass.php',
         'PHPUnit\\Metadata\\CoversDefaultClass' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/CoversDefaultClass.php',
@@ -5458,8 +5418,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         'Spatie\\Backtrace\\CodeSnippet' => __DIR__ . '/..' . '/spatie/backtrace/src/CodeSnippet.php',
         'Spatie\\Backtrace\\File' => __DIR__ . '/..' . '/spatie/backtrace/src/File.php',
         'Spatie\\Backtrace\\Frame' => __DIR__ . '/..' . '/spatie/backtrace/src/Frame.php',
-<<<<<<< HEAD
-=======
         'Spatie\\Browsershot\\Browsershot' => __DIR__ . '/..' . '/spatie/browsershot/src/Browsershot.php',
         'Spatie\\Browsershot\\Exceptions\\CouldNotTakeBrowsershot' => __DIR__ . '/..' . '/spatie/browsershot/src/Exceptions/CouldNotTakeBrowsershot.php',
         'Spatie\\Browsershot\\Exceptions\\ElementNotFound' => __DIR__ . '/..' . '/spatie/browsershot/src/Exceptions/ElementNotFound.php',
@@ -5498,7 +5456,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         'Spatie\\Export\\Jobs\\ExportPath' => __DIR__ . '/..' . '/spatie/laravel-export/src/Jobs/ExportPath.php',
         'Spatie\\Export\\Jobs\\IncludeFile' => __DIR__ . '/..' . '/spatie/laravel-export/src/Jobs/IncludeFile.php',
         'Spatie\\Export\\Traits\\NormalizedPath' => __DIR__ . '/..' . '/spatie/laravel-export/src/Traits/NormalizedPath.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'Spatie\\FlareClient\\Api' => __DIR__ . '/..' . '/spatie/flare-client-php/src/Api.php',
         'Spatie\\FlareClient\\Concerns\\HasContext' => __DIR__ . '/..' . '/spatie/flare-client-php/src/Concerns/HasContext.php',
         'Spatie\\FlareClient\\Concerns\\UsesTime' => __DIR__ . '/..' . '/spatie/flare-client-php/src/Concerns/UsesTime.php',
@@ -5559,8 +5516,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         'Spatie\\Ignition\\Solutions\\SolutionTransformer' => __DIR__ . '/..' . '/spatie/ignition/src/Solutions/SolutionTransformer.php',
         'Spatie\\Ignition\\Solutions\\SuggestCorrectVariableNameSolution' => __DIR__ . '/..' . '/spatie/ignition/src/Solutions/SuggestCorrectVariableNameSolution.php',
         'Spatie\\Ignition\\Solutions\\SuggestImportSolution' => __DIR__ . '/..' . '/spatie/ignition/src/Solutions/SuggestImportSolution.php',
-<<<<<<< HEAD
-=======
         'Spatie\\ImageOptimizer\\DummyLogger' => __DIR__ . '/..' . '/spatie/image-optimizer/src/DummyLogger.php',
         'Spatie\\ImageOptimizer\\Image' => __DIR__ . '/..' . '/spatie/image-optimizer/src/Image.php',
         'Spatie\\ImageOptimizer\\Optimizer' => __DIR__ . '/..' . '/spatie/image-optimizer/src/Optimizer.php',
@@ -5581,7 +5536,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         'Spatie\\Image\\Image' => __DIR__ . '/..' . '/spatie/image/src/Image.php',
         'Spatie\\Image\\ManipulationSequence' => __DIR__ . '/..' . '/spatie/image/src/ManipulationSequence.php',
         'Spatie\\Image\\Manipulations' => __DIR__ . '/..' . '/spatie/image/src/Manipulations.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'Spatie\\LaravelIgnition\\Commands\\SolutionMakeCommand' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Commands/SolutionMakeCommand.php',
         'Spatie\\LaravelIgnition\\Commands\\SolutionProviderMakeCommand' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Commands/SolutionProviderMakeCommand.php',
         'Spatie\\LaravelIgnition\\Commands\\TestCommand' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Commands/TestCommand.php',
@@ -5663,8 +5617,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         'Spatie\\LaravelIgnition\\Support\\StringComparator' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Support/StringComparator.php',
         'Spatie\\LaravelIgnition\\Views\\BladeSourceMapCompiler' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Views/BladeSourceMapCompiler.php',
         'Spatie\\LaravelIgnition\\Views\\ViewExceptionMapper' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Views/ViewExceptionMapper.php',
-<<<<<<< HEAD
-=======
         'Spatie\\Robots\\Robots' => __DIR__ . '/..' . '/spatie/robots-txt/src/Robots.php',
         'Spatie\\Robots\\RobotsHeaders' => __DIR__ . '/..' . '/spatie/robots-txt/src/RobotsHeaders.php',
         'Spatie\\Robots\\RobotsMeta' => __DIR__ . '/..' . '/spatie/robots-txt/src/RobotsMeta.php',
@@ -5672,7 +5624,6 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
         'Spatie\\TemporaryDirectory\\Exceptions\\InvalidDirectoryName' => __DIR__ . '/..' . '/spatie/temporary-directory/src/Exceptions/InvalidDirectoryName.php',
         'Spatie\\TemporaryDirectory\\Exceptions\\PathAlreadyExists' => __DIR__ . '/..' . '/spatie/temporary-directory/src/Exceptions/PathAlreadyExists.php',
         'Spatie\\TemporaryDirectory\\TemporaryDirectory' => __DIR__ . '/..' . '/spatie/temporary-directory/src/TemporaryDirectory.php',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Symfony\\Bridge\\PsrHttpMessage\\ArgumentValueResolver\\PsrServerRequestResolver' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/ArgumentValueResolver/PsrServerRequestResolver.php',
         'Symfony\\Bridge\\PsrHttpMessage\\EventListener\\PsrResponseListener' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/EventListener/PsrResponseListener.php',
@@ -6697,10 +6648,10 @@ class ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit3a94fe3ef6e4ecd32a2ee794b20c3897::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitf315892d7df89e80b04b4224dc7854b4::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitf315892d7df89e80b04b4224dc7854b4::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitf315892d7df89e80b04b4224dc7854b4::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitf315892d7df89e80b04b4224dc7854b4::$classMap;
 
         }, null, ClassLoader::class);
     }

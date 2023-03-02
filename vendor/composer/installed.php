@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'df8034b1eb188b07c900786e32c425c2aab43965',
+        'reference' => 'cc8a6838f7b82e0f80989f2fc10a71b43049d98f',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -365,23 +365,12 @@
             'dev_requirement' => false,
         ),
         'intervention/image' => array(
-<<<<<<< HEAD
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => '54934ae8ea3661fd189437df90fb09ec3b679c74',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../intervention/image',
-            'aliases' => array(
-                0 => '2.4.x-dev',
-            ),
-=======
             'pretty_version' => '2.7.2',
             'version' => '2.7.2.0',
             'reference' => '04be355f8d6734c826045d02a1079ad658322dad',
             'type' => 'library',
             'install_path' => __DIR__ . '/../intervention/image',
             'aliases' => array(),
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             'dev_requirement' => false,
         ),
         'kodova/hamcrest-php' => array(
@@ -402,37 +391,25 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'df8034b1eb188b07c900786e32c425c2aab43965',
+            'reference' => 'cc8a6838f7b82e0f80989f2fc10a71b43049d98f',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(
-<<<<<<< HEAD
             'pretty_version' => 'v1.6.0',
             'version' => '1.6.0.0',
             'reference' => 'e48e3fadd7863d6b7d03464f5c4f211a828b890f',
-=======
-            'pretty_version' => 'v1.5.0',
-            'version' => '1.5.0.0',
-            'reference' => 'e0a8cef58b74662f27355be9cdea0e726bbac362',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             'type' => 'project',
             'install_path' => __DIR__ . '/../laravel/pint',
             'aliases' => array(),
             'dev_requirement' => true,
         ),
         'laravel/sail' => array(
-<<<<<<< HEAD
             'pretty_version' => 'v1.21.1',
             'version' => '1.21.1.0',
             'reference' => 'fd8d04bc546457b504aa2b3c2d541840551f836f',
-=======
-            'pretty_version' => 'v1.20.2',
-            'version' => '1.20.2.0',
-            'reference' => '5ae072b182b1efbec927409e8a3ce3b1078cc42c',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             'type' => 'library',
             'install_path' => __DIR__ . '/../laravel/sail',
             'aliases' => array(),
@@ -510,8 +487,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-<<<<<<< HEAD
-=======
         'masterminds/html5' => array(
             'pretty_version' => '2.7.6',
             'version' => '2.7.6.0',
@@ -521,7 +496,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'mockery/mockery' => array(
             'pretty_version' => '1.5.1',
             'version' => '1.5.1.0',
@@ -601,15 +575,9 @@
             'dev_requirement' => false,
         ),
         'nunomaduro/collision' => array(
-<<<<<<< HEAD
             'pretty_version' => 'v7.0.5',
             'version' => '7.0.5.0',
             'reference' => '5c654ee5fa187cf2f4cb226d773582ec6d402a55',
-=======
-            'pretty_version' => 'v7.0.4',
-            'version' => '7.0.4.0',
-            'reference' => 'd9205550494a8e6865ae59eaa3fd0f77f6c916fb',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             'type' => 'library',
             'install_path' => __DIR__ . '/../nunomaduro/collision',
             'aliases' => array(),
@@ -624,8 +592,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-<<<<<<< HEAD
-=======
         'nyholm/psr7' => array(
             'pretty_version' => '1.5.1',
             'version' => '1.5.1.0',
@@ -635,7 +601,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'phar-io/manifest' => array(
             'pretty_version' => '2.0.3',
             'version' => '2.0.3.0',
@@ -654,8 +619,6 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
-<<<<<<< HEAD
-=======
         'php-http/message-factory' => array(
             'pretty_version' => 'v1.0.2',
             'version' => '1.0.2.0',
@@ -665,7 +628,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'phpoption/phpoption' => array(
             'pretty_version' => '1.9.1',
             'version' => '1.9.1.0',
@@ -676,15 +638,9 @@
             'dev_requirement' => false,
         ),
         'phpunit/php-code-coverage' => array(
-<<<<<<< HEAD
             'pretty_version' => '10.0.1',
             'version' => '10.0.1.0',
             'reference' => 'b9c21a93dd8c8eed79879374884ee733259475cc',
-=======
-            'pretty_version' => '10.0.0',
-            'version' => '10.0.0.0',
-            'reference' => 'bf4fbc9c13af7da12b3ea807574fb460f255daba',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpunit/php-code-coverage',
             'aliases' => array(),
@@ -727,15 +683,9 @@
             'dev_requirement' => true,
         ),
         'phpunit/phpunit' => array(
-<<<<<<< HEAD
             'pretty_version' => '10.0.14',
             'version' => '10.0.14.0',
             'reference' => '7065dbebcb0f66cf16a45fc9cfc28c2351e06169',
-=======
-            'pretty_version' => '10.0.8',
-            'version' => '10.0.8.0',
-            'reference' => 'be72e6e446f40e930b6350922d302690bb35888e',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpunit/phpunit',
             'aliases' => array(),
@@ -1025,22 +975,14 @@
             'dev_requirement' => true,
         ),
         'spatie/backtrace' => array(
-<<<<<<< HEAD
             'pretty_version' => '1.2.2',
             'version' => '1.2.2.0',
             'reference' => '7b34fee6c1ad45f8ee0498d17cd8ea9a076402c1',
-=======
-            'pretty_version' => '1.2.1',
-            'version' => '1.2.1.0',
-            'reference' => '4ee7d41aa5268107906ea8a4d9ceccde136dbd5b',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             'type' => 'library',
             'install_path' => __DIR__ . '/../spatie/backtrace',
             'aliases' => array(),
             'dev_requirement' => true,
         ),
-<<<<<<< HEAD
-=======
         'spatie/browsershot' => array(
             'pretty_version' => '3.57.6',
             'version' => '3.57.6.0',
@@ -1059,7 +1001,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'spatie/flare-client-php' => array(
             'pretty_version' => '1.3.5',
             'version' => '1.3.5.0',
@@ -1070,22 +1011,14 @@
             'dev_requirement' => true,
         ),
         'spatie/ignition' => array(
-<<<<<<< HEAD
             'pretty_version' => '1.4.5',
             'version' => '1.4.5.0',
             'reference' => 'cc09114b7057bd217b676f047544b33f5b6247e6',
-=======
-            'pretty_version' => '1.4.3',
-            'version' => '1.4.3.0',
-            'reference' => '2cf3833220cfe8fcf639544f8d7067b6469a00b0',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             'type' => 'library',
             'install_path' => __DIR__ . '/../spatie/ignition',
             'aliases' => array(),
             'dev_requirement' => true,
         ),
-<<<<<<< HEAD
-=======
         'spatie/image' => array(
             'pretty_version' => '2.2.5',
             'version' => '2.2.5.0',
@@ -1113,7 +1046,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'spatie/laravel-ignition' => array(
             'pretty_version' => '2.0.0',
             'version' => '2.0.0.0',
@@ -1123,8 +1055,6 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
-<<<<<<< HEAD
-=======
         'spatie/robots-txt' => array(
             'pretty_version' => '2.0.2',
             'version' => '2.0.2.0',
@@ -1143,7 +1073,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         'symfony/console' => array(
             'pretty_version' => 'v6.2.7',
             'version' => '6.2.7.0',
@@ -1418,15 +1347,9 @@
             'dev_requirement' => false,
         ),
         'symfony/yaml' => array(
-<<<<<<< HEAD
             'pretty_version' => 'v6.2.7',
             'version' => '6.2.7.0',
             'reference' => 'e8e6a1d59e050525f27a1f530aa9703423cb7f57',
-=======
-            'pretty_version' => 'v6.2.5',
-            'version' => '6.2.5.0',
-            'reference' => '2bbfbdacc8a15574f8440c4838ce0d7bb6c86b19',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/yaml',
             'aliases' => array(),

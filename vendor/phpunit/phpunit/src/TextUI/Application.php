@@ -63,10 +63,7 @@ use PHPUnit\TextUI\Output\Printer;
 use PHPUnit\TextUI\XmlConfiguration\Configuration as XmlConfiguration;
 use PHPUnit\TextUI\XmlConfiguration\DefaultConfiguration;
 use PHPUnit\TextUI\XmlConfiguration\Loader;
-<<<<<<< HEAD
 use SebastianBergmann\Timer\Timer;
-=======
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
 use Throwable;
 
 /**
@@ -136,12 +133,9 @@ final class Application
 
             EventFacade::seal();
 
-<<<<<<< HEAD
             $timer = new Timer;
             $timer->start();
 
-=======
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             $runner = new TestRunner;
 
             $runner->run(
@@ -150,11 +144,8 @@ final class Application
                 $testSuite
             );
 
-<<<<<<< HEAD
             $duration = $timer->stop();
 
-=======
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             $testDoxResult = null;
 
             if (isset($testDoxResultCollector)) {
@@ -177,11 +168,7 @@ final class Application
 
             $result = TestResultFacade::result();
 
-<<<<<<< HEAD
             OutputFacade::printResult($result, $testDoxResult, $duration);
-=======
-            OutputFacade::printResult($result, $testDoxResult);
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             CodeCoverage::instance()->generateReports($printer, $configuration);
 
             $shellExitCode = (new ShellExitCodeCalculator)->calculate(
@@ -210,16 +197,11 @@ final class Application
         }
 
         printf(
-<<<<<<< HEAD
             '%s%sAn error occurred inside PHPUnit.%s%sMessage:  %s',
-=======
-            '%s%sAn error occurred inside PHPUnit.%s%sMessage:  %s%sLocation: %s:%d%s%s%s%s',
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             PHP_EOL,
             PHP_EOL,
             PHP_EOL,
             PHP_EOL,
-<<<<<<< HEAD
             $message
         );
 
@@ -241,18 +223,6 @@ final class Application
             $first = false;
         } while ($t = $t->getPrevious());
 
-=======
-            $message,
-            PHP_EOL,
-            $t->getFile(),
-            $t->getLine(),
-            PHP_EOL,
-            PHP_EOL,
-            $t->getTraceAsString(),
-            PHP_EOL
-        );
-
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
         exit(Result::CRASH);
     }
 
@@ -424,11 +394,7 @@ final class Application
 
     private function executeHelpCommandWhenThereIsNothingElseToDo(Configuration $configuration, TestSuite $testSuite): void
     {
-<<<<<<< HEAD
         if ($testSuite->isEmpty() && !$configuration->hasCliArgument() && $configuration->testSuite()->isEmpty()) {
-=======
-        if ($testSuite->isEmpty() && !$configuration->hasCliArgument() && !$configuration->hasDefaultTestSuite()) {
->>>>>>> 0564e0bcf024b7bce32be3668e25bd538b8bca3a
             $this->execute(new ShowHelpCommand(Result::FAILURE));
         }
     }
