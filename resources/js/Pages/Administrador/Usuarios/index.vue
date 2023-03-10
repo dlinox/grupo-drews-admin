@@ -45,15 +45,6 @@
                     </tr>
                 </tbody>
             </n-table>
-
-            <!-- <cropper
-                class="cropper"
-                src="https://images.pexels.com/photos/15174803/pexels-photo-15174803.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                :stencil-props="{
-                    aspectRatio: 10 / 12,
-                }"
-               
-            /> -->
         </div>
     </AdminLayout>
 </template>
@@ -62,8 +53,6 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
 import FormularioUsuarioComponent from "./Components/FormularioUsuarioComponent.vue";
 import { router } from "@inertiajs/vue3";
-import { Cropper } from "vue-advanced-cropper";
-import "vue-advanced-cropper/dist/style.css";
 
 const props = defineProps({
     usuarios: Array,

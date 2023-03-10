@@ -12,11 +12,9 @@
         "laravel-vite-plugin": "^0.7.2",
         "lodash": "^4.17.21",
         "naive-ui": "^2.34.3",
-        "netlify-cli": "^13.0.0",
         "nprogress": "^0.2.0",
         "vite": "^4.0.0",
-        "vue": "^3.2.47",
-        "vue-advanced-cropper": "^2.8.8"
+        "vue": "^3.2.47"
     },
     "dependencies": {
         "@vueup/vue-quill": "^1.1.0"

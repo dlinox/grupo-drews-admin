@@ -14,7 +14,12 @@
                                     placeholder="Corporativo"
                                 />
                             </n-form-item>
-
+                            <n-form-item path="detalle" label="Icono">
+                                <n-input
+                                    v-model:value="formData.figura"
+                                    placeholder="fa-light fa-bell-concierge"
+                                />
+                            </n-form-item>
                             <n-form-item path="descripcion" label="Descripción">
                                 <n-input
                                     type="textarea"
