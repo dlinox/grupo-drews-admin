@@ -12,8 +12,18 @@
                                 <n-card title="Logo" embedded :bordered="false">
                                     <n-image
                                         width="150"
-                                        src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg"
+                                        :src="formData.web_logo"
                                     />
+
+                                    <n-space justify="end">
+                                        <n-button
+                                            @click="
+                                                modal_imagen = !modal_imagen
+                                            "
+                                        >
+                                            Cambiar
+                                        </n-button>
+                                    </n-space>
                                 </n-card>
                             </n-space>
                         </n-grid-item>
@@ -29,12 +39,15 @@
                                             embedded
                                             :bordered="false"
                                         >
-                                            <n-form ref="formRef">
+                                            <n-form ref="formRefGeneral">
                                                 <n-form-item
                                                     path="nombre"
                                                     label="Nombre"
                                                 >
                                                     <n-input
+                                                        v-model:value="
+                                                            formData.web_nombre
+                                                        "
                                                         placeholder="Grupo Drews"
                                                     />
                                                 </n-form-item>
@@ -44,28 +57,44 @@
                                                     label="Descripción"
                                                 >
                                                     <n-input
+                                                        v-model:value="
+                                                            formData.web_descripcion
+                                                        "
                                                         placeholder="descripcion"
                                                     />
                                                 </n-form-item>
 
                                                 <n-form-item
-                                                    path="mision"
+                                                    path="web_mision"
                                                     label="Mision"
                                                 >
-                                                    <n-input
-                                                        type="textarea"
-                                                        placeholder="mision"
-                                                    />
+                                                    <n-space>
+                                                        <QuillEditor
+                                                            theme="snow"
+                                                            v-model:content="
+                                                                formData.web_mision
+                                                            "
+                                                            contentType="html"
+                                                        />
+                                                    </n-space>
                                                 </n-form-item>
 
+                                                <br />
+                                                <br />
+
                                                 <n-form-item
-                                                    path="vision"
+                                                    path="web_vision"
                                                     label="Visión"
                                                 >
-                                                    <n-input
-                                                        type="textarea"
-                                                        placeholder="vision"
-                                                    />
+                                                    <n-space>
+                                                        <QuillEditor
+                                                            theme="snow"
+                                                            v-model:content="
+                                                                formData.web_vision
+                                                            "
+                                                            contentType="html"
+                                                        />
+                                                    </n-space>
                                                 </n-form-item>
                                             </n-form>
                                         </n-card>
@@ -77,11 +106,16 @@
                                             :bordered="false"
                                         >
                                             <n-form
-                                                ref="formRef"
+                                                ref="formRefSocial"
                                                 :show-label="false"
                                             >
-                                                <n-form-item path="vision">
+                                                <n-form-item
+                                                    path="web_social_facebook"
+                                                >
                                                     <n-input
+                                                        v-model:value="
+                                                            formData.web_social_facebook
+                                                        "
                                                         placeholder="Facebook"
                                                     >
                                                         <template #prefix>
@@ -94,8 +128,13 @@
                                                     </n-input>
                                                 </n-form-item>
 
-                                                <n-form-item path="vision">
+                                                <n-form-item
+                                                    path="web_social_instagram"
+                                                >
                                                     <n-input
+                                                        v-model:value="
+                                                            formData.web_social_instagram
+                                                        "
                                                         placeholder="Instagram"
                                                     >
                                                         <template #prefix>
@@ -108,8 +147,13 @@
                                                     </n-input>
                                                 </n-form-item>
 
-                                                <n-form-item path="vision">
+                                                <n-form-item
+                                                    path="web_social_youtube"
+                                                >
                                                     <n-input
+                                                        v-model:value="
+                                                            formData.web_social_youtube
+                                                        "
                                                         placeholder="Youtube"
                                                     >
                                                         <template #prefix>
@@ -122,8 +166,13 @@
                                                     </n-input>
                                                 </n-form-item>
 
-                                                <n-form-item path="vision">
+                                                <n-form-item
+                                                    path="web_social_twiter"
+                                                >
                                                     <n-input
+                                                        v-model:value="
+                                                            formData.web_social_twiter
+                                                        "
                                                         placeholder="Twitter"
                                                     >
                                                         <template #prefix>
@@ -144,39 +193,39 @@
                                             embedded
                                             :bordered="false"
                                         >
-                                            <n-form ref="formRef">
+                                            <n-form ref="formRefContacto">
                                                 <n-form-item
-                                                    path="vision"
+                                                    path="web_telefonos"
                                                     label="Telefono"
                                                 >
                                                     <n-dynamic-tags
                                                         type="info"
                                                         v-model:value="
-                                                            formContacto.telefonos
+                                                            formData.web_telefonos
                                                         "
                                                     />
                                                 </n-form-item>
 
                                                 <n-form-item
-                                                    path="vision"
+                                                    path="web_celulares"
                                                     label="Celular"
                                                 >
                                                     <n-dynamic-tags
                                                         type="info"
                                                         v-model:value="
-                                                            formContacto.celulares
+                                                            formData.web_celulares
                                                         "
                                                     />
                                                 </n-form-item>
 
                                                 <n-form-item
-                                                    path="vision"
+                                                    path="web_direcciones"
                                                     label="Direccion"
                                                 >
                                                     <n-dynamic-tags
                                                         type="info"
                                                         v-model:value="
-                                                            formContacto.direcciones
+                                                            formData.web_direcciones
                                                         "
                                                     />
                                                 </n-form-item>
@@ -184,6 +233,18 @@
                                         </n-card>
                                     </n-collapse-item>
                                 </n-collapse>
+
+                                <template #action>
+                                    <n-space justify="end">
+                                        <n-button
+                                            :loading="formData.processing"
+                                            type="primary"
+                                            @click="submit"
+                                        >
+                                            Guardar Cambios
+                                        </n-button>
+                                    </n-space>
+                                </template>
                             </n-card>
                         </n-grid-item>
                     </n-grid>
@@ -240,30 +301,117 @@
                         </template> </n-carousel
                 ></n-tab-pane>
             </n-tabs>
+
+            <n-modal v-model:show="modal_imagen">
+                <n-card
+                    style="width: 350px"
+                    title="Cambiar imagen"
+                    :bordered="false"
+                    size="huge"
+                    role="dialog"
+                    aria-modal="true"
+                >
+                    <template #footer>
+                        <input
+                            @change="previsualizarImagenes"
+                            @input="formImg.logo = $event.target.files[0]"
+                            :showUploadButton="false"
+                            accept="image/*"
+                            type="file"
+                            :maxFileSize="3000000"
+                            name="logo"
+                    /></template>
+
+                    <template #action>
+                        <n-space justify="center">
+                            <n-image width="200" :src="logo" />
+                        </n-space>
+                        <br />
+                        <n-space justify="end">
+                            <n-button
+                                :loading="formImg.processing"
+                                type="primary"
+                                @click="updateLogo"
+                                >Guardar</n-button
+                            >
+                        </n-space>
+                    </template>
+                </n-card>
+            </n-modal>
         </div>
     </AdminLayout>
 </template>
 <script setup>
+import { ref } from "vue";
+import { useForm } from "@inertiajs/vue3";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
-import { ref } from "vue";
+import { QuillEditor } from "@vueup/vue-quill";
+
 import {
     LogoFacebook,
     LogoInstagram,
     LogoYoutube,
-    LogoTwitter,
     ArrowBack,
+    LogoTwitter,
     ArrowForward,
 } from "@vicons/ionicons5";
 
-const formContacto = ref({
-    telefonos: ["3213213"],
-    celulares: ["951208106", "95564654"],
-    direcciones: [
-        "Jr. Mariano Nuñez # 230 - Cercado - Juliaca - Puno",
-        "Calle Mariano Melgar # 107 - Cerro Colorado - Arequipa",
-    ],
+const modal_imagen = ref(false);
+const props = defineProps({
+    configuracion: Object,
 });
+
+const formImg = useForm({
+    logo: null,
+});
+
+const formData = useForm(props.configuracion);
+
+const logo = ref(null);
+
+const previsualizarImagenes = (e) => {
+    let files = e.target;
+    let file = files.files[0];
+    let objectURL = URL.createObjectURL(file);
+    logo.value = objectURL;
+};
+
+const submit = () => {
+    console.log(formData);
+
+    formData.post("/admin/configuraciones", {
+        preserveScroll: true,
+        onError: (e) => {
+            for (const property in e) {
+                console.log(e[property]);
+            }
+            console.log(e);
+        },
+        onSuccess: (e) => {
+            console.log(e);
+            console.log("creado");
+        },
+    });
+};
+const updateLogo = () => {
+    console.log(formImg);
+
+    formImg.post("/admin/configuraciones/update-logo", {
+        preserveScroll: true,
+        onError: (e) => {
+            for (const property in e) {
+                console.log(e[property]);
+            }
+            console.log(e);
+        },
+        onSuccess: (e) => {
+            console.log(e);
+            console.log("creado");
+            modal_imagen.value = false;
+        },
+    });
+};
 </script>
 
 <style scoped>

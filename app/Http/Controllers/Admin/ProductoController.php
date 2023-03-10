@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categoria;
+use App\Models\Configuracion;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -34,6 +36,7 @@ class ProductoController extends Controller
             return  $producto;
         });
 
+
         return Inertia::render('Administrador/Productos/index',  [
             'productos' => $productos
         ]);
@@ -41,7 +44,10 @@ class ProductoController extends Controller
 
     public function create() //FORMULARIO PARA CREAR SERVICIO
     {
-        return Inertia::render('Administrador/Productos/Formulario');
+        $categorias = Categoria::all(['id', 'detalle']);
+        return Inertia::render('Administrador/Productos/Formulario', [
+            'categorias' => $categorias
+        ]);
     }
 
 
@@ -93,7 +99,11 @@ class ProductoController extends Controller
             'imagenes' => implode(',', $path_imagenes)
         ];
 
-        Producto::create($data);
+
+        $producto = Producto::create($data);
+        if ($producto) {
+            Configuracion::actualizarWeb();
+        }
         return redirect('/admin/productos');
         //return response()->json($request);
 
@@ -101,14 +111,21 @@ class ProductoController extends Controller
 
     public function update(Request $request, string $id)
     {
-        Producto::find($id)->update($request->all());
+        $producto  = Producto::find($id)->update($request->all());
+
+        if ($producto) {
+            Configuracion::actualizarWeb();
+        }
+
         return back()->withInput($request->all());
     }
 
     public function destroy(string $id)
     {
-        Producto::find($id)->delete();
-
+        $producto = Producto::find($id)->delete();
+        if ($producto) {
+            Configuracion::actualizarWeb();
+        }
         return back();
     }
 }

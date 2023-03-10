@@ -2,6 +2,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/uploads
 /storage/*.key
 .env
 .env.backup
@@ -19,3 +20,5 @@ yarn-error.log
 # Local Netlify folder
 .netlify
 /dist
+
+.vercel

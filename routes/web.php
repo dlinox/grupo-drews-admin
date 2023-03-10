@@ -6,8 +6,10 @@ use App\Http\Controllers\Admin\ReservaController;
 use App\Http\Controllers\Admin\ServicioController;
 use App\Http\Controllers\Admin\UsuarioController;
 use App\Http\Controllers\Admin\WebController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Admin\CategoriasController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +22,29 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Home');
+
+Route::get('/user-auth', function () {
+    $user = Auth::user();
+    if (!$user) {
+        return response()->json(false);
+    }
+    return response()->json(true);
 });
 
 
-Route::name('admin.')->prefix('admin')->group(function () {
+Route::name('auth.')->group(function () {
+    Route::get('', [AuthController::class, 'login'])
+        ->name('login');
+
+    Route::post('sign-in', [AuthController::class, 'signIn'])
+        ->name('sign-in');
+
+    Route::post('logout', [AuthController::class, 'logout'])
+        ->name('logout');
+});
+
+
+Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::get('', [AdminController::class, 'index'])
         ->name('index');
 
@@ -33,7 +52,11 @@ Route::name('admin.')->prefix('admin')->group(function () {
 
     Route::resource('servicios', ServicioController::class);
 
-    Route::resource('productos', ProductoController::class);
+    Route::resource('productos', ProductoController::class); // VEHICULOS TEMPORAL
+    Route::resource('categorias', CategoriasController::class); // 
+
+    Route::resource('configuraciones', WebController::class);
+    Route::post('configuraciones/update-logo', [WebController::class, 'updateLogo']);
 
     Route::controller(ReservaController::class)->name('reservas.')->prefix('reservas')->group(function () {
         Route::get('', 'index')->name('index');

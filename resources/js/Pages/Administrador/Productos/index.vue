@@ -4,7 +4,14 @@
             <PageHeaderComponent title="Productos" />
             <n-divider></n-divider>
 
-            <FormularioProductoComponent btn_text="Nuevo producto" />
+            <n-space class="my-1" justify="end">
+                <n-button
+                    type="primary"
+                    @click="() => router.get('/admin/productos/create')"
+                >
+                    Nuevo Producto
+                </n-button>
+            </n-space>
 
             <n-grid cols="1 740:2 1024:3" :x-gap="20" :y-gap="20">
                 <n-grid-item v-for="(item, index) in productos" :key="index">

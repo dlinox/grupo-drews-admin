@@ -50,9 +50,11 @@
                                         path="categoria"
                                         label="categoria"
                                     >
-                                        <n-input
+                                        <n-select
+                                            label-field="detalle"
+                                            value-field="detalle"
                                             v-model:value="formData.categoria"
-                                            placeholder="categoria"
+                                            :options="categorias"
                                         />
                                     </n-form-item>
                                 </n-grid-item>
@@ -168,11 +170,14 @@
 <script setup>
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
-
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
-
 import { QuillEditor } from "@vueup/vue-quill";
+
+const props = defineProps({
+    producto: Object,
+    categorias: Array,
+});
 
 const formRef = ref(null);
 

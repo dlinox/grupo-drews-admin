@@ -19,35 +19,13 @@
                             <template v-if="sider_collapse">
                                 <n-space justify="center">
                                     <n-avatar
-                                        style="
-                                            margin: 15px 0px;
-                                            background-color: rgba(
-                                                150,
-                                                170,
-                                                150,
-                                                0.2
-                                            );
-                                            padding: 2px;
-                                        "
                                         src="https://www.grupodrews.com.pe/wp-content/uploads/2019/06/logo.png"
                                     />
                                 </n-space>
                             </template>
 
                             <template v-else>
-                                <n-card
-                                    :bordered="false"
-                                    size="small"
-                                    style="
-                                        padding: 10px;
-                                        background-color: rgba(
-                                            150,
-                                            170,
-                                            150,
-                                            0.2
-                                        );
-                                    "
-                                >
+                                <n-card :bordered="false" size="small">
                                     <template #cover>
                                         <img
                                             src="https://www.grupodrews.com.pe/wp-content/uploads/2019/06/logo.png"
@@ -100,9 +78,12 @@
                                             </template>
                                         </n-button>
 
-                                        <n-dropdown :options="options">
+                                        <n-dropdown
+                                            :options="options"
+                                            @select="onMenuDropdown"
+                                        >
                                             <n-button tertiary type="info">
-                                                Jun Peres
+                                                {{ user?.name }}
                                             </n-button>
                                         </n-dropdown>
                                     </n-space>
@@ -141,9 +122,10 @@ import {
     GlobeOutline,
 } from "@vicons/ionicons5";
 
-import { router } from "@inertiajs/vue3";
-
+import { router, usePage } from "@inertiajs/vue3";
 import { NConfigProvider } from "naive-ui";
+
+const user = computed(() => usePage().props?.auth?.user);
 
 const themeOverrides = {
     common: {
@@ -177,8 +159,18 @@ const menuOptions = [
     },
     {
         label: "Reservas",
-        key: "reservas",
+        key: "_reservas",
         icon: renderIcon(CheckboxOutline),
+        children: [
+            {
+                label: "Cotizaciones",
+                key: "reservas",
+            },
+            {
+                label: "Clientes",
+                key: "clientes",
+            },
+        ],
     },
 
     {
@@ -189,8 +181,18 @@ const menuOptions = [
     },
     {
         label: "Productos",
-        key: "productos",
+        key: "_productos",
         icon: renderIcon(CarSportOutline),
+        children: [
+            {
+                label: "Vehiculos",
+                key: "productos",
+            },
+            {
+                label: "Categorias",
+                key: "categorias",
+            },
+        ],
     },
     {
         label: "Web",
@@ -222,10 +224,20 @@ const curren_url = computed(() => {
 });
 
 const handleUpdateExpandedKeys = (val) => {
+
+    console.log(val);
+
     if (val == "admin") {
         router.get("/admin");
     } else {
         router.get("/admin/" + val);
+    }
+};
+
+const onMenuDropdown = (val) => {
+    console.log(val);
+    if (val == "logout") {
+        router.post("/logout");
     }
 };
 

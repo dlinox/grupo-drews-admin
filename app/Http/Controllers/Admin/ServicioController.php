@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Configuracion;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -69,7 +70,11 @@ class ServicioController extends Controller
             'contenido' => $request->contenido,
             'imagenes' => implode(',', $path_imagenes)
         ];
-        Servicio::create($data);
+        $res = Servicio::create($data);
+
+        if ($res) {
+            Configuracion::actualizarWeb();
+        }
 
         return redirect('/admin/servicios');
         return back();
@@ -80,14 +85,22 @@ class ServicioController extends Controller
 
     public function update(Request $request, string $id)
     {
-        Servicio::find($id)->update($request->only('detalle', 'descripcion', 'figura'));
+        $res = Servicio::find($id)->update($request->only('detalle', 'descripcion', 'figura'));
+
+        
+        if ($res) {
+            Configuracion::actualizarWeb();
+        }
         return back()->withInput($request->all());
     }
 
     public function destroy(string $id)
     {
-        Servicio::find($id)->delete();
+        $res = Servicio::find($id)->delete();
 
+        if ($res) {
+            Configuracion::actualizarWeb();
+        }
         return back();
     }
 }
