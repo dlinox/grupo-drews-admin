@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\WebController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\CategoriasController;
 use App\Http\Controllers\Admin\ClientesController;
+use App\Http\Controllers\Admin\SedesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -52,10 +53,11 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('servicios', ServicioController::class);
     Route::resource('productos', ProductoController::class); // VEHICULOS TEMPORAL
-    Route::resource('categorias', CategoriasController::class); //
+    Route::resource('categorias', CategoriasController::class);
     
-    Route::resource('clientes', ClientesController::class); // 
-    
+    Route::resource('clientes', ClientesController::class); 
+
+    Route::resource('sedes', SedesController::class); 
 
     Route::resource('configuraciones', WebController::class);
     Route::post('configuraciones/update-logo', [WebController::class, 'updateLogo']);

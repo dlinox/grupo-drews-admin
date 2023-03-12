@@ -229,6 +229,8 @@
                                                         "
                                                     />
                                                 </n-form-item>
+
+                                                <UbigeoComponent v-model="formData.ubigeo" />
                                             </n-form>
                                         </n-card>
                                     </n-collapse-item>
@@ -356,6 +358,7 @@ import {
     LogoTwitter,
     ArrowForward,
 } from "@vicons/ionicons5";
+import UbigeoComponent from "@/Components/UbigeoComponent.vue";
 
 const modal_imagen = ref(false);
 const props = defineProps({
