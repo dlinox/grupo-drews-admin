@@ -22,7 +22,7 @@
                         <td>{{ item.num_doc }}</td>
                         <td>
                             <n-space justify="center">
-                                <n-image width="80" :src="item.logo" />
+                                <n-image width="80" :src="'/' +item.logo" />
                             </n-space>
                         </td>
                         <td style="width: 180px">
