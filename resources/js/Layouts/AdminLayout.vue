@@ -124,7 +124,6 @@ import {
 
 import { router, usePage } from "@inertiajs/vue3";
 import { NConfigProvider } from "naive-ui";
-
 const user = computed(() => usePage().props?.auth?.user);
 
 const themeOverrides = {

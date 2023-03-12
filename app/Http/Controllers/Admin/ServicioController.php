@@ -13,11 +13,10 @@ class ServicioController extends Controller
 
     public function index()
     {
+        $servicios = Servicio::all(['id', 'titulo', 'descripcion', 'figura', 'detalles']);
 
-
-        $servicios = Servicio::all(['id', 'detalle', 'descripcion', 'figura']);
         return Inertia::render('Administrador/Servicios/index', [
-            'usuarios' => $servicios
+            'servicios' => $servicios
         ]);
     }
 
@@ -29,55 +28,59 @@ class ServicioController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate(
+        $validate =  $this->validate(
             $request,
             [
                 'imagenes.*' => 'required|mimes:jpg,jpeg,png|max:20000',
-                'detalle.*' => 'required',
-                'descripcion.*' => 'required',
-                'figura.*' => 'required',
-                'contenido.*' => 'required',
+                'titulo' => 'required',
+                'descripcion' => 'required',
+                'figura' => 'required',
             ],
             [
                 'imagenes.*.required' => 'Please upload an image',
                 'imagenes.*.mimes' => 'Only jpeg,png and bmp images are allowed',
                 'imagenes.*.max' => 'Sorry! Maximum allowed size for an image is 20MB',
-                'detalle.required' => 'El detalle es obligatorio',
+                'titulo.required' => 'El titulo es obligatorio',
                 'descripcion.required' => 'La descripcion es obligatorio',
                 'figura.required' => 'La figura es obligatorio',
-                'contenido.required' => 'El contenido es obligatorio',
             ]
         );
 
 
+        if ($validate) {
 
-        $imagenes = $request->imagenes;
+            $imagenes = $request->imagenes;
 
-        $path_imagenes = [];
+            $path_imagenes = [];
 
-        $cont = 1;
-        foreach ($imagenes as $item) {
-            $fileName = time() . '-img-' . $cont . '.' . $item->extension();
-            $item->move(public_path('uploads/servicios/'), $fileName);
-            array_push($path_imagenes,  $fileName);
-            $cont++;
+            $cont = 1;
+            foreach ($imagenes as $item) {
+                $fileName = time() . '-img-' . $cont . '.' . $item->extension();
+                $item->move(public_path('uploads/servicios/'), $fileName);
+                array_push($path_imagenes,  $fileName);
+                $cont++;
+            }
+
+            $data = [
+                'titulo' => $request->titulo,
+                'descripcion' => $request->descripcion,
+                'figura' => $request->figura,
+                'contenido' => $request->contenido,
+                'detalles' => $request->detalles,
+                'imagenes' => implode(',', $path_imagenes),
+            ];
+            $res = Servicio::create($data);
+
+            if ($res) {
+                Configuracion::actualizarWeb();
+            }
+
+            return redirect('/admin/servicios');
+            return back();
         }
 
-        $data = [
-            'detalle' => $request->detalle,
-            'descripcion' => $request->descripcion,
-            'figura' => $request->figura,
-            'contenido' => $request->contenido,
-            'imagenes' => implode(',', $path_imagenes)
-        ];
-        $res = Servicio::create($data);
 
-        if ($res) {
-            Configuracion::actualizarWeb();
-        }
 
-        return redirect('/admin/servicios');
-        return back();
         //admin.servicios.index
         //return response()->json($request);
 
@@ -85,9 +88,9 @@ class ServicioController extends Controller
 
     public function update(Request $request, string $id)
     {
-        $res = Servicio::find($id)->update($request->only('detalle', 'descripcion', 'figura'));
+        $res = Servicio::find($id)->update($request->only('titulo', 'descripcion', 'figura'));
 
-        
+
         if ($res) {
             Configuracion::actualizarWeb();
         }

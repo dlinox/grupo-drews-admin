@@ -9,7 +9,7 @@
                     type="primary"
                     @click="() => router.get('/admin/servicios/create')"
                 >
-                    Nuevo usuario
+                    Nuevo servicio
                 </n-button>
             </n-space>
 
@@ -17,16 +17,16 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Detalle</th>
+                        <th>Titulo</th>
                         <th>Descripcion</th>
                         <th>Icono</th>
                         <th>Op.</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in usuarios">
+                    <tr v-for="item in servicios">
                         <td>{{ item.id }}</td>
-                        <td>{{ item.detalle }}</td>
+                        <td>{{ item.titulo }}</td>
                         <td>{{ item.descripcion }}</td>
                         <td>{{ item.figura }}</td>
                         <td style="width: 180px">
@@ -64,7 +64,7 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
 import FormularioServicioComponent from "./Components/FormularioServicioComponent.vue";
 const props = defineProps({
-    usuarios: Array,
+    servicios: Array,
 });
 const eliminarUsuario = (id) => {
     router.delete("/admin/servicios/" + id);

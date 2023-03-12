@@ -8,13 +8,13 @@
                 <n-grid cols="1 600:3" :x-gap="20" :y-gap="20">
                     <n-grid-item span="1  600:2">
                         <div class="light-green">
-                            <n-form-item path="detalle" label="Detalle">
+                            <n-form-item path="titulo" label="Detalle">
                                 <n-input
-                                    v-model:value="formData.detalle"
+                                    v-model:value="formData.titulo"
                                     placeholder="Corporativo"
                                 />
                             </n-form-item>
-                            <n-form-item path="detalle" label="Icono">
+                            <n-form-item path="figura" label="Icono">
                                 <n-input
                                     v-model:value="formData.figura"
                                     placeholder="fa-light fa-bell-concierge"
@@ -28,12 +28,90 @@
                                 />
                             </n-form-item>
 
-                            Contenido
-                            <QuillEditor
-                                theme="snow"
-                                v-model:content="formData.contenido"
-                                contentType="html"
-                            />
+                            <n-table
+                                :bordered="false"
+                                :single-line="true"
+                                size="small"
+                            >
+                                <thead>
+                                    <tr>
+                                        <th>Detalles</th>
+                                        <th style="width: 100px">
+                                            <n-space justify="end">
+                                                <n-button
+                                                    @click="agregarDetalle"
+                                                >
+                                                    Agregar
+                                                </n-button>
+                                            </n-space>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        v-for="(
+                                            item, index
+                                        ) in formData.detalles"
+                                        :key="index"
+                                    >
+                                        <td>
+                                            <n-form-item
+                                                :label="`Tiotulo ${index + 1}`"
+                                                :path="`detalles[${index}].titulo`"
+                                                :rule="{
+                                                    required: true,
+                                                    message: 'Obligatorio',
+                                                    trigger: ['input', 'blur'],
+                                                }"
+                                            >
+                                                <n-input
+                                                    v-model:value="item.titulo"
+                                                    clearable
+                                                />
+                                            </n-form-item>
+
+                                            <n-form-item
+                                                :label="`Descripcion ${
+                                                    index + 1
+                                                }`"
+                                                :path="`detalles[${index}].descripcion`"
+                                                :rule="{
+                                                    required: true,
+                                                    message: 'Obligatorio',
+                                                    trigger: ['input', 'blur'],
+                                                }"
+                                            >
+                                                <n-input
+                                                    type="textarea"
+                                                    v-model:value="
+                                                        item.descripcion
+                                                    "
+                                                    clearable
+                                                />
+                                            </n-form-item>
+                                        </td>
+                                        <td>
+                                            <n-space justify="end">
+                                                <n-button
+                                                    @click="
+                                                        quitarDetalle(index)
+                                                    "
+                                                >
+                                                    Quitar
+                                                </n-button>
+                                            </n-space>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </n-table>
+
+                            <!--                                 
+                                Contenido
+                                <QuillEditor
+                                    theme="snow"
+                                    v-model:content="formData.contenido"
+                                    contentType="html"
+                                /> -->
                         </div>
                     </n-grid-item>
                     <n-grid-item span="1  600:1">
@@ -79,19 +157,17 @@ import { useForm } from "@inertiajs/vue3";
 
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
-
 import { QuillEditor } from "@vueup/vue-quill";
-
 const formRef = ref(null);
 
 const imagenes = ref([]);
-
 const formData = useForm({
-    detalle: "", //titulo
+    titulo: "", //titulo
     descripcion: "", //descripcon corta
     contenido: "", //descripcon larga
     figura: "",
     imagenes: "",
+    detalles: [{ titulo: "", descripcion: "" }],
 });
 
 const previsualizarImagenes = (e) => {
@@ -126,5 +202,13 @@ const guardar = () => {
             formData.reset();
         },
     });
+};
+
+const agregarDetalle = () => {
+    formData.detalles.push({ titulo: "", descripcion: "" });
+};
+
+const quitarDetalle = (index) => {
+    formData.detalles.splice(index, 1);
 };
 </script>
