@@ -2,94 +2,85 @@
     <n-config-provider :theme-overrides="themeOverrides">
         <n-dialog-provider>
             <n-message-provider>
-                <n-layout>
-                    <n-layout has-sider>
-                        <n-layout-sider
-                            v-show="sider"
+                <div style="height: 100vh; position: relative">
+                    <n-layout position="absolute">
+                        <n-layout-header
                             bordered
-                            :collapsed="sider_collapse"
-                            collapse-mode="width"
-                            :position="sider_position"
-                            :collapsed-width="collapsed_width"
-                            :width="240"
-                            :native-scrollbar="false"
-                            :inverted="inverted"
-                            style="height: 100vh"
+                            :inverted="state.inverted"
+                            style="padding: 10px"
                         >
-                            <template v-if="sider_collapse">
-                                <n-space justify="center">
-                                    <n-avatar
-                                        src="https://www.grupodrews.com.pe/wp-content/uploads/2019/06/logo.png"
-                                    />
-                                </n-space>
-                            </template>
-
-                            <template v-else>
-                                <n-card :bordered="false" size="small">
-                                    <template #cover>
-                                        <img
-                                            src="https://www.grupodrews.com.pe/wp-content/uploads/2019/06/logo.png"
-                                        />
+                            <n-space justify="space-between">
+                                <n-button
+                                    tertiary
+                                    type="info"
+                                    @click="
+                                        (sider_collapse = !sider_collapse),
+                                            (sider = true)
+                                    "
+                                >
+                                    <template #icon>
+                                        <MenuOutline />
                                     </template>
-                                </n-card>
-                            </template>
+                                </n-button>
 
-                            <n-menu
-                                :inverted="inverted"
-                                :collapsed-width="collapsed_width"
-                                :collapsed-icon-size="22"
-                                :options="menuOptions"
-                                :default-value="curren_url"
-                                @update:value="handleUpdateExpandedKeys"
-                            />
-                        </n-layout-sider>
-
-                        <n-layout style="height: 100vh">
-                            <n-layout-header
-                                bordered
-                                :inverted="inverted"
-                                style="padding: 10px"
-                            >
-                                <n-space justify="space-between">
+                                <n-space>
                                     <n-button
-                                        tertiary
                                         type="info"
                                         @click="
-                                            sider_collapse = !sider_collapse
+                                            state.inverted = !state.inverted
                                         "
                                     >
                                         <template #icon>
-                                            <MenuOutline />
+                                            <template v-if="state.inverted">
+                                                <SunnyOutline />
+                                            </template>
+
+                                            <template v-else>
+                                                <MoonOutline />
+                                            </template>
                                         </template>
                                     </n-button>
-                                    <n-space>
-                                        <n-button
-                                            type="info"
-                                            @click="inverted = !inverted"
-                                        >
-                                            <template #icon>
-                                                <template v-if="inverted">
-                                                    <SunnyOutline />
-                                                </template>
 
-                                                <template v-else>
-                                                    <MoonOutline />
-                                                </template>
-                                            </template>
+                                    <n-dropdown
+                                        :options="options"
+                                        @select="onMenuDropdown"
+                                    >
+                                        <n-button tertiary type="info">
+                                            {{ user?.name }}
                                         </n-button>
-
-                                        <n-dropdown
-                                            :options="options"
-                                            @select="onMenuDropdown"
-                                        >
-                                            <n-button tertiary type="info">
-                                                {{ user?.name }}
-                                            </n-button>
-                                        </n-dropdown>
-                                    </n-space>
+                                    </n-dropdown>
                                 </n-space>
-                            </n-layout-header>
+                            </n-space>
+                        </n-layout-header>
+
+                        <n-layout
+                            has-sider
+                            position="absolute"
+                            style="top: 55px"
+                        >
+                            <n-layout-sider
+                                v-show="sider"
+                                bordered
+                                :collapsed="sider_collapse"
+                                collapse-mode="width"
+                                :position="sider_position"
+                                :collapsed-width="collapsed_width"
+                                :width="240"
+                                :native-scrollbar="false"
+                                :inverted="state.inverted"
+                            >
+                                <n-menu
+                                    :inverted="state.inverted"
+                                    :collapsed-width="collapsed_width"
+                                    :collapsed-icon-size="22"
+                                    :options="menuOptions"
+                                    :default-value="curren_url"
+                                    @update:value="handleUpdateExpandedKeys"
+                                />
+                            </n-layout-sider>
+
                             <n-layout-content
+                                style="background-color: #eee"
                                 content-style="padding: 15px 20px;"
                             >
                                 <Transition name="committee" appear>
@@ -99,7 +90,7 @@
                             <!-- <n-layout-footer>Chengfu Road</n-layout-footer> -->
                         </n-layout>
                     </n-layout>
-                </n-layout>
+                </div>
             </n-message-provider>
         </n-dialog-provider>
     </n-config-provider>
@@ -124,8 +115,17 @@ import {
 
 import { router, usePage } from "@inertiajs/vue3";
 import { NConfigProvider } from "naive-ui";
-const user = computed(() => usePage().props?.auth?.user);
 
+import { createGlobalState, useStorage } from "@vueuse/core";
+
+const useState = createGlobalState(() =>
+    useStorage("vue-use-locale-storage", {
+        inverted: false,
+    })
+);
+const state = useState();
+
+const user = computed(() => usePage().props?.auth?.user);
 const themeOverrides = {
     common: {
         primaryColor: "#019136",
@@ -138,7 +138,8 @@ const themeOverrides = {
 function renderIcon(icon) {
     return () => h(NIcon, null, { default: () => h(icon) });
 }
-const inverted = ref(true); //modo dark
+const inverted = false; //modo dark
+//router.remember(data, 'my-key')
 
 const sider = ref(true); //absolute
 const sider_position = ref("static"); //absolute
@@ -223,7 +224,6 @@ const curren_url = computed(() => {
 });
 
 const handleUpdateExpandedKeys = (val) => {
-
     console.log(val);
 
     if (val == "admin") {
@@ -236,7 +236,7 @@ const handleUpdateExpandedKeys = (val) => {
 const onMenuDropdown = (val) => {
     console.log(val);
     if (val == "logout") {
-        router.post("/logout");
+        router.post("auth/logout");
     }
 };
 

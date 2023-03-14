@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\CategoriasController;
 use App\Http\Controllers\Admin\ClientesController;
 use App\Http\Controllers\Admin\SedesController;
+use App\Http\Controllers\Web\WebController as WebWebController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+
+
+
 Route::get('/user-auth', function () {
     $user = Auth::user();
     if (!$user) {
@@ -34,7 +38,8 @@ Route::get('/user-auth', function () {
 });
 
 
-Route::name('auth.')->group(function () {
+Route::name('auth.')->prefix('auth')->group(function () {
+
     Route::get('', [AuthController::class, 'login'])
         ->name('login');
 
@@ -44,6 +49,20 @@ Route::name('auth.')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])
         ->name('logout');
 });
+
+
+Route::name('web.')->group(function () {
+    Route::get('', [WebWebController::class, 'pageInicio'])
+        ->name('inicio');
+
+    Route::post('sign-in', [AuthController::class, 'signIn'])
+        ->name('sign-in');
+
+    Route::post('logout', [AuthController::class, 'logout'])
+        ->name('logout');
+});
+
+
 
 
 Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {

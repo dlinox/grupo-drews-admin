@@ -92,7 +92,7 @@ const options = computed(() => {
 });
 
 const submit = () => {
-    formData.post("/sign-in");
+    formData.post("auth/sign-in");
 };
 
 const withLogin = async () => {
