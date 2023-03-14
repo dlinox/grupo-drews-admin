@@ -1,7 +1,7 @@
 <template>
   <div>
     <n-button class="select-picture">
-        Seleccionar imagen
+        {{ text }}
         <template #icon>
             <n-icon>
                 <ImageSharp />
@@ -55,9 +55,13 @@ import { ImageSharp } from "@vicons/ionicons5";
 
 const props = defineProps({
   modelValue: File,
+  text: {
+    type: String,
+    default: 'Seleccionar imagen'
+  }
 });
 
-const emit = defineEmits(["update:modelValue", "preview-result"]);
+const emit = defineEmits(["update:modelValue", "preview-result", "on-cropper"]);
 
 //MODULO DE IMGANE
 const pic = ref("");
@@ -109,9 +113,12 @@ const Cortar = async () => {
     result.blobURL = URL.createObjectURL(blob);
 
     emit('update:modelValue', file);
-    emit('preview-result', result.blobURL)
+    emit('preview-result', result.blobURL);
 
     showModalPic.value = false;
+
+    emit('on-cropper', file);
+
 };
 </script>
 

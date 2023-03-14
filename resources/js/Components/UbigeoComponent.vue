@@ -1,5 +1,5 @@
 <template>
-    <n-grid cols="1 400:2 800:3">
+    <n-grid cols="1 400:2 800:3" :y-gap="10" :x-gap="10">
         <n-grid-item>
             <n-select
                 v-model:value="model.departamento"
@@ -14,7 +14,7 @@
             <n-select
                 v-model:value="model.provincia"
                 filterable
-                placeholder="Please select a song"
+                placeholder="Seleccione una provincia"
                 :options="ubigeo.provincia"
                 @update:value="onSelectProvincia"
             />
@@ -26,7 +26,7 @@
                 label-field="distrito"
                 v-model:value="model_ubigeo"
                 filterable
-                placeholder="Please select a song"
+                placeholder="PlSeleccione un Distrito"
                 :options="ubigeo.distrito"
             />
         </n-grid-item>

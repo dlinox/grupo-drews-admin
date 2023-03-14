@@ -1,9 +1,8 @@
 <template>
     <AdminLayout>
         <div class="container">
-            <PageHeaderComponent title="Servicios - Nuevo" />
+            <PageHeaderComponent :title="'Servicios - ' + text_form" />
             <n-divider />
-
             <n-form ref="formRef" :model="formData">
                 <n-grid cols="1 600:3" :x-gap="20" :y-gap="20">
                     <n-grid-item span="1  600:2">
@@ -126,7 +125,7 @@
                                     :showUploadButton="false"
                                     accept="image/*"
                                     type="file"
-                                    :maxFileSize="3000000"
+                                    :maxFileSize="10000"
                                     :maxFile="3"
                                 />
                             </n-form-item>
@@ -140,8 +139,12 @@
                                 />
                             </n-space>
 
-                            <n-button @click="guardar" type="primary">
-                                Guardar
+                            <n-button
+                                @click="submit"
+                                type="primary"
+                                :loading="formData.processing"
+                            >
+                                {{ text_btn }}
                             </n-button>
                         </n-card>
                     </n-grid-item>
@@ -152,23 +155,33 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useForm } from "@inertiajs/vue3";
+import { ref, computed } from "vue";
+import { useForm, router } from "@inertiajs/vue3";
 
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
-import { QuillEditor } from "@vueup/vue-quill";
-const formRef = ref(null);
 
-const imagenes = ref([]);
-const formData = useForm({
-    titulo: "", //titulo
-    descripcion: "", //descripcon corta
-    contenido: "", //descripcon larga
-    figura: "",
-    imagenes: "",
-    detalles: [{ titulo: "", descripcion: "" }],
+const props = defineProps({
+    servicio: {
+        type: Object,
+        default: {
+            titulo: null, //titulo
+            descripcion: null, //descripcon corta
+            contenido: null, //descripcon larga
+            figura: null,
+            imagenes: null,
+            detalles: [{ titulo: "", descripcion: "" }],
+        },
+    },
 });
+
+const text_form = computed(() => (props.servicio.id ? "Editar" : "Crear"));
+const text_btn = computed(() => (props.servicio.id ? "Actualizar" : "Guardar"));
+
+const formRef = ref(null);
+const imagenes = ref(props.servicio.imagenes ?? []);
+
+const formData = useForm({ ...props.servicio });
 
 const previsualizarImagenes = (e) => {
     imagenes.value = [];
@@ -185,9 +198,18 @@ const previsualizarImagenes = (e) => {
     console.log(imagenes);
 };
 
-const guardar = () => {
+const submit = () => {
     console.log(formData);
+    if (props.servicio.id) {
+        console.log("editar");
+        editar();
+    } else {
+        console.log("nuevo");
+        guardar();
+    }
+};
 
+const guardar = () => {
     formData.post("/admin/servicios", {
         preserveScroll: true,
         onError: (e) => {
@@ -202,6 +224,29 @@ const guardar = () => {
             formData.reset();
         },
     });
+};
+
+const editar = () => {
+    formData
+        .transform((data) => ({
+            ...data,
+            imagenes:
+                data.imagenes == props.servicio.imagenes ? null : data.imagenes,
+        }))
+        .post("/admin/servicios", {
+            preserveScroll: true,
+            onError: (e) => {
+                for (const property in e) {
+                    console.log(e[property]);
+                }
+                console.log(e);
+            },
+            onSuccess: (e) => {
+                console.log(e);
+                console.log("creado");
+                formData.reset();
+            },
+        });
 };
 
 const agregarDetalle = () => {

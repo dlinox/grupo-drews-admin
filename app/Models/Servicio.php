@@ -27,6 +27,22 @@ class Servicio extends Model
         );
     }
 
+    protected function imagenes(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                $name_files =  explode(',', $value);
+                $array_aux = [];
+
+                foreach ($name_files as  $item) {
+                    $temp = env('APP_URL', 'http://localhost') . 'uploads/servicios/' . $item;
+                    array_push($array_aux, $temp);
+                }
+                return $array_aux;
+            },
+        );
+    }
+
     // public function getDetallesAttribute($value){
     //     $this->attributes['detalles'] = json_decode($value);
     // }

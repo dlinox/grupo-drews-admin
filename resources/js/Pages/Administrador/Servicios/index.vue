@@ -31,11 +31,10 @@
                         <td>{{ item.figura }}</td>
                         <td style="width: 180px">
                             <n-space justify="end">
-                                <FormularioServicioComponent
-                                    btn_text="Editar"
-                                    :data="item"
-                                    :edit="true"
-                                />
+
+                                <n-button type="info" tertiary @click="router.get('/admin/servicios/' + item.id + '/edit')">
+                                    Editar
+                                </n-button>
 
                                 <n-popconfirm
                                     :show-icon="false"

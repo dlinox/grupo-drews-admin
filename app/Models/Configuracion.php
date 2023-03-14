@@ -30,7 +30,7 @@ class Configuracion extends Model
 
     ];
 
-   static public function actualizarWeb()
+    static public function actualizarWeb()
     {
         Configuracion::where('id', 1)->update(['web_update' => Uuid::uuid4()]);
     }

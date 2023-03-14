@@ -1,9 +1,9 @@
 <template>
     <AdminLayout>
         <div class="container">
-            <PageHeaderComponent title="Web" />
+            <PageHeaderComponent title="Configuraciones" />
             <n-tabs type="line" animated>
-                <n-tab-pane name="configuraciones" tab="Configuraciones">
+                <n-tab-pane name="configuraciones" tab="Datos Generales">
                     <n-divider title-placement="left"> Empresa </n-divider>
 
                     <n-grid cols="1  600:3" item-responsive>
@@ -15,15 +15,14 @@
                                         :src="formData.web_logo"
                                     />
 
-                                    <n-space justify="end">
-                                        <n-button
-                                            @click="
-                                                modal_imagen = !modal_imagen
-                                            "
-                                        >
-                                            Cambiar
-                                        </n-button>
-                                    </n-space>
+                                    <UploadImageComponent
+                                        v-model="formImg.logo"
+                                        @preview-result="
+                                            formData.web_logo = $event
+                                        "
+                                        text="Cambiar Logo"
+                                        @onCropper="updateLogo"
+                                    />
                                 </n-card>
                             </n-space>
                         </n-grid-item>
@@ -53,7 +52,7 @@
                                                 </n-form-item>
 
                                                 <n-form-item
-                                                    path="descripcion"
+                                                    path="web_descripcion"
                                                     label="Descripción"
                                                 >
                                                     <n-input
@@ -61,6 +60,30 @@
                                                             formData.web_descripcion
                                                         "
                                                         placeholder="descripcion"
+                                                    />
+                                                </n-form-item>
+
+                                                <n-form-item
+                                                    path="web_whatsapp"
+                                                    label="N° Whatsapp"
+                                                >
+                                                    <n-input
+                                                        v-model:value="
+                                                            formData.web_whatsapp
+                                                        "
+                                                        placeholder="951201212"
+                                                    />
+                                                </n-form-item>
+
+                                                <n-form-item
+                                                    path="web_correo"
+                                                    label="Correo Electronico"
+                                                >
+                                                    <n-input
+                                                        v-model:value="
+                                                            formData.web_correo
+                                                        "
+                                                        placeholder="info@grupodrews.com.pe"
                                                     />
                                                 </n-form-item>
 
@@ -167,11 +190,11 @@
                                                 </n-form-item>
 
                                                 <n-form-item
-                                                    path="web_social_twiter"
+                                                    path="web_social_twitter"
                                                 >
                                                     <n-input
                                                         v-model:value="
-                                                            formData.web_social_twiter
+                                                            formData.web_social_twitter
                                                         "
                                                         placeholder="Twitter"
                                                     >
@@ -187,7 +210,7 @@
                                             </n-form>
                                         </n-card>
                                     </n-collapse-item>
-                                    <n-collapse-item title="Contacto" name="3">
+                                    <!-- <n-collapse-item title="Contacto" name="3">
                                         <n-card
                                             title="Contacto"
                                             embedded
@@ -229,11 +252,9 @@
                                                         "
                                                     />
                                                 </n-form-item>
-
-                                                <UbigeoComponent v-model="formData.ubigeo" />
                                             </n-form>
                                         </n-card>
-                                    </n-collapse-item>
+                                    </n-collapse-item> -->
                                 </n-collapse>
 
                                 <template #action>
@@ -250,6 +271,10 @@
                             </n-card>
                         </n-grid-item>
                     </n-grid>
+                </n-tab-pane>
+
+                <n-tab-pane name="sedes" tab="Sedes">
+                    <FormSedesComponent :sedes="configuracion.sedes" />
                 </n-tab-pane>
 
                 <n-tab-pane name="slider" tab="Slider">
@@ -300,56 +325,18 @@
                                     @click="to(index - 1)"
                                 />
                             </ul>
-                        </template> </n-carousel
-                ></n-tab-pane>
+                        </template>
+                    </n-carousel>
+                </n-tab-pane>
             </n-tabs>
-
-            <n-modal v-model:show="modal_imagen">
-                <n-card
-                    style="width: 350px"
-                    title="Cambiar imagen"
-                    :bordered="false"
-                    size="huge"
-                    role="dialog"
-                    aria-modal="true"
-                >
-                    <template #footer>
-                        <input
-                            @change="previsualizarImagenes"
-                            @input="formImg.logo = $event.target.files[0]"
-                            :showUploadButton="false"
-                            accept="image/*"
-                            type="file"
-                            :maxFileSize="3000000"
-                            name="logo"
-                    /></template>
-
-                    <template #action>
-                        <n-space justify="center">
-                            <n-image width="200" :src="logo" />
-                        </n-space>
-                        <br />
-                        <n-space justify="end">
-                            <n-button
-                                :loading="formImg.processing"
-                                type="primary"
-                                @click="updateLogo"
-                                >Guardar</n-button
-                            >
-                        </n-space>
-                    </template>
-                </n-card>
-            </n-modal>
         </div>
     </AdminLayout>
 </template>
 <script setup>
-import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
 import { QuillEditor } from "@vueup/vue-quill";
-
 import {
     LogoFacebook,
     LogoInstagram,
@@ -358,9 +345,10 @@ import {
     LogoTwitter,
     ArrowForward,
 } from "@vicons/ionicons5";
-import UbigeoComponent from "@/Components/UbigeoComponent.vue";
 
-const modal_imagen = ref(false);
+import UploadImageComponent from "@/Components/UploadImageComponent.vue";
+import FormSedesComponent from "./components/FormSedesComponent.vue";
+
 const props = defineProps({
     configuracion: Object,
 });
@@ -370,15 +358,6 @@ const formImg = useForm({
 });
 
 const formData = useForm(props.configuracion);
-
-const logo = ref(null);
-
-const previsualizarImagenes = (e) => {
-    let files = e.target;
-    let file = files.files[0];
-    let objectURL = URL.createObjectURL(file);
-    logo.value = objectURL;
-};
 
 const submit = () => {
     console.log(formData);
@@ -397,6 +376,7 @@ const submit = () => {
         },
     });
 };
+
 const updateLogo = () => {
     console.log(formImg);
 
@@ -410,8 +390,7 @@ const updateLogo = () => {
         },
         onSuccess: (e) => {
             console.log(e);
-            console.log("creado");
-            modal_imagen.value = false;
+            console.log("Logo Cambio");
         },
     });
 };

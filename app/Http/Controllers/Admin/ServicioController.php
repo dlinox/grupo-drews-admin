@@ -28,57 +28,66 @@ class ServicioController extends Controller
 
     public function store(Request $request)
     {
-        $validate =  $this->validate(
-            $request,
-            [
-                'imagenes.*' => 'required|mimes:jpg,jpeg,png|max:20000',
-                'titulo' => 'required',
-                'descripcion' => 'required',
-                'figura' => 'required',
-            ],
-            [
-                'imagenes.*.required' => 'Please upload an image',
-                'imagenes.*.mimes' => 'Only jpeg,png and bmp images are allowed',
-                'imagenes.*.max' => 'Sorry! Maximum allowed size for an image is 20MB',
-                'titulo.required' => 'El titulo es obligatorio',
-                'descripcion.required' => 'La descripcion es obligatorio',
-                'figura.required' => 'La figura es obligatorio',
-            ]
-        );
 
+        if ($request->id) {
 
-        if ($validate) {
-
-            $imagenes = $request->imagenes;
-
-            $path_imagenes = [];
-
-            $cont = 1;
-            foreach ($imagenes as $item) {
-                $fileName = time() . '-img-' . $cont . '.' . $item->extension();
-                $item->move(public_path('uploads/servicios/'), $fileName);
-                array_push($path_imagenes,  $fileName);
-                $cont++;
+            if ($this->actualizar($request, $request->id)) { //Todo: Pasar al modelo 
+                return redirect('/admin/servicios');
+                return back();
             }
 
-            $data = [
-                'titulo' => $request->titulo,
-                'descripcion' => $request->descripcion,
-                'figura' => $request->figura,
-                'contenido' => $request->contenido,
-                'detalles' => $request->detalles,
-                'imagenes' => implode(',', $path_imagenes),
-            ];
-            $res = Servicio::create($data);
+            //return;
+        } else {
+            $validate =  $this->validate(
+                $request,
+                [
+                    'imagenes.*' => 'required|mimes:jpg,jpeg,png|max:20000',
+                    'titulo' => 'required',
+                    'descripcion' => 'required',
+                    'figura' => 'required',
+                ],
+                [
+                    'imagenes.*.required' => 'Please upload an image',
+                    'imagenes.*.mimes' => 'Only jpeg,png and bmp images are allowed',
+                    'imagenes.*.max' => 'Sorry! Maximum allowed size for an image is 20MB',
+                    'titulo.required' => 'El titulo es obligatorio',
+                    'descripcion.required' => 'La descripcion es obligatorio',
+                    'figura.required' => 'La figura es obligatorio',
+                ]
+            );
 
-            if ($res) {
-                Configuracion::actualizarWeb();
+            if ($validate) {
+
+                $imagenes = $request->imagenes;
+
+                $path_imagenes = [];
+
+                $cont = 1;
+                foreach ($imagenes as $item) {
+                    $fileName = time() . '-img-' . $cont . '.' . $item->extension();
+                    $item->move(public_path('uploads/servicios/'), $fileName);
+                    array_push($path_imagenes,  $fileName);
+                    $cont++;
+                }
+
+                $data = [
+                    'titulo' => $request->titulo,
+                    'descripcion' => $request->descripcion,
+                    'figura' => $request->figura,
+                    'contenido' => $request->contenido,
+                    'detalles' => $request->detalles,
+                    'imagenes' => implode(',', $path_imagenes),
+                ];
+                $res = Servicio::create($data);
+
+                if ($res) {
+                    Configuracion::actualizarWeb();
+                }
+
+                return redirect('/admin/servicios');
+                return back();
             }
-
-            return redirect('/admin/servicios');
-            return back();
         }
-
 
 
         //admin.servicios.index
@@ -86,16 +95,136 @@ class ServicioController extends Controller
 
     }
 
-    public function update(Request $request, string $id)
+    public function edit(string $id)
     {
-        $res = Servicio::find($id)->update($request->only('titulo', 'descripcion', 'figura'));
+        $res = Servicio::find($id);
 
-
-        if ($res) {
-            Configuracion::actualizarWeb();
-        }
-        return back()->withInput($request->all());
+        return Inertia::render('Administrador/Servicios/Formulario', ['servicio' => $res]);
     }
+
+    public function update(Request $request, string $id)
+    { //metodo put no funciona con imagenes
+
+        $servicio = Servicio::find($id);
+
+        if (!$servicio) {
+            //TODO: Crear un trow para el error.
+            return back()->withErrors(['msg' => $id]);
+        }
+
+        $validate =  $this->validate(
+            $request,
+            [
+                'imagenes.*' => 'nullable|mimes:jpg,jpeg,png|max:5000',
+                'titulo' => 'required',
+                'descripcion' => 'required',
+                'figura' => 'required',
+            ],
+            [
+                //'imagenes.*.required' => 'Please upload an image',
+                'imagenes.*.mimes' => 'Only jpeg,png and bmp images are allowed',
+                'imagenes.*.max' => 'Sorry! Maximum allowed size for an image is 5MB',
+                'titulo.required' => 'El titulo es obligatorio',
+                'descripcion.required' => 'La descripcion es obligatorio',
+                'figura.required' => 'La figura es obligatorio',
+            ]
+        );
+
+        if ($validate) {
+
+            $data = [
+                'titulo' => $request->titulo,
+                'descripcion' => $request->descripcion,
+                'figura' => $request->figura,
+                'contenido' => $request->contenido,
+                'detalles' => $request->detalles,
+            ];
+
+            if ($request->hasFile('imagenes.*')) {
+                $imagenes = $request->imagenes;
+                $path_imagenes = [];
+
+                $cont = 1;
+                foreach ($imagenes as $item) {
+                    $fileName = time() . '-img-' . $cont . '.' . $item->extension();
+                    $item->move(public_path('uploads/servicios/'), $fileName);
+                    array_push($path_imagenes,  $fileName);
+                    $cont++;
+                }
+                $data['imagenes'] = implode(',', $path_imagenes);
+            }
+
+            if ($servicio->update($data)) {
+                Configuracion::actualizarWeb();
+                return redirect('/admin/servicios');
+                return back();
+            }
+
+            return back()->withErrors(['msg' => 'The Message']);
+        }
+    }
+
+    public function actualizar(Request $request, string $id)
+    {
+
+        $servicio = Servicio::find($id);
+
+        if (!$servicio) {
+            //TODO: Crear un trow para el error.
+            return back()->withErrors(['msg' => $id]);
+        }
+
+        $validate =  $this->validate(
+            $request,
+            [
+                'imagenes.*' => 'nullable|mimes:jpg,jpeg,png|max:5000',
+                'titulo' => 'required',
+                'descripcion' => 'required',
+                'figura' => 'required',
+            ],
+            [
+                //'imagenes.*.required' => 'Please upload an image',
+                'imagenes.*.mimes' => 'Only jpeg,png and bmp images are allowed',
+                'imagenes.*.max' => 'Sorry! Maximum allowed size for an image is 5MB',
+                'titulo.required' => 'El titulo es obligatorio',
+                'descripcion.required' => 'La descripcion es obligatorio',
+                'figura.required' => 'La figura es obligatorio',
+            ]
+        );
+
+        if ($validate) {
+
+            $data = [
+                'titulo' => $request->titulo,
+                'descripcion' => $request->descripcion,
+                'figura' => $request->figura,
+                'contenido' => $request->contenido,
+                'detalles' => $request->detalles,
+            ];
+
+            if ($request->hasFile('imagenes.*')) {
+                $imagenes = $request->imagenes;
+                $path_imagenes = [];
+
+                $cont = 1;
+                foreach ($imagenes as $item) {
+                    $fileName = time() . '-img-' . $cont . '.' . $item->extension();
+                    $item->move(public_path('uploads/servicios/'), $fileName);
+                    array_push($path_imagenes,  $fileName);
+                    $cont++;
+                }
+                $data['imagenes'] = implode(',', $path_imagenes);
+            }
+
+            if ($servicio->update($data)) {
+                Configuracion::actualizarWeb();
+                return true;
+            }
+
+            return back()->withErrors(['msg' => 'The Message']);
+        }
+    }
+
 
     public function destroy(string $id)
     {

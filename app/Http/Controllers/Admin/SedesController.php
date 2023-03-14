@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Sede;
 use Illuminate\Http\Request;
 
 class SedesController extends Controller
@@ -28,7 +29,19 @@ class SedesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        foreach ($request->sedes as  $value) {
+
+            if($value['id']){
+                Sede::where('id',$value['id'])->update($value);
+            }
+            else{
+                Sede::create($value);
+            }
+        }
+
+
+        return back()->withInput($request->all());
     }
 
     /**

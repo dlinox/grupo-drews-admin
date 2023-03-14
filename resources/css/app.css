@@ -24,13 +24,21 @@
 
 /**MARGIN***/
 .m-1 {
-  padding: 1rem;
+  margin: 1rem;
 }
 
 .my-1 {
-  padding: 1rem 0;
+  margin: 1rem 0;
 }
 
 .mx-1 {
-  padding: 0 1rem;
+  margin: 0 1rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.ml-1 {
+  margin-left: 1rem;
 }
