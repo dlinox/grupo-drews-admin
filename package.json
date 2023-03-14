@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "@vueup/vue-quill": "^1.1.0",
+        "bootstrap": "^5.2.3",
         "vue-picture-cropper": "^0.6.1"
     }
 }

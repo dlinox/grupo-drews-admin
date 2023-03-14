@@ -1,0 +1,42 @@
+@import "bootstrap/scss/variables";
+
+
+// @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+// $font-oswald: "Oswald", sans-serif;
+// $font-montserrat: "Montserrat", sans-serif;
+// $font-imb: "IBM Plex Sans Condensed", sans-serif;
+
+// h1,h2,h3,h4,h5,h6{
+//   font-family: $font-oswald;
+// }
+
+// p{
+//   font-family: $font-imb;
+//   font-weight: 400;
+// }
+
+// ul{
+//   li{
+//     a{
+//       font-family: $font-imb;
+//     }
+//   }
+// }
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1020px,
+  xxl: 1140px,
+);
+
+$theme-colors: (
+  "color1": $app-color1,
+  "color2": $app-color2,
+);
+
+$offcanvas-horizontal-width: 300px;

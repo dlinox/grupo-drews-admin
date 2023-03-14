@@ -1,7 +1,5 @@
 <template>
-<header>
-header
-</header>
+<HeaderComponent />
 
 <main>
   <slot></slot>
@@ -12,5 +10,7 @@ footer
 </footer>
 
 </template>
-<script>
+<script setup>
+import HeaderComponent from '@/Components/Web/HeaderComponent.vue';
+
 </script>
