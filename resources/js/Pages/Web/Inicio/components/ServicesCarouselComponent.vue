@@ -69,9 +69,9 @@ const servicios = [
 
 <style lang="scss">
 .inicio-servicios {
-    background-color: rgb(250, 250, 250);
+   background-color: transparent;
     position: relative;
-    z-index: 2;
+    z-index: 3;
     margin-top: -100px;
     overflow: hidden;
 }

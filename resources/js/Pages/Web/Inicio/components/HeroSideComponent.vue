@@ -21,12 +21,13 @@
 <script setup></script>
 <style lang="scss">
 .hero-side {
+    position: relative;
+    z-index: 2;
     background-color: aqua;
     .side-wrapper {
         width: 100%;
         height: 600px;
         overflow: hidden;
-        background-color: #eee;
         position: relative;
 
         video.video {
@@ -44,9 +45,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            .container {
-                
-            }
         }
     }
 }

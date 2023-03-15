@@ -1,6 +1,6 @@
 <template>
     <WebLayout>
-        <main class="main">
+        <main class="page-inicio main">
             <HeroSideComponent />
             <ServicesCarouselComponent />
             <VehiculosSection />
@@ -17,4 +17,9 @@ import VehiculosSection from "./sections/VehiculosSection.vue";
 import EligenosSection from "./sections/EligenosSection.vue";
 import GaleriaSection from "./sections/GaleriaSection.vue";
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.page-inicio{
+    background-color: rgb(250, 250, 250);
+}
+
+</style>
