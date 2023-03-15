@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Servicio;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -28,6 +29,12 @@ class WebController extends Controller
     public function pageServicios()
     {
         return Inertia::render('Web/Servicios/index');
+    }
+
+    public function pageServicioDetalle($id)
+    {
+
+        return Inertia::render('Web/Servicios/detalle', ['servicio' => Servicio::find($id)]);
     }
 
     public function pageContactanos()

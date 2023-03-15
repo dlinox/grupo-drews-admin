@@ -30,11 +30,7 @@ class ProductoController extends Controller
             'equipaje',
             'contenido',
             'imagenes'
-        )->map(function ($producto) {
-
-            $producto->imagenes = explode(',', $producto->imagenes);
-            return  $producto;
-        });
+        );
 
 
         return Inertia::render('Administrador/Productos/index',  [

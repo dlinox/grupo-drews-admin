@@ -7,6 +7,12 @@
             <div class="shape shape-4"></div>
         </div>
         <div class="card-imagen">
+            <button
+                class="btn btn-outline-dark btn-galeria"
+                @click="showGaleria = !showGaleria"
+            >
+                <i class="fa-solid fa-images"></i>
+            </button>
             <img :src="item.imagenes[0]" alt="" />
         </div>
         <div class="card-content">
@@ -41,16 +47,127 @@
             </div>
             <hr />
 
-            <a class="btn btn-color1 w-100" href=""> Ver más </a>
+            <n-space justify="space-between">
+                <button class="btn btn-color1" @click="showModal = !showModal">
+                    Ver más
+                </button>
+            </n-space>
         </div>
     </div>
+
+    <n-modal v-model:show="showModal">
+        <n-card
+            style="width: 600px"
+            :title="item.detalle"
+            :bordered="false"
+            size="huge"
+            role="dialog"
+            aria-modal="true"
+        >
+            <n-grid cols="2 300:3" :y-gap="20">
+                <n-gi>
+                    <n-statistic label="Marca" :value="item.marca" />
+                </n-gi>
+                <n-gi>
+                    <n-statistic label="Modelo" :value="item.modelo" />
+                </n-gi>
+                <n-gi>
+                    <n-statistic label="Categoria" :value="item.categoria" />
+                </n-gi>
+                <n-gi>
+                    <n-statistic label="Tipo" :value="item.tipo" />
+                </n-gi>
+                <n-gi>
+                    <n-statistic
+                        label="Combustible"
+                        :value="item.combustible"
+                    />
+                </n-gi>
+                <n-gi>
+                    <n-statistic label="Cilindrada" :value="item.cilindrada" />
+                </n-gi>
+                <n-gi>
+                    <n-statistic label="Puertas" :value="item.puertas" />
+                </n-gi>
+                <n-gi>
+                    <n-statistic label="Capacidad" :value="item.capacidad" />
+                </n-gi>
+
+                <n-gi>
+                    <n-statistic
+                        label="Aire Acon."
+                        :value="item.aire_acondicionado ? 'SI' : 'NO'"
+                    />
+                </n-gi>
+
+                <n-gi>
+                    <n-statistic label="Equipaje." :value="item.equipaje" />
+                </n-gi>
+            </n-grid>
+
+            <template #footer>
+                <n-space justify="flex-end">
+                    <n-dropdown :options="options">
+                        <button class="btn btn-color1">Solicitar</button>
+                    </n-dropdown>
+                </n-space>
+            </template>
+        </n-card>
+    </n-modal>
+
+    <n-modal v-model:show="showGaleria">
+        <n-card
+        class="bg-dark"
+            style="width: 800px"
+          
+            :bordered="false"
+            size="huge"
+            role="dialog"
+            aria-modal="true"
+        >
+            <n-carousel  :loop="false" show-arrow draggable>
+                <img
+                    class="carousel-img"
+                    v-for="(img, index) in item.imagenes"
+                    :key="index"
+                    :src="img"
+                />
+            </n-carousel>
+
+        </n-card>
+    </n-modal>
 </template>
 <script setup>
+import { ref } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+
 const props = defineProps({
     item: Object,
 });
+
+const showModal = ref(false);
+
+const showGaleria = ref(false);
+
+const options = [
+    {
+        label: "Escribenos",
+        key: "email",
+    },
+
+    {
+        label: "Whatsapp",
+        key: "whatsapp",
+    },
+];
 </script>
 <style lang="scss">
+.carousel-img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
 .card-vehiculo {
     position: relative;
     background-color: #fff;
@@ -101,6 +218,13 @@ const props = defineProps({
         width: 100%;
         z-index: 3;
         overflow: hidden;
+
+        .btn-galeria {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 5;
+        }
         img {
             width: 100%;
             height: 250px;

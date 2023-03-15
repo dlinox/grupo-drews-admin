@@ -11,8 +11,8 @@
 
             <div class="slide-content">
                 <div class="container">
-                    <h1>sdfasfa</h1>
-                    <h4>asdasd</h4>
+                    <h1>Más de 10 años de experiencia</h1>
+                    <h4>Ofresiendote las mejores soluciones</h4>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
             justify-content: center;
             align-items: center;
             .container {
-                background-color: aqua;
+                
             }
         }
     }

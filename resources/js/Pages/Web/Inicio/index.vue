@@ -3,11 +3,8 @@
         <main class="main">
             <HeroSideComponent />
             <ServicesCarouselComponent />
-
             <VehiculosSection />
-
             <EligenosSection />
-
             <GaleriaSection />
         </main>
     </WebLayout>

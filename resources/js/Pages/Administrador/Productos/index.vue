@@ -27,7 +27,7 @@
                                 <img
                                     v-for="item in item.imagenes"
                                     class="carousel-img"
-                                    :src="'/public/uploads/productos/' + item"
+                                    :src="item"
                                 />
                             </n-carousel>
                         </template>

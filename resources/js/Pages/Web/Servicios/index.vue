@@ -10,7 +10,7 @@
                     >
                         <CardServiceComponent
                             :item="item"
-                            :href="'/servicios/' + item.titulo"
+                            :href="'/servicios/' + item.id"
                         />
                     </div>
                 </div>
