@@ -1,5 +1,4 @@
 <template>
-
     <footer class="footer">
         <div class="container py-5">
             <div class="row">
@@ -11,45 +10,14 @@
                 <div class="col-6 col-lg-4">
                     <h6 class="text-white mb-3">Menu</h6>
                     <ul class="list-style-none">
-                        <li>
-                            <a href="/">
+                        <li v-for="(item, index) in menu_items" :key="index">
+                            <Link :href="item.href">
                                 <i
                                     class="fa-solid fa-circle-arrow-right text-color1"
-                                ></i>
-                                Inicio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/vehiculos"
-                                ><i
-                                    class="fa-solid fa-circle-arrow-right text-color1"
-                                ></i>
-                                Automoviles</a
-                            >
-                        </li>
-                        <li>
-                            <a href="/servicios">
-                                <i
-                                    class="fa-solid fa-circle-arrow-right text-color1"
-                                ></i>
-                                Servicios</a
-                            >
-                        </li>
-                        <li>
-                            <a href="/nosotros">
-                                <i
-                                    class="fa-solid fa-circle-arrow-right text-color1"
-                                ></i>
-                                Nosotros</a
-                            >
-                        </li>
-                        <li>
-                            <a href="/contactanos">
-                                <i
-                                    class="fa-solid fa-circle-arrow-right text-color1"
-                                ></i>
-                                Contacto</a
-                            >
+                                >
+                                </i>
+                                {{ item.name }}
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -57,43 +25,43 @@
                     <h6 class="text-white mb-3">Servicios</h6>
                     <ul>
                         <li>
-                            <a href="/">
+                            <Link href="/">
                                 <i
                                     class="fa-solid fa-circle-arrow-right text-color1"
                                 ></i>
                                 Corporativo
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="/">
+                            <Link href="/">
                                 <i
                                     class="fa-solid fa-circle-arrow-right text-color1"
                                 ></i>
-                                Particular</a
+                                Particular</Link
                             >
                         </li>
                         <li>
-                            <a href="/">
+                            <Link href="/">
                                 <i
                                     class="fa-solid fa-circle-arrow-right text-color1"
                                 ></i>
-                                Serv. Aeropuerto</a
+                                Serv. Aeropuerto</Link
                             >
                         </li>
                         <li>
-                            <a href="/">
+                            <Link href="/">
                                 <i
                                     class="fa-solid fa-circle-arrow-right text-color1"
                                 ></i>
-                                Por ubicaion</a
+                                Por ubicaion</Link
                             >
                         </li>
                         <li>
-                            <a href="/">
+                            <Link href="/">
                                 <i
                                     class="fa-solid fa-circle-arrow-right text-color1"
                                 ></i>
-                                Servicio de chofer</a
+                                Servicio de chofer</Link
                             >
                         </li>
                     </ul>
@@ -113,8 +81,33 @@
 </template>
 
 <script setup>
+import { Link } from "@inertiajs/vue3";
+
 const logo =
     "https://www.grupodrews.com.pe/wp-content/uploads/2019/06/logo.png";
+
+const menu_items = [
+    {
+        name: "Inicio",
+        href: "/",
+    },
+    {
+        name: "Servicios",
+        href: "/servicios",
+    },
+    {
+        name: "Vehiculos",
+        href: "/vehiculos",
+    },
+    {
+        name: "Contactanos",
+        href: "/contactanos",
+    },
+    {
+        name: "Nosotros",
+        href: "/nosotros",
+    },
+];
 </script>
 
 <style lang="scss">

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Expr\Cast\Object_;
 use Ramsey\Uuid\Uuid;
 
 class Configuracion extends Model
@@ -35,11 +36,11 @@ class Configuracion extends Model
         Configuracion::where('id', 1)->update(['web_update' => Uuid::uuid4()]);
     }
 
-    static public function getData()
+    static public function getDataWeb()
     {
         $res = Configuracion::first();
         $configuracion = [
-            'logo' => $res->web_logo,
+            //'logo' => $res->web_logo,
             'url' => $res->web_url,
             'nombre' => $res->web_nombre,
             'descripcion' => $res->web_descripcion,
@@ -47,10 +48,12 @@ class Configuracion extends Model
             'correo' => $res->web_correo,
             'mision' => $res->web_mision ?? "",
             'vision' => $res->web_vision ?? "",
-            'social_facebook' => $res->web_social_facebook,
-            'social_instagram' => $res->web_social_instagram,
-            'social_youtube' => $res->web_social_youtube,
-            'social_twitter' => $res->web_social_twitter,
+            'social' => (object) [
+                'facebook' => $res->web_social_facebook ?? null,
+                'instagram' => $res->web_social_instagram ?? null,
+                'youtube' => $res->web_social_youtube ?? null,
+                'twitter' => $res->web_social_twitter ?? null,
+            ],
             'sedes' => Sede::all(['id', 'ubigeo', 'direccion', 'telefono', 'celulares', 'principal', 'estado']),
 
         ];

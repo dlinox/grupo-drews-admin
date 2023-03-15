@@ -6,16 +6,17 @@
     <WebLayout>
         <main class="page-inicio main">
             <HeroSideComponent />
-            <ServicesCarouselComponent />
-            <VehiculosSection />
+            <ServicesCarouselComponent :servicios="servicios" />
+            <VehiculosSection :vehiculos="vehiculos" />
             <EligenosSection />
-            <GaleriaSection />
+            <GaleriaSection :vehiculos="vehiculos" />
         </main>
+
     </WebLayout>
 </template>
 <script setup>
 import WebLayout from "@/Layouts/WebLayout.vue";
-import { Head, usePage } from "@inertiajs/vue3";
+import { Head} from "@inertiajs/vue3";
 
 
 import HeroSideComponent from "./components/HeroSideComponent.vue";
@@ -23,6 +24,15 @@ import ServicesCarouselComponent from "./components/ServicesCarouselComponent.vu
 import VehiculosSection from "./sections/VehiculosSection.vue";
 import EligenosSection from "./sections/EligenosSection.vue";
 import GaleriaSection from "./sections/GaleriaSection.vue";
+
+
+const props = defineProps({
+    servicios: Array,
+    vehiculos: Array
+});
+
+
+
 
 
 

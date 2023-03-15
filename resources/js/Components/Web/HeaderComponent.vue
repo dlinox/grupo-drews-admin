@@ -16,15 +16,13 @@
 
                 <div class="top-right top-social">
                     <ul class="social-list">
-                        <li class="social-item">
-                            <a class="item-link" href="">
-                                <i class="fa-brands fa-square-facebook"></i>
-                            </a>
-                        </li>
-
-                        <li class="social-item">
-                            <a class="item-link" href="">
-                                <i class="fa-brands fa-square-twitter"></i>
+                        <li
+                            class="social-item"
+                            v-for="(item, index) in web.social"
+                            :key="index"
+                        >
+                            <a v class="item-link" :href="item" target="_blank">
+                                <i :class="'fa-brands fa-square-' + index"></i>
                             </a>
                         </li>
                     </ul>
@@ -39,7 +37,35 @@
                     </div>
                 </div>
                 <div ref="header" class="bot-right">
-                    <div class="bot-contact">contact</div>
+                    <div class="bot-contact">
+                        <ul class="contact d-none d-md-flex">
+                            <li class="contact-item">
+                                <div class="item-icon">
+                                    <i
+                                        class="fa-solid fa-mobile-screen-button"
+                                    ></i>
+                                </div>
+                                <div class="item-content">
+                                    <span class="item-title"> LLamanos</span>
+                                    <span class="item-ref">
+                                        {{ web.whatsapp }}
+                                    </span>
+                                </div>
+                            </li>
+
+                            <li class="contact-item">
+                                <div class="item-icon">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div class="item-content">
+                                    <span class="item-title"> Escribenos</span>
+                                    <span class="item-ref">
+                                        {{ web.correo }}
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -82,6 +108,7 @@ const header = ref(null);
 const targetIsVisible = useElementVisibility(header);
 
 const logo = computed(() => usePage().props.web.logo);
+const web = computed(() => usePage().props.web_data);
 
 const menu_items = [
     {
@@ -185,7 +212,35 @@ $h-header-top: 50px;
             .bot-right {
                 .bot-contact {
                     height: 80px;
-                    background-color: rgb(255, 183, 0);
+
+                    .contact {
+                        display: flex;
+                        height: 80px;
+                        .contact-item {
+                            display: flex;
+                            padding: 10px 0px;
+                            .item-icon {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                padding: 10px;
+                                width: 60px;
+                                font-size: 40px;
+                                color: $app-color1;
+                            }
+                            .item-content {
+                                display: flex;
+                                flex-wrap: wrap;
+                                span {
+                                    width: 100%;
+                                    font-weight: 400;
+                                    &:first-child {
+                                        font-weight: 700;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

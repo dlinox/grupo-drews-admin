@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Configuracion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Inertia\Middleware;
@@ -52,6 +53,8 @@ class HandleInertiaRequests extends Middleware
             'web' => [
                 'logo' => Config::get('web.logo')
             ],
+
+            'web_data' => Configuracion::getDataWeb(),
 
             'flash' => [
                 'status' => fn () => $request->session()->get('status'),

@@ -1,7 +1,7 @@
 <template>
     <section class="hero-side">
         <div class="side-wrapper">
-            <video class="video" muted autoplay loop>
+            <video class="video" muted autoplay loop  poster="@/assets/static/img/preview_vide.png">
                 <source
                     src="@/assets/static/video/main-video.mp4"
                     type="video/mp4"
@@ -23,7 +23,7 @@
 .hero-side {
     position: relative;
     z-index: 2;
-    background-color: aqua;
+    
     .side-wrapper {
         width: 100%;
         height: 600px;

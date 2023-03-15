@@ -10,7 +10,7 @@ const props = defineProps({
 <template>
     <div
         class="heading-page"
-        :style="{ 'background-image': `url(/assets/images/bg/${image})` }"
+        :style="{ 'background-image': `url(/assets/image/bg/${image})` }"
     >
         <div class="container">
             <div class="heading-bread-crumb mb-3">

@@ -2,7 +2,7 @@
     <section class="inicio-galeria">
         <swiper
             :slides-per-view="1"
-            :loop="true"
+            :loop="false"
             :breakpoints="{
                 1400: {
                     slidesPerView: 3,
@@ -17,10 +17,10 @@
             }"
             :space-between="0"
         >
-            <swiper-slide v-for="(item, index) in 6" :key="index">
+            <swiper-slide v-for="(item, index) in galeria.flat()" :key="index">
                 <div class="img-wrapper">
                     <img
-                        src="https://images.pexels.com/photos/14353510/pexels-photo-14353510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        :src="item"
                         alt=""
                     />
                     <div class="detalle">
@@ -36,9 +36,17 @@
             </swiper-slide>
         </swiper>
     </section>
+
 </template>
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
+
+const props = defineProps({
+    vehiculos: Array,
+});
+
+const galeria = props.vehiculos.map((item) => item.imagenes);
+//const galeria2 = Array.flat(galeria);
 </script>
 
 <style lang="scss">
