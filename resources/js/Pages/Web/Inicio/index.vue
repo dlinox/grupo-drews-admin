@@ -1,32 +1,23 @@
 <template>
     <WebLayout>
-        <div class="container">
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-            <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit iste perspiciatis culpa esse atque magni voluptate ipsam qui consequatur, fuga necessitatibus ipsa voluptatem. Consequuntur nulla maiores aut placeat aliquid! In!</h1>
-        </div>
+        <main class="main">
+            <HeroSideComponent />
+            <ServicesCarouselComponent />
+
+            <VehiculosSection />
+
+            <EligenosSection />
+
+            <GaleriaSection />
+        </main>
     </WebLayout>
 </template>
 <script setup>
 import WebLayout from "@/Layouts/WebLayout.vue";
+import HeroSideComponent from "./components/HeroSideComponent.vue";
+import ServicesCarouselComponent from "./components/ServicesCarouselComponent.vue";
+import VehiculosSection from "./sections/VehiculosSection.vue";
+import EligenosSection from "./sections/EligenosSection.vue";
+import GaleriaSection from "./sections/GaleriaSection.vue";
 </script>
-<style lang="scss">
-.main {
-    h1 {
-        color: red;
-    }
-}
-</style>
+<style lang="scss"></style>

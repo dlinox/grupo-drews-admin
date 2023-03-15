@@ -54,48 +54,59 @@
 
                     <nav class="nav-menu">
                         <ul class="menu">
-                            <li class="menu-item">
-                                <a class="item" href=""> Menu </a>
+                            <li class="menu-item" v-for="(item, index) in menu_items" :key="index" >
+                                <Link class="item" :href="item.href"> {{ item.name }} </Link>
                             </li>
 
-                            <li class="menu-item">
-                                <a class="item" href=""> Servicio </a>
-                            </li>
-
-                            <li class="menu-item">
-                                <a class="item" href=""> Vehiculos </a>
-                            </li>
-                            <li class="menu-item">
-                                <a class="item" href=""> Contactanos </a>
-                            </li>
-
-                            <li class="menu-item">
-                                <a class="item" href=""> Nosotros </a>
-                            </li>
                         </ul>
                     </nav>
                 </div>
             </div>
         </div>
     </header>
-
-    {{ targetIsVisible }}
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { Link } from "@inertiajs/vue3";
+
 import { useElementVisibility } from "@vueuse/core";
 const header = ref(null);
 const targetIsVisible = useElementVisibility(header);
 
 const logo =
     "https://www.grupodrews.com.pe/wp-content/uploads/2019/06/logo.png";
+
+const menu_items = [
+    {
+        name: "Inicio",
+        href: "/",
+    },
+    {
+        name: "Servicios",
+        href: "/servicios",
+    },
+    {
+        name: "Vehiculos",
+        href: "/vehiculos",
+    },
+    {
+        name: "Contactanos",
+        href: "/contactanos",
+    },
+    {
+        name: "Nosotros",
+        href: "/nosotros",
+    },
+];
 </script>
 
 <style lang="scss">
 $h-header-top: 50px;
 
 .web-header {
+    position: relative;
+    z-index: 10;
     .header-top {
         background-color: black;
         .container {
@@ -174,16 +185,14 @@ $h-header-top: 50px;
         }
 
         .header-bot-menu {
-            transition: background-color 0.3s ease;
-
             height: 80px;
             transform: translateY(40px);
             width: 100%;
-           
-                position: absolute;
-                bottom: 0;
-                right: 0;
-            
+
+            position: absolute;
+            bottom: 0;
+            right: 0;
+
             &.fixed {
                 position: fixed;
                 top: 0;
@@ -196,7 +205,6 @@ $h-header-top: 50px;
                         width: 150px;
                         visibility: visible;
                         opacity: 1;
-                        transition: all 0.5s ease;
                     }
                 }
             }
@@ -220,6 +228,7 @@ $h-header-top: 50px;
                     opacity: 0;
                     visibility: hidden;
                     padding: 0.5rem 0.5rem 0.5rem 0rem;
+
                     img {
                         width: 100%;
                         height: 100%;

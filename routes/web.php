@@ -52,8 +52,15 @@ Route::name('auth.')->prefix('auth')->group(function () {
 
 
 Route::name('web.')->group(function () {
-    Route::get('', [WebWebController::class, 'pageInicio'])
-        ->name('inicio');
+    //PAGES ****************
+    Route::get('', [WebWebController::class, 'pageInicio'])->name('inicio');
+
+    Route::get('vehiculos', [WebWebController::class, 'pageVehiculos'])->name('vehiculos');
+    Route::get('nosotros', [WebWebController::class, 'pageNosotros'])->name('nosotros');
+    Route::get('servicios', [WebWebController::class, 'pageServicios'])->name('servicios');
+    Route::get('contactanos', [WebWebController::class, 'pageContactanos'])->name('contactanos');
+
+    //PAGES ****************
 
     Route::post('sign-in', [AuthController::class, 'signIn'])
         ->name('sign-in');
@@ -73,10 +80,10 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::resource('servicios', ServicioController::class);
     Route::resource('productos', ProductoController::class); // VEHICULOS TEMPORAL
     Route::resource('categorias', CategoriasController::class);
-    
-    Route::resource('clientes', ClientesController::class); 
 
-    Route::resource('sedes', SedesController::class); 
+    Route::resource('clientes', ClientesController::class);
+
+    Route::resource('sedes', SedesController::class);
 
     Route::resource('configuraciones', WebController::class);
     Route::post('configuraciones/update-logo', [WebController::class, 'updateLogo']);
