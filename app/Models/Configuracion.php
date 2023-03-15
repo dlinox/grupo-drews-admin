@@ -34,4 +34,26 @@ class Configuracion extends Model
     {
         Configuracion::where('id', 1)->update(['web_update' => Uuid::uuid4()]);
     }
+
+    static public function getData()
+    {
+        $res = Configuracion::first();
+        $configuracion = [
+            'logo' => $res->web_logo,
+            'url' => $res->web_url,
+            'nombre' => $res->web_nombre,
+            'descripcion' => $res->web_descripcion,
+            'whatsapp' => $res->web_whatsapp,
+            'correo' => $res->web_correo,
+            'mision' => $res->web_mision ?? "",
+            'vision' => $res->web_vision ?? "",
+            'social_facebook' => $res->web_social_facebook,
+            'social_instagram' => $res->web_social_instagram,
+            'social_youtube' => $res->web_social_youtube,
+            'social_twitter' => $res->web_social_twitter,
+            'sedes' => Sede::all(['id', 'ubigeo', 'direccion', 'telefono', 'celulares', 'principal', 'estado']),
+
+        ];
+        return $configuracion;
+    }
 }

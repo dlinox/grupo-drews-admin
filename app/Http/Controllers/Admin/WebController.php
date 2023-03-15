@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Configuracion;
 use App\Models\Sede;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Config;
 use Inertia\Inertia;
 
 class WebController extends Controller
@@ -41,15 +43,18 @@ class WebController extends Controller
         $res = Configuracion::find(1);
 
         if ($request->file('logo')) {
-            $file_name = 'logo' . '.' . $request->logo->extension();
+            $file_name = 'logo' . '.png';
             $request->logo->move(public_path('uploads'), $file_name);
             $res->web_logo = env('APP_URL', 'http://localhost') . 'uploads/' . $file_name;
 
             if ($res->save()) {
                 Configuracion::actualizarWeb();
             }
+
+            return back();
         }
-        return back();
+
+        
     }
 
     public function store(Request $request)

@@ -80,7 +80,7 @@
                             </n-layout-sider>
 
                             <n-layout-content
-                                style="background-color: #eee"
+                                style="background-color: #eee; padding: 2rem"
                             >
                                 <Transition name="committee" appear>
                                     <slot></slot>

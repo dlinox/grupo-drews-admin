@@ -54,10 +54,15 @@
 
                     <nav class="nav-menu">
                         <ul class="menu">
-                            <li class="menu-item" v-for="(item, index) in menu_items" :key="index" >
-                                <Link class="item" :href="item.href"> {{ item.name }} </Link>
+                            <li
+                                class="menu-item"
+                                v-for="(item, index) in menu_items"
+                                :key="index"
+                            >
+                                <Link class="item" :href="item.href">
+                                    {{ item.name }}
+                                </Link>
                             </li>
-
                         </ul>
                     </nav>
                 </div>
@@ -69,13 +74,14 @@
 <script setup>
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
+import { computed } from "vue";
+import { usePage } from "@inertiajs/vue3";
 
 import { useElementVisibility } from "@vueuse/core";
 const header = ref(null);
 const targetIsVisible = useElementVisibility(header);
 
-const logo =
-    "https://www.grupodrews.com.pe/wp-content/uploads/2019/06/logo.png";
+const logo = computed(() => usePage().props.web.logo);
 
 const menu_items = [
     {
