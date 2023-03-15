@@ -1,19 +1,31 @@
 {
   "resources/assets/styles/scss/app.scss": {
-    "file": "assets/app-a17dcc6c.css",
+    "file": "assets/app-03ff29ba.css",
     "isEntry": true,
     "src": "resources/assets/styles/scss/app.scss"
   },
   "resources/js/app.css": {
-    "file": "assets/app-de0d9f1e.css",
+    "file": "assets/app-ed3a2d5d.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
-    "css": [
-      "assets/app-de0d9f1e.css"
+    "assets": [
+      "assets/preview_vide-bd8ef16a.png",
+      "assets/main-video-ff990cc9.mp4"
     ],
-    "file": "assets/app-fb735112.js",
+    "css": [
+      "assets/app-ed3a2d5d.css"
+    ],
+    "file": "assets/app-c690b244.js",
     "isEntry": true,
     "src": "resources/js/app.js"
+  },
+  "resources/js/assets/static/img/preview_vide.png": {
+    "file": "assets/preview_vide-bd8ef16a.png",
+    "src": "resources/js/assets/static/img/preview_vide.png"
+  },
+  "resources/js/assets/static/video/main-video.mp4": {
+    "file": "assets/main-video-ff990cc9.mp4",
+    "src": "resources/js/assets/static/video/main-video.mp4"
   }
 }
