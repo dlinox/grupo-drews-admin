@@ -4,6 +4,7 @@ import { createInertiaApp } from "@inertiajs/vue3";
 import naive from "naive-ui";
 
 import NProgress from "nprogress";
+
 import { router } from "@inertiajs/vue3";
 router.on("start", () => NProgress.start());
 router.on("finish", () => NProgress.done());

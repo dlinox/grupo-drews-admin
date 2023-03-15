@@ -56,4 +56,12 @@ class HandleInertiaRequests extends Middleware
 
         ]);
     }
+
+    public function rootView(Request $request)
+    {
+        if ($request->routeIs('web.*')) {
+            return 'web';
+        }
+        return 'app';
+    }
 }

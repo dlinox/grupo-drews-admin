@@ -81,7 +81,6 @@
 
                             <n-layout-content
                                 style="background-color: #eee"
-                                content-style="padding: 15px 20px;"
                             >
                                 <Transition name="committee" appear>
                                     <slot></slot>
@@ -98,7 +97,20 @@
 
 <script setup>
 import { h, ref, computed } from "vue";
-import { NIcon } from "naive-ui";
+import {
+    NIcon,
+    NConfigProvider,
+    NMessageProvider,
+    NDialogProvider,
+    NLayout,
+    NLayoutContent,
+    NLayoutHeader,
+    NLayoutSider,
+    NMenu,
+    NSpace,
+    NDropdown,
+    NButton,
+} from "naive-ui";
 import {
     PersonCircle,
     LogOutOutline,
@@ -114,7 +126,6 @@ import {
 } from "@vicons/ionicons5";
 
 import { router, usePage } from "@inertiajs/vue3";
-import { NConfigProvider } from "naive-ui";
 
 import { createGlobalState, useStorage } from "@vueuse/core";
 

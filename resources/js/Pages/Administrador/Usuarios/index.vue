@@ -1,6 +1,6 @@
 <template>
     <AdminLayout>
-        <div class="container">
+        <div class="container-xxl">
             <PageHeaderComponent title="Usuarios" />
             <n-divider />
             <FormularioUsuarioComponent btn_text="Nuevo usuario" />
