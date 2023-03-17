@@ -4,26 +4,22 @@
             <PageHeaderComponent title="Dashboard" />
 
             <hr />
-            <QuillEditor
-                theme="snow"
-                v-model:content="text"
-                contentType="html"
-            />
 
-            <pre>
-                {{ text }}
-            </pre>
-
-            <div v-html="text"></div>
+            <button @click="Alerta">
+                Alerta
+            </button>
         </div>
     </AdminLayout>
 </template>
 <script setup>
+import { ref } from "vue";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
-import { QuillEditor } from "@vueup/vue-quill";
-import "@vueup/vue-quill/dist/vue-quill.snow.css";
-import { ref } from "vue";
 
-const text = ref("");
+import { useToast } from "vue-toastification";
+const toast = useToast();
+
+const Alerta = ()=>{
+    toast.success("My toast content");
+}
 </script>

@@ -97,20 +97,7 @@
 
 <script setup>
 import { h, ref, computed } from "vue";
-import {
-    NIcon,
-    NConfigProvider,
-    NMessageProvider,
-    NDialogProvider,
-    NLayout,
-    NLayoutContent,
-    NLayoutHeader,
-    NLayoutSider,
-    NMenu,
-    NSpace,
-    NDropdown,
-    NButton,
-} from "naive-ui";
+import {NIcon} from "naive-ui";
 import {
     PersonCircle,
     LogOutOutline,

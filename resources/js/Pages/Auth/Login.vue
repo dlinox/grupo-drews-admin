@@ -62,7 +62,7 @@
 </template>
 <script setup>
 import { ref, computed } from "vue";
-import { useForm, usePage, router } from "@inertiajs/vue3";
+import { useForm, router } from "@inertiajs/vue3";
 import { MailOutline, KeyOutline } from "@vicons/ionicons5";
 
 

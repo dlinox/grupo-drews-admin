@@ -23,17 +23,8 @@
     </n-page-header>
 </template>
 <script setup>
-import {
-    NBreadcrumb,
-    NBreadcrumbItem,
-    NButton,
-    NIcon,
-    NSpace,
-    NPageHeader,
-    NAvatar
-} from "naive-ui";
-
 import { AppsSharp } from "@vicons/ionicons5";
+
 const props = defineProps({
     title: String,
 });

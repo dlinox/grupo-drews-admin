@@ -1,64 +1,63 @@
 <template>
-  <div>
-    <n-button class="select-picture">
-        {{ text }}
-        <template #icon>
-            <n-icon>
-                <ImageSharp />
-            </n-icon>
-        </template>
-        <input
-            ref="uploadInput"
-            type="file"
-            accept="image/jpg, image/jpeg, image/png, image/gif"
-            @change="selectFile"
-        />
-    </n-button>
-
-    <n-modal v-model:show="showModalPic">
-        <n-card
-            style="width: 600px"
-            title="cortar imagen"
-            :bordered="false"
-            size="huge"
-            role="dialog"
-            aria-modal="true"
-        >
-            <VuePictureCropper
-                :boxStyle="{
-                    width: '100%',
-                    height: '100%',
-                    backgroundColor: '#f8f8f8',
-                    margin: 'auto',
-                }"
-                :options="{
-                    viewMode: 1,
-                    dragMode: 'crop',
-                    aspectRatio: 16 / 9,
-                }"
-                :img="pic"
-            />
-
-            <template #footer>
-                <n-button @click="Cortar"> Cortarr </n-button>
+    <div>
+        <n-button class="select-picture">
+            {{ text }}
+            <template #icon>
+                <n-icon>
+                    <ImageSharp />
+                </n-icon>
             </template>
-        </n-card>
-    </n-modal>
-  </div>
-    
+            <input
+                ref="uploadInput"
+                type="file"
+                accept="image/jpg, image/jpeg, image/png, image/gif"
+                @change="selectFile"
+            />
+        </n-button>
+
+        <n-modal v-model:show="showModalPic">
+            <n-card
+                style="width: 600px"
+                title="cortar imagen"
+                :bordered="false"
+                size="huge"
+                role="dialog"
+                aria-modal="true"
+            >
+                <VuePictureCropper
+                    :boxStyle="{
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: '#f8f8f8',
+                        margin: 'auto',
+                    }"
+                    :options="{
+                        viewMode: 1,
+                        dragMode: 'crop',
+                        aspectRatio: 16/9,
+                    }"
+                    :img="pic"
+                />
+
+                <template #footer>
+                    <n-button @click="Cortar"> Cortarr </n-button>
+                </template>
+            </n-card>
+        </n-modal>
+    </div>
 </template>
 
 <script setup>
-import { ref,  reactive } from "vue";
+import { ref, reactive } from "vue";
 import VuePictureCropper, { cropper } from "vue-picture-cropper";
 import { ImageSharp } from "@vicons/ionicons5";
 
 const props = defineProps({
-  modelValue: File,
-  text: {
-    type: String,
-    default: 'Seleccionar imagen'
-  }
+    modelValue: File,
+    text: {
+        type: String,
+        default: "Seleccionar imagen",
+    },
 });
 
 const emit = defineEmits(["update:modelValue", "preview-result", "on-cropper"]);
@@ -67,6 +66,8 @@ const emit = defineEmits(["update:modelValue", "preview-result", "on-cropper"]);
 const pic = ref("");
 const showModalPic = ref(false);
 const uploadInput = ref(null);
+
+const aspectRatio = ref(16 / 9);
 
 const result = reactive({
     dataURL: "",
@@ -105,20 +106,19 @@ const Cortar = async () => {
     const blob = await cropper.getBlob();
 
     const file = await cropper.getFile({
-        fileName: 'preview-result',
-      })
+        fileName: "preview-result",
+    });
 
     if (!blob) return;
     //result.dataURL = base64;
     result.blobURL = URL.createObjectURL(blob);
 
-    emit('update:modelValue', file);
-    emit('preview-result', result.blobURL);
+    emit("update:modelValue", file);
+    emit("preview-result", result.blobURL);
 
     showModalPic.value = false;
 
-    emit('on-cropper', file);
-
+    emit("on-cropper", file);
 };
 </script>
 
