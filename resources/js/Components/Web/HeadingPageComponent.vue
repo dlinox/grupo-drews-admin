@@ -32,6 +32,7 @@ const props = defineProps({
 </template>
 <style lang="scss">
 .heading-page {
+    
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -51,6 +52,7 @@ const props = defineProps({
     .container {
         position: relative;
         z-index: 2;
+        
         .heading-bread-crumb {
             .bread-crumb-ul {
                 list-style: none;
@@ -58,8 +60,12 @@ const props = defineProps({
                 align-items: center;
                 margin: 0;
                 padding: 0;
+                font-family: $font-raj;
             }
         }
+    }
+    .heading-page-title {
+        font-family: $font-teko;
     }
 }
 </style>

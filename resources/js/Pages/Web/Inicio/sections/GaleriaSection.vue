@@ -19,10 +19,7 @@
         >
             <swiper-slide v-for="(item, index) in galeria.flat()" :key="index">
                 <div class="img-wrapper">
-                    <img
-                        :src="item"
-                        alt=""
-                    />
+                    <img :src="item" alt="" />
                     <div class="detalle">
                         <div class="content text-center">
                             <span class="text-center">Toyota Hlux </span>
@@ -36,7 +33,6 @@
             </swiper-slide>
         </swiper>
     </section>
-
 </template>
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -51,6 +47,7 @@ const galeria = props.vehiculos.map((item) => item.imagenes);
 
 <style lang="scss">
 .inicio-galeria {
+    font-family: $font-raj;
     .img-wrapper {
         width: 100%;
         height: 350px;

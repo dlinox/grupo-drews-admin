@@ -9,36 +9,39 @@
                             titulo="GRUPO DREWS"
                             descripcion=" Alquiler de camionetas 4x4 y otros veiculos motorizados"
                         />
-                        <p>
-                            Grupo Drews forma parte de un grupo empresarial
-                            conformado por Servicios Múltiples Drews S.A.C. –
-                            (Drews Rent A Car), Servicios Generales Drews Perú
-                            S.A.C., Esbril S.A.C., Intermotors S.A.C. y Tamawi
-                            S.A.C. con amplia experiencia en el sector
-                            Automotriz. Somos un grupo empresarial con más de 10
-                            años de experiencia en la Región Puno y el Sur del
-                            Perú con el objetivo de brindar servicios de
-                            alquiler de Camionetas 4X4, Alquiler de maquinaria
-                            pesada y otros Vehículos motorizados. Servicio de
-                            taller mecánico, Auxilio mecánico, Venta de
-                            repuestos, Asesoría y venta de seguros,
-                            Consultorías, Movimiento de tierras, Líneas de media
-                            tensión, Ejecución de obras y otros.
-                        </p>
-                        <p>
-                            Drews Rent A Car, inicia sus labores en la región
-                            puno en el año 2007, con el objetivo de brindar
-                            servicio de camionetas 4×4, en los diferentes
-                            sectores y actividades de desarrollo en la región,
-                            centrándonos con mayor interés en los sectores de
-                            minería, exploraciones, energía, construcción,
-                            ingeniería, etc.
-                        </p>
+                        <div class="descripcion-nosotros">
+                            <p>
+                                Grupo Drews forma parte de un grupo empresarial
+                                conformado por Servicios Múltiples Drews S.A.C.
+                                – (Drews Rent A Car), Servicios Generales Drews
+                                Perú S.A.C., Esbril S.A.C., Intermotors S.A.C. y
+                                Tamawi S.A.C. con amplia experiencia en el
+                                sector Automotriz. Somos un grupo empresarial
+                                con más de 10 años de experiencia en la Región
+                                Puno y el Sur del Perú con el objetivo de
+                                brindar servicios de alquiler de Camionetas 4X4,
+                                Alquiler de maquinaria pesada y otros Vehículos
+                                motorizados. Servicio de taller mecánico,
+                                Auxilio mecánico, Venta de repuestos, Asesoría y
+                                venta de seguros, Consultorías, Movimiento de
+                                tierras, Líneas de media tensión, Ejecución de
+                                obras y otros.
+                            </p>
+                            <p>
+                                Drews Rent A Car, inicia sus labores en la
+                                región puno en el año 2007, con el objetivo de
+                                brindar servicio de camionetas 4×4, en los
+                                diferentes sectores y actividades de desarrollo
+                                en la región, centrándonos con mayor interés en
+                                los sectores de minería, exploraciones, energía,
+                                construcción, ingeniería, etc.
+                            </p>
+                        </div>
                     </div>
                     <div class="col-md-5 col-12 d-flex flex-wrap">
-                        <div class="w-100 text-end mt-5">
-                            <h1 class="text-color1">10 +</h1>
-                            <h5>Experiencia</h5>
+                        <div class="w-100 text-end anios-experiencia mt-5">
+                            <span >10 +</span>
+                            <small>Experiencia</small>
                         </div>
                         <div class="row">
                             <div class="col-12">
@@ -64,6 +67,25 @@ import TituloSectionComponent from "../../../Components/Web/TituloSectionCompone
 </script>
 <style lang="scss">
 .page-nosotros {
+    .descripcion-nosotros {
+        font-family: $font-raj;
+    }
+    .text-end {
+        span {
+            font-family: $font-teko;
+            font-size: 4.5rem;
+            color: $app-color1;
+            display: block;
+            line-height: 5rem;
+        }
+        small{
+            font-family: $font-teko;
+            font-size: 1.5rem;
+            color: $app-color1;
+            display: block;
+        }
+    }
+
     img {
         width: 100%;
         height: 100%;

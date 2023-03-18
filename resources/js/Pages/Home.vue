@@ -1,9 +1,6 @@
 <template>
     <AdminLayout>
-   
-                    
-            Dasboadr
-   
+   Hola
     </AdminLayout>
 </template>
 <script setup>

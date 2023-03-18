@@ -34,7 +34,7 @@
                     :options="{
                         viewMode: 1,
                         dragMode: 'crop',
-                        aspectRatio: 16/9,
+                        aspectRatio: 16 / 9,
                     }"
                     :img="pic"
                 />

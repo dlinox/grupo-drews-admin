@@ -216,6 +216,7 @@ $h-header-top: 50px;
                     .contact {
                         display: flex;
                         height: 80px;
+                        font-family: $font-raj;
                         .contact-item {
                             display: flex;
                             padding: 10px 0px;
@@ -320,6 +321,9 @@ $h-header-top: 50px;
                                 color: white;
                                 height: 100%;
                                 padding: 0 1.2rem;
+                                font-family: $font-raj;
+                                font-weight: 600;
+                                font-size: 1.2rem;
                             }
                         }
                     }

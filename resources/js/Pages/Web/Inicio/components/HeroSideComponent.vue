@@ -1,7 +1,13 @@
 <template>
     <section class="hero-side">
         <div class="side-wrapper">
-            <video class="video" muted autoplay loop  poster="@/assets/static/img/preview_vide.png">
+            <video
+                class="video"
+                muted
+                autoplay
+                loop
+                poster="@/assets/static/img/preview_vide.png"
+            >
                 <source
                     src="@/assets/static/video/main-video.mp4"
                     type="video/mp4"
@@ -11,8 +17,12 @@
 
             <div class="slide-content">
                 <div class="container">
-                    <h1>Más de 10 años de experiencia</h1>
-                    <h4>Ofresiendote las mejores soluciones</h4>
+                    <span class="slide-title">
+                        Más de 10 años de experiencia
+                    </span>
+                    <span class="slide-subtitle">
+                        Ofresiendote las mejores soluciones
+                    </span>
                 </div>
             </div>
         </div>
@@ -22,8 +32,7 @@
 <style lang="scss">
 .hero-side {
     position: relative;
-    z-index: 2;
-    
+
     .side-wrapper {
         width: 100%;
         height: 600px;
@@ -45,6 +54,29 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background: rgb(12, 127, 64);
+            background: linear-gradient(
+                54deg,
+                rgba(12, 127, 64, 1) 0%,
+                rgba(4, 183, 190, .2) 59%,
+                rgba(0, 212, 255, .1) 100%
+            );
+            .container {
+                .slide-title {
+                    color: white;
+                    display: block;
+                    font-size: 3.5rem;
+                    font-family: $font-teko;
+                    font-weight: 800;
+                }
+                .slide-subtitle {
+                    color: #eee;
+                    display: block;
+                    font-size: 2rem;
+                    font-family: $font-teko;
+                    letter-spacing: 1.5px;
+                }
+            }
         }
     }
 }

@@ -73,6 +73,7 @@ const props = defineProps({
     background-color: #efefef;
     width: 100%;
     padding: 1.5rem 0;
+    font-family: $font-raj;
     .filter-categorie {
         .categories {
             display: flex;

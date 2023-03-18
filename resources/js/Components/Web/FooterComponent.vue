@@ -8,7 +8,7 @@
                     <img width="150" :src="logo" alt="" />
                 </div>
                 <div class="col-6 col-lg-4">
-                    <h6 class="text-white mb-3">Menu</h6>
+                    <h6 class="text-white mb-3 title-footer">Menu</h6>
                     <ul class="list-style-none">
                         <li v-for="(item, index) in menu_items" :key="index">
                             <Link :href="item.href">
@@ -22,7 +22,7 @@
                     </ul>
                 </div>
                 <div class="col-6 col-lg-4">
-                    <h6 class="text-white mb-3">Servicios</h6>
+                    <h6 class="text-white mb-3 title-footer">Servicios</h6>
                     <ul>
                         <li>
                             <Link href="/">
@@ -113,7 +113,14 @@ const menu_items = [
 <style lang="scss">
 .footer {
     background-color: rgb(20, 20, 20);
+
+    .title-footer{
+        font-family: $font-teko;
+        letter-spacing: 1px;
+        font-size: 1.3rem;
+    }
     a {
+        font-family: $font-raj;
         text-decoration: none;
         display: flex;
         align-items: center;
@@ -126,6 +133,7 @@ const menu_items = [
             transition: transform 0.3s ease-in;
         }
         &:hover {
+            color: white;
             i {
                 transform: translateX(5px);
             }

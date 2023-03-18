@@ -1,5 +1,5 @@
 <template>
-    <div class="card-vehiculo">
+    <div class="card-vehiculo my-3">
         <div class="shapes">
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
@@ -47,9 +47,9 @@
             </div>
             <hr />
 
-            <n-space justify="space-between">
+            <n-space justify="end">
                 <button class="btn btn-color1" @click="showModal = !showModal">
-                    Ver más
+                    <i class="fa-solid fa-plus"></i> Ver más
                 </button>
             </n-space>
         </div>
@@ -63,7 +63,9 @@
             size="huge"
             role="dialog"
             aria-modal="true"
+            class="modal-detalles"
         >
+        
             <n-grid cols="2 300:3" :y-gap="20">
                 <n-gi>
                     <n-statistic label="Marca" :value="item.marca" />
@@ -106,10 +108,19 @@
             </n-grid>
 
             <template #footer>
-                <n-space justify="flex-end">
-                    <n-dropdown :options="options">
-                        <button class="btn btn-color1">Solicitar</button>
-                    </n-dropdown>
+                <n-space justify="space-between">
+                    <button class="btn btn-dark">
+                        <i class="fa-regular fa-images"></i> 
+                    </button>
+
+                    <div>
+                        <button class="btn btn-outline-dark me-2">
+                            <i class="fa-regular fa-envelope"></i> Solicitar
+                        </button>
+                        <button class="btn btn-color1">
+                            <i class="fa-brands fa-whatsapp"></i> Whatsapp
+                        </button>
+                    </div>
                 </n-space>
             </template>
         </n-card>
@@ -117,15 +128,14 @@
 
     <n-modal v-model:show="showGaleria">
         <n-card
-        class="bg-dark"
+            class="bg-dark"
             style="width: 800px"
-          
             :bordered="false"
             size="huge"
             role="dialog"
             aria-modal="true"
         >
-            <n-carousel  :loop="false" show-arrow draggable>
+            <n-carousel :loop="false" show-arrow draggable>
                 <img
                     class="carousel-img"
                     v-for="(img, index) in item.imagenes"
@@ -133,14 +143,11 @@
                     :src="img"
                 />
             </n-carousel>
-
         </n-card>
     </n-modal>
 </template>
 <script setup>
 import { ref } from "vue";
-import { Swiper, SwiperSlide } from "swiper/vue";
-
 const props = defineProps({
     item: Object,
 });
@@ -171,9 +178,7 @@ const options = [
 .card-vehiculo {
     position: relative;
     background-color: #fff;
-    -webkit-box-shadow: 0px 11px 38px 0px rgb(32 42 48 / 8%);
-    box-shadow: 0px 11px 38px 0px rgb(32 42 48/ 8%);
-
+    box-shadow: 0px 5px 10px 0px rgb(32 42 48/ 8%);
     border-radius: 5px;
     overflow: hidden;
     -webkit-transition: all 0.3s ease-out 0s;
@@ -237,9 +242,13 @@ const options = [
         padding: 20px;
         .card-title {
             margin-bottom: 18px;
-            font-size: 25px;
+            font-size: 1.5rem;
             line-height: 35px;
             transition: all 0.4s ease-out;
+            font-family: $font-teko;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: #444;
         }
         .card-descripcion {
             .col-3 {
@@ -254,6 +263,7 @@ const options = [
                     text-align: center;
                     font-size: 0.7rem;
                     color: #333;
+                    font-family: $font-raj;
                 }
             }
         }
@@ -277,6 +287,20 @@ const options = [
         .card-descripcion {
             color: #ddd;
         }
+    }
+}
+
+.modal-detalles {
+    .n-card-header__main {
+        font-family: $font-teko;
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+    .n-statistic__label {
+        letter-spacing: 0.5px;
+    }
+    .n-statistic-value__content {
+        font-family: $font-raj;
     }
 }
 </style>

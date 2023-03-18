@@ -1,9 +1,6 @@
 <template>
     <div class="card-small h-100">
-        <Link
-            class="card-wrapper h-100 shadow"
-            :href="'/servicios/' + item.id"
-        >
+        <Link class="card-wrapper h-100 shadow" :href="'/servicios/' + item.id">
             <span class="card-icon"> <i :class="item.figura"></i> </span>
             <span class="card-title"> {{ item.titulo }} </span>
 
@@ -15,17 +12,13 @@
     </div>
 </template>
 <script setup>
-
-import { Link } from '@inertiajs/vue3'; 
+import { Link } from "@inertiajs/vue3";
 
 const props = defineProps({
     item: Object,
 });
 </script>
 <style lang="scss">
-
-
-
 .card-small {
     padding: 15px 15px 0px 15px;
     position: relative;
@@ -107,14 +100,22 @@ const props = defineProps({
         }
 
         .card-title {
-            font-size: 22px;
             font-weight: 600;
             margin: 0 auto;
             text-align: center;
-            -webkit-transition: all 0.3s ease 0s;
-            -o-transition: all 0.3s ease 0s;
             transition: all 0.3s ease 0s;
             margin-bottom: 10px;
+            font-family: $font-teko;
+            letter-spacing: 0.8px;
+            font-size: 1.5rem;
+            &::after{
+                content: "";
+                width: 50%;
+                height: 5px;
+                background-color: $app-color1;
+                position: absolute;
+                bottom: 0;
+            }
         }
     }
 

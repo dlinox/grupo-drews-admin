@@ -29,5 +29,7 @@
 </template>
 
 <style lang="scss">
-
+.form-wrapper{
+    font-family: $font-raj;
+}
 </style>

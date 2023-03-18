@@ -9,7 +9,9 @@
                     </span>
                 </div>
                 <div class="right">
-                    <button class="btn btn-color1">LLamanos</button>
+                    <button class="btn btn-color1">
+                        <i class="fa-solid fa-phone"></i> LLamanos
+                    </button>
                 </div>
             </div>
         </div>
@@ -38,7 +40,7 @@
             width: 100%;
             height: 100%;
             clip-path: polygon(0 0, 70% 0, 50% 100%, 0 100%);
-            background-color: rgba($app-color1, 0.8);
+            background-color: rgba($app-color1, 0.9);
         }
 
         .container {
@@ -52,10 +54,12 @@
                 display: block;
                 font-size: 2rem;
                 width: 100%;
+                font-family: $font-teko;
             }
             span.text2 {
                 display: block;
-                font-size: 1rem;
+                font-family: $font-raj;
+                font-size: 1.1rem;
             }
         }
     }

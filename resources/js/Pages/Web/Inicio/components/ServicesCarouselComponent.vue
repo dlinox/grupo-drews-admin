@@ -4,12 +4,12 @@
             <div class="row">
                 <div class="col-12 col-lg-5">
                     <div class="border-0 bg-color1 shadow my-0 my-lg-3 p-3">
-                        <div class="card-body text-white">
+                        <div class="card-body text-white p-3">
                             <div class="card-title">
                                 <h1>GRUPO DREWS</h1>
                             </div>
                             <div class="card-subtitle">
-                                <p>
+                                <p class="mb-0">
                                     Grupo Drews forma parte de un grupo
                                     empresarial conformado por Servicios
                                     Múltiples Drews S.A.C. - (Drews Rent A Car),
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-7">
+                <div class="col-12 col-lg-7 slide-services">
                     <swiper :slides-per-view="2" :space-between="10">
                         <swiper-slide
                             v-for="(item, index) in servicios"
@@ -43,7 +43,6 @@ import CardSmallServiceComponent from "./CardSmallServiceComponent.vue";
 const props = defineProps({
     servicios: Array,
 });
-
 </script>
 
 <style lang="scss">
@@ -53,6 +52,14 @@ const props = defineProps({
     z-index: 3;
     margin-top: -100px;
     overflow: hidden;
+    h1 {
+        font-family: $font-teko;
+        font-weight: 800;
+    }
+    p {
+        font-family: $font-raj;
+        font-size: 1.2rem;
+    }
 }
 
 @media (max-width: 992px) {

@@ -130,8 +130,11 @@ import FormContactoComponent from "./components/FormContactoComponent.vue";
 <style lang="scss">
 .section-info-contacto {
     .titulo-concant {
-        font-size: 1.5rem;
+        font-size: 2rem;
         padding: 1rem;
+        font-family: $font-teko;
+        letter-spacing: 1px;
+
     }
     .info-contacto {
         .item-contact {
@@ -146,6 +149,8 @@ import FormContactoComponent from "./components/FormContactoComponent.vue";
                         width: 100%;
                         font-weight: 600;
                         margin-bottom: 1em;
+                        font-family: $font-teko;
+                        font-size: 1.3rem;
                     }
                     .card-icon {
                         width: 80px;
@@ -169,7 +174,11 @@ import FormContactoComponent from "./components/FormContactoComponent.vue";
                                 a {
                                     text-decoration: none;
                                     color: inherit;
-                                    font-size: 1rem;
+
+                                    font-family: $font-raj;
+                                    font-weight: 500;
+                                    font-size: 1.4rem;
+
                                     i {
                                         font-size: 0.8rem;
                                         margin-right: 15px;
@@ -185,11 +194,11 @@ import FormContactoComponent from "./components/FormContactoComponent.vue";
 }
 
 .section-mapa {
-  width: 100%;
-  height: 100%;
-  .iframe {
     width: 100%;
-    height: 450px;
-  }
+    height: 100%;
+    .iframe {
+        width: 100%;
+        height: 450px;
+    }
 }
 </style>
