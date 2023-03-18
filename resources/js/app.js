@@ -8,6 +8,9 @@ import { router } from "@inertiajs/vue3";
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
+import "vue-advanced-cropper/dist/style.css";
+
+
 import {
     NIcon,
     NConfigProvider,
@@ -51,7 +54,7 @@ import {
     NTabs,
     NTabPane,
     NDrawer,
-    NDrawerContent
+    NDrawerContent,
 } from "naive-ui";
 
 const options = {
@@ -131,7 +134,7 @@ createInertiaApp({
 
             .component("NTabs", NTabs)
             .component("NTabPane", NTabPane)
-            
+
             .component("NDrawer", NDrawer)
             .component("NDrawerContent", NDrawerContent)
 

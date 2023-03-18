@@ -5,7 +5,7 @@
     "src": "resources/assets/styles/scss/app.scss"
   },
   "resources/js/app.css": {
-    "file": "assets/app-bead169c.css",
+    "file": "assets/app-67823bd9.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -14,9 +14,9 @@
       "assets/main-video-ff990cc9.mp4"
     ],
     "css": [
-      "assets/app-bead169c.css"
+      "assets/app-67823bd9.css"
     ],
-    "file": "assets/app-e04e9258.js",
+    "file": "assets/app-17d42cfc.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
