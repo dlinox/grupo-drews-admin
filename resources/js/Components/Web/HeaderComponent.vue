@@ -1,6 +1,6 @@
 <template>
     <header class="web-header">
-        <div class="header-top">
+        <div ref="headerTop" class="header-top">
             <div class="container d-flex justyfy-content-between">
                 <div class="top-left">
                     <!-- Button trigger modal -->
@@ -71,7 +71,10 @@
 
             <div
                 class="header-bot-menu"
-                :class="targetIsVisible ? '' : 'fixed shadow'"
+                :class="[
+                    targetIsVisible ? '' : 'fixed shadow',
+                    headerTopVisible ? '' : 'fixed-small shadow',
+                ]"
             >
                 <div class="container">
                     <div class="bot-fixed-logo">
@@ -80,8 +83,17 @@
 
                     <nav class="nav-menu">
                         <ul class="menu">
+                            <li class="btn-menu d-md-none">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-light"
+                                    @click="showMenu = !showMenu"
+                                >
+                                    <i class="fa-solid fa-bars"></i>
+                                </button>
+                            </li>
                             <li
-                                class="menu-item"
+                                class="menu-item d-none d-md-flex"
                                 v-for="(item, index) in menu_items"
                                 :key="index"
                             >
@@ -94,6 +106,58 @@
                 </div>
             </div>
         </div>
+
+        <n-drawer v-model:show="showMenu" :width="320" placement="left">
+            <n-drawer-content class="menu-drawer" title="Menu">
+                <div class="shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                    <div class="shape shape-4"></div>
+                </div>
+
+                <nav class="menu-wrapper">
+                    <ul class="menu-ul">
+                        <li
+                            class="menu-item"
+                            v-for="(item, index) in menu_items"
+                            :key="index"
+                        >
+                            <Link class="item" :href="item.href">
+                                {{ item.name }}
+                            </Link>
+                        </li>
+                    </ul>
+
+                    <hr />
+                    <ul class="contacts">
+                        <li class="contact-item">
+                            <div class="item-icon">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                            </div>
+                            <div class="item-content">
+                                <span class="item-title"> LLamanos</span>
+                                <span class="item-ref">
+                                    {{ web.whatsapp }}
+                                </span>
+                            </div>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="item-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="item-content">
+                                <span class="item-title"> Escribenos</span>
+                                <span class="item-ref">
+                                    {{ web.correo }}
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </n-drawer-content>
+        </n-drawer>
     </header>
 </template>
 
@@ -107,8 +171,13 @@ import { useElementVisibility } from "@vueuse/core";
 const header = ref(null);
 const targetIsVisible = useElementVisibility(header);
 
+const headerTop = ref(null);
+const headerTopVisible = useElementVisibility(headerTop);
+
 const logo = computed(() => usePage().props.web.logo);
 const web = computed(() => usePage().props.web_data);
+
+const showMenu = ref(false);
 
 const menu_items = [
     {
@@ -139,6 +208,7 @@ $h-header-top: 50px;
 
 .web-header {
     position: relative;
+    background-color: aqua;
     z-index: 10;
     .header-top {
         background-color: black;
@@ -313,6 +383,13 @@ $h-header-top: 50px;
                             0% 100%
                         );
                         padding-left: 40px;
+
+                        li.btn-menu {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+
                         li.menu-item {
                             a.item {
                                 display: flex;
@@ -327,6 +404,177 @@ $h-header-top: 50px;
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+.n-drawer-content-wrapper {
+    .shapes {
+        .shape {
+            position: absolute;
+            content: "";
+            top: 100;
+            left: -180px;
+            background-color: rgba($app-color1, 0.04);
+            border-radius: 5px;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            transition: all 0.5s ease-out;
+            z-index: 1;
+        }
+        .shape-1 {
+            width: 250px;
+            height: 350px;
+            top: 120px;
+        }
+        .shape-2 {
+            width: 270px;
+            height: 370px;
+            top: 110px;
+        }
+        .shape-3 {
+            width: 290px;
+            height: 390px;
+            top: 100px;
+        }
+        .shape-4 {
+            width: 310px;
+            height: 410px;
+            top: 90px;
+        }
+    }
+
+    nav.menu-wrapper {
+        position: relative;
+        z-index: 2;
+
+        .menu-ul {
+            .menu-item {
+                a.item {
+                    font-family: $font-raj;
+                    font-weight: 600;
+                    letter-spacing: 0.8px;
+                    text-decoration: none;
+                    color: inherit;
+                    display: block;
+                    padding: 10px 20px;
+                    &:hover {
+                        color: $app-color1;
+                        background-color: rgba($app-color1, 0.1);
+                    }
+                }
+            }
+        }
+        .contacts {
+            display: flex;
+            flex-wrap: wrap;
+            .contact-item {
+                display: flex;
+                padding: 10px 0px;
+                width: 100%;
+                .item-icon {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 50px;
+                    font-size: 1.5rem;
+                    color: $app-color1;
+                }
+                .item-content {
+                    display: flex;
+                    flex-wrap: wrap;
+                    span {
+                        width: 100%;
+                        font-weight: 400;
+                        font-family: $font-raj;
+                        font-size: 1rem;
+                        &:first-child {
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .web-header {
+        .header-bot {
+            .container {
+                .bot-left {
+                    .bot-logo {
+                        width: 150px;
+                    }
+                }
+            }
+
+            .header-bot-menu {
+                .container {
+                    .bot-fixed-logo {
+                        width: 130px;
+                    }
+                    nav.nav-menu {
+                        ul.menu {
+                            li.menu-item {
+                                a.item {
+                                    padding: 0 0.8rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .web-header {
+        .header-bot {
+            height: 80px;
+            .container {
+                height: 80px;
+
+                .bot-left {
+                    .bot-logo {
+                        width: 130px;
+                    }
+                }
+
+                .bot-right {
+                    display: none;
+                }
+            }
+
+            .header-bot-menu {
+                height: 80px;
+                transform: translateY(-80px);
+                width: 100%;
+                position: relative;
+                bottom: 0;
+                right: 0;
+
+                &.fixed-small {
+                    position: fixed;
+                    top: 0;
+                    transform: translateY(0px);
+                    background-color: aliceblue;
+
+                    .container {
+                        justify-content: space-between;
+                        .bot-fixed-logo {
+                            width: 120px;
+                            visibility: visible;
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                &::before {
+                    clip-path: polygon(40px 0%, 100% 0%, 100% 100%, 0% 100%);
                 }
             }
         }

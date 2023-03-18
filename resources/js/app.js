@@ -50,6 +50,8 @@ import {
     NCollapseItem,
     NTabs,
     NTabPane,
+    NDrawer,
+    NDrawerContent
 } from "naive-ui";
 
 const options = {
@@ -129,6 +131,9 @@ createInertiaApp({
 
             .component("NTabs", NTabs)
             .component("NTabPane", NTabPane)
+            
+            .component("NDrawer", NDrawer)
+            .component("NDrawerContent", NDrawerContent)
 
             .use(Toast, options)
             .use(plugin)
