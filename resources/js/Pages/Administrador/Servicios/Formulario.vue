@@ -114,7 +114,7 @@
                                         <n-card
                                             v-for="(
                                                 item, index
-                                            ) in list_imagenes"
+                                            ) in 3"
                                             :key="index"
                                         >
                                             <n-space>
@@ -186,40 +186,15 @@ const imagenes = ref(props.servicio.imagenes ?? []);
 const formData = useForm({ ...props.servicio });
 
 /*************************** */
-const list_imagenes = ref([
-    { blob: null, file: null },
-    { blob: null, file: null },
-    { blob: null, file: null },
-]);
-
 const blob_imgs = ref(props.servicio.imagenes ?? [null, null, null]);
-
 const file_imgs = ref([]);
 /*************************** */
 
-const previsualizarImagenes = (e) => {
-    imagenes.value = [];
-    let files = e.target;
-
-    for (let i = 0; i < files.files.length; i++) {
-        let file = files.files[i];
-
-        let objectURL = URL.createObjectURL(file);
-
-        imagenes.value.push(objectURL);
-    }
-
-    console.log(imagenes);
-};
 
 const submit = () => {
   
-
     formData.imagenes = file_imgs.value;
-
-
     console.log(formData.imagenes);
-
    // return;
     console.log(formData);
     if (props.servicio.id) {

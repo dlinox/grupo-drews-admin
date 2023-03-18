@@ -57,6 +57,7 @@ import {
     NTabPane,
     NDrawer,
     NDrawerContent,
+    NInputNumber
 } from "naive-ui";
 
 const options = {
@@ -139,7 +140,8 @@ createInertiaApp({
 
             .component("NDrawer", NDrawer)
             .component("NDrawerContent", NDrawerContent)
-
+            .component("NInputNumber", NInputNumber)
+            
             .use(Toast, options)
             .use(plugin)
             .mount(el);

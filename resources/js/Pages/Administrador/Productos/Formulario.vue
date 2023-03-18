@@ -3,166 +3,205 @@
         <div class="container">
             <PageHeaderComponent title="Productos - Nuevo" />
             <n-divider />
-            <n-form ref="formRef" :model="formData">
-                <n-grid cols="1 600:3" :x-gap="20" :y-gap="20">
-                    <n-grid-item span="1  600:2">
-                        <div class="light-green">
-                            <n-form-item path="detalle" label="Detalle">
-                                <n-input
-                                    v-model:value="formData.detalle"
-                                    placeholder="Corporativo"
-                                />
-                            </n-form-item>
 
-                            <n-form-item path="descripcion" label="Descripción">
-                                <n-input
-                                    type="textarea"
-                                    v-model:value="formData.descripcion"
-                                    placeholder="Contamos con una variedad..."
-                                />
-                            </n-form-item>
+            <n-card>
+                <n-form ref="formRef" :model="formData">
+                    <n-grid cols="1 600:3" :x-gap="20" :y-gap="20">
+                        <n-grid-item span="1  600:2">
+                            <div class="light-green">
+                                <n-form-item path="detalle" label="Detalle">
+                                    <n-input
+                                        v-model:value="formData.detalle"
+                                        placeholder="Corporativo"
+                                    />
+                                </n-form-item>
 
-                            <n-grid
-                                cols="1 300:2 600:3  800:4"
-                                :x-gap="10"
-                                :y-gap="0"
-                            >
-                                <n-grid-item>
-                                    <n-form-item path="marca" label="marca">
-                                        <n-input
-                                            v-model:value="formData.marca"
-                                            placeholder="marca"
-                                        />
-                                    </n-form-item>
-                                </n-grid-item>
+                                <n-form-item
+                                    path="descripcion"
+                                    label="Descripción"
+                                >
+                                    <n-input
+                                        type="textarea"
+                                        v-model:value="formData.descripcion"
+                                        placeholder="Contamos con una variedad..."
+                                    />
+                                </n-form-item>
 
-                                <n-grid-item>
-                                    <n-form-item path="modelo" label="modelo">
-                                        <n-input
-                                            v-model:value="formData.modelo"
-                                            placeholder="modelo"
-                                        />
-                                    </n-form-item>
-                                </n-grid-item>
+                                <n-grid
+                                    cols="1 300:2 600:3  800:4"
+                                    :x-gap="10"
+                                    :y-gap="0"
+                                >
+                                    <n-grid-item>
+                                        <n-form-item path="marca" label="marca">
+                                            <n-input
+                                                v-model:value="formData.marca"
+                                                placeholder="marca"
+                                            />
+                                        </n-form-item>
+                                    </n-grid-item>
 
-                                <n-grid-item>
-                                    <n-form-item
-                                        path="categoria"
-                                        label="categoria"
-                                    >
-                                        <n-select
-                                            label-field="detalle"
-                                            value-field="detalle"
-                                            v-model:value="formData.categoria"
-                                            :options="categorias"
-                                        />
-                                    </n-form-item>
-                                </n-grid-item>
+                                    <n-grid-item>
+                                        <n-form-item
+                                            path="modelo"
+                                            label="modelo"
+                                        >
+                                            <n-input
+                                                v-model:value="formData.modelo"
+                                                placeholder="modelo"
+                                            />
+                                        </n-form-item>
+                                    </n-grid-item>
 
-                                <n-grid-item>
-                                    <n-form-item
-                                        path="combustible"
-                                        label="combustible"
-                                    >
-                                        <n-input
-                                            v-model:value="formData.combustible"
-                                            placeholder="combustible"
-                                        />
-                                    </n-form-item>
-                                </n-grid-item>
+                                    <n-grid-item>
+                                        <n-form-item
+                                            path="categoria"
+                                            label="categoria"
+                                        >
+                                            <n-select
+                                                label-field="detalle"
+                                                value-field="detalle"
+                                                v-model:value="
+                                                    formData.categoria
+                                                "
+                                                :options="categorias"
+                                            />
+                                        </n-form-item>
+                                    </n-grid-item>
 
-                                <n-grid-item>
-                                    <n-form-item path="puertas" label="puertas">
-                                        <n-input-number
-                                            v-model:value="formData.puertas"
-                                            clearable
-                                            :min="1"
-                                            placeholder="puertas"
-                                        />
-                                    </n-form-item>
-                                </n-grid-item>
+                                    <n-grid-item>
+                                        <n-form-item
+                                            path="combustible"
+                                            label="combustible"
+                                        >
+                                            <n-input
+                                                v-model:value="
+                                                    formData.combustible
+                                                "
+                                                placeholder="combustible"
+                                            />
+                                        </n-form-item>
+                                    </n-grid-item>
 
-                                <n-grid-item>
-                                    <n-form-item
-                                        path="capacidad"
-                                        label="capacidad"
-                                    >
-                                        <n-input-number
-                                            :min="1"
-                                            v-model:value="formData.capacidad"
-                                            placeholder="capacidad"
-                                        />
-                                    </n-form-item>
-                                </n-grid-item>
+                                    <n-grid-item>
+                                        <n-form-item
+                                            path="puertas"
+                                            label="puertas"
+                                        >
+                                            <n-input-number
+                                                v-model:value="formData.puertas"
+                                                clearable
+                                                :min="1"
+                                                placeholder="puertas"
+                                            />
+                                        </n-form-item>
+                                    </n-grid-item>
 
-                                <n-grid-item>
-                                    <n-form-item
-                                        path="equipaje"
-                                        label="equipaje"
-                                    >
-                                        <n-input-number
-                                            :min="1"
-                                            v-model:value="formData.equipaje"
-                                            placeholder="equipaje"
-                                        />
-                                    </n-form-item>
-                                </n-grid-item>
+                                    <n-grid-item>
+                                        <n-form-item
+                                            path="capacidad"
+                                            label="capacidad"
+                                        >
+                                            <n-input-number
+                                                :min="1"
+                                                v-model:value="
+                                                    formData.capacidad
+                                                "
+                                                placeholder="capacidad"
+                                            />
+                                        </n-form-item>
+                                    </n-grid-item>
 
-                                <n-grid-item>
-                                    <n-form-item
-                                        path="aire_acondicionado"
-                                        label="aire acondicionado"
-                                    >
-                                        <n-switch
-                                            v-model:value="
-                                                formData.aire_acondicionado
-                                            "
-                                        />
-                                    </n-form-item>
-                                </n-grid-item>
-                            </n-grid>
+                                    <n-grid-item>
+                                        <n-form-item
+                                            path="equipaje"
+                                            label="equipaje"
+                                        >
+                                            <n-input-number
+                                                :min="1"
+                                                v-model:value="
+                                                    formData.equipaje
+                                                "
+                                                placeholder="equipaje"
+                                            />
+                                        </n-form-item>
+                                    </n-grid-item>
 
-                            Contenido
-                            <QuillEditor
-                                theme="snow"
-                                v-model:content="formData.contenido"
-                                contentType="html"
-                            />
-                        </div>
-                    </n-grid-item>
-                    <n-grid-item span="1  600:1">
-                        <n-card embedded>
-                            <n-form-item path="imagen" label="Imagenes">
-                                <input
-                                    @change="previsualizarImagenes"
-                                    @input="
-                                        formData.imagenes = $event.target.files
-                                    "
-                                    :multiple="true"
-                                    :showUploadButton="false"
-                                    accept="image/*"
-                                    type="file"
-                                    :maxFileSize="3000000"
-                                    :maxFile="3"
-                                />
-                            </n-form-item>
+                                    <n-grid-item>
+                                        <n-form-item
+                                            path="aire_acondicionado"
+                                            label="aire acondicionado"
+                                        >
+                                            <n-switch
+                                                v-model:value="
+                                                    formData.aire_acondicionado
+                                                "
+                                            />
+                                        </n-form-item>
+                                    </n-grid-item>
+                                </n-grid>
+                            </div>
+                        </n-grid-item>
+                        <n-grid-item span="1  600:1">
+                            <n-card embedded>
+                                <n-form-item path="imagenes" label="Imagenes">
+                                    <n-space vertical>
+                                        <n-card
+                                            v-for="(item, index) in num_imgs"
+                                            :key="index"
+                                        >
+                                            <n-space>
+                                                <CropCompressImageComponent
+                                                    @onCropper="
+                                                        (blob_imgs[index] =
+                                                            $event.blob),
+                                                            file_imgs.push(
+                                                                $event.file
+                                                            )
+                                                    "
+                                                />
 
-                            <n-space size="large">
-                                <n-image
-                                    v-for="(item, index) in imagenes"
-                                    :key="index"
-                                    width="100"
-                                    :src="item"
-                                />
-                            </n-space>
+                                                <n-image
+                                                    :src="blob_imgs[index]"
+                                                    width="120"
+                                                />
 
-                            <n-button @click="guardar" type="primary">
-                                Guardar
-                            </n-button>
-                        </n-card>
-                    </n-grid-item>
-                </n-grid>
-            </n-form>
+                                                <n-button
+
+                                                :disabled="num_imgs == 1 ? true : false "
+                                                
+                                                    @click="
+                                                        num_imgs--,
+                                                            blob_imgs.splice(
+                                                                index,
+                                                                1
+                                                            ),
+                                                            file_imgs.splice(
+                                                                index,
+                                                                1
+                                                            )
+                                                    "
+                                                    secondary
+                                                    type="error"
+                                                >
+                                                    -
+                                                </n-button>
+                                            </n-space>
+                                        </n-card>
+
+                                        <n-button @click="num_imgs++">
+                                            Agregar Imagen
+                                        </n-button>
+                                    </n-space>
+                                </n-form-item>
+                                <n-button @click="guardar" type="primary">
+                                    Guardar
+                                </n-button>
+                            </n-card>
+                        </n-grid-item>
+                    </n-grid>
+                </n-form>
+            </n-card>
         </div>
     </AdminLayout>
 </template>
@@ -172,10 +211,28 @@ import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
-import { QuillEditor } from "@vueup/vue-quill";
+
+import CropCompressImageComponent from "../../../Components/CropCompressImageComponent.vue";
 
 const props = defineProps({
-    producto: Object,
+    producto: {
+        type: Object,
+        default: {
+            detalle: null,
+            descripcion: null,
+            marca: null,
+            modelo: null,
+            categoria: null,
+            tipo: null,
+            combustible: null,
+            cilindrada: null,
+            puertas: null,
+            capacidad: null,
+            aire_acondicionado: null,
+            equipaje: null,
+            imagenes: null,
+        },
+    },
     categorias: Array,
 });
 
@@ -183,40 +240,27 @@ const formRef = ref(null);
 
 const imagenes = ref([]);
 
-const formData = useForm({
-    detalle: null,
-    descripcion: null,
-    marca: null,
-    modelo: null,
-    categoria: null,
-    tipo: null,
-    combustible: null,
-    cilindrada: null,
-    puertas: null,
-    capacidad: null,
-    aire_acondicionado: null,
-    equipaje: null,
-    imagenes: null,
-    contenido: "",
-});
+const formData = useForm({ ...props.producto });
 
-const previsualizarImagenes = (e) => {
-    imagenes.value = [];
-    let files = e.target;
+/*************************** */
+const num_imgs = ref( props.producto.imagenes?.length ?? 1);
 
-    for (let i = 0; i < files.files.length; i++) {
-        let file = files.files[i];
+const blob_imgs = ref(props.producto.imagenes ?? []);
+const file_imgs = ref([]);
 
-        let objectURL = URL.createObjectURL(file);
-
-        imagenes.value.push(objectURL);
-    }
-
-    console.log(imagenes);
-};
+/*************************** */
 
 const guardar = () => {
+  
+
+    formData.imagenes = file_imgs.value;
+
+    console.log('****************');
+    console.log(formData.imagenes);
+    console.log('****************');
+
     console.log(formData);
+
 
     formData.post("/admin/productos", {
         preserveScroll: true,

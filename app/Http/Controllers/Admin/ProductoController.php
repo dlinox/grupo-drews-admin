@@ -16,6 +16,7 @@ class ProductoController extends Controller
     {
 
         $productos = Producto::all(
+            'id',
             'detalle',
             'descripcion',
             'marca',
@@ -46,6 +47,12 @@ class ProductoController extends Controller
         ]);
     }
 
+    public function edit(string $id)
+    {
+        $res = Producto::find($id);
+
+        return Inertia::render('Administrador/Productos/Formulario', ['producto' => $res]);
+    }
 
     public function store(Request $request)
     {
@@ -53,12 +60,12 @@ class ProductoController extends Controller
         $this->validate(
             $request,
             [
-                'imagenes.*' => 'required|mimes:jpg,jpeg,png|max:20000',
+                'imagenes.*' => 'nullable|mimes:jpg,jpeg,png|max:20000',
                 'detalle.*' => 'required',
                 'descripcion.*' => 'required',
             ],
             [
-                'imagenes.*.required' => 'Please upload an image',
+                //'imagenes.*.required' => 'Please upload an image',
                 'imagenes.*.mimes' => 'Only jpeg,png and bmp images are allowed',
                 'imagenes.*.max' => 'Sorry! Maximum allowed size for an image is 20MB',
                 'detalle.required' => 'El detalle es obligatorio',
@@ -66,17 +73,8 @@ class ProductoController extends Controller
             ]
         );
 
-        $imagenes = $request->imagenes;
+     
 
-        $path_imagenes = [];
-
-        $cont = 1;
-        foreach ($imagenes as $item) {
-            $fileName = time() . '-img-' . $cont . '.' . $item->extension();
-            $item->move(public_path('uploads/productos/'), $fileName);
-            array_push($path_imagenes,  $fileName);
-            $cont++;
-        }
 
         $data = [
             'detalle' => $request->detalle,
@@ -92,15 +90,48 @@ class ProductoController extends Controller
             'aire_acondicionado' => $request->aire_acondicionado,
             'equipaje' => $request->equipaje,
             'contenido' => $request->contenido,
-            'imagenes' => implode(',', $path_imagenes)
         ];
 
 
-        $producto = Producto::create($data);
-        if ($producto) {
-            Configuracion::actualizarWeb();
+        if ($request->hasFile('imagenes.*')) {
+
+            $imagenes = $request->imagenes;
+            
+            $path_imagenes = [];
+            $cont = 1;
+            foreach ($imagenes as $item) {
+                $fileName = time() . '-img-' . $cont . '.' . $item->extension();
+                $item->move(public_path('uploads/productos/'), $fileName);
+                array_push($path_imagenes,  $fileName);
+                $cont++;
+            }
+
+            $data['imagenes'] = implode(',', $path_imagenes);
         }
-        return redirect('/admin/productos');
+
+        if ($request->id) {
+            $servicio = Producto::find($request->id);
+
+            if (!$servicio) {
+                //TODO: Crear un trow para el error.
+                return back()->withErrors(['msg' => 'Eñ Producto no existe']);
+            }
+
+
+            if ($servicio->update($data)) {
+                Configuracion::actualizarWeb();
+                return redirect('/admin/productos');
+                return back();
+            }
+        } else {
+
+            $producto = Producto::create($data);
+            if ($producto) {
+                Configuracion::actualizarWeb();
+            }
+            return redirect('/admin/productos');
+        }
+
         //return response()->json($request);
 
     }

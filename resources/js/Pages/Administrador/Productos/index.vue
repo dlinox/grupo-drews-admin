@@ -34,13 +34,38 @@
 
                         <template #header-extra>
                             <n-button-group>
-                                <n-button secondary size="small" type="error">
-                                    <n-icon>
-                                        <Trash />
-                                    </n-icon>
-                                </n-button>
+                                <n-popconfirm
+                                    :show-icon="false"
+                                    negative-text="No"
+                                    positive-text="Si"
+                                    @positive-click="eliminarProducto(item.id)"
+                                >
+                                    <template #activator>
+                                        <n-button
+                                            secondary
+                                            size="small"
+                                            type="error"
+                                        >
+                                            <n-icon>
+                                                <Trash />
+                                            </n-icon>
+                                        </n-button>
+                                    </template>
+                                    ¿ Seguro de eliminar el vehiculo ?
+                                </n-popconfirm>
 
-                                <n-button secondary size="small">
+
+                                <n-button
+                                    secondary
+                                    size="small"
+                                    @click="
+                                        router.get(
+                                            '/admin/productos/' +
+                                                item.id +
+                                                '/edit'
+                                        )
+                                    "
+                                >
                                     <n-icon>
                                         <Pencil />
                                     </n-icon>
@@ -217,7 +242,6 @@
 import { router } from "@inertiajs/vue3";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
-import FormularioProductoComponent from "./Components/FormularioProductoComponent.vue";
 import { ref } from "vue";
 import { Add, Pencil, Trash } from "@vicons/ionicons5";
 
@@ -228,15 +252,7 @@ const props = defineProps({
 const detalleModal = ref(false);
 const detalleProducto = ref({});
 
-const eliminar = (id) => {
-    console.log("eliminar " + id);
-};
-
-const editar = () => {
-    console.log("editar");
-};
-
-const eliminarUsuario = (id) => {
+const eliminarProducto = (id) => {
     router.delete("/admin/productos/" + id);
 };
 </script>
