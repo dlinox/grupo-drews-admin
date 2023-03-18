@@ -22,14 +22,15 @@
                         <td>{{ item.num_doc }}</td>
                         <td>
                             <n-space justify="center">
-                                <n-image width="80" :src="'/' +item.logo" />
+                                <n-image width="80" :src="item.logo" />
                             </n-space>
                         </td>
                         <td style="width: 180px">
                             <n-space justify="end">
+
                                 <FormularioClienteComponent
                                     btn_text="Editar"
-                                    :data="item"
+                                    :cliente="item"
                                     :edit="true"
                                 />
 
@@ -63,6 +64,7 @@ import FormularioClienteComponent from "./Components/FormularioClienteComponent.
 const props = defineProps({
     clientes: Array,
 });
+
 const eliminar = (id) => {
     router.delete("/admin/clientes/" + id);
 };

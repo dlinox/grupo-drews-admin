@@ -337,6 +337,7 @@ import { useForm } from "@inertiajs/vue3";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
 import { QuillEditor } from "@vueup/vue-quill";
+
 import {
     LogoFacebook,
     LogoInstagram,

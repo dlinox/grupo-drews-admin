@@ -71,17 +71,18 @@
                     </n-grid-item>
 
                     <n-grid-item>
-                        <n-form-item path="publico" label="Sitio web">
+                        <n-form-item path="publico" label="Publico">
                             <n-switch v-model:value="formData.publico" />
                         </n-form-item>
                     </n-grid-item>
 
                     <n-grid-item>
-                        <upload-image-component
-                            v-model="formData.logo"
-                            @preview-result="preview_img = $event"
-                        >
-                        </upload-image-component>
+                        <CropCompressImageComponent
+                            @onCropper="
+                                (preview_img = $event.blob),
+                                    (formData.logo = $event.file)
+                            "
+                        />
                     </n-grid-item>
 
                     <n-grid-item>
@@ -115,7 +116,7 @@
 import { ref, watch } from "vue";
 import { useForm } from "@inertiajs/vue3";
 import { useMessage } from "naive-ui";
-import UploadImageComponent from "@/components/UploadImageComponent.vue";
+import CropCompressImageComponent from "@/Components/CropCompressImageComponent.vue";
 
 const onlyAllowNumber = (value) => !value || /^\d+$/.test(value);
 
@@ -141,7 +142,20 @@ const ops_tipo_doc = [
 
 const props = defineProps({
     btn_text: String,
-    data: Object,
+    cliente: {
+        type: Object,
+        default: {
+            r_social: null,
+            num_doc: null,
+            tipo_doc: null,
+            nombre: null,
+            apellidos: null,
+            logo: null,
+            web: null,
+            publico: true,
+        },
+    },
+
     edit: {
         type: Boolean,
         default: false,
@@ -153,28 +167,19 @@ const message = useMessage();
 
 const showModal = ref(false);
 
-const formData = useForm({
-    r_social: null,
-    num_doc: null,
-    tipo_doc: null,
-    nombre: null,
-    apellidos: null,
-    logo: null,
-    web: null,
-    publico: true,
-});
+const formData = useForm({ ...props.cliente });
 
-const preview_img = ref(null);
+const preview_img = ref(props.cliente.logo);
 
 watch(showModal, (val) => {
     // console.log(data);
     if (val == false) {
+
         formData.reset();
         return;
     }
-
     if (props.edit) {
-        formData.detalle = props.data.detalle;
+        formData.logo = null;
     }
 });
 
@@ -198,14 +203,9 @@ const rules = {
 
 const submit = async (e) => {
     e.preventDefault();
-
     await formRef.value?.validate(async (errors) => {
         if (!errors) {
-            if (props.edit) {
-                editar();
-            } else {
-                crear();
-            }
+            guardar();
         } else {
             console.log(errors);
             message.error("Datos ingresado no validos");
@@ -213,7 +213,7 @@ const submit = async (e) => {
     });
 };
 
-const crear = () => {
+const guardar = () => {
     formData.post("/admin/clientes", {
         preserveScroll: true,
         onError: (e) => {
@@ -223,29 +223,13 @@ const crear = () => {
             console.log(e);
         },
         onSuccess: () => {
-            showModal.value = false;
-            message.success("Servicios creado");
+            message.success( props.edit ? "Servicios editado" : "Servicios creado" );
             formData.reset();
+            showModal.value = false;
         },
     });
 };
 
-const editar = () => {
-    formData.put("/admin/clientes/" + props.data?.id, {
-        preserveScroll: true,
-        onError: (e) => {
-            for (const property in e) {
-                message.error(e[property]);
-            }
-            console.log(e);
-        },
-        onSuccess: () => {
-            showModal.value = false;
-            message.success("Servicios editado");
-            formData.reset();
-        },
-    });
-};
 </script>
 
 <style>

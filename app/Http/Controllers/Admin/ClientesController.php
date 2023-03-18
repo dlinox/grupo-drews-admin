@@ -13,7 +13,7 @@ class ClientesController extends Controller
 {
     public function index()
     {
-        $clientes = Cliente::all(['id', 'r_social', 'num_doc', 'logo']);
+        $clientes = Cliente::all(['id', 'r_social', 'tipo_doc', 'nombre', 'apellidos', 'web', 'num_doc', 'logo', 'publico']);
         return Inertia::render('Administrador/Clientes/index', ['clientes' => $clientes]);
     }
 
@@ -33,8 +33,54 @@ class ClientesController extends Controller
         );
 
 
-        if ($validated) {
+        if ($request->id) {
 
+            if ($this->actualizar($request, $request->id)) { 
+                //Todo: Pasar al modelo 
+
+                return redirect('/admin/clientes');
+                //return back();
+            }
+
+            //return;
+        } else {
+
+            if ($validated) {
+
+                $data = [
+                    'r_social' => $request->r_social,
+                    'num_doc' => $request->num_doc,
+                    'tipo_doc' => $request->tipo_doc,
+                    'nombre' => $request->nombre,
+                    'apellidos' => $request->apellidos,
+                    'web' => $request->web,
+                    'publico' => $request->publico,
+                ];
+
+                if ($request->file('logo')) {
+                    $file_name = Str::random(8) . '-' . time() . '.' . $request->logo->extension();
+                    $request->logo->move(public_path('uploads/clientes/'), $file_name);
+
+                    $data['logo'] = 'uploads/clientes/' . $file_name;
+                }
+
+                Cliente::create($data);
+            }
+            return back()->withInput($request->all());
+        }
+
+        //return response()->json($request);
+    }
+
+    public function actualizar(Request $request, string $id)
+    {
+
+        $cliente = Cliente::find($id);
+
+        if (!$cliente) {
+            //TODO: Crear un trow para el error.
+            return back()->withErrors(['msg' => 'El cliente no existe']);
+        } else {
             $data = [
                 'r_social' => $request->r_social,
                 'num_doc' => $request->num_doc,
@@ -52,30 +98,14 @@ class ClientesController extends Controller
                 $data['logo'] = 'uploads/clientes/' . $file_name;
             }
 
-            Cliente::create($data);
+            if ($cliente->update($data)) {
+                Configuracion::actualizarWeb();
+
+                return true;
+            }
+
+            return back()->withErrors(['msg' => 'Ocurrio un error']);
         }
-        return back()->withInput($request->all());
-        //return response()->json($request);
-    }
-
-    public function update(Request $request, string $id)
-    {
-
-        $validated = $this->validate(
-            $request,
-            [
-                'detalle' => 'required|unique:categorias,detalle,' . $id,
-            ],
-            [
-                'detalle.required' => 'El Nombresss es obligatorio',
-                'detalle.unique' => 'La categoria ya existe',
-            ]
-        );
-
-        if ($validated) {
-            Cliente::find($id)->update($request->only('detalle'));
-        }
-        return back()->withInput($request->all());
     }
 
     public function destroy(string $id)

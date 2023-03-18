@@ -80,10 +80,13 @@
                             </n-layout-sider>
 
                             <n-layout-content
-                                style="background-color: #eee; padding: 2rem"
+                                style="background-color: #eee;"
                             >
                                 <Transition name="committee" appear>
-                                    <slot></slot>
+                                    <div class="wrapper" style="padding: 1rem 2rem">
+                                        <slot></slot>
+
+                                    </div>
                                 </Transition>
                             </n-layout-content>
                             <!-- <n-layout-footer>Chengfu Road</n-layout-footer> -->
@@ -97,7 +100,7 @@
 
 <script setup>
 import { h, ref, computed } from "vue";
-import {NIcon} from "naive-ui";
+import { NIcon } from "naive-ui";
 import {
     PersonCircle,
     LogOutOutline,

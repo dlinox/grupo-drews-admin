@@ -10,6 +10,8 @@ import "vue-toastification/dist/index.css";
 
 import "vue-advanced-cropper/dist/style.css";
 
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
 
 import {
     NIcon,

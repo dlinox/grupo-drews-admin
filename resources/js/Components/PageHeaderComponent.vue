@@ -1,5 +1,5 @@
 <template>
-    <n-page-header>
+    <n-page-header class="page-header">
         <template #title> {{ title }} </template>
 
         <template #header>
@@ -29,3 +29,9 @@ const props = defineProps({
     title: String,
 });
 </script>
+
+<style>
+.page-header{
+    margin-bottom: 1rem;
+}
+</style>

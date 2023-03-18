@@ -2,23 +2,18 @@
     <AdminLayout>
         <div class="container">
             <PageHeaderComponent :title="'Servicios - ' + text_form" />
-            <n-divider />
-            <n-form ref="formRef" :model="formData">
-                <n-grid cols="1 600:3" :x-gap="20" :y-gap="20">
-                    <n-grid-item span="1  600:2">
-                        <div class="light-green">
-                            <n-form-item path="titulo" label="Detalle">
+
+            <n-card class="mt-1">
+                <n-form ref="formRef" :model="formData">
+                    <n-grid cols="1 600:5" :x-gap="20" :y-gap="20">
+                        <n-grid-item span="1  600:3">
+                            <n-form-item path="titulo" label="titulo">
                                 <n-input
                                     v-model:value="formData.titulo"
                                     placeholder="Corporativo"
                                 />
                             </n-form-item>
-                            <n-form-item path="figura" label="Icono">
-                                <n-input
-                                    v-model:value="formData.figura"
-                                    placeholder="fa-light fa-bell-concierge"
-                                />
-                            </n-form-item>
+
                             <n-form-item path="descripcion" label="Descripción">
                                 <n-input
                                     type="textarea"
@@ -104,52 +99,58 @@
                                 </tbody>
                             </n-table>
 
-                            <!--                                 
-                                Contenido
-                                <QuillEditor
-                                    theme="snow"
-                                    v-model:content="formData.contenido"
-                                    contentType="html"
-                                /> -->
-                        </div>
-                    </n-grid-item>
-                    <n-grid-item span="1  600:1">
-                        <n-card embedded>
-                            <n-form-item path="imagen" label="Imagenes">
-                                <input
-                                    @change="previsualizarImagenes"
-                                    @input="
-                                        formData.imagenes = $event.target.files
-                                    "
-                                    :multiple="true"
-                                    :showUploadButton="false"
-                                    accept="image/*"
-                                    type="file"
-                                    :maxFileSize="10000"
-                                    :maxFile="3"
-                                />
-                            </n-form-item>
+                        </n-grid-item>
+                        <n-grid-item span="1  600:2">
+                            <n-card>
+                                <n-form-item path="figura" label="Icono">
+                                    <n-input
+                                        v-model:value="formData.figura"
+                                        placeholder="fa-light fa-bell-concierge"
+                                    />
+                                </n-form-item>
 
-                            <n-space size="large">
-                                <n-image
-                                    v-for="(item, index) in imagenes"
-                                    :key="index"
-                                    width="100"
-                                    :src="item"
-                                />
-                            </n-space>
+                                <n-form-item path="imagenes" label="Imagenes">
+                                    <n-space vertical>
+                                        <n-card
+                                            v-for="(
+                                                item, index
+                                            ) in list_imagenes"
+                                            :key="index"
+                                        >
+                                            <n-space>
+                                                <CropCompressImageComponent
+                                                    @onCropper="
+                                                        (blob_imgs[index] =
+                                                            $event.blob),
+                                                            file_imgs.push(
+                                                                $event.file
+                                                            )
+                                                    "
+                                                />
 
-                            <n-button
-                                @click="submit"
-                                type="primary"
-                                :loading="formData.processing"
-                            >
-                                {{ text_btn }}
-                            </n-button>
-                        </n-card>
-                    </n-grid-item>
-                </n-grid>
-            </n-form>
+                                                <n-image
+                                                    :src="blob_imgs[index]"
+                                                    width="100"
+                                                />
+                                            </n-space>
+                                        </n-card>
+                                    </n-space>
+                                </n-form-item>
+
+
+
+                                <n-button
+                                    @click="submit"
+                                    type="primary"
+                                    :loading="formData.processing"
+                                >
+                                    {{ text_btn }}
+                                </n-button>
+                            </n-card>
+                        </n-grid-item>
+                    </n-grid>
+                </n-form>
+            </n-card>
         </div>
     </AdminLayout>
 </template>
@@ -160,6 +161,7 @@ import { useForm, router } from "@inertiajs/vue3";
 
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
+import CropCompressImageComponent from "../../../Components/CropCompressImageComponent.vue";
 
 const props = defineProps({
     servicio: {
@@ -183,6 +185,18 @@ const imagenes = ref(props.servicio.imagenes ?? []);
 
 const formData = useForm({ ...props.servicio });
 
+/*************************** */
+const list_imagenes = ref([
+    { blob: null, file: null },
+    { blob: null, file: null },
+    { blob: null, file: null },
+]);
+
+const blob_imgs = ref(props.servicio.imagenes ?? [null, null, null]);
+
+const file_imgs = ref([]);
+/*************************** */
+
 const previsualizarImagenes = (e) => {
     imagenes.value = [];
     let files = e.target;
@@ -199,6 +213,14 @@ const previsualizarImagenes = (e) => {
 };
 
 const submit = () => {
+  
+
+    formData.imagenes = file_imgs.value;
+
+
+    console.log(formData.imagenes);
+
+   // return;
     console.log(formData);
     if (props.servicio.id) {
         console.log("editar");

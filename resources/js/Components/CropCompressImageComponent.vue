@@ -1,12 +1,19 @@
 <template>
-    <n-button class="btn-upload-image">
+    <n-button class="btn-upload-image" type="info" dashed :loading="btn_loading">
         <input
             type="file"
             ref="file"
             @change="cargarImagen($event)"
             accept="image/*"
         />
-        Subir imagen
+
+        <template #icon>
+            <n-icon>
+                <ImageSharp />
+            </n-icon>
+        </template>
+
+        Seleccionar imagen
     </n-button>
 
     <n-modal v-model:show="showModal">
@@ -70,15 +77,13 @@
             />
 
             <template #footer>
-                <n-space>
-                    <n-button>Reestablecer </n-button>
-                    <n-button @click="movable = !movable">movable </n-button>
-
-                    <n-button @click="cropAndOptimize">
+                <n-space justify="flex-end">
+                  
+                    <n-button @click="cropAndOptimize" type="primary">
                         <template #icon>
                             <n-icon><Crop /></n-icon>
                         </template>
-                        Cortar {{ optimize }}
+                        Cortar
                     </n-button>
                 </n-space>
             </template>
@@ -89,7 +94,7 @@
 <script setup>
 import { ref, computed, reactive } from "vue";
 import { Cropper } from "vue-advanced-cropper";
-import { Crop, Move, Resize, ScanCircleSharp } from "@vicons/ionicons5";
+import { Crop, ImageSharp, Move, Resize, ScanCircleSharp } from "@vicons/ionicons5";
 import { loadImageHelper } from "@/helpers/uploadFile.js";
 const emits = defineEmits(["onCropper"]);
 
@@ -112,6 +117,7 @@ const aspectRatio_options = [
 ];
 
 const showModal = ref(false);
+const btn_loading = ref(false);
 
 const cropperRef = ref(null);
 
@@ -138,6 +144,7 @@ const cropAndOptimize = () => {
 
 const cargarImagen = async (e) => {
     console.log("ini");
+    btn_loading.value = true;
     let res = await loadImageHelper(e);
 
     if (res) {
@@ -150,6 +157,8 @@ const cargarImagen = async (e) => {
     }
 
     console.log("fin");
+    btn_loading.value = false;
+
 };
 </script>
 
