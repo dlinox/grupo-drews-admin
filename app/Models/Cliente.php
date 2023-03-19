@@ -20,7 +20,8 @@ class Cliente extends Model
         'correo',
         'celular',
         'publico', // se muestra o no en la we
-        'web', // link de su pagina web 
+        'web', // link de su pagina web
+        'estado', // link de su pagina web
     ];
 
 

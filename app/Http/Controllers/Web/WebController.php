@@ -15,6 +15,7 @@ class WebController extends Controller
         $servicios  = Servicio::all(['id', 'titulo', 'figura']);
         $vehiculos  = Producto::all(
             [
+                'id',
                 'detalle',
                 'descripcion',
                 'marca',
@@ -47,6 +48,7 @@ class WebController extends Controller
     {
         $vehiculos  = Producto::all(
             [
+                'id',
                 'detalle',
                 'descripcion',
                 'marca',

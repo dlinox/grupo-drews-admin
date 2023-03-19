@@ -65,7 +65,6 @@
             aria-modal="true"
             class="modal-detalles"
         >
-        
             <n-grid cols="2 300:3" :y-gap="20">
                 <n-gi>
                     <n-statistic label="Marca" :value="item.marca" />
@@ -106,19 +105,25 @@
                     <n-statistic label="Equipaje." :value="item.equipaje" />
                 </n-gi>
             </n-grid>
-
             <template #footer>
                 <n-space justify="space-between">
-                    <button class="btn btn-dark">
-                        <i class="fa-regular fa-images"></i> 
-                    </button>
+                    <a
+                        class="btn btn-color1"
+                        :href="
+                            'https://api.whatsapp.com/send?phone=051951208106&text=Quiero mas información de: ' +
+                            item.detalle
+                        "
+                        target="_blank"
+                    >
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
 
                     <div>
-                        <button class="btn btn-outline-dark me-2">
+                        <button
+                            class="btn btn-outline-dark me-2"
+                            @click="showFormCotizar = !showFormCotizar"
+                        >
                             <i class="fa-regular fa-envelope"></i> Solicitar
-                        </button>
-                        <button class="btn btn-color1">
-                            <i class="fa-brands fa-whatsapp"></i> Whatsapp
                         </button>
                     </div>
                 </n-space>
@@ -145,16 +150,32 @@
             </n-carousel>
         </n-card>
     </n-modal>
+
+    <n-modal v-model:show="showFormCotizar">
+        <n-card
+            style="width: 650px"
+            :bordered="false"
+            size="huge"
+            role="dialog"
+            aria-modal="true"
+            :title="item.detalle"
+        >
+            <FormCotizacionComponent :producto="item.id" tipo="Vehiculo" />
+            
+        </n-card>
+    </n-modal>
 </template>
 <script setup>
 import { ref } from "vue";
+import FormCotizacionComponent from "@/components/Web/FormCotizacionComponent.vue";
+
 const props = defineProps({
     item: Object,
 });
 
 const showModal = ref(false);
-
 const showGaleria = ref(false);
+const showFormCotizar = ref(false);
 
 const options = [
     {

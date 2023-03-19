@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Reserva extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'producto',
+        'fecha_ini',
+        'fecha_fin',
+        'sede',
+        'cliente',
+        'tipo',
+    ];
 }

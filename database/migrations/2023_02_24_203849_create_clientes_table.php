@@ -23,6 +23,7 @@ return new class extends Migration
             $table->char('celular', 15)->nullable();
             $table->boolean('publico')->default(1);
             $table->string('web', 180)->nullable();
+            $table->boolean('estado')->default(1);
             $table->timestamps();
         });
     }

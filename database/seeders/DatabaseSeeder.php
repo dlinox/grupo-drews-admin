@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Categoria;
 use App\Models\Configuracion;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -33,6 +34,21 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => 'admin@gmail.com'
         ]);
+
+
+        Categoria::create([
+            'detalle' => 'Auto',
+        ]);
+
+        Categoria::create([
+            'detalle' => 'Camioneta',
+        ]);
+
+
+        Categoria::create([
+            'detalle' => 'Minivan',
+        ]);
+
 
 
         // \App\Models\User::factory(10)->create();

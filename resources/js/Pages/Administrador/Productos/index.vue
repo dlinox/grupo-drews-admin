@@ -54,7 +54,6 @@
                                     ¿ Seguro de eliminar el vehiculo ?
                                 </n-popconfirm>
 
-
                                 <n-button
                                     secondary
                                     size="small"

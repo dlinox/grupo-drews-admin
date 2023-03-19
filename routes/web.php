@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\CategoriasController;
 use App\Http\Controllers\Admin\ClientesController;
 use App\Http\Controllers\Admin\SedesController;
+use App\Http\Controllers\Web\ReservasController as WebReservasController;
 use App\Http\Controllers\Web\WebController as WebWebController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +61,9 @@ Route::name('web.')->group(function () {
     Route::get('servicios', [WebWebController::class, 'pageServicios'])->name('servicios');
     Route::get('servicios/{id}', [WebWebController::class, 'pageServicioDetalle'])->name('servicios-detalle');
     Route::get('contactanos', [WebWebController::class, 'pageContactanos'])->name('contactanos');
+
+    Route::resource('reservas', WebReservasController::class)->only('store');
+    
 
     //PAGES ****************
 
