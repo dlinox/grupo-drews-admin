@@ -5,13 +5,15 @@ import { createInertiaApp } from "@inertiajs/vue3";
 import NProgress from "nprogress";
 import { router } from "@inertiajs/vue3";
 
+import VueSilentbox from "vue-silentbox";
+
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
 import "vue-advanced-cropper/dist/style.css";
 
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
 
 import {
     NIcon,
@@ -57,7 +59,7 @@ import {
     NTabPane,
     NDrawer,
     NDrawerContent,
-    NInputNumber
+    NInputNumber,
 } from "naive-ui";
 
 const options = {
@@ -141,7 +143,7 @@ createInertiaApp({
             .component("NDrawer", NDrawer)
             .component("NDrawerContent", NDrawerContent)
             .component("NInputNumber", NInputNumber)
-            
+
             .use(Toast, options)
             .use(plugin)
             .mount(el);
