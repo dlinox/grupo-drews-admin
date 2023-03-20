@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categoria;
 use App\Models\Producto;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
@@ -65,7 +66,9 @@ class WebController extends Controller
                 'imagenes',
             ]
         );
-        return Inertia::render('Web/Vehiculos/index',  ['vehiculos' => $vehiculos]);
+
+        $categorias = Categoria::all('id', 'detalle');
+        return Inertia::render('Web/Vehiculos/index',  ['vehiculos' => $vehiculos, 'categorias' => $categorias]);
     }
 
     public function pageNosotros()

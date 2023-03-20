@@ -16,7 +16,7 @@
             </div>
 
             <div class="card-button mt-4">
-                <Link class="btn btn-dark w-100" :href="href"> Solicitar </Link>
+                <Link class="btn btn-dark w-100" :href="href"> Ver detalles </Link>
             </div>
         </div>
     </div>

@@ -6,19 +6,50 @@
                 <div class="container">
                     <div class="filter-categorie">
                         <ul class="categories">
-                            <li class="item-categorie active">Todo</li>
-                            <li class="item-categorie">Autmovil</li>
-                            <li class="item-categorie">Camioneta</li>
-                            <li class="item-categorie">MiniVan</li>
+                            <li
+                                class="item-categorie"
+                                :class="
+                                    filters.categoria == null ? 'active' : ''
+                                "
+                            >
+                                <button
+                                    class="btn btn-text"
+                                    @click="filters.categoria = null"
+                                >
+                                    Todo
+                                </button>
+                            </li>
+                            <li
+                                v-for="(item, index) in categorias"
+                                :key="index"
+                                class="item-categorie"
+                                :class="
+                                    filters.categoria == item.detalle
+                                        ? 'active'
+                                        : ''
+                                "
+                            >
+                                <button
+                                    class="btn btn-text rounded-0"
+                                    @click="filters.categoria = item.detalle"
+                                >
+                                    {{ item.detalle }}
+                                </button>
+                            </li>
                         </ul>
                     </div>
 
                     <div class="row mt-4">
                         <div class="col-4 col-md-3 col-lg-2">
-                            <label for="pasajeros" class="form-label"
-                                >Pasajeros</label
-                            >
-                            <input type="number" class="" placeholder="4" />
+                            <label for="pasajeros" class="form-label">
+                                Pasajeros
+                            </label>
+                            <input
+                                v-model="filters.pasajeros"
+                                type="number"
+                                class=""
+                                min="1"
+                            />
                         </div>
                         <div class="col-8 col-md-4 col-lg-4">
                             <label for="transmision" class="form-label"
@@ -39,7 +70,12 @@
                             <label for="buscar" class="form-label"
                                 >Buscar</label
                             >
-                            <input type="text" class="" placeholder="Buscar" />
+                            <input
+                                v-model="filters.term"
+                                type="text"
+                                class=""
+                                placeholder="Buscar"
+                            />
                         </div>
                     </div>
                 </div>
@@ -47,7 +83,7 @@
             <section class="container py-5">
                 <div class="row g-4">
                     <div
-                        v-for="(item, index) in vehiculos"
+                        v-for="(item, index) in listVehiculos"
                         :key="index"
                         class="col-12 col-md-6 col-lg-4"
                     >
@@ -60,13 +96,68 @@
 </template>
 
 <script setup>
+import { ref, reactive, watch } from "vue";
 import WebLayout from "@/Layouts/WebLayout.vue";
 import CardVehiculoComponent from "../../../Components/Web/CardVehiculoComponent.vue";
 import HeadingPageComponent from "../../../Components/Web/HeadingPageComponent.vue";
 
 const props = defineProps({
     vehiculos: Array,
+    categorias: Array,
 });
+
+const listVehiculos = ref(props.vehiculos);
+
+const filters = ref({
+    term: null,
+    categoria: null,
+    pasajeros: null,
+    transmision: null,
+});
+
+watch(
+    filters,
+    (val) => {
+        filterVehiculo();
+    },
+    {
+        deep: true,
+    }
+);
+
+const filterVehiculo = () => {
+    let temp = props.vehiculos;
+
+    if (filters.value.categoria) {
+        temp = temp.filter((item) => item.categoria == filters.value.categoria);
+    }
+
+    if (filters.value.pasajeros) {
+        temp = temp.filter((item) => item.capacidad == filters.value.pasajeros);
+    }
+
+    if (filters.value.transmision) {
+        temp = temp.filter((item) => item.tipo == filters.value.transmision);
+    }
+
+    if (filters.value.term) {
+        temp = temp.filter((item) => {
+            return (
+                item.detalle
+                    .toLowerCase()
+                    .indexOf(filters.value.term.toLowerCase()) > -1 ||
+                item.marca
+                    .toLowerCase()
+                    .indexOf(filters.value.term.toLowerCase()) > -1 ||
+                item.modelo
+                    .toLowerCase()
+                    .indexOf(filters.value.term.toLowerCase()) > -1
+            );
+        });
+    }
+
+    listVehiculos.value = temp;
+};
 </script>
 <style lang="scss">
 .vehiculos-filter-section {
@@ -79,7 +170,6 @@ const props = defineProps({
             display: flex;
             border-bottom: 1px solid #ddd;
             .item-categorie {
-                padding: 0.5rem 1rem;
                 &.active {
                     border-bottom: 4px solid $app-color1;
                     color: $app-color1;

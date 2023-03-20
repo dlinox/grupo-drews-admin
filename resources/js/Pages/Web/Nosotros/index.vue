@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-md-5 col-12 d-flex flex-wrap">
                         <div class="w-100 text-end anios-experiencia mt-5">
-                            <span >10 +</span>
+                            <span>10 +</span>
                             <small>Experiencia</small>
                         </div>
                         <div class="row">
@@ -78,7 +78,7 @@ import TituloSectionComponent from "../../../Components/Web/TituloSectionCompone
             display: block;
             line-height: 5rem;
         }
-        small{
+        small {
             font-family: $font-teko;
             font-size: 1.5rem;
             color: $app-color1;

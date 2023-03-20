@@ -29,9 +29,25 @@
                         </div>
 
                         <div class="my-4">
+                            <button
+                                class="btn btn-outline-dark me-2"
+                                @click="showFormCotizar = !showFormCotizar"
+                            >
+                                <i class="fa-regular fa-envelope"></i> Solicitar
+                            </button>
 
-                          <button class="btn btn-dark me-3"> Solititar</button>
-                          <button class="btn btn-color1"> WhatsApp </button>
+                            <a
+                                class="btn btn-color1"
+                                :href="
+                                    'https://api.whatsapp.com/send?phone=051951208106&text=Quiero mas información de: ' +
+                                    servicio.titulo
+                                "
+                                target="_blank"
+                            >
+                                <i class="fa-brands fa-whatsapp"></i> Whatsapp
+                            </a>
+
+                         
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 right">
@@ -48,16 +64,36 @@
                 </div>
             </div>
         </main>
+
+        <n-modal v-model:show="showFormCotizar">
+            <n-card
+                style="width: 650px"
+                :bordered="false"
+                size="huge"
+                role="dialog"
+                aria-modal="true"
+                :title="servicio.titulo"
+            >
+                <FormCotizacionComponent
+                    :producto="servicio.id"
+                    tipo="Servicio"
+                />
+            </n-card>
+        </n-modal>
     </WebLayout>
 </template>
 
 <script setup>
 import WebLayout from "@/Layouts/WebLayout.vue";
+import { ref } from "vue";
+import FormCotizacionComponent from "../../../Components/Web/FormCotizacionComponent.vue";
 import HeadingPageComponent from "../../../Components/Web/HeadingPageComponent.vue";
 
 const props = defineProps({
     servicio: Object,
 });
+
+const showFormCotizar = ref(false);
 </script>
 <style lang="scss">
 .detalle-servicio {
