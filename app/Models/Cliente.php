@@ -28,7 +28,7 @@ class Cliente extends Model
     protected function logo(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => env('APP_URL', 'http://localhost') . $value,
+            get: fn ($value) => $value ? env('APP_URL', 'http://localhost') . $value : null,
         );
     }
 }
