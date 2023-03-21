@@ -22,6 +22,7 @@
                                     <hr />
                                 </div>
                                 <div class="row gy-3 px-3 pb-4">
+
                                     <div class="col-12 item-contact">
                                         <div class="card">
                                             <div class="card-body">
@@ -37,12 +38,22 @@
                                                     <ul>
                                                         <li>
                                                             <a href="">
-                                                                <i
-                                                                    class="fa-solid fa-arrow-right"
-                                                                ></i>
-                                                                (+51)
-                                                                951208106</a
-                                                            >
+                                                                {{
+                                                                    web.whatsapp
+                                                                }}
+                                                            </a>
+                                                        </li>
+
+                                                        <li
+                                                            v-for="(
+                                                                item, index
+                                                            ) in web.sedes"
+                                                        >
+                                                            <a href="">
+                                                                {{
+                                                                    item.celulares
+                                                                }}
+                                                            </a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -65,12 +76,8 @@
                                                     <ul>
                                                         <li>
                                                             <a href="">
-                                                                <i
-                                                                    class="fa-solid fa-arrow-right"
-                                                                ></i>
-                                                                (+51)
-                                                                951208106</a
-                                                            >
+                                                                {{ web.correo }}
+                                                            </a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -91,14 +98,23 @@
                                                 </div>
                                                 <div class="card-content">
                                                     <ul>
-                                                        <li>
+                                                        <li
+                                                            v-for="(
+                                                                item, index
+                                                            ) in web.sedes"
+                                                        >
                                                             <a href="">
-                                                                <i
-                                                                    class="fa-solid fa-arrow-right"
-                                                                ></i>
-                                                                (+51)
-                                                                951208106</a
-                                                            >
+                                                                <h4>
+                                                                    {{
+                                                                       setSede(item.ubigeo)
+                                                                    }}
+                                                                </h4>
+                                                                <span>
+                                                                    {{
+                                                                        item.direccion
+                                                                    }}
+                                                                </span>
+                                                            </a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -126,6 +142,24 @@
 import WebLayout from "@/Layouts/WebLayout.vue";
 import HeadingPageComponent from "../../../Components/Web/HeadingPageComponent.vue";
 import FormContactoComponent from "./components/FormContactoComponent.vue";
+
+
+import { computed } from "vue";
+import { usePage } from "@inertiajs/vue3";
+
+import ubigeoJson from "@/../assets/data/ubigeo.json";
+
+const web = computed(() => usePage().props.web_data);
+
+
+const getSede = (ubigeo) => ubigeoJson.filter((item) => item.ubigeo == ubigeo);
+
+const setSede = (ubigeo) => {
+    let aux = getSede(ubigeo)[0];
+    return aux.departamento + " - " + aux.provincia + " - " + aux.distrito;
+};
+
+
 </script>
 <style lang="scss">
 .section-info-contacto {
@@ -134,7 +168,6 @@ import FormContactoComponent from "./components/FormContactoComponent.vue";
         padding: 1rem;
         font-family: $font-teko;
         letter-spacing: 1px;
-
     }
     .info-contacto {
         .item-contact {
@@ -153,7 +186,7 @@ import FormContactoComponent from "./components/FormContactoComponent.vue";
                         font-size: 1.3rem;
                     }
                     .card-icon {
-                        width: 80px;
+                        width: 100px;
                         i {
                             width: 65px;
                             height: 65px;
@@ -177,13 +210,14 @@ import FormContactoComponent from "./components/FormContactoComponent.vue";
 
                                     font-family: $font-raj;
                                     font-weight: 500;
-                                    font-size: 1.4rem;
+                                    h4{
+                                        font-size: 1rem;
+                                        font-weight: 600;
 
-                                    i {
-                                        font-size: 0.8rem;
-                                        margin-right: 15px;
                                     }
+                                   
                                 }
+                                margin-bottom: 1rem;
                             }
                         }
                     }

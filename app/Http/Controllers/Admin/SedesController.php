@@ -32,10 +32,10 @@ class SedesController extends Controller
 
         foreach ($request->sedes as  $value) {
 
-            if($value['id']){
-                Sede::where('id',$value['id'])->update($value);
-            }
-            else{
+            if ($value['id']) {
+                Sede::where('id', $value['id'])->update($value);
+                
+            } else {
                 Sede::create($value);
             }
         }

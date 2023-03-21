@@ -73,6 +73,8 @@ class WebController extends Controller
 
     public function pageNosotros()
     {
+
+        
         return Inertia::render('Web/Nosotros/index');
     }
 

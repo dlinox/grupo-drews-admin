@@ -1,5 +1,5 @@
 <template>
-    <n-button @click="showModal = true"> Ubicacion </n-button>
+    <n-button  type="info" @click="showModal = true"> Ubicacion </n-button>
     <n-modal v-model:show="showModal">
         <n-card
             style="width: 500px"

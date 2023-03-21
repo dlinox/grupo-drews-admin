@@ -13,7 +13,7 @@
                             <p>
                                 Grupo Drews forma parte de un grupo empresarial
                                 conformado por Servicios Múltiples Drews S.A.C.
-                                – (Drews Rent A Car), Servicios Generales Drews
+                                - (Drews Rent A Car), Servicios Generales Drews
                                 Perú S.A.C., Esbril S.A.C., Intermotors S.A.C. y
                                 Tamawi S.A.C. con amplia experiencia en el
                                 sector Automotriz. Somos un grupo empresarial
@@ -30,28 +30,61 @@
                             <p>
                                 Drews Rent A Car, inicia sus labores en la
                                 región puno en el año 2007, con el objetivo de
-                                brindar servicio de camionetas 4×4, en los
+                                brindar servicio de camionetas 4x4, en los
                                 diferentes sectores y actividades de desarrollo
                                 en la región, centrándonos con mayor interés en
                                 los sectores de minería, exploraciones, energía,
                                 construcción, ingeniería, etc.
                             </p>
                         </div>
+
+                        <div class="mision-wrapper">
+                            <h3 class="title">Misión</h3>
+                            <div class="content" v-html="web.mision"></div>
+                        </div>
+
+                        <div class="vision-wrapper">
+                            <h3 class="title">Visión</h3>
+                            <div class="content" v-html="web.vision"></div>
+                        </div>
+
+                        <div class="valores-wrapper">
+                            <h3 class="title">VALORES CORPORATIVOS</h3>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <ul>
+                                        <li>SEGURIDAD</li>
+                                        <li>CONFIANZA</li>
+                                        <li>COMPROMISO</li>
+                                        <li>RESPETO</li>
+                                        <li>RESPONSABILIDAD</li>
+                                    </ul>
+                                </div>
+                                <div class="col-6">
+                                    <ul>
+                                        <li>ASEQUIBILIDAD</li>
+                                        <li>ORIENTACION AL CLIENTE</li>
+                                        <li>SOSTENIBILIDAD</li>
+                                        <li>TRABAJO EN EQU IPO</li>
+                                        <li>EFICIENCIA</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-5 col-12 d-flex flex-wrap">
+                    <div class="col-md-5 col-12">
                         <div class="w-100 text-end anios-experiencia mt-5">
                             <span>10 +</span>
                             <small>Experiencia</small>
                         </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <img
-                                    class="rounded-4"
-                                    width="100%"
-                                    src="https://www.grupodrews.com.pe/wp-content/uploads/2019/06/quienes-somos2.jpg"
-                                    alt=""
-                                />
-                            </div>
+                        <div class="img-wrapper">
+                            <img
+                                class="rounded-4"
+                                width="100%"
+                                src="https://www.grupodrews.com.pe/wp-content/uploads/2019/06/quienes-somos2.jpg"
+                                alt=""
+                            />
                         </div>
                     </div>
                 </div>
@@ -64,6 +97,11 @@
 import WebLayout from "@/Layouts/WebLayout.vue";
 import HeadingPageComponent from "../../../Components/Web/HeadingPageComponent.vue";
 import TituloSectionComponent from "../../../Components/Web/TituloSectionComponent.vue";
+
+import { usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
+
+const web = computed(() => usePage().props.web_data);
 </script>
 <style lang="scss">
 .page-nosotros {
@@ -91,6 +129,40 @@ import TituloSectionComponent from "../../../Components/Web/TituloSectionCompone
         height: 100%;
         object-fit: contain;
         object-position: center;
+    }
+    .vision-wrapper,
+    .mision-wrapper {
+        margin-top: 3rem;
+        h3.title {
+            line-height: 2rem;
+            margin-bottom: 1rem;
+            border-left: 5px $app-color1 solid;
+            font-family: $font-teko;
+            padding-left: 0.5rem;
+            color: $app-color1;
+        }
+        .content {
+            font-family: $font-raj;
+        }
+    }
+    .valores-wrapper {
+        margin-top: 3rem;
+        h3.title {
+            line-height: 2rem;
+            margin-bottom: 1rem;
+            border-left: 5px $app-color1 solid;
+            font-family: $font-teko;
+            padding-left: 0.5rem;
+            color: $app-color1;
+        }
+        ul {
+            list-style: circle;
+            margin-left: 1rem;
+            li {
+                font-family: $font-raj;
+                font-weight: 500;
+            }
+        }
     }
 }
 </style>

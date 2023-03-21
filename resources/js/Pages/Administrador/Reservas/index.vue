@@ -27,11 +27,16 @@
                             {{ item.cliente?.celular }}
                         </td>
                         <td>{{ item.cliente?.correo }}</td>
-                        <td>{{ item.tipo }} : <strong>{{ item.tipo == 'Vehiculo' ? item.producto?.detalle : item.producto?.titulo }}</strong> </td>
                         <td>
-                            <n-button>
-                                Confirmar
-                            </n-button>
+                            {{ item.tipo }} :
+                            <strong>{{
+                                item.tipo == "Vehiculo"
+                                    ? item.producto?.detalle
+                                    : item.producto?.titulo
+                            }}</strong>
+                        </td>
+                        <td>
+                            <n-button> Confirmar </n-button>
                         </td>
                     </tr>
                 </tbody>

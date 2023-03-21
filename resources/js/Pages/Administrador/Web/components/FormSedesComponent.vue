@@ -23,11 +23,12 @@
                                 />
                             </template>
                             <template v-else>
+                                
                                 <ModalUbigeoComponent
                                     @on-select="item.ubigeo = $event"
                                 />
-                                <span class="mx-1">
-                                    {{ setSede(item?.ubigeo) }}
+                                <span style="margin-left: 1rem;">
+                                     {{ setSede(item?.ubigeo) }}
                                 </span>
                             </template>
                         </n-divider>
@@ -67,6 +68,7 @@
                 </n-form>
             </n-grid-item>
         </n-grid>
+
     </n-card>
 </template>
 
@@ -85,6 +87,7 @@ const formSedes = useForm({
 });
 
 const getSede = (ubigeo) => ubigeoJson.filter((item) => item.ubigeo == ubigeo);
+
 const setSede = (ubigeo) => {
     let aux = getSede(ubigeo)[0];
     return aux.departamento + " - " + aux.provincia + " - " + aux.distrito;
