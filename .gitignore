@@ -2,10 +2,7 @@
 /node_modules
 /public/hot
 /public/storage
-/public/uploads/clientes
-/public/uploads/productos
-/public/uploads/servicios
-/public/uploads/
+/public/uploads
 /storage/*.key
 .env
 .env.backup
