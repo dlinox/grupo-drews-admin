@@ -7,6 +7,7 @@ use App\Models\Categoria;
 use App\Models\Cliente;
 use App\Models\Producto;
 use App\Models\Servicio;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -35,10 +36,13 @@ class WebController extends Controller
             ]
         );
         $clientes = Cliente::select('id', 'r_social', 'logo')->where('publico', 1)->get();
+
+        $sliders = Slider::all();
         return Inertia::render('Web/Inicio/index', [
             'servicios'  => $servicios,
             'vehiculos' => $vehiculos,
-            'clientes' => $clientes
+            'clientes' => $clientes,
+            'sliders' => $sliders
         ]);
     }
 

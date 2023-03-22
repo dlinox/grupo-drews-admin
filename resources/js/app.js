@@ -58,7 +58,9 @@ import {
     NDrawer,
     NDrawerContent,
     NInputNumber,
-    NPagination
+    NPagination,
+    NRadioGroup,
+    NRadio
 } from "naive-ui";
 
 const options = {
@@ -135,8 +137,8 @@ createInertiaApp({
             .component("NDrawerContent", NDrawerContent)
             .component("NInputNumber", NInputNumber)
             .component("NPagination", NPagination)
-
-            
+            .component("NRadioGroup", NRadioGroup)
+            .component("NRadio", NRadio)
             .use(Toast, options)
             .use(plugin)
             .mount(el);

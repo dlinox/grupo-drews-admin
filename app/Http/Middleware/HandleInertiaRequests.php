@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Models\Configuracion;
+use App\Models\Producto;
+use App\Models\Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Inertia\Middleware;
@@ -55,6 +57,11 @@ class HandleInertiaRequests extends Middleware
             ],
 
             'web_data' => Configuracion::getDataWeb(),
+
+
+            'vehiculos' => Producto::all('id', 'detalle'),
+            'servicios' => Servicio::all('id', 'titulo'),
+
 
             'flash' => [
                 'status' => fn () => $request->session()->get('status'),

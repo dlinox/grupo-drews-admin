@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\CategoriasController;
 use App\Http\Controllers\Admin\ClientesController;
 use App\Http\Controllers\Admin\SedesController;
+use App\Http\Controllers\Admin\SlidersController;
 use App\Http\Controllers\Web\ReservasController as WebReservasController;
 use App\Http\Controllers\Web\WebController as WebWebController;
 use App\Mail\CotizacionEmail;
@@ -69,6 +70,8 @@ Route::name('web.')->group(function () {
 
     Route::resource('reservas', WebReservasController::class)->only('store');
 
+
+
     Route::post('msg-contacto', [WebReservasController::class, 'mdgContacto'])->name('msg-contacto');
 
 
@@ -97,6 +100,7 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::resource('clientes', ClientesController::class);
 
     Route::resource('sedes', SedesController::class);
+    Route::resource('sliders', SlidersController::class)->only('store');
 
     Route::resource('configuraciones', WebController::class);
     Route::post('configuraciones/update-logo', [WebController::class, 'updateLogo']);

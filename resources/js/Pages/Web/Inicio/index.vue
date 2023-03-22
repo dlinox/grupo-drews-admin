@@ -5,7 +5,7 @@
     </Head>
     <WebLayout>
         <main class="page-inicio main">
-            <HeroSideComponent />
+            <HeroSideComponent :sliders="sliders" />
             <ServicesCarouselComponent :servicios="servicios" />
             <VehiculosSection :vehiculos="vehiculos" />
             <EligenosSection />
@@ -25,12 +25,18 @@ import VehiculosSection from "./sections/VehiculosSection.vue";
 import EligenosSection from "./sections/EligenosSection.vue";
 import GaleriaSection from "./sections/GaleriaSection.vue";
 import ClientesSection from "./sections/ClientesSection.vue";
+import { onUnmounted } from "vue";
 
 const props = defineProps({
     servicios: Array,
     vehiculos: Array,
     clientes: Array,
+    sliders: Array,
 });
+
+onUnmounted(()=>{
+
+})
 </script>
 <style lang="scss">
 .page-inicio {

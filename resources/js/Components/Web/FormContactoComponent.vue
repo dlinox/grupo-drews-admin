@@ -1,22 +1,6 @@
 <template>
     <n-form class="form-web-cotizacion">
         <div class="row">
-            <template v-if="!producto">
-                <div class="col-12">
-                    <n-form-item
-                        path="web_telefonos"
-                        label="Vehiculos / Servicios "
-                    >
-                        <n-radio-group v-model:value="formData.tipo">
-                            <n-space>
-                                <n-radio value="Vehiculo"> Vehiculos </n-radio>
-                                <n-radio value="Servicio"> Servicios </n-radio>
-                            </n-space>
-                        </n-radio-group>
-                    </n-form-item>
-                </div>
-            </template>
-
             <div class="col-12 col-md-6">
                 <n-form-item path="nombres" label="Nombres">
                     <n-input
@@ -33,7 +17,6 @@
                     />
                 </n-form-item>
             </div>
-
             <div class="col-12 col-md-6">
                 <n-form-item path="correo" label="Correo">
                     <n-input
@@ -50,39 +33,11 @@
                     />
                 </n-form-item>
             </div>
-
             <div class="col-12">
                 <n-form-item
                     class="w-full"
                     path="rango"
-                    :label="'Seleccione un: ' + formData.tipo"
-                >
-                    <template v-if="formData.tipo == 'Vehiculo'">
-                        <n-select
-                            label-field="detalle"
-                            value-field="id"
-                            placeholder="Seleccione uno"
-                            v-model:value="formData.producto"
-                            :options="vehiculos"
-                        />
-                    </template>
-                    <template v-if="formData.tipo == 'Servicio'">
-                        <n-select
-                        label-field="titulo"
-                            value-field="id"
-                            placeholder="Seleccione uno"
-                            v-model:value="formData.producto"
-                            :options="servicios"
-                        />
-                    </template>
-                </n-form-item>
-            </div>
-
-            <div class="col-12">
-                <n-form-item
-                    class="w-full"
-                    path="rango"
-                    label="Lo quiero desde - Hasta"
+                    label="Lo quiero de - Hasta"
                 >
                     <n-date-picker
                         v-model:value="formData.rango"
@@ -92,10 +47,10 @@
                 </n-form-item>
             </div>
             <div class="col-12">
-                <n-form-item path="sede" label="Sede">
+                <n-form-item path="sede" label="Lugar de entrega">
                     <n-input
                         v-model:value="formData.sede"
-                        placeholder="Lugar de recojo"
+                        placeholder="Lugar de entrega"
                     />
                 </n-form-item>
             </div>
@@ -112,9 +67,8 @@
     </n-form>
 </template>
 <script setup>
-import { useForm, usePage } from "@inertiajs/vue3";
+import { useForm } from "@inertiajs/vue3";
 import { NDatePicker } from "naive-ui";
-import { computed } from "vue";
 import { useToast } from "vue-toastification";
 const toast = useToast();
 
@@ -122,9 +76,6 @@ const props = defineProps({
     producto: Number,
     tipo: String,
 });
-
-const vehiculos = computed(() => usePage().props.vehiculos);
-const servicios = computed(() => usePage().props.servicios);
 
 const formData = useForm({
     nombres: null,

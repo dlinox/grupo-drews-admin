@@ -210,51 +210,6 @@
                                             </n-form>
                                         </n-card>
                                     </n-collapse-item>
-                                    <!-- <n-collapse-item title="Contacto" name="3">
-                                        <n-card
-                                            title="Contacto"
-                                            embedded
-                                            :bordered="false"
-                                        >
-                                            <n-form ref="formRefContacto">
-                                                <n-form-item
-                                                    path="web_telefonos"
-                                                    label="Telefono"
-                                                >
-                                                    <n-dynamic-tags
-                                                        type="info"
-                                                        v-model:value="
-                                                            formData.web_telefonos
-                                                        "
-                                                    />
-                                                </n-form-item>
-
-                                                <n-form-item
-                                                    path="web_celulares"
-                                                    label="Celular"
-                                                >
-                                                    <n-dynamic-tags
-                                                        type="info"
-                                                        v-model:value="
-                                                            formData.web_celulares
-                                                        "
-                                                    />
-                                                </n-form-item>
-
-                                                <n-form-item
-                                                    path="web_direcciones"
-                                                    label="Direccion"
-                                                >
-                                                    <n-dynamic-tags
-                                                        type="info"
-                                                        v-model:value="
-                                                            formData.web_direcciones
-                                                        "
-                                                    />
-                                                </n-form-item>
-                                            </n-form>
-                                        </n-card>
-                                    </n-collapse-item> -->
                                 </n-collapse>
 
                                 <template #action>
@@ -278,55 +233,7 @@
                 </n-tab-pane>
 
                 <n-tab-pane name="slider" tab="Slider">
-                    <n-carousel show-arrow autoplay draggable>
-                        <img
-                            class="carousel-img"
-                            src="https://images.pexels.com/photos/1073031/pexels-photo-1073031.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        />
-                        <img
-                            class="carousel-img"
-                            src="https://images.pexels.com/photos/1683519/pexels-photo-1683519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        />
-                        <img
-                            class="carousel-img"
-                            src="https://images.pexels.com/photos/4781948/pexels-photo-4781948.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        />
-                        <img
-                            class="carousel-img"
-                            src="https://images.pexels.com/photos/14542673/pexels-photo-14542673.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        />
-                        <template #arrow="{ prev, next }">
-                            <div class="custom-arrow">
-                                <button
-                                    type="button"
-                                    class="custom-arrow--left"
-                                    @click="prev"
-                                >
-                                    <n-icon><ArrowBack /></n-icon>
-                                </button>
-                                <button
-                                    type="button"
-                                    class="custom-arrow--right"
-                                    @click="next"
-                                >
-                                    <n-icon><ArrowForward /></n-icon>
-                                </button>
-                            </div>
-                        </template>
-                        <template #dots="{ total, currentIndex, to }">
-                            <ul class="custom-dots">
-                                <li
-                                    v-for="index of total"
-                                    :key="index"
-                                    :class="{
-                                        ['is-active']:
-                                            currentIndex === index - 1,
-                                    }"
-                                    @click="to(index - 1)"
-                                />
-                            </ul>
-                        </template>
-                    </n-carousel>
+                    <FormSlideComponent  :sliders="sliders" />
                 </n-tab-pane>
             </n-tabs>
         </div>
@@ -350,10 +257,12 @@ import {
 import UploadImageComponent from "@/Components/UploadImageComponent.vue";
 import FormSedesComponent from "./components/FormSedesComponent.vue";
 import { useToast } from "vue-toastification";
+import FormSlideComponent from "./components/FormSlideComponent.vue";
 const toast = useToast();
 
 const props = defineProps({
     configuracion: Object,
+    sliders: Array
 });
 
 const formImg = useForm({
@@ -375,7 +284,7 @@ const submit = () => {
         },
         onSuccess: (e) => {
             console.log(e);
-            toast.success('Datos Actualizados');
+            toast.success("Datos Actualizados");
         },
     });
 };
@@ -387,13 +296,13 @@ const updateLogo = () => {
         preserveScroll: true,
         onError: (e) => {
             for (const property in e) {
-                toast.error(e[property]);;
+                toast.error(e[property]);
             }
             console.log(e);
         },
         onSuccess: (e) => {
             console.log(e);
-            toast.success('Logo actualizado');
+            toast.success("Logo actualizado");
         },
     });
 };

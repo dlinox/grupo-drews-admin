@@ -7,8 +7,8 @@
                     <button
                         type="button"
                         class="btn btn-color1 rounded-0"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
+
+                        @click="showModal = !showModal"
                     >
                         Cotizacion
                     </button>
@@ -159,6 +159,18 @@
             </n-drawer-content>
         </n-drawer>
     </header>
+    <n-modal v-model:show="showModal">
+        <n-card
+            style="width: 600px"
+            title="Modal"
+            :bordered="false"
+            size="huge"
+            role="dialog"
+            aria-modal="true"
+        >
+            <FormCotizacionComponent  />
+        </n-card>
+    </n-modal>
 </template>
 
 <script setup>
@@ -168,6 +180,7 @@ import { computed } from "vue";
 import { usePage } from "@inertiajs/vue3";
 
 import { useElementVisibility } from "@vueuse/core";
+import FormCotizacionComponent from "./FormCotizacionComponent.vue";
 const header = ref(null);
 const targetIsVisible = useElementVisibility(header);
 
@@ -178,6 +191,8 @@ const logo = computed(() => usePage().props.web.logo);
 const web = computed(() => usePage().props.web_data);
 
 const showMenu = ref(false);
+
+const showModal = ref(false);
 
 const menu_items = [
     {

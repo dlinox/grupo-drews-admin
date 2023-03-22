@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Configuracion;
 use App\Models\Sede;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Config;
@@ -35,7 +36,12 @@ class WebController extends Controller
             'sedes' => Sede::all(['id', 'ubigeo', 'direccion', 'telefono', 'celulares', 'principal', 'estado']),
 
         ];
-        return Inertia::render('Administrador/Web/index', ['configuracion' => $configuracion]);
+
+
+        return Inertia::render('Administrador/Web/index', [
+            'configuracion' => $configuracion,
+            'sliders' => Slider::all(),
+        ]);
     }
 
     public function updateLogo(Request $request)
@@ -53,8 +59,6 @@ class WebController extends Controller
 
             return back();
         }
-
-        
     }
 
     public function store(Request $request)
