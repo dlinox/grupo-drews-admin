@@ -25,7 +25,7 @@
                             <th>Número</th>
                             <th>Correo</th>
                             <th>Asunto</th>
-                            <th>Opciones</th>
+                            <!-- <th>Opciones</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -48,9 +48,9 @@
                                         : item.titulo
                                 }}</strong>
                             </td>
-                            <td>
+                            <!-- <td>
                                 <n-button> Confirmar </n-button>
-                            </td>
+                            </td> -->
                         </tr>
                     </tbody>
                 </n-table>

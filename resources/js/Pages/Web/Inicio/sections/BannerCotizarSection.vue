@@ -9,14 +9,20 @@
                     </span>
                 </div>
                 <div class="right">
-                    <button class="btn btn-color1">
-                        <i class="fa-solid fa-phone"></i> LLamanos
-                    </button>
+                    <Link
+                        class="btn btn-color1"
+                        href="https://api.whatsapp.com/send?phone=051989124060"
+                    >
+                        <i class="fa-brands fa-whatsapp"></i> Escribenos
+                    </Link>
                 </div>
             </div>
         </div>
     </section>
 </template>
+<script setup>
+import { Link } from "@inertiajs/vue3";
+</script>
 
 <style lang="scss">
 .section-banner-cotizar {

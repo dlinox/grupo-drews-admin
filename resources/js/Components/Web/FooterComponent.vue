@@ -87,7 +87,6 @@ import { usePage } from "@inertiajs/vue3";
 
 const logo = computed(() => usePage().props.web.logo);
 
-
 const menu_items = [
     {
         name: "Inicio",
@@ -116,7 +115,7 @@ const menu_items = [
 .footer {
     background-color: rgb(20, 20, 20);
 
-    .title-footer{
+    .title-footer {
         font-family: $font-teko;
         letter-spacing: 1px;
         font-size: 1.3rem;
