@@ -4,7 +4,7 @@
             <PageHeaderComponent title="Categorias" />
             <n-divider />
             <FormularioCategoriaComponent btn_text="Nueva Categoria" />
-           
+
             <n-table :bordered="false" :single-line="false">
                 <thead>
                     <tr>
@@ -43,7 +43,6 @@
                     </tr>
                 </tbody>
             </n-table>
-
         </div>
     </AdminLayout>
 </template>
@@ -53,10 +52,24 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
 import FormularioCategoriaComponent from "./Components/FormularioCategoriaComponent.vue";
 
+import { useToast } from "vue-toastification";
+const toast = useToast();
+
 const props = defineProps({
     categorias: Array,
 });
 const eliminar = (id) => {
-    router.delete("/admin/categorias/" + id);
+    router.delete("/admin/categorias/" + id, {
+        onError: (e) => {
+            for (const property in e) {
+                toast.error(e[property]);
+            }
+            console.log(e);
+        },
+        onSuccess: (e) => {
+            toast.success("Eliminado con exito");
+            console.log(e);
+        },
+    });
 };
 </script>

@@ -1,7 +1,5 @@
 <template>
-    <AdminLayout>
-   Hola
-    </AdminLayout>
+    <AdminLayout> Hola </AdminLayout>
 </template>
 <script setup>
 import AdminLayout from "@/Layouts/AdminLayout.vue";
