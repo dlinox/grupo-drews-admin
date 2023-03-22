@@ -185,6 +185,11 @@ const menu_items = [
         href: "/",
     },
     {
+        name: "Nosotros",
+        href: "/nosotros",
+    },
+
+    {
         name: "Servicios",
         href: "/servicios",
     },
@@ -193,12 +198,12 @@ const menu_items = [
         href: "/vehiculos",
     },
     {
-        name: "Contactanos",
-        href: "/contactanos",
+        name: "Clientes",
+        href: "/clientes",
     },
     {
-        name: "Nosotros",
-        href: "/nosotros",
+        name: "Contactanos",
+        href: "/contactanos",
     },
 ];
 </script>

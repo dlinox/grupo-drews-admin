@@ -5,7 +5,7 @@
     "src": "resources/assets/styles/scss/app.scss"
   },
   "resources/js/app.css": {
-    "file": "assets/app-157f6e00.css",
+    "file": "assets/app-3fb743aa.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -14,9 +14,9 @@
       "assets/main-video-ff990cc9.mp4"
     ],
     "css": [
-      "assets/app-157f6e00.css"
+      "assets/app-3fb743aa.css"
     ],
-    "file": "assets/app-2bb27520.js",
+    "file": "assets/app-c8861db8.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },

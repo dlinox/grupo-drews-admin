@@ -69,6 +69,23 @@
                                         </n-form-item>
                                     </n-grid-item>
 
+
+                                    <n-grid-item>
+                                        <n-form-item
+                                            path="tipo"
+                                            label="Tipo"
+                                        >
+                                            <n-select
+                                                label-field="detalle"
+                                                value-field="detalle"
+                                                v-model:value="
+                                                    formData.tipo
+                                                "
+                                                :options="tipos"
+                                            />
+                                        </n-form-item>
+                                    </n-grid-item>
+
                                     <n-grid-item>
                                         <n-form-item
                                             path="combustible"
@@ -232,13 +249,18 @@ const props = defineProps({
             cilindrada: null,
             puertas: null,
             capacidad: null,
-            aire_acondicionado: null,
+            aire_acondicionado: false,
             equipaje: null,
             imagenes: null,
         },
     },
     categorias: Array,
 });
+
+const tipos = [
+    {detalle: 'Manual'},
+    {detalle: 'Automatico'},
+]
 
 const formRef = ref(null);
 
