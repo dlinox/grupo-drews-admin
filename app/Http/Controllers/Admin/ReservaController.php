@@ -13,24 +13,39 @@ use Inertia\Inertia;
 class ReservaController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $reservas =  Reserva::select()->get()->map(function ($item) {
 
-            return [
-                "id" => $item->id,
-                "tipo" => $item->tipo,
-                "fecha_ini" => $item->fecha_ini,
-                "fecha_fin" => $item->fecha_fin,
-                "sede" => $item->sede,
-                "producto" =>   $item->tipo == 'Vehiculo'
-                    ? Producto::select('id', 'detalle')->where('id', $item->producto)->first()
-                    : Servicio::select('id', 'titulo')->where('id', $item->producto)->first(),
-                "cliente" => Cliente::select('id', 'r_social', 'celular', 'correo')->where('id', $item->cliente)->first(),
+        $search = $request->search ?? '';
 
-            ];
-        });
+        $reservas  = Reserva::select(
+            'reservas.*',
+            'productos.detalle',
+            'servicios.titulo',
+            'clientes.r_social',
+            'clientes.celular',
+            'clientes.correo'
+        )
+            ->join('clientes', 'clientes.id', '=', 'reservas.cliente')
+            ->leftjoin('productos', 'productos.id', '=', 'reservas.producto')
+            ->leftjoin('servicios', 'servicios.id', '=', 'reservas.producto')
+            ->orWhere('productos.detalle', 'LIKE', '%' . $search . '%')
+            ->orWhere('servicios.titulo', 'LIKE', '%' . $search . '%')
+            ->orWhere('clientes.r_social', 'LIKE', '%' . $search . '%')
+            ->orWhere('clientes.celular', 'LIKE', '%' . $search . '%')
+            ->orWhere('clientes.correo', 'LIKE', '%' . $search . '%')
+            ->paginate(10);
 
-        return Inertia::render('Administrador/Reservas/index', ['reservas' => $reservas]);
+
+        return Inertia::render('Administrador/Reservas/index',  [
+            'filters' => $request->all('search'),
+            'reservas' => $reservas
+        ]);
     }
 }
+/**
+ * 
+ *  $search = $request->search ?? '';
+
+       
+ */

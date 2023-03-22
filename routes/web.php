@@ -68,7 +68,10 @@ Route::name('web.')->group(function () {
 
 
     Route::resource('reservas', WebReservasController::class)->only('store');
-    
+
+    Route::post('msg-contacto', [WebReservasController::class, 'mdgContacto'])->name('msg-contacto');
+
+
 
     //PAGES ****************
 
@@ -112,7 +115,3 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
 });
 
 
-
-Route::get('/mail', function () {
-    Mail::to('nearlino20@gmail.com')->send( new CotizacionEmail());
-});

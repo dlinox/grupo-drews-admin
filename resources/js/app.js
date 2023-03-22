@@ -17,7 +17,6 @@ import "quill/dist/quill.snow.css";
 import {
     NIcon,
     NConfigProvider,
-    NMessageProvider,
     NDialogProvider,
     NLayout,
     NLayoutContent,
@@ -94,7 +93,6 @@ createInertiaApp({
             //.use(naive)
             .component("NIcon", NIcon)
             .component("NConfigProvider", NConfigProvider)
-            .component("NMessageProvider", NMessageProvider)
             .component("NDialogProvider", NDialogProvider)
             .component("NLayout", NLayout)
             .component("NLayoutContent", NLayoutContent)

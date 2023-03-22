@@ -12,6 +12,7 @@
 
   <h1>grupo Drews</h1>
   <h3>Correo de bienvenida</h3>
+  {{$mailData["nombre"]}}
 </body>
 
 </html>

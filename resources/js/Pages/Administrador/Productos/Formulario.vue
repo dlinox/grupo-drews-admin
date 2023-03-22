@@ -131,15 +131,15 @@
 
                                     <n-grid-item>
                                         <n-form-item
-                                            path="equipaje"
-                                            label="equipaje"
+                                            path="carga"
+                                            label="Carga Maxima"
                                         >
                                             <n-input-number
                                                 :min="1"
                                                 v-model:value="
                                                     formData.equipaje
                                                 "
-                                                placeholder="equipaje"
+                                                placeholder="Carga Maxima"
                                             />
                                         </n-form-item>
                                     </n-grid-item>

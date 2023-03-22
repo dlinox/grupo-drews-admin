@@ -9,11 +9,19 @@ use Inertia\Inertia;
 
 class CategoriasController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 
-        $categorias = Categoria::all(['id', 'detalle']);
-        return Inertia::render('Administrador/Categorias/index', ['categorias' => $categorias]);
+        $search = $request->search ?? '';
+        $categorias = Categoria::select('id', 'detalle')
+            ->orWhere('detalle', 'LIKE', '%' . $search . '%')
+            ->paginate(10);
+
+        return Inertia::render('Administrador/Categorias/index', [
+            'filters' => $request->all('search'),
+            'categorias' => $categorias
+        ]);
+        
     }
 
     public function store(Request $request)
@@ -44,7 +52,7 @@ class CategoriasController extends Controller
         $validated = $this->validate(
             $request,
             [
-                'detalle' => 'required|unique:categorias,detalle,'. $id ,
+                'detalle' => 'required|unique:categorias,detalle,' . $id,
             ],
             [
                 'detalle.required' => 'El Nombre es obligatorio',

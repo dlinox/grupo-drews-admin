@@ -11,13 +11,22 @@ use Inertia\Inertia;
 class ServicioController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $servicios = Servicio::all(['id', 'titulo', 'descripcion', 'figura', 'detalles']);
 
-        return Inertia::render('Administrador/Servicios/index', [
+        $search = $request->search ?? '';
+
+        $servicios = Servicio::select('id', 'titulo', 'descripcion', 'figura', 'detalles')
+            ->orWhere('titulo', 'LIKE', '%' . $search . '%')
+            ->orWhere('descripcion', 'LIKE', '%' . $search . '%')
+            ->paginate(10);
+
+        return Inertia::render('Administrador/Servicios/index',  [
+            'filters' => $request->all('search'),
             'servicios' => $servicios
         ]);
+
+
     }
 
     public function create() //FORMULARIO PARA CREAR SERVICIO

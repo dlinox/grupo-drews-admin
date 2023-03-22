@@ -12,10 +12,12 @@ use Inertia\Inertia;
 class ProductoController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
 
-        $productos = Producto::all(
+        $search = $request->search ?? '';
+
+        $productos = Producto::select(
             'id',
             'detalle',
             'descripcion',
@@ -31,11 +33,14 @@ class ProductoController extends Controller
             'equipaje',
             'contenido',
             'imagenes'
-        );
-
+        )->orWhere('detalle', 'LIKE', '%' . $search . '%')
+            ->orWhere('marca', 'LIKE', '%' . $search . '%')
+            ->orWhere('modelo', 'LIKE', '%' . $search . '%')
+            ->paginate(10);
 
         return Inertia::render('Administrador/Productos/index',  [
-            'productos' => $productos
+            'productos' => $productos,
+            'filters' => $request->all('search'),
         ]);
     }
 
@@ -73,7 +78,7 @@ class ProductoController extends Controller
             ]
         );
 
-     
+
 
 
         $data = [
@@ -96,7 +101,7 @@ class ProductoController extends Controller
         if ($request->hasFile('imagenes.*')) {
 
             $imagenes = $request->imagenes;
-            
+
             $path_imagenes = [];
             $cont = 1;
             foreach ($imagenes as $item) {

@@ -1,99 +1,88 @@
 <template>
     <n-config-provider :theme-overrides="themeOverrides">
         <n-dialog-provider>
-            <n-message-provider>
-                <div style="height: 100vh; position: relative">
-                    <n-layout position="absolute">
-                        <n-layout-header
-                            bordered
-                            :inverted="state.inverted"
-                            style="padding: 10px"
-                        >
-                            <n-space justify="space-between">
+            <div style="height: 100vh; position: relative">
+                <n-layout position="absolute">
+                    <n-layout-header
+                        bordered
+                        :inverted="state.inverted"
+                        style="padding: 10px"
+                    >
+                        <n-space justify="space-between">
+                            <n-button
+                                tertiary
+                                type="info"
+                                @click="
+                                    (sider_collapse = !sider_collapse),
+                                        (sider = true)
+                                "
+                            >
+                                <template #icon>
+                                    <MenuOutline />
+                                </template>
+                            </n-button>
+
+                            <n-space>
                                 <n-button
-                                    tertiary
                                     type="info"
-                                    @click="
-                                        (sider_collapse = !sider_collapse),
-                                            (sider = true)
-                                    "
+                                    @click="state.inverted = !state.inverted"
                                 >
                                     <template #icon>
-                                        <MenuOutline />
+                                        <template v-if="state.inverted">
+                                            <SunnyOutline />
+                                        </template>
+
+                                        <template v-else>
+                                            <MoonOutline />
+                                        </template>
                                     </template>
                                 </n-button>
 
-                                <n-space>
-                                    <n-button
-                                        type="info"
-                                        @click="
-                                            state.inverted = !state.inverted
-                                        "
-                                    >
-                                        <template #icon>
-                                            <template v-if="state.inverted">
-                                                <SunnyOutline />
-                                            </template>
-
-                                            <template v-else>
-                                                <MoonOutline />
-                                            </template>
-                                        </template>
+                                <n-dropdown
+                                    :options="options"
+                                    @select="onMenuDropdown"
+                                >
+                                    <n-button tertiary type="info">
+                                        {{ user?.name }}
                                     </n-button>
-
-                                    <n-dropdown
-                                        :options="options"
-                                        @select="onMenuDropdown"
-                                    >
-                                        <n-button tertiary type="info">
-                                            {{ user?.name }}
-                                        </n-button>
-                                    </n-dropdown>
-                                </n-space>
+                                </n-dropdown>
                             </n-space>
-                        </n-layout-header>
+                        </n-space>
+                    </n-layout-header>
 
-                        <n-layout
-                            has-sider
-                            position="absolute"
-                            style="top: 55px"
+                    <n-layout has-sider position="absolute" style="top: 55px">
+                        <n-layout-sider
+                            v-show="sider"
+                            bordered
+                            :collapsed="sider_collapse"
+                            collapse-mode="width"
+                            :position="sider_position"
+                            :collapsed-width="collapsed_width"
+                            :width="240"
+                            :native-scrollbar="false"
+                            :inverted="state.inverted"
                         >
-                            <n-layout-sider
-                                v-show="sider"
-                                bordered
-                                :collapsed="sider_collapse"
-                                collapse-mode="width"
-                                :position="sider_position"
-                                :collapsed-width="collapsed_width"
-                                :width="240"
-                                :native-scrollbar="false"
+                            <n-menu
                                 :inverted="state.inverted"
-                            >
-                                <n-menu
-                                    :inverted="state.inverted"
-                                    :collapsed-width="collapsed_width"
-                                    :collapsed-icon-size="22"
-                                    :options="menuOptions"
-                                    :default-value="curren_url"
-                                    @update:value="handleUpdateExpandedKeys"
-                                />
-                            </n-layout-sider>
+                                :collapsed-width="collapsed_width"
+                                :collapsed-icon-size="22"
+                                :options="menuOptions"
+                                :default-value="curren_url"
+                                @update:value="handleUpdateExpandedKeys"
+                            />
+                        </n-layout-sider>
 
-                            <n-layout-content
-                                style="background-color: #eee;"
-                            >
-                                <Transition name="committee" appear>
-                                    <div class="wrapper" style="padding: 1rem 2rem">
-                                        <slot></slot>
-
-                                    </div>
-                                </Transition>
-                            </n-layout-content>
-                            <!-- <n-layout-footer>Chengfu Road</n-layout-footer> -->
-                        </n-layout>
+                        <n-layout-content style="background-color: #eee">
+                            <Transition name="committee" appear>
+                                <div class="wrapper">
+                                    <slot></slot>
+                                </div>
+                            </Transition>
+                        </n-layout-content>
+                        <!-- <n-layout-footer>Chengfu Road</n-layout-footer> -->
                     </n-layout>
-                </div>
-            </n-message-provider>
+                </n-layout>
+            </div>
         </n-dialog-provider>
     </n-config-provider>
 </template>
@@ -262,6 +251,16 @@ initialize();
 </script>
 
 <style scoped>
+.wrapper{
+    padding: 1rem 2rem
+}
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 1rem .5rem
+
+  }
+
+}
 .committee-enter-from {
     opacity: 0;
     transform: translateY(-2rem);

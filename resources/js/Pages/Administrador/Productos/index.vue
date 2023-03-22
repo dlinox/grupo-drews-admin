@@ -2,19 +2,38 @@
     <AdminLayout>
         <div class="container">
             <PageHeaderComponent title="Productos" />
-            <n-divider></n-divider>
 
-            <n-space class="my-1" justify="end">
-                <n-button
-                    type="primary"
-                    @click="() => router.get('/admin/productos/create')"
+            <n-card>
+                <n-space justify="space-between">
+                    <n-input
+                        v-model:value="search"
+                        type="text"
+                        placeholder="Buscar"
+                    >
+                        <template #prefix>
+                            <n-icon> <Search /> </n-icon>
+                        </template>
+                    </n-input>
+
+                    <n-button
+                        type="primary"
+                        @click="() => router.get('/admin/productos/create')"
+                    >
+                        Nuevo Producto
+                    </n-button>
+                </n-space>
+            </n-card>
+
+            <n-grid
+                cols="1 740:2 1024:3"
+                :x-gap="20"
+                :y-gap="20"
+                style="margin: 1rem 0"
+            >
+                <n-grid-item
+                    v-for="(item, index) in productos.data"
+                    :key="index"
                 >
-                    Nuevo Producto
-                </n-button>
-            </n-space>
-
-            <n-grid cols="1 740:2 1024:3" :x-gap="20" :y-gap="20">
-                <n-grid-item v-for="(item, index) in productos" :key="index">
                     <n-card :title="item.detalle">
                         <template #cover>
                             <n-carousel
@@ -172,6 +191,17 @@
                 </n-card>
             </n-modal>
 
+            <n-card>
+                <n-space justify="end">
+                    <n-pagination
+                        v-model:page="page"
+                        :page-slot="5"
+                        :page-count="totalPages"
+                        @click="goPage"
+                    />
+                </n-space>
+            </n-card>
+
             <!-- <n-table :bordered="false" :single-line="false">
                 <thead>
                     <tr>
@@ -238,21 +268,53 @@
     </AdminLayout>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, computed, watch } from "vue";
 import { router } from "@inertiajs/vue3";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
 import { Add, Pencil, Trash } from "@vicons/ionicons5";
 
 import { useToast } from "vue-toastification";
-const toast = useToast();
+import { Search } from "@vicons/ionicons5";
+import debounce from "lodash/debounce";
 
+const toast = useToast();
 const props = defineProps({
-    productos: Array,
+    productos: Object,
+    filters: Object,
 });
+
+const search = ref(props.filters.search);
+const page = ref(props.productos.current_page);
+const totalPages = computed(() => props.productos.last_page);
+const totalResults = computed(() => props.productos.total);
 
 const detalleModal = ref(false);
 const detalleProducto = ref({});
+
+watch(
+    search,
+    debounce((val) => {
+        router.get(
+            "/admin/productos",
+            { search: val },
+            {
+                preserveState: true,
+            }
+        );
+    }, 300)
+);
+
+const goPage = () => {
+    if (page.value == props.productos.current_page) return;
+    let search_aux = "";
+    if (search.value) {
+        search_aux = "&search=" + search.value;
+    }
+    router.visit("/admin/productos?page=" + page.value + search_aux, {
+        preserveState: true,
+    });
+};
 
 const eliminarProducto = (id) => {
     router.delete("/admin/productos/" + id, {

@@ -1,9 +1,17 @@
 <template>
-    <n-space justify="end" style="margin-bottom: 10px">
-        <n-button :type="edit ? '' : 'primary'" @click="showModal = true">
-            {{ btn_text }}
-        </n-button>
-    </n-space>
+    <n-button :type="edit ? '' : 'primary'" @click="showModal = true">
+        <template #icon>
+            <n-icon>
+                <template v-if="edit">
+                    <Pencil />
+                </template>
+                <template v-else>
+                    <Add />
+                </template>
+            </n-icon>
+        </template>
+        {{ btn_text }}
+    </n-button>
 
     <n-modal v-model:show="showModal">
         <n-card
@@ -62,6 +70,7 @@ import { ref, watch } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
 import { useToast } from "vue-toastification";
+import { Add, Pencil } from "@vicons/ionicons5";
 const toast = useToast();
 
 const props = defineProps({
@@ -74,7 +83,6 @@ const props = defineProps({
 });
 
 const formRef = ref(null);
-
 
 const showModal = ref(false);
 

@@ -1,9 +1,9 @@
 <template>
-    <n-space justify="end" style="margin-bottom: 10px">
+   
         <n-button :type="edit ? '' : 'primary'" @click="showModal = true">
             {{ btn_text }}
         </n-button>
-    </n-space>
+    
 
     <n-modal v-model:show="showModal">
         <n-card

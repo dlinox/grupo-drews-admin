@@ -69,6 +69,9 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
 import { NDatePicker } from "naive-ui";
+import { useToast } from "vue-toastification";
+const toast = useToast();
+
 
 const props = defineProps({
     producto: Number,
@@ -93,12 +96,13 @@ const enviarCotizacion = () => {
         preserveScroll: true,
         onError: (e) => {
             for (const property in e) {
-                message.error(e[property]);
+                toast.error(e[property]);
             }
             console.log(e);
         },
         onSuccess: () => {
             console.log("enviado");
+            toast.success('Solicitud Enviada');
             formData.reset();
         },
     });

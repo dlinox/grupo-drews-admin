@@ -1,10 +1,24 @@
 <template>
     <AdminLayout>
-        <div class="container">
-            <PageHeaderComponent title="Clientes" />
-            <n-divider />
-            <FormularioClienteComponent btn_text="Crear Cliente" />
+        <PageHeaderComponent title="Clientes" />
 
+        <n-card>
+            <n-space justify="space-between">
+                <n-input
+                    v-model:value="search"
+                    type="text"
+                    placeholder="Buscar"
+                >
+                    <template #prefix>
+                        <n-icon> <Search /> </n-icon>
+                    </template>
+                </n-input>
+
+                <FormularioClienteComponent btn_text="Crear Cliente" />
+            </n-space>
+        </n-card>
+
+        <div class="table-wrapper">
             <n-table :bordered="false" :single-line="false">
                 <thead>
                     <tr>
@@ -16,7 +30,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in clientes">
+                    <tr v-for="item in clientes.data">
                         <td>{{ item.id }}</td>
                         <td>{{ item.r_social }}</td>
                         <td>{{ item.num_doc }}</td>
@@ -52,20 +66,63 @@
                 </tbody>
             </n-table>
         </div>
+        <n-card>
+            <n-space justify="end">
+                <n-pagination
+                    v-model:page="page"
+                    :page-slot="5"
+                    :page-count="totalPages"
+                    @click="goPage"
+                />
+            </n-space>
+        </n-card>
     </AdminLayout>
 </template>
 <script setup>
+import { ref, computed, watch } from "vue";
 import { router } from "@inertiajs/vue3";
+import { useToast } from "vue-toastification";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
 import FormularioClienteComponent from "./Components/FormularioClienteComponent.vue";
+import { Search } from "@vicons/ionicons5";
+import debounce from "lodash/debounce";
 
-import { useToast } from "vue-toastification";
 const toast = useToast();
 
 const props = defineProps({
-    clientes: Array,
+    clientes: Object,
+    filters: Object,
 });
+
+const search = ref(props.filters.search);
+const page = ref(props.clientes.current_page);
+const totalPages = computed(() => props.clientes.last_page);
+const totalResults = computed(() => props.clientes.total);
+
+watch(
+    search,
+    debounce((val) => {
+        router.get(
+            "/admin/clientes",
+            { search: val },
+            {
+                preserveState: true,
+            }
+        );
+    }, 300)
+);
+
+const goPage = () => {
+    if (page.value == props.clientes.current_page) return;
+    let search_aux = "";
+    if (search.value) {
+        search_aux = "&search=" + search.value;
+    }
+    router.visit("/admin/clientes?page=" + page.value + search_aux, {
+        preserveState: true,
+    });
+};
 
 const eliminar = (id) => {
     router.delete("/admin/clientes/" + id, {

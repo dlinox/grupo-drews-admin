@@ -2,61 +2,76 @@
     <AdminLayout>
         <div class="container-xxl">
             <PageHeaderComponent title="Usuarios" />
-            <n-divider />
-            <FormularioUsuarioComponent btn_text="Nuevo usuario" />
 
-            <n-input
-                v-model:value="search"
-                type="text"
-                placeholder="Basic Input"
-            />
-            <n-table :bordered="false" :single-line="false">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Op.</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="item in usuarios.data">
-                        <td>{{ item.id }}</td>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.email }}</td>
-                        <td style="width: 180px">
-                            <n-space justify="end">
-                                <FormularioUsuarioComponent
-                                    btn_text="Editar"
-                                    :data="item"
-                                    :edit="true"
-                                />
+            <n-card>
+                <n-space justify="space-between">
+                    <n-input
+                        v-model:value="search"
+                        type="text"
+                        placeholder="Buscar"
+                    >
+                        <template #prefix>
+                            <n-icon> <Search /> </n-icon>
+                        </template>
+                    </n-input>
 
-                                <n-popconfirm
-                                    :show-icon="false"
-                                    negative-text="No"
-                                    positive-text="Si"
-                                    @positive-click="eliminarUsuario(item.id)"
-                                >
-                                    <template #activator>
-                                        <n-button type="error" tertiary>
-                                            Eliminar
-                                        </n-button>
-                                    </template>
-                                    ¿ Seguro de elimnar al usuario ?
-                                </n-popconfirm>
-                            </n-space>
-                        </td>
-                    </tr>
-                </tbody>
-            </n-table>
+                    <FormularioUsuarioComponent btn_text="Nuevo usuario" />
+                </n-space>
+            </n-card>
+            <div class="table-wrapper">
+                <n-table :bordered="false" :single-line="false">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Op.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in usuarios.data">
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.email }}</td>
+                            <td style="width: 180px">
+                                <n-space justify="end">
+                                    <FormularioUsuarioComponent
+                                        btn_text="Editar"
+                                        :data="item"
+                                        :edit="true"
+                                    />
 
-            <n-pagination
-                v-model:page="page"
-                :page-count="totalPages"
-                @click="goPage"
-            />
-
+                                    <n-popconfirm
+                                        :show-icon="false"
+                                        negative-text="No"
+                                        positive-text="Si"
+                                        @positive-click="
+                                            eliminarUsuario(item.id)
+                                        "
+                                    >
+                                        <template #activator>
+                                            <n-button type="error" tertiary>
+                                                Eliminar
+                                            </n-button>
+                                        </template>
+                                        ¿ Seguro de elimnar al usuario ?
+                                    </n-popconfirm>
+                                </n-space>
+                            </td>
+                        </tr>
+                    </tbody>
+                </n-table>
+            </div>
+            <n-card>
+                <n-space justify="end">
+                    <n-pagination
+                        v-model:page="page"
+                        :page-slot="5"
+                        :page-count="totalPages"
+                        @click="goPage"
+                    />
+                </n-space>
+            </n-card>
         </div>
     </AdminLayout>
 </template>
@@ -64,12 +79,12 @@
 import debounce from "lodash/debounce";
 import { ref, watch, computed } from "vue";
 import { router } from "@inertiajs/vue3";
-
 import { useToast } from "vue-toastification";
 
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
 import FormularioUsuarioComponent from "./Components/FormularioUsuarioComponent.vue";
+import { Search } from "@vicons/ionicons5";
 
 const props = defineProps({
     filters: Object,
@@ -97,7 +112,7 @@ watch(
 );
 
 const goPage = () => {
-    if(page.value == props.usuarios.current_page) return;
+    if (page.value == props.usuarios.current_page) return;
     let search_aux = "";
     if (search.value) {
         search_aux = "&search=" + search.value;
@@ -109,12 +124,12 @@ const goPage = () => {
 
 const eliminarUsuario = (id) => {
     router.delete("/admin/usuarios/" + id, {
-        onError: () =>{
-            toast.error('Ocurrio un error, vuelva a intentar.')
+        onError: () => {
+            toast.error("Ocurrio un error, vuelva a intentar.");
         },
-        onSuccess:() =>{
-            toast.success('Eliminado con exito.')
-        }
+        onSuccess: () => {
+            toast.success("Eliminado con exito.");
+        },
     });
 };
 </script>

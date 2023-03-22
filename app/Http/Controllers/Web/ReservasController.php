@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Mail\CotizacionEmail;
 use App\Models\Cliente;
 use App\Models\Reserva;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ReservasController extends Controller
 {
@@ -16,7 +18,7 @@ class ReservasController extends Controller
         // rango: null,
         $reserva = [];
         $cliente_exist =  Cliente::where('correo', $request->correo)->where('celular', $request->celular)->first();
-        
+
 
         if (!$cliente_exist) {
 
@@ -32,8 +34,7 @@ class ReservasController extends Controller
 
             $cliente_nuevo =  Cliente::create($cliente);
             $reserva['cliente'] = $cliente_nuevo->id;
-        }
-        else{
+        } else {
             $reserva['cliente'] = $cliente_exist->id;
         }
 
@@ -47,5 +48,18 @@ class ReservasController extends Controller
         Reserva::create($reserva);
 
         return back();
+    }
+
+    public  function mdgContacto(Request $request)
+    {
+
+        $message = [
+            'nombre' => $request->nombres . ' ' . $request->apellidos,
+            'correo' => $request->nombres,
+            'celular' => $request->celular,
+            'mensaje' => $request->mensaje,
+        ];
+
+        Mail::to('richardluz2307@gmail.com')->send(new CotizacionEmail($message));
     }
 }

@@ -22,7 +22,7 @@ class UsuarioController extends Controller
         $usuarios = User::select('id', 'name', 'email')
             ->orWhere('name', 'LIKE', '%' . $search . '%')
             ->orWhere('email', 'LIKE', '%' . $search . '%')
-            ->paginate(1);
+            ->paginate(10);
 
         return Inertia::render('Administrador/Usuarios/index',  [
             'filters' => $request->all('search'),

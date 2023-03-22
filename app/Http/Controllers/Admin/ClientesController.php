@@ -11,10 +11,20 @@ use Illuminate\Support\Str;
 
 class ClientesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $clientes = Cliente::all(['id', 'r_social', 'tipo_doc', 'nombre', 'apellidos', 'web', 'num_doc', 'logo', 'publico']);
-        return Inertia::render('Administrador/Clientes/index', ['clientes' => $clientes]);
+
+        $search = $request->search ?? '';
+
+        $clientes = Cliente::select('id', 'r_social', 'tipo_doc', 'nombre', 'apellidos', 'web', 'num_doc', 'logo', 'publico')
+            ->orWhere('r_social', 'LIKE', '%' . $search . '%')
+            ->orWhere('num_doc', 'LIKE', '%' . $search . '%')
+            ->paginate(10);
+
+        return Inertia::render('Administrador/Clientes/index',  [
+            'filters' => $request->all('search'),
+            'clientes' => $clientes
+        ]);
     }
 
     public function store(Request $request)
