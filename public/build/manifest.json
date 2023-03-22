@@ -1,11 +1,11 @@
 {
   "resources/assets/styles/scss/app.scss": {
-    "file": "assets/app-3816f2f6.css",
+    "file": "assets/app-9cdc4832.css",
     "isEntry": true,
     "src": "resources/assets/styles/scss/app.scss"
   },
   "resources/js/app.css": {
-    "file": "assets/app-3fb743aa.css",
+    "file": "assets/app-dbbce133.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -14,9 +14,9 @@
       "assets/main-video-ff990cc9.mp4"
     ],
     "css": [
-      "assets/app-3fb743aa.css"
+      "assets/app-dbbce133.css"
     ],
-    "file": "assets/app-c8861db8.js",
+    "file": "assets/app-c4abf357.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },

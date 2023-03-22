@@ -11,6 +11,10 @@
                 1200: {
                     slidesPerView: 2,
                 },
+
+                800: {
+                    slidesPerView: 2,
+                },
             }"
         >
             <swiper-slide v-for="(item, index) in galeria.flat()" :key="index">

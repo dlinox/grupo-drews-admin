@@ -59,10 +59,13 @@ Route::name('web.')->group(function () {
     Route::get('', [WebWebController::class, 'pageInicio'])->name('inicio');
 
     Route::get('vehiculos', [WebWebController::class, 'pageVehiculos'])->name('vehiculos');
+    Route::get('clientes', [WebWebController::class, 'pageClientes'])->name('clientes');
     Route::get('nosotros', [WebWebController::class, 'pageNosotros'])->name('nosotros');
     Route::get('servicios', [WebWebController::class, 'pageServicios'])->name('servicios');
     Route::get('servicios/{id}', [WebWebController::class, 'pageServicioDetalle'])->name('servicios-detalle');
     Route::get('contactanos', [WebWebController::class, 'pageContactanos'])->name('contactanos');
+
+
 
     Route::resource('reservas', WebReservasController::class)->only('store');
     

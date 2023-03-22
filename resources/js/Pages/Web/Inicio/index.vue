@@ -10,6 +10,8 @@
             <VehiculosSection :vehiculos="vehiculos" />
             <EligenosSection />
             <GaleriaSection :vehiculos="vehiculos" />
+            <ClientesSection :clientes="clientes" />
+    
         </main>
     </WebLayout>
 </template>
@@ -22,10 +24,12 @@ import ServicesCarouselComponent from "./components/ServicesCarouselComponent.vu
 import VehiculosSection from "./sections/VehiculosSection.vue";
 import EligenosSection from "./sections/EligenosSection.vue";
 import GaleriaSection from "./sections/GaleriaSection.vue";
+import ClientesSection from "./sections/ClientesSection.vue";
 
 const props = defineProps({
     servicios: Array,
     vehiculos: Array,
+    clientes: Array,
 });
 </script>
 <style lang="scss">

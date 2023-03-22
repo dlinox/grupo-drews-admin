@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
+use App\Models\Cliente;
 use App\Models\Producto;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
@@ -33,9 +34,11 @@ class WebController extends Controller
                 'imagenes',
             ]
         );
+        $clientes = Cliente::select('id', 'r_social', 'logo')->where('publico', 1)->get();
         return Inertia::render('Web/Inicio/index', [
             'servicios'  => $servicios,
-            'vehiculos' => $vehiculos
+            'vehiculos' => $vehiculos,
+            'clientes' => $clientes
         ]);
     }
 
@@ -43,6 +46,13 @@ class WebController extends Controller
     {
         $servicios  = Servicio::all();
         return Inertia::render('Web/Servicios/index',  ['servicios' => $servicios]);
+    }
+
+    public function pageClientes()
+    {
+        $clientes = Cliente::select('id', 'r_social', 'logo')->where('publico', 1)->get();
+
+        return Inertia::render('Web/Clientes/index',  ['clientes' => $clientes]);
     }
 
     public function pageVehiculos()
@@ -74,7 +84,7 @@ class WebController extends Controller
     public function pageNosotros()
     {
 
-        
+
         return Inertia::render('Web/Nosotros/index');
     }
 

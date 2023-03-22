@@ -3,11 +3,15 @@
         <div class="container">
             <TituloSectionComponent
                 titulo="Clientes"
-                descripcion="uestros clientes"
+                descripcion="Nuestros clientes"
             />
 
             <swiper
-                :slides-per-view="1"
+                :modules="[Autoplay, Pagination]"
+                class="section-clientes"
+                :slides-per-view="2"
+                :loop="true"
+                :pagination="true"
                 :breakpoints="{
                     1400: {
                         slidesPerView: 8,
@@ -23,23 +27,33 @@
                     },
                 }"
                 :autoplay="{
-                    delay: 5000,
+                    delay: 3000,
                     disableOnInteraction: true,
                 }"
                 :space-between="30"
             >
-                <swiper-slide v-for="(item, index) in vehiculos" :key="index">
-                    <img
-                        width="100%"
-                        src="https://grupo-dews-web.vercel.app/_nuxt/BEAR-CREEK.ef18592a.png"
-                        alt=""
-                    />
+                <swiper-slide
+                    v-for="(item, index) in clientes"
+                    :key="index"
+                    class="clientes-slide"
+                >
+                    <div class="card-item">
+                        <img :src="item.logo" alt="" />
+                    </div>
                 </swiper-slide>
             </swiper>
         </div>
     </section>
 </template>
-<script setup></script>
+<script setup>
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Autoplay, Pagination } from "swiper";
+import TituloSectionComponent from "@/Components/Web/TituloSectionComponent.vue";
+
+const props = defineProps({
+    clientes: Array,
+});
+</script>
 
 <style lang="scss">
 .section-clientes {
@@ -54,7 +68,7 @@
             img {
                 width: 100%;
                 filter: grayscale(100%);
-                transition: all 0.5s ease-in;
+                transition: all 0.3s ease-in;
             }
             &:hover {
                 img {
