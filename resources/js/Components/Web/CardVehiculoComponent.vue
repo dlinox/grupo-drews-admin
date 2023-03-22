@@ -7,12 +7,6 @@
             <div class="shape shape-4"></div>
         </div>
         <div class="card-imagen">
-            <button
-                class="btn btn-outline-dark btn-galeria"
-                @click="showGaleria = !showGaleria"
-            >
-                <i class="fa-solid fa-images"></i>
-            </button>
             <img :src="item.imagenes[0]" alt="" />
         </div>
         <div class="card-content">
@@ -47,7 +41,14 @@
             </div>
             <hr />
 
-            <n-space justify="end">
+            <n-space justify="space-between">
+                <button
+                    class="btn btn-outline-dark"
+                    @click="showGaleria = !showGaleria"
+                >
+                    <i class="fa-solid fa-images"></i>
+                </button>
+
                 <button class="btn btn-color1" @click="showModal = !showModal">
                     <i class="fa-solid fa-plus"></i> Ver más
                 </button>
@@ -161,7 +162,6 @@
             :title="item.detalle"
         >
             <FormCotizacionComponent :producto="item.id" tipo="Vehiculo" />
-            
         </n-card>
     </n-modal>
 </template>
