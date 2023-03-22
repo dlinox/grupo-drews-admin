@@ -7,17 +7,25 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+
 use Inertia\Inertia;
 
 class UsuarioController extends Controller
 {
 
 
-    public function index()
+    public function index(Request $request)
     {
 
-        $usuarios = User::all(['id', 'name', 'email']);
+        $search = $request->search ?? '';
+
+        $usuarios = User::select('id', 'name', 'email')
+            ->orWhere('name', 'LIKE', '%' . $search . '%')
+            ->orWhere('email', 'LIKE', '%' . $search . '%')
+            ->paginate(1);
+
         return Inertia::render('Administrador/Usuarios/index',  [
+            'filters' => $request->all('search'),
             'usuarios' => $usuarios
         ]);
     }
@@ -38,7 +46,7 @@ class UsuarioController extends Controller
 
         $validated = $request->validated();
         if ($validated) {
-            User::find($id)->update($request->only('name','email'));
+            User::find($id)->update($request->only('name', 'email'));
         }
         return back()->withInput($request->all());
     }

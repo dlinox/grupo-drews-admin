@@ -12,7 +12,9 @@ use App\Http\Controllers\Admin\ClientesController;
 use App\Http\Controllers\Admin\SedesController;
 use App\Http\Controllers\Web\ReservasController as WebReservasController;
 use App\Http\Controllers\Web\WebController as WebWebController;
+use App\Mail\CotizacionEmail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -104,4 +106,10 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
 
     //Route::resource('oficinas', OficinaController::class);
 
+});
+
+
+
+Route::get('/mail', function () {
+    Mail::to('nearlino20@gmail.com')->send( new CotizacionEmail());
 });

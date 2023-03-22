@@ -98,7 +98,6 @@
                                     </tr>
                                 </tbody>
                             </n-table>
-
                         </n-grid-item>
                         <n-grid-item span="1  600:2">
                             <n-card>
@@ -112,9 +111,7 @@
                                 <n-form-item path="imagenes" label="Imagenes">
                                     <n-space vertical>
                                         <n-card
-                                            v-for="(
-                                                item, index
-                                            ) in 3"
+                                            v-for="(item, index) in 3"
                                             :key="index"
                                         >
                                             <n-space>
@@ -136,8 +133,6 @@
                                         </n-card>
                                     </n-space>
                                 </n-form-item>
-
-
 
                                 <n-button
                                     @click="submit"
@@ -162,6 +157,9 @@ import { useForm, router } from "@inertiajs/vue3";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
 import CropCompressImageComponent from "../../../Components/CropCompressImageComponent.vue";
+
+import { useToast } from "vue-toastification";
+const toast = useToast();
 
 const props = defineProps({
     servicio: {
@@ -190,12 +188,10 @@ const blob_imgs = ref(props.servicio.imagenes ?? [null, null, null]);
 const file_imgs = ref([]);
 /*************************** */
 
-
 const submit = () => {
-  
     formData.imagenes = file_imgs.value;
     console.log(formData.imagenes);
-   // return;
+    // return;
     console.log(formData);
     if (props.servicio.id) {
         console.log("editar");
@@ -211,13 +207,13 @@ const guardar = () => {
         preserveScroll: true,
         onError: (e) => {
             for (const property in e) {
-                console.log(e[property]);
+                toast.error(e[property]);
             }
             console.log(e);
         },
         onSuccess: (e) => {
             console.log(e);
-            console.log("creado");
+            toast.success("Servicio creado");
             formData.reset();
         },
     });
@@ -234,13 +230,13 @@ const editar = () => {
             preserveScroll: true,
             onError: (e) => {
                 for (const property in e) {
-                    console.log(e[property]);
+                    toast.error(e[property]);
                 }
                 console.log(e);
             },
             onSuccess: (e) => {
                 console.log(e);
-                console.log("creado");
+                toast.success("Servicio actualizado");
                 formData.reset();
             },
         });

@@ -31,8 +31,17 @@
                         <td>{{ item.figura }}</td>
                         <td style="width: 180px">
                             <n-space justify="end">
-
-                                <n-button type="info" tertiary @click="router.get('/admin/servicios/' + item.id + '/edit')">
+                                <n-button
+                                    type="info"
+                                    tertiary
+                                    @click="
+                                        router.get(
+                                            '/admin/servicios/' +
+                                                item.id +
+                                                '/edit'
+                                        )
+                                    "
+                                >
                                     Editar
                                 </n-button>
 
@@ -61,11 +70,23 @@
 import { router } from "@inertiajs/vue3";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
-import FormularioServicioComponent from "./Components/FormularioServicioComponent.vue";
+import { useToast } from "vue-toastification";
+const toast = useToast();
 const props = defineProps({
     servicios: Array,
 });
 const eliminarUsuario = (id) => {
-    router.delete("/admin/servicios/" + id);
+    router.delete("/admin/servicios/" + id, {
+        onError: (e) => {
+            for (const property in e) {
+                toast.error(e[property]);
+            }
+            console.log(e);
+        },
+        onSuccess: (e) => {
+            toast.success("Eliminado con exito");
+            console.log(e);
+        },
+    });
 };
 </script>

@@ -23,12 +23,11 @@
                                 />
                             </template>
                             <template v-else>
-                                
                                 <ModalUbigeoComponent
                                     @on-select="item.ubigeo = $event"
                                 />
-                                <span style="margin-left: 1rem;">
-                                     {{ setSede(item?.ubigeo) }}
+                                <span style="margin-left: 1rem">
+                                    {{ setSede(item?.ubigeo) }}
                                 </span>
                             </template>
                         </n-divider>
@@ -68,15 +67,16 @@
                 </n-form>
             </n-grid-item>
         </n-grid>
-
     </n-card>
 </template>
 
 <script setup>
-import { ref } from "vue";
 import ModalUbigeoComponent from "@/Components/ModalUbigeoComponent.vue";
 import { useForm } from "@inertiajs/vue3";
 import ubigeoJson from "../../../../../assets/data/ubigeo.json";
+
+import { useToast } from "vue-toastification";
+const toast = useToast();
 
 const props = defineProps({
     sedes: Array,
@@ -112,12 +112,12 @@ const submit = () => {
         preserveScroll: true,
         onError: (e) => {
             for (const property in e) {
-                console.log(e[property]);
+                toast.error(e[property]);
             }
             console.log(e);
         },
         onSuccess: (e) => {
-            console.log(e);
+            toast.success("Datos Actualizados");
             console.log("creado");
             //formSedes.reset();
         },

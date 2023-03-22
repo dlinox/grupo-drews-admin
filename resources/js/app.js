@@ -5,7 +5,6 @@ import { createInertiaApp } from "@inertiajs/vue3";
 import NProgress from "nprogress";
 import { router } from "@inertiajs/vue3";
 
-import VueSilentbox from "vue-silentbox";
 
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
@@ -60,18 +59,19 @@ import {
     NDrawer,
     NDrawerContent,
     NInputNumber,
+    NPagination
 } from "naive-ui";
 
 const options = {
     position: "top-right",
-    timeout: 4000,
+    timeout: 3000,
     closeOnClick: true,
     pauseOnFocusLoss: true,
     pauseOnHover: true,
     draggable: true,
     draggablePercent: 0.6,
     showCloseButtonOnHover: false,
-    hideProgressBar: true,
+    hideProgressBar: false,
     closeButton: "button",
     icon: true,
     rtl: false,
@@ -114,7 +114,6 @@ createInertiaApp({
             .component("NBreadcrumbItem", NBreadcrumbItem)
             .component("NPageHeader", NPageHeader)
             .component("NAvatar", NAvatar)
-
             .component("NDivider", NDivider)
             .component("NTable", NTable)
             .component("NPopconfirm", NPopconfirm)
@@ -122,28 +121,24 @@ createInertiaApp({
             .component("NRow", NRow)
             .component("NCol", NCol)
             .component("NCard", NCard)
-
             .component("NSelect", NSelect)
             .component("NGrid", NGrid)
             .component("NGridItem", NGridItem)
             .component("NSwitch", NSwitch)
-
             .component("NCarousel", NCarousel)
             .component("NGi", NGi)
-
             .component("NButtonGroup", NButtonGroup)
             .component("NStatistic", NStatistic)
-
             .component("NCollapse", NCollapse)
             .component("NCollapseItem", NCollapseItem)
-
             .component("NTabs", NTabs)
             .component("NTabPane", NTabPane)
-
             .component("NDrawer", NDrawer)
             .component("NDrawerContent", NDrawerContent)
             .component("NInputNumber", NInputNumber)
+            .component("NPagination", NPagination)
 
+            
             .use(Toast, options)
             .use(plugin)
             .mount(el);

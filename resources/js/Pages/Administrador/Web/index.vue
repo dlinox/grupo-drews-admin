@@ -349,6 +349,8 @@ import {
 
 import UploadImageComponent from "@/Components/UploadImageComponent.vue";
 import FormSedesComponent from "./components/FormSedesComponent.vue";
+import { useToast } from "vue-toastification";
+const toast = useToast();
 
 const props = defineProps({
     configuracion: Object,
@@ -367,13 +369,13 @@ const submit = () => {
         preserveScroll: true,
         onError: (e) => {
             for (const property in e) {
-                console.log(e[property]);
+                toast.error(e[property]);
             }
             console.log(e);
         },
         onSuccess: (e) => {
             console.log(e);
-            console.log("creado");
+            toast.success('Datos Actualizados');
         },
     });
 };
@@ -385,13 +387,13 @@ const updateLogo = () => {
         preserveScroll: true,
         onError: (e) => {
             for (const property in e) {
-                console.log(e[property]);
+                toast.error(e[property]);;
             }
             console.log(e);
         },
         onSuccess: (e) => {
             console.log(e);
-            console.log("Logo Cambio");
+            toast.success('Logo actualizado');
         },
     });
 };

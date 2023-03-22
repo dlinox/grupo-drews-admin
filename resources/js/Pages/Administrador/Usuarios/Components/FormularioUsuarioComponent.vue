@@ -60,7 +60,9 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useForm } from "@inertiajs/vue3";
-import { useMessage } from "naive-ui";
+
+import { useToast } from "vue-toastification";
+const toast = useToast();
 
 const props = defineProps({
     btn_text: String,
@@ -72,7 +74,7 @@ const props = defineProps({
 });
 
 const formRef = ref(null);
-const message = useMessage();
+
 
 const showModal = ref(false);
 
@@ -133,7 +135,7 @@ const submit = async (e) => {
             }
         } else {
             console.log(errors);
-            message.error("Datos ingresado no validos");
+            toast.error("Datos ingresado no validos");
         }
     });
 };
@@ -143,13 +145,13 @@ const crear = () => {
         preserveScroll: true,
         onError: (e) => {
             for (const property in e) {
-                message.error(e[property]);
+                toast.error(e[property]);
             }
             console.log(e);
         },
         onSuccess: () => {
             showModal.value = false;
-            message.success("Usuario creado");
+            toast.success("Usuario creado");
             formData.reset();
         },
     });
@@ -160,13 +162,13 @@ const editar = () => {
         preserveScroll: true,
         onError: (e) => {
             for (const property in e) {
-                message.error(e[property]);
+                toast.error(e[property]);
             }
             console.log(e);
         },
         onSuccess: () => {
             showModal.value = false;
-            message.success("Usuario editado");
+            toast.success("Usuario editado");
             formData.reset();
         },
     });
