@@ -82,9 +82,11 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
+import { computed } from "vue";
+import { usePage } from "@inertiajs/vue3";
 
-const logo =
-    "https://www.grupodrews.com.pe/wp-content/uploads/2019/06/logo.png";
+const logo = computed(() => usePage().props.web.logo);
+
 
 const menu_items = [
     {
