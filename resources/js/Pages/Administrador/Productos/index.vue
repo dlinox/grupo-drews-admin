@@ -238,11 +238,14 @@
     </AdminLayout>
 </template>
 <script setup>
+import { ref } from "vue";
 import { router } from "@inertiajs/vue3";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
-import { ref } from "vue";
 import { Add, Pencil, Trash } from "@vicons/ionicons5";
+
+import { useToast } from "vue-toastification";
+const toast = useToast();
 
 const props = defineProps({
     productos: Array,
@@ -252,7 +255,18 @@ const detalleModal = ref(false);
 const detalleProducto = ref({});
 
 const eliminarProducto = (id) => {
-    router.delete("/admin/productos/" + id);
+    router.delete("/admin/productos/" + id, {
+        onError: (e) => {
+            for (const property in e) {
+                toast.error(e[property]);
+            }
+            console.log(e);
+        },
+        onSuccess: (e) => {
+            toast.success("Eliminado con exito");
+            console.log(e);
+        },
+    });
 };
 </script>
 <style scoped>

@@ -27,7 +27,6 @@
                         </td>
                         <td style="width: 180px">
                             <n-space justify="end">
-
                                 <FormularioClienteComponent
                                     btn_text="Editar"
                                     :cliente="item"
@@ -61,11 +60,25 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
 import FormularioClienteComponent from "./Components/FormularioClienteComponent.vue";
 
+import { useToast } from "vue-toastification";
+const toast = useToast();
+
 const props = defineProps({
     clientes: Array,
 });
 
 const eliminar = (id) => {
-    router.delete("/admin/clientes/" + id);
+    router.delete("/admin/clientes/" + id, {
+        onError: (e) => {
+            for (const property in e) {
+                toast.error(e[property]);
+            }
+            console.log(e);
+        },
+        onSuccess: (e) => {
+            toast.success("Eliminado con exito");
+            console.log(e);
+        },
+    });
 };
 </script>

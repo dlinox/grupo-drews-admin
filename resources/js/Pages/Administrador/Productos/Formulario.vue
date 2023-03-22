@@ -167,9 +167,11 @@
                                                 />
 
                                                 <n-button
-
-                                                :disabled="num_imgs == 1 ? true : false "
-                                                
+                                                    :disabled="
+                                                        num_imgs == 1
+                                                            ? true
+                                                            : false
+                                                    "
                                                     @click="
                                                         num_imgs--,
                                                             blob_imgs.splice(
@@ -213,6 +215,8 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
 
 import CropCompressImageComponent from "../../../Components/CropCompressImageComponent.vue";
+import { useToast } from "vue-toastification";
+const toast = useToast();
 
 const props = defineProps({
     producto: {
@@ -243,7 +247,7 @@ const imagenes = ref([]);
 const formData = useForm({ ...props.producto });
 
 /*************************** */
-const num_imgs = ref( props.producto.imagenes?.length ?? 1);
+const num_imgs = ref(props.producto.imagenes?.length ?? 1);
 
 const blob_imgs = ref(props.producto.imagenes ?? []);
 const file_imgs = ref([]);
@@ -251,28 +255,28 @@ const file_imgs = ref([]);
 /*************************** */
 
 const guardar = () => {
-  
-
     formData.imagenes = file_imgs.value;
 
-    console.log('****************');
+    console.log("****************");
     console.log(formData.imagenes);
-    console.log('****************');
+    console.log("****************");
 
     console.log(formData);
-
 
     formData.post("/admin/productos", {
         preserveScroll: true,
         onError: (e) => {
             for (const property in e) {
                 console.log(e[property]);
+                toast.error(e[property]);
             }
             console.log(e);
         },
         onSuccess: (e) => {
             console.log(e);
-            console.log("creado");
+            toast.success(
+                props.producto?.id ? "Producto actualizado" : "Producto Creado"
+            );
             formData.reset();
         },
     });

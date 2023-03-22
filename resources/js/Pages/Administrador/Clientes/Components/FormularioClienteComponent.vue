@@ -115,8 +115,11 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useForm } from "@inertiajs/vue3";
-import { useMessage } from "naive-ui";
+
 import CropCompressImageComponent from "@/Components/CropCompressImageComponent.vue";
+import { useToast } from "vue-toastification";
+const toast = useToast();
+
 
 const onlyAllowNumber = (value) => !value || /^\d+$/.test(value);
 
@@ -163,7 +166,7 @@ const props = defineProps({
 });
 
 const formRef = ref(null);
-const message = useMessage();
+
 
 const showModal = ref(false);
 
@@ -208,7 +211,7 @@ const submit = async (e) => {
             guardar();
         } else {
             console.log(errors);
-            message.error("Datos ingresado no validos");
+            toast.error("Datos ingresado no validos");
         }
     });
 };
@@ -218,12 +221,12 @@ const guardar = () => {
         preserveScroll: true,
         onError: (e) => {
             for (const property in e) {
-                message.error(e[property]);
+                toast.error(e[property]);
             }
             console.log(e);
         },
         onSuccess: () => {
-            message.success( props.edit ? "Servicios editado" : "Servicios creado" );
+            toast.success( props.edit ? "Servicios editado" : "Servicios creado" );
             formData.reset();
             showModal.value = false;
         },
