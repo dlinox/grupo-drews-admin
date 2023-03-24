@@ -231,7 +231,7 @@ const handleUpdateExpandedKeys = (val) => {
 const onMenuDropdown = (val) => {
     console.log(val);
     if (val == "logout") {
-        router.post("auth/logout");
+        router.post("/auth/logout");
     }
 };
 

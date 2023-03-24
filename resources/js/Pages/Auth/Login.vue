@@ -120,7 +120,7 @@ const withLogin = async () => {
 .login-page .img-login {
     width: 60%;
     height: 100%;
-    background-image: url(/assets/image/bg-login.jpg);
+    background-image: url(/assets/image/bg-login-1.jpeg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

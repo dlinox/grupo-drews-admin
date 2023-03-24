@@ -109,7 +109,7 @@
 
             <div v-if="item.tipo_v == 'Empresa'">
                 <hr />
-                <h6>Implementos De Seguridad</h6>
+                <h6>Implementos de Seguridad</h6>
                 <div class="row">
                     <div class="col-12">
                         <ul>
