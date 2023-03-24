@@ -23,7 +23,11 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-7 slide-services">
-                    <swiper :slides-per-view="2" :space-between="10">
+                    <swiper
+                        @swiper="onSwiper"
+                        :slides-per-view="2"
+                        :space-between="10"
+                    >
                         <swiper-slide
                             v-for="(item, index) in servicios"
                             :key="index"
@@ -31,18 +35,47 @@
                             <CardSmallServiceComponent :item="item" />
                         </swiper-slide>
                     </swiper>
+
+                    <div class="slider-actions">
+                        <div class="view-all">
+                            <Link href="/servicios"> Ver todos </Link>
+                        </div>
+                        <div class="navigation-buttons">
+                            <button
+                                class="btn btn-sm btn-outline-dark rounded-0"
+                                @click="swiperServices.slidePrev()"
+                            >
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
+
+                            <button
+                                class="btn btn-sm btn-outline-dark rounded-0"
+                                @click="swiperServices.slideNext()"
+                            >
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 </template>
 <script setup>
+import { Link } from "@inertiajs/vue3";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { ref } from "vue";
 import CardSmallServiceComponent from "./CardSmallServiceComponent.vue";
 
 const props = defineProps({
     servicios: Array,
 });
+
+const swiperServices = ref(null);
+
+const onSwiper = (swiper) => {
+    swiperServices.value = swiper;
+};
 </script>
 
 <style lang="scss">
@@ -52,6 +85,17 @@ const props = defineProps({
     z-index: 3;
     margin-top: -100px;
     overflow: hidden;
+
+    .swiper-wrapper {
+        display: flex;
+        height: 100%;
+
+        .swiper-slide {
+            bottom: 0;
+            height: 100%;
+        }
+    }
+
     h1 {
         font-family: $font-teko;
         font-weight: 800;
@@ -59,6 +103,26 @@ const props = defineProps({
     p {
         font-family: $font-raj;
         font-size: 1.2rem;
+    }
+
+    .slide-services {
+        .slider-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1.5rem;
+            .view-all {
+                font-family: $font-raj;
+                font-weight: 700;
+                text-decoration: underline;
+                &:hover {
+                    a {
+                        color: $app-color1;
+                    }
+                }
+            }
+      
+        }
     }
 }
 

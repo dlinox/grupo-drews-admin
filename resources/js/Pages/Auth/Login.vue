@@ -1,80 +1,77 @@
 <template>
-     <n-spin :show="show">
-    <div class="login-page">
-        <div class="img-login"></div>
-        <div class="form-login">
-            <div>
-                <a href="#" class="py-1">IR A LA WEB</a>
-            </div>
-
-            <div class="form-wrapper">
-                <div class="logo">
-                    <img src="/assets/image/logo.png" alt="" />
+    <n-spin :show="show">
+        <div class="login-page">
+            <div class="img-login"></div>
+            <div class="form-login">
+                <div>
+                    <a href="#" class="py-1">IR A LA WEB</a>
                 </div>
-                <n-form ref="formRef" :model="formData">
-                    <n-form-item path="email" label="Correo">
-                        <n-auto-complete
-                            v-model:value="formData.email"
-                            placeholder="correo"
-                            :input-props="{
-                                autocomplete: 'disabled',
-                            }"
-                            :options="options"
-                        >
-                            <template #prefix>
-                                <n-icon :component="MailOutline" />
-                            </template>
-                        </n-auto-complete>
-                    </n-form-item>
 
-                    <n-form-item path="password" label="Contraseña">
-                        <n-input
-                            type="password"
-                            show-password-on="click"
-                            v-model:value="formData.password"
-                            placeholder="Contraseña"
-                        >
-                            <template #prefix>
-                                <n-icon :component="KeyOutline" />
-                            </template>
-                        </n-input>
-                    </n-form-item>
-
-                    <div class="w-full">
-                        <n-button
-                            class="w-full"
-                            type="primary"
-                            @click="submit"
-                            :loading="formData.processing"
-                        >
-                            Ingresar
-                        </n-button>
+                <div class="form-wrapper">
+                    <div class="logo">
+                        <img src="/assets/image/logo.png" alt="" />
                     </div>
-                </n-form>
-            </div>
+                    <n-form ref="formRef" :model="formData">
+                        <n-form-item path="email" label="Correo">
+                            <n-auto-complete
+                                v-model:value="formData.email"
+                                placeholder="correo"
+                                :input-props="{
+                                    autocomplete: 'disabled',
+                                }"
+                                :options="options"
+                            >
+                                <template #prefix>
+                                    <n-icon :component="MailOutline" />
+                                </template>
+                            </n-auto-complete>
+                        </n-form-item>
 
-            <small class="py-1"
-                >© Copyright GrupoDrews . All Rights Reserved</small
-            >
+                        <n-form-item path="password" label="Contraseña">
+                            <n-input
+                                type="password"
+                                show-password-on="click"
+                                v-model:value="formData.password"
+                                placeholder="Contraseña"
+                            >
+                                <template #prefix>
+                                    <n-icon :component="KeyOutline" />
+                                </template>
+                            </n-input>
+                        </n-form-item>
+
+                        <div class="w-full">
+                            <n-button
+                                class="w-full"
+                                type="primary"
+                                @click="submit"
+                                :loading="formData.processing"
+                            >
+                                Ingresar
+                            </n-button>
+                        </div>
+                    </n-form>
+                </div>
+
+                <small class="py-1"
+                    >© Copyright GrupoDrews . All Rights Reserved</small
+                >
+            </div>
         </div>
-    </div>
-</n-spin>
+    </n-spin>
 </template>
 <script setup>
 import { ref, computed } from "vue";
 import { useForm, router } from "@inertiajs/vue3";
 import { MailOutline, KeyOutline } from "@vicons/ionicons5";
 
-
-const  show = ref(false);
+const show = ref(false);
 const formRef = ref(null);
 
 const formData = useForm({
     email: "",
     password: "",
 });
-
-
 
 const options = computed(() => {
     return [
@@ -99,14 +96,13 @@ const withLogin = async () => {
     show.value = true;
     let res = await fetch("/user-auth");
     let json = await res.json();
-    if(json){
-        router.get('admin');
+    if (json) {
+        router.get("admin");
     }
 
     show.value = false;
-
 };
- withLogin();
+withLogin();
 </script>
 
 <style lang="css">

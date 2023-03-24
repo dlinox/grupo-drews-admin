@@ -1,6 +1,6 @@
 <template>
-    <div class="card-small h-100">
-        <Link class="card-wrapper h-100 shadow" :href="'/servicios/' + item.id">
+    <div class="card-small">
+        <Link class="card-wrapper shadow" :href="'/servicios/' + item.id">
             <span class="card-icon"> <i :class="item.figura"></i> </span>
             <span class="card-title"> {{ item.titulo }} </span>
 
@@ -23,10 +23,12 @@ const props = defineProps({
     padding: 15px 15px 0px 15px;
     position: relative;
     margin-bottom: 30px;
+    height: 100%;
 
-    a {
+    a.card-wrapper {
         overflow: hidden;
         background-color: white;
+
         .shapes {
             .shape {
                 position: absolute;
@@ -108,7 +110,7 @@ const props = defineProps({
             font-family: $font-teko;
             letter-spacing: 0.8px;
             font-size: 1.5rem;
-            &::after{
+            &::after {
                 content: "";
                 width: 50%;
                 height: 5px;
