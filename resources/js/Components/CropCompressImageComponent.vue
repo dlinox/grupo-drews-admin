@@ -1,5 +1,10 @@
 <template>
-    <n-button class="btn-upload-image" type="info" dashed :loading="btn_loading">
+    <n-button
+        class="btn-upload-image"
+        type="info"
+        dashed
+        :loading="btn_loading"
+    >
         <input
             type="file"
             ref="file"
@@ -46,7 +51,7 @@
 
                     <n-dropdown
                         trigger="hover"
-                        @select="aspectRatio = $event"
+                        @select="_aspectRatio = $event"
                         :options="aspectRatio_options"
                     >
                         <n-button>
@@ -57,7 +62,7 @@
                             </template>
                             {{
                                 aspectRatio_options.find(
-                                    (item) => item.key == aspectRatio
+                                    (item) => item.key == _aspectRatio
                                 ).label
                             }}
                         </n-button>
@@ -70,7 +75,7 @@
                 class="upload-example-cropper"
                 :src="image.src"
                 :stencil-props="{
-                    aspectRatio: aspectRatio,
+                    aspectRatio: _aspectRatio,
                     movable: movable,
                     resizable: resizable,
                 }"
@@ -78,12 +83,11 @@
 
             <template #footer>
                 <n-space justify="flex-end">
-                  
                     <n-button @click="cropAndOptimize" type="primary">
                         <template #icon>
                             <n-icon><Crop /></n-icon>
                         </template>
-                        Cortar
+                        Cortar y guardar
                     </n-button>
                 </n-space>
             </template>
@@ -92,9 +96,15 @@
 </template>
 
 <script setup>
-import { ref, computed, reactive } from "vue";
+import { ref, reactive } from "vue";
 import { Cropper } from "vue-advanced-cropper";
-import { Crop, ImageSharp, Move, Resize, ScanCircleSharp } from "@vicons/ionicons5";
+import {
+    Crop,
+    ImageSharp,
+    Move,
+    Resize,
+    ScanCircleSharp,
+} from "@vicons/ionicons5";
 import { loadImageHelper } from "@/helpers/uploadFile.js";
 const emits = defineEmits(["onCropper"]);
 
@@ -104,16 +114,22 @@ const props = defineProps({
         type: Number,
         default: 0.5,
     },
+    aspectRatio: {
+        type: Number,
+        default: 16 / 9,
+    },
 });
 
-const aspectRatio = ref(16 / 9);
+const _aspectRatio = ref(props.aspectRatio);
 const movable = ref(true);
 const resizable = ref(true);
 
 const aspectRatio_options = [
+    { label: "21:9", key: 21 / 9 },
     { label: "16:9", key: 16 / 9 },
     { label: "4:3", key: 4 / 3 },
     { label: "1:1", key: 1 },
+    { label: "Libre", key: 0 },
 ];
 
 const showModal = ref(false);
@@ -158,7 +174,6 @@ const cargarImagen = async (e) => {
 
     console.log("fin");
     btn_loading.value = false;
-
 };
 </script>
 

@@ -26,6 +26,8 @@ class Producto extends Model
         'equipaje',
         'contenido',
         'imagenes',
+        'seguridad', //
+        'tipo_v', //
     ];
 
 
@@ -42,6 +44,15 @@ class Producto extends Model
                 }
                 return $array_aux;
             },
+        );
+    }
+
+
+    protected function seguridad(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => explode('|-|', $value),
+            set: fn ($value) => implode('|-|', $value),
         );
     }
 }

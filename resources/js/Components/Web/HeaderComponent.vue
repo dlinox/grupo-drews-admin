@@ -7,7 +7,6 @@
                     <button
                         type="button"
                         class="btn btn-color1 rounded-0"
-
                         @click="showModal = !showModal"
                     >
                         Cotizacion
@@ -98,7 +97,9 @@
                                 :key="index"
                             >
                                 <Link class="item" :href="item.href">
-                                    {{ item.name }}
+                                    <i :class="item.icon"></i>
+
+                                    <span>{{ item.name }}</span>
                                 </Link>
                             </li>
                         </ul>
@@ -162,13 +163,13 @@
     <n-modal v-model:show="showModal">
         <n-card
             style="width: 600px"
-            title="Modal"
+            title="Cotizaciones"
             :bordered="false"
             size="huge"
             role="dialog"
             aria-modal="true"
         >
-            <FormCotizacionComponent  />
+            <FormCotizacionComponent />
         </n-card>
     </n-modal>
 </template>
@@ -198,27 +199,37 @@ const menu_items = [
     {
         name: "Inicio",
         href: "/",
+        icon: "fa-solid fa-house",
     },
     {
         name: "Nosotros",
         href: "/nosotros",
+        icon: "fa-solid fa-people-group",
     },
 
     {
         name: "Servicios",
         href: "/servicios",
+        icon: "fa-brands fa-slack",
     },
     {
         name: "Vehiculos",
         href: "/vehiculos",
+        icon: "fa-solid fa-car-side",
+
+        
     },
     {
         name: "Clientes",
         href: "/clientes",
+        icon: "fa-solid fa-users-between-lines",
+
     },
     {
         name: "Contactanos",
         href: "/contactanos",
+        icon: "fa-solid fa-phone-volume",
+
     },
 ];
 </script>
@@ -402,7 +413,7 @@ $h-header-top: 50px;
                             100% 100%,
                             0% 100%
                         );
-                        padding-left: 40px;
+                        padding-left: 100px;
 
                         li.btn-menu {
                             display: flex;
@@ -417,10 +428,15 @@ $h-header-top: 50px;
                                 align-items: center;
                                 color: white;
                                 height: 100%;
-                                padding: 0 1.2rem;
+                                padding: 0 1rem;
                                 font-family: $font-raj;
                                 font-weight: 600;
                                 font-size: 1.2rem;
+
+                                i {
+                                    font-size: 0.8rem;
+                                    margin-right: .5rem;
+                                }
                             }
                         }
                     }

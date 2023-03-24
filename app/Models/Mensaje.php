@@ -5,18 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Reserva extends Model
+class Mensaje extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'producto',
-        'fecha_ini',
-        'fecha_fin',
-        'sede',
-        'cliente',
-        'tipo',
+        'nombres',
+        'apellidos',
+        'correo',
+        'celular',
         'mensaje',
-        'estado',
     ];
 }

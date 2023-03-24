@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Mail\CotizacionEmail;
 use App\Models\Cliente;
+use App\Models\Mensaje;
 use App\Models\Reserva;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -22,15 +23,19 @@ class ReservasController extends Controller
 
         if (!$cliente_exist) {
 
+
             $cliente = [
-                'r_social' => $request->nombres . ' ' . $request->apellidos,
+                'r_social' => $request->para == 'Empresa' ? $request->r_social : $request->nombres . ' ' . $request->apellidos,
                 'nombre' =>  $request->nombres,
+                'num_doc' =>  $request->ruc,
                 'apellidos' => $request->apellidos,
                 'correo' =>  $request->correo,
                 'celular' =>  $request->celular,
                 'publico' =>  0,
-                'estado' =>  0
+                'estado' =>  0,
             ];
+
+
 
             $cliente_nuevo =  Cliente::create($cliente);
             $reserva['cliente'] = $cliente_nuevo->id;
@@ -43,7 +48,9 @@ class ReservasController extends Controller
         //$reserva['fecha_fin'] = $request->correo;
 
         $reserva['sede'] = $request->sede;
+        $reserva['mensaje'] = $request->mensaje;
         $reserva['tipo'] = $request->tipo;
+        //$reserva[''] = $request->tipo;
 
         Reserva::create($reserva);
 
@@ -60,6 +67,10 @@ class ReservasController extends Controller
             'mensaje' => $request->mensaje,
         ];
 
-        Mail::to('richardluz2307@gmail.com')->send(new CotizacionEmail($message));
+        Mensaje::create($request->all());
+
+        Mail::to('nearlino20@gmail.com')->send(new CotizacionEmail($message));
     }
+
+   
 }

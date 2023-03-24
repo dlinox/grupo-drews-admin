@@ -17,7 +17,7 @@
                         <img
                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAkUlEQVR4nO2UWwoDIQxFDy6n3UjFFbh97WddQ8tAKH2gzTixdaAX8qFHvETJhb9WKgBnIAPeiD1pOXCVSkbsuwYeKMAFOBmxN0UpS/YbA/ey75RMbXB8uMjJWsPUBr01j8Gh8QwtNs8n73MOgox8qSRmqTC1wZZAiyMNwofu7vJyUaokZq4wdVz3Ko82aHU3Vje9tGhqlGbX/QAAAABJRU5ErkJggg=="
                         />
-                        <span>Automatico</span>
+                        <span> {{ item.tipo }}</span>
                     </div>
                     <div class="col-3">
                         <img

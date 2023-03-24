@@ -113,6 +113,7 @@ const useState = createGlobalState(() =>
         inverted: false,
     })
 );
+
 const state = useState();
 
 const user = computed(() => usePage().props?.auth?.user);
@@ -155,6 +156,10 @@ const menuOptions = [
             {
                 label: "Cotizaciones",
                 key: "reservas",
+            },
+            {
+                label: "Mensajes de Contacto",
+                key: "mensajes",
             },
             {
                 label: "Clientes",

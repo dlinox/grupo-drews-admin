@@ -25,7 +25,9 @@
                             <th>Número</th>
                             <th>Correo</th>
                             <th>Asunto</th>
-                            <!-- <th>Opciones</th> -->
+                            <th>mensaje</th>
+                            <th>estado</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -48,9 +50,35 @@
                                         : item.titulo
                                 }}</strong>
                             </td>
-                            <!-- <td>
-                                <n-button> Confirmar </n-button>
-                            </td> -->
+
+                            <td>{{ item.mensaje }}</td>
+                            <td>
+                                <n-dropdown
+                                    trigger="hover"
+                                    :options="options"
+                                    @select="cambiarEstado($event, item.id)"
+                                >
+                                    <n-button
+                                        tertiary
+                                        :type="
+                                            item.estado == null
+                                                ? ''
+                                                : item.estado == 0
+                                                ? 'error'
+                                                : 'success'
+                                        "
+                                    >
+                                        {{
+                                            item.estado == null
+                                                ? "En espera"
+                                                : item.estado == 0
+                                                ? "Cancelado"
+                                                : "Atendido"
+                                        }}
+                                    </n-button>
+                                </n-dropdown>
+                            </td>
+
                         </tr>
                     </tbody>
                 </n-table>
@@ -77,6 +105,9 @@ import { ref, computed, watch } from "vue";
 import { Search } from "@vicons/ionicons5";
 import debounce from "lodash/debounce";
 
+import { useToast } from "vue-toastification";
+const toast = useToast();
+
 const props = defineProps({
     reservas: Object,
     filters: Object,
@@ -86,6 +117,39 @@ const search = ref(props.filters.search);
 const page = ref(props.reservas.current_page);
 const totalPages = computed(() => props.reservas.last_page);
 const totalResults = computed(() => props.reservas.total);
+
+const options = [
+    {
+        label: "Marcar como atendido",
+        key: "atender",
+    },
+    {
+        label: "Cancelar",
+        key: "cancelar",
+    },
+];
+
+const cambiarEstado = (val, id) => {
+    console.log(val);
+    console.log(id);
+
+    router.post(
+        "/admin/reservas/estado",
+        { estado: val, id: id },
+        {
+            onError: (e) => {
+                for (const property in e) {
+                    toast.error(e[property]);
+                }
+                console.log(e);
+            },
+            onSuccess: (e) => {
+                toast.success("Estado actualizado");
+                console.log(e);
+            },
+        }
+    );
+};
 
 watch(
     search,
@@ -113,9 +177,8 @@ const goPage = () => {
 </script>
 
 <style>
-.table-wrapper{
+.table-wrapper {
     max-width: 100%;
     overflow-x: auto;
 }
-
 </style>

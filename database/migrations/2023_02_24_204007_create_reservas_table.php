@@ -14,6 +14,8 @@ return new class extends Migration
             $table->date('fecha_ini')->nullable();
             $table->date('fecha_fin')->nullable();
             $table->string('sede')->nullable();
+            $table->text('mensaje')->nullable();
+            $table->boolean('estado')->nullable();
             $table->bigInteger('producto');
             $table->bigInteger('cliente'); 
             $table->timestamps();

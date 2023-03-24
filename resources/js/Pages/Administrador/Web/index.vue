@@ -10,19 +10,17 @@
                         <n-grid-item span="1  600:1">
                             <n-space justify="center">
                                 <n-card title="Logo" embedded :bordered="false">
-                                    <n-image
-                                        width="150"
-                                        :src="formData.web_logo"
-                                    />
+                                    <n-space vertical>
+                                        <n-image
+                                            width="150"
+                                            :src="formData.web_logo"
+                                        />
 
-                                    <UploadImageComponent
-                                        v-model="formImg.logo"
-                                        @preview-result="
-                                            formData.web_logo = $event
-                                        "
-                                        text="Cambiar Logo"
-                                        @onCropper="updateLogo"
-                                    />
+                                        <CropCompressImageComponent
+                                            @onCropper="updateLogo"
+                                            :aspectRatio="0"
+                                        />
+                                    </n-space>
                                 </n-card>
                             </n-space>
                         </n-grid-item>
@@ -233,7 +231,7 @@
                 </n-tab-pane>
 
                 <n-tab-pane name="slider" tab="Slider">
-                    <FormSlideComponent  :sliders="sliders" />
+                    <FormSlideComponent :sliders="sliders" />
                 </n-tab-pane>
             </n-tabs>
         </div>
@@ -241,28 +239,27 @@
 </template>
 <script setup>
 import { useForm } from "@inertiajs/vue3";
+import { useToast } from "vue-toastification";
+import { QuillEditor } from "@vueup/vue-quill";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
-import { QuillEditor } from "@vueup/vue-quill";
+import UploadImageComponent from "@/Components/UploadImageComponent.vue";
+import FormSedesComponent from "./components/FormSedesComponent.vue";
+import FormSlideComponent from "./components/FormSlideComponent.vue";
+import CropCompressImageComponent from "../../../Components/CropCompressImageComponent.vue";
 
 import {
     LogoFacebook,
     LogoInstagram,
     LogoYoutube,
-    ArrowBack,
     LogoTwitter,
-    ArrowForward,
 } from "@vicons/ionicons5";
 
-import UploadImageComponent from "@/Components/UploadImageComponent.vue";
-import FormSedesComponent from "./components/FormSedesComponent.vue";
-import { useToast } from "vue-toastification";
-import FormSlideComponent from "./components/FormSlideComponent.vue";
 const toast = useToast();
 
 const props = defineProps({
     configuracion: Object,
-    sliders: Array
+    sliders: Array,
 });
 
 const formImg = useForm({
@@ -289,8 +286,11 @@ const submit = () => {
     });
 };
 
-const updateLogo = () => {
-    console.log(formImg);
+const updateLogo = (e) => {
+    console.log(e);
+
+    formImg.logo = e.file;
+    formData.web_logo = e.blob;
 
     formImg.post("/admin/configuraciones/update-logo", {
         preserveScroll: true,

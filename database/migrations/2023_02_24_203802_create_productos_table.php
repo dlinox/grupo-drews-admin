@@ -28,6 +28,10 @@ return new class extends Migration
             $table->string('contenido')->nullable();
             $table->double('precio', 7, 2)->default(0.00);
             $table->string('precio_oferta', 7, 2)->default(0.00);
+            
+            $table->text('seguridad')->nullable();
+            $table->char('tipo_v')->nullable();
+
             $table->char('disponible')->default('D'); //D : disponible S:servservado  U: usando
             $table->string('descripcion')->nullable();
             $table->boolean('estado')->default(1);

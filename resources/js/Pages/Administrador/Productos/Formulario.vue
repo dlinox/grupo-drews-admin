@@ -9,6 +9,24 @@
                     <n-grid cols="1 600:3" :x-gap="20" :y-gap="20">
                         <n-grid-item span="1  600:2">
                             <div class="light-green">
+                                <n-form-item
+                                    path="tipo_v"
+                                    label="Tipo de vihiculo"
+                                >
+                                    <n-radio-group
+                                        v-model:value="formData.tipo_v"
+                                    >
+                                        <n-space>
+                                            <n-radio value="Empresa">
+                                                Empresa
+                                            </n-radio>
+                                            <n-radio value="Particular">
+                                                Particular
+                                            </n-radio>
+                                        </n-space>
+                                    </n-radio-group>
+                                </n-form-item>
+
                                 <n-form-item path="detalle" label="Detalle">
                                     <n-input
                                         v-model:value="formData.detalle"
@@ -69,18 +87,12 @@
                                         </n-form-item>
                                     </n-grid-item>
 
-
                                     <n-grid-item>
-                                        <n-form-item
-                                            path="tipo"
-                                            label="Tipo"
-                                        >
+                                        <n-form-item path="tipo" label="Tipo">
                                             <n-select
                                                 label-field="detalle"
                                                 value-field="detalle"
-                                                v-model:value="
-                                                    formData.tipo
-                                                "
+                                                v-model:value="formData.tipo"
                                                 :options="tipos"
                                             />
                                         </n-form-item>
@@ -91,11 +103,13 @@
                                             path="combustible"
                                             label="combustible"
                                         >
-                                            <n-input
+                                            <n-select
+                                                label-field="detalle"
+                                                value-field="detalle"
                                                 v-model:value="
                                                     formData.combustible
                                                 "
-                                                placeholder="combustible"
+                                                :options="combustibles"
                                             />
                                         </n-form-item>
                                     </n-grid-item>
@@ -156,6 +170,28 @@
                                             />
                                         </n-form-item>
                                     </n-grid-item>
+
+                                    <template
+                                        v-if="formData.tipo_v == 'Empresa'"
+                                    >
+                                        <n-grid-item
+                                            span="1 300:2 600:3  800:4"
+                                        >
+                                            <n-form-item
+                                                path="seguridad"
+                                                label="Implementos de seguridad"
+                                            >
+                                                <n-dynamic-input
+                                                    v-model:value="
+                                                        formData.seguridad
+                                                    "
+                                                    placeholder="Implementos de seguridad"
+                                                    :min="1"
+                                                    :max="15"
+                                                />
+                                            </n-form-item>
+                                        </n-grid-item>
+                                    </template>
                                 </n-grid>
                             </div>
                         </n-grid-item>
@@ -239,6 +275,7 @@ const props = defineProps({
     producto: {
         type: Object,
         default: {
+            tipo_v: "Empresa",
             detalle: null,
             descripcion: null,
             marca: null,
@@ -252,19 +289,17 @@ const props = defineProps({
             aire_acondicionado: false,
             equipaje: null,
             imagenes: null,
+            seguridad: null,
         },
     },
     categorias: Array,
 });
 
-const tipos = [
-    {detalle: 'Manual'},
-    {detalle: 'Automatico'},
-]
+const tipos = [{ detalle: "Manual" }, { detalle: "Automatico" }];
+
+const combustibles = [{ detalle: "Gasolina" }, { detalle: "Diesel" }];
 
 const formRef = ref(null);
-
-const imagenes = ref([]);
 
 const formData = useForm({ ...props.producto });
 

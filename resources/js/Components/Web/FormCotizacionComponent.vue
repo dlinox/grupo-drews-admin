@@ -3,36 +3,54 @@
         <div class="row">
             <template v-if="!producto">
                 <div class="col-12">
-                    <n-form-item
-                        path="web_telefonos"
-                        label="Vehiculos / Servicios "
-                    >
-                        <n-radio-group v-model:value="formData.tipo">
+                    <n-form-item path="web_telefonos" label="Seleecione una">
+                        <n-radio-group v-model:value="formData.para">
                             <n-space>
-                                <n-radio value="Vehiculo"> Vehiculos </n-radio>
-                                <n-radio value="Servicio"> Servicios </n-radio>
+                                <n-radio value="Empresa"> Empresa </n-radio>
+                                <n-radio value="Persona"> Persona </n-radio>
                             </n-space>
                         </n-radio-group>
                     </n-form-item>
                 </div>
             </template>
 
-            <div class="col-12 col-md-6">
-                <n-form-item path="nombres" label="Nombres">
-                    <n-input
-                        v-model:value="formData.nombres"
-                        placeholder="Nombre"
-                    />
-                </n-form-item>
-            </div>
-            <div class="col-12 col-md-6">
-                <n-form-item path="apellidos" label="apellidos">
-                    <n-input
-                        v-model:value="formData.apellidos"
-                        placeholder="apellidos"
-                    />
-                </n-form-item>
-            </div>
+            <template v-if="formData.para == 'Empresa'">
+                <div class="col-12 col-md-6">
+                    <n-form-item path="ruc" label="RUC">
+                        <n-input
+                            v-model:value="formData.ruc"
+                            placeholder="RUC"
+                        />
+                    </n-form-item>
+                </div>
+                <div class="col-12 col-md-6">
+                    <n-form-item path="r_social" label="Razón social">
+                        <n-input
+                            v-model:value="formData.r_social"
+                            placeholder="Razón social"
+                        />
+                    </n-form-item>
+                </div>
+            </template>
+
+            <template v-else>
+                <div class="col-12 col-md-6">
+                    <n-form-item path="nombres" label="Nombres">
+                        <n-input
+                            v-model:value="formData.nombres"
+                            placeholder="Nombre"
+                        />
+                    </n-form-item>
+                </div>
+                <div class="col-12 col-md-6">
+                    <n-form-item path="apellidos" label="apellidos">
+                        <n-input
+                            v-model:value="formData.apellidos"
+                            placeholder="apellidos"
+                        />
+                    </n-form-item>
+                </div>
+            </template>
 
             <div class="col-12 col-md-6">
                 <n-form-item path="correo" label="Correo">
@@ -51,6 +69,22 @@
                 </n-form-item>
             </div>
 
+            <template v-if="!producto">
+                <div class="col-12">
+                    <n-form-item
+                        path="web_telefonos"
+                        label="Vehiculos / Servicios "
+                    >
+                        <n-radio-group v-model:value="formData.tipo">
+                            <n-space>
+                                <n-radio value="Vehiculo"> Vehiculos </n-radio>
+                                <n-radio value="Servicio"> Servicios </n-radio>
+                            </n-space>
+                        </n-radio-group>
+                    </n-form-item>
+                </div>
+            </template>
+
             <div class="col-12">
                 <n-form-item
                     class="w-full"
@@ -68,7 +102,7 @@
                     </template>
                     <template v-if="formData.tipo == 'Servicio'">
                         <n-select
-                        label-field="titulo"
+                            label-field="titulo"
                             value-field="id"
                             placeholder="Seleccione uno"
                             v-model:value="formData.producto"
@@ -99,8 +133,23 @@
                     />
                 </n-form-item>
             </div>
+
+            <div class="col-12">
+                <n-form-item path="mensaje" label="Mensaje">
+                    <n-input
+                        type="textarea"
+                        v-model:value="formData.mensaje"
+                        placeholder="Mensaje"
+                    />
+                </n-form-item>
+            </div>
+
             <div class="col-12 d-flex justify-content-end">
-                <button @click="enviarCotizacion" class="btn btn-color1">
+                <button
+                    @click="enviarCotizacion"
+                    class="btn btn-color1"
+                    :disabled="formData.processing"
+                >
                     <i class="fa-solid fa-paper-plane"></i>
                     <template v-if="formData.processing">
                         Procesando ...
@@ -127,6 +176,7 @@ const vehiculos = computed(() => usePage().props.vehiculos);
 const servicios = computed(() => usePage().props.servicios);
 
 const formData = useForm({
+    para: "Empresa",
     nombres: null,
     apellidos: null,
     correo: null,
@@ -135,6 +185,10 @@ const formData = useForm({
     rango: null,
     sede: null,
     tipo: props.tipo,
+
+    ruc: null,
+    r_social: null,
+    mensaje: null,
 });
 
 const enviarCotizacion = () => {

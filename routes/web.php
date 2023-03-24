@@ -71,7 +71,6 @@ Route::name('web.')->group(function () {
     Route::resource('reservas', WebReservasController::class)->only('store');
 
 
-
     Route::post('msg-contacto', [WebReservasController::class, 'mdgContacto'])->name('msg-contacto');
 
 
@@ -107,6 +106,12 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
 
     Route::controller(ReservaController::class)->name('reservas.')->prefix('reservas')->group(function () {
         Route::get('', 'index')->name('index');
+        Route::post('estado', 'cambiarEstado')->name('estado');
+
+    });
+
+    Route::controller(ReservaController::class)->name('mensajes.')->prefix('mensajes')->group(function () {
+        Route::get('', 'mensajes')->name('mensajes');
     });
 
 

@@ -89,7 +89,7 @@ const props = defineProps({
             background: rgb(12, 127, 64);
             background: linear-gradient(
                 54deg,
-                rgba(12, 127, 64, 1) 0%,
+                rgba(12, 127, 64, .5) 0%,
                 rgba(4, 183, 190, 0.2) 59%,
                 rgba(0, 212, 255, 0.1) 100%
             );

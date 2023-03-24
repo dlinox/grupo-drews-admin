@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cliente;
+use App\Models\Mensaje;
 use App\Models\Producto;
 use App\Models\Reserva;
 use App\Models\Servicio;
@@ -41,6 +42,39 @@ class ReservaController extends Controller
             'filters' => $request->all('search'),
             'reservas' => $reservas
         ]);
+    }
+
+    public function mensajes(Request $request)
+    {
+
+        $search = $request->search ?? '';
+
+        $mensajes  = Mensaje::select()
+            ->orWhere('nombres', 'LIKE', '%' . $search . '%')
+            ->orWhere('apellidos', 'LIKE', '%' . $search . '%')
+            ->orWhere('correo', 'LIKE', '%' . $search . '%')
+            ->orWhere('celular', 'LIKE', '%' . $search . '%')
+            ->orWhere('mensaje', 'LIKE', '%' . $search . '%')
+            ->paginate(10);
+
+
+        return Inertia::render('Administrador/Mensajes/index',  [
+            'filters' => $request->all('search'),
+            'mensajes' => $mensajes
+        ]);
+    }
+
+    public function cambiarEstado(Request $request)
+    {
+        $res = Reserva::find($request->id);
+
+        $estado = $request->estado == 'atender' ? 1 :0;
+
+        $res->estado = $estado;
+
+        $res->save();
+
+        return back();
     }
 }
 /**

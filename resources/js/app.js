@@ -1,10 +1,8 @@
 import "./bootstrap";
 import { createApp, h } from "vue";
-import { createInertiaApp } from "@inertiajs/vue3";
+import { createInertiaApp, router } from "@inertiajs/vue3";
 
 import NProgress from "nprogress";
-import { router } from "@inertiajs/vue3";
-
 
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
@@ -60,7 +58,8 @@ import {
     NInputNumber,
     NPagination,
     NRadioGroup,
-    NRadio
+    NRadio,
+    NDynamicInput
 } from "naive-ui";
 
 const options = {
@@ -139,6 +138,7 @@ createInertiaApp({
             .component("NPagination", NPagination)
             .component("NRadioGroup", NRadioGroup)
             .component("NRadio", NRadio)
+            .component("NDynamicInput", NDynamicInput)
             .use(Toast, options)
             .use(plugin)
             .mount(el);

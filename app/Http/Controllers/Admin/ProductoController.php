@@ -79,8 +79,6 @@ class ProductoController extends Controller
         );
 
 
-
-
         $data = [
             'detalle' => $request->detalle,
             'descripcion' => $request->descripcion,
@@ -94,7 +92,11 @@ class ProductoController extends Controller
             'capacidad' => $request->capacidad,
             'aire_acondicionado' => $request->aire_acondicionado ?? false,
             'equipaje' => $request->equipaje,
-            'contenido' => $request->contenido,
+            //'contenido' => $request->contenido,
+
+            'tipo_v' => $request->tipo_v,
+            'seguridad' => $request->seguridad,
+
         ];
 
 
