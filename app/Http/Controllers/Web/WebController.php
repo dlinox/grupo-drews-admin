@@ -33,6 +33,8 @@ class WebController extends Controller
                 'equipaje',
                 'contenido',
                 'imagenes',
+                'seguridad',
+                'tipo_v'
             ]
         );
         $clientes = Cliente::select('id', 'r_social', 'logo')->where('publico', 1)->get();

@@ -51,8 +51,8 @@ class Producto extends Model
     protected function seguridad(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => explode('|-|', $value),
-            set: fn ($value) => implode('|-|', $value),
+            get: fn ($value) => $value ?? explode('|-|', $value),
+            set: fn ($value) => $value ? implode('|-|', $value) : null,
         );
     }
 }

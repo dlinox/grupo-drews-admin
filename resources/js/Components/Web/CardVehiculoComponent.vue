@@ -106,6 +106,22 @@
                     <n-statistic label="Equipaje." :value="item.equipaje" />
                 </n-gi>
             </n-grid>
+
+            <div v-if="item.tipo_v == 'Empresa'">
+                <hr />
+                <h6>Implementos De Seguridad</h6>
+                <div class="row">
+                    <div class="col-12">
+                        <ul>
+                            <li v-for="j in item.seguridad">
+                                <i class="fa-solid fa-arrow-right me-2"></i>
+                                {{ j }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
             <template #footer>
                 <n-space justify="space-between">
                     <a
