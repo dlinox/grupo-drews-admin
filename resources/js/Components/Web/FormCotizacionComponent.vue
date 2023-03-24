@@ -1,18 +1,16 @@
 <template>
     <n-form class="form-web-cotizacion">
         <div class="row">
-            <template v-if="!producto">
-                <div class="col-12">
-                    <n-form-item path="web_telefonos" label="Seleecione una">
-                        <n-radio-group v-model:value="formData.para">
-                            <n-space>
-                                <n-radio value="Empresa"> Empresa </n-radio>
-                                <n-radio value="Persona"> Persona </n-radio>
-                            </n-space>
-                        </n-radio-group>
-                    </n-form-item>
-                </div>
-            </template>
+            <div class="col-12">
+                <n-form-item path="web_telefonos" label="Seleecione una">
+                    <n-radio-group v-model:value="formData.para">
+                        <n-space>
+                            <n-radio value="Empresa"> Empresa </n-radio>
+                            <n-radio value="Persona"> Persona </n-radio>
+                        </n-space>
+                    </n-radio-group>
+                </n-form-item>
+            </div>
 
             <template v-if="formData.para == 'Empresa'">
                 <div class="col-12 col-md-6">
