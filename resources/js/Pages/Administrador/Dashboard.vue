@@ -15,7 +15,7 @@
                             <div class="shapes">
                                 <div class="shape shape-1"></div>
                                 <div class="shape shape-2"></div>
-                                <div class="shape shape-3"></div>
+                                
                             </div>
                             <n-icon class="card-icon"> <Car /> </n-icon>
                             <h1>{{ vehiculos }}</h1>
@@ -28,7 +28,6 @@
                             <div class="shapes">
                                 <div class="shape shape-1"></div>
                                 <div class="shape shape-2"></div>
-                                <div class="shape shape-3"></div>
                             </div>
                             <n-icon class="card-icon"> <Business /> </n-icon>
 
@@ -42,7 +41,7 @@
                             <div class="shapes">
                                 <div class="shape shape-1"></div>
                                 <div class="shape shape-2"></div>
-                                <div class="shape shape-3"></div>
+
                             </div>
                             <n-icon class="card-icon"> <PeopleSharp /> </n-icon>
                             <h1>{{ clientes }}</h1>
@@ -55,7 +54,6 @@
                             <div class="shapes">
                                 <div class="shape shape-1"></div>
                                 <div class="shape shape-2"></div>
-                                <div class="shape shape-3"></div>
                             </div>
                             <n-icon class="card-icon"> <PersonSharp /> </n-icon>
                             <h1>{{ usuarios }}</h1>
@@ -139,7 +137,7 @@ const props = defineProps({
     overflow: hidden;
     position: relative;
     border: none;
-    box-shadow: 0px 5px 10px 0px rgba($app-color1, 0.3);
+    box-shadow: 0px 5px 10px 0px rgba(#555, 0.1);
     .card-icon {
         position: absolute;
         bottom: 0;

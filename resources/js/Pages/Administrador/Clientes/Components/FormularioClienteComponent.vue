@@ -1,9 +1,7 @@
 <template>
-   
-        <n-button :type="edit ? '' : 'primary'" @click="showModal = true">
-            {{ btn_text }}
-        </n-button>
-    
+    <n-button :type="edit ? '' : 'primary'" @click="showModal = true">
+        {{ btn_text }}
+    </n-button>
 
     <n-modal v-model:show="showModal">
         <n-card
@@ -20,12 +18,14 @@
                             <n-select
                                 v-model:value="formData.tipo_doc"
                                 :options="ops_tipo_doc"
+                                placeholder="Seleccione uno"
                             />
                         </n-form-item>
                     </n-grid-item>
                     <n-grid-item>
                         <n-form-item path="num_doc" label="N° Documento">
                             <n-input
+                                :disabled="!formData.tipo_doc"
                                 v-model:value="formData.num_doc"
                                 placeholder="71822318"
                                 :allow-input="onlyAllowNumber"
@@ -37,8 +37,14 @@
                     <n-grid-item span="2">
                         <n-form-item path="r_social" label="Razon social">
                             <n-input
+                                :disabled="
+                                    formData.tipo_doc == 'RUC' ||
+                                    !formData.tipo_doc
+                                        ? false
+                                        : true
+                                "
                                 v-model:value="formData.r_social"
-                                placeholder="clientse"
+                                placeholder="Razon social"
                             />
                         </n-form-item>
                     </n-grid-item>
@@ -47,7 +53,7 @@
                         <n-form-item path="nombre" label="Nombre">
                             <n-input
                                 v-model:value="formData.nombre"
-                                placeholder="clientse"
+                                placeholder="Nombres"
                             />
                         </n-form-item>
                     </n-grid-item>
@@ -77,12 +83,14 @@
                     </n-grid-item>
 
                     <n-grid-item>
-                        <CropCompressImageComponent
-                            @onCropper="
-                                (preview_img = $event.blob),
-                                    (formData.logo = $event.file)
-                            "
-                        />
+                        <n-form-item path="logo" label="Logo">
+                            <CropCompressImageComponent
+                                @onCropper="
+                                    (preview_img = $event.blob),
+                                        (formData.logo = $event.file)
+                                "
+                            />
+                        </n-form-item>
                     </n-grid-item>
 
                     <n-grid-item>
@@ -118,10 +126,10 @@ import { useForm } from "@inertiajs/vue3";
 
 import CropCompressImageComponent from "@/Components/CropCompressImageComponent.vue";
 import { useToast } from "vue-toastification";
+
+import { onlyAllowNumber } from "@/helpers/validaciones";
+
 const toast = useToast();
-
-
-const onlyAllowNumber = (value) => !value || /^\d+$/.test(value);
 
 const ops_tipo_doc = [
     {
@@ -165,19 +173,14 @@ const props = defineProps({
     },
 });
 
-const formRef = ref(null);
-
-
 const showModal = ref(false);
-
-const formData = useForm({ ...props.cliente });
-
 const preview_img = ref(props.cliente.logo);
 
-watch(showModal, (val) => {
-    // console.log(data);
-    if (val == false) {
+const formRef = ref(null);
+const formData = useForm({ ...props.cliente });
 
+watch(showModal, (val) => {
+    if (val == false) {
         formData.reset();
         return;
     }
@@ -187,31 +190,58 @@ watch(showModal, (val) => {
 });
 
 const rules = {
-    detalle: {
-        required: true,
-        message: "Obligaorio",
+    num_doc: {
+        required: formData.tipo_doc ? true : false,
+        validator(rule, value) {
+            let long =
+                formData.tipo_doc == "DNI"
+                    ? 8
+                    : formData.tipo_doc == "RUC"
+                    ? 11
+                    : 12;
+            if (!value) {
+                return true;
+            } else if (value.toString().length != long) {
+                return new Error("Número de documento invalido");
+            }
+            return true;
+        },
+
         trigger: ["input", "blur"],
     },
-    descripcion: {
+    r_social: {
         required: true,
-        message: "Obligaorio",
+        message: "Razon social obligatorio",
         trigger: ["input", "blur"],
     },
-    figura: {
+    logo: {
         required: true,
-        message: "Obligaorio",
-        trigger: ["input", "blur"],
+        message: "Logo  obligaorio",
+
     },
 };
 
 const submit = async (e) => {
     e.preventDefault();
-    await formRef.value?.validate(async (errors) => {
+
+    formData.r_social =
+        formData.tipo_doc == "RUC" || !formData.tipo_doc
+            ? formData.r_social
+            : formData.nombre + " " + formData.apellidos;
+
+    await formRef.value?.validate((errors) => {
         if (!errors) {
             guardar();
         } else {
             console.log(errors);
-            toast.error("Datos ingresado no validos");
+
+            errors.forEach((element) => {
+                console.log(element);
+
+                element.forEach((item) => {
+                    toast.error(item.message);
+                });
+            });
         }
     });
 };
@@ -226,13 +256,14 @@ const guardar = () => {
             console.log(e);
         },
         onSuccess: () => {
-            toast.success( props.edit ? "Servicios editado" : "Servicios creado" );
+            toast.success(
+                props.edit ? "Servicios editado" : "Servicios creado"
+            );
             formData.reset();
             showModal.value = false;
         },
     });
 };
-
 </script>
 
 <style>

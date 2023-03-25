@@ -27,7 +27,6 @@
                             <th>Asunto</th>
                             <th>mensaje</th>
                             <th>estado</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -59,26 +58,27 @@
                                     @select="cambiarEstado($event, item.id)"
                                 >
                                     <n-button
-                                        tertiary
+                                        :loading="btnEstadoLoading"
+                                        secondary
                                         :type="
-                                            item.estado == null
-                                                ? ''
-                                                : item.estado == 0
+                                            item.estado == 0
                                                 ? 'error'
-                                                : 'success'
+                                                : item.estado == 1
+                                                ? 'success'
+                                                : 'warning'
                                         "
                                     >
                                         {{
-                                            item.estado == null
-                                                ? "En espera"
-                                                : item.estado == 0
+                                            item.estado == 0
                                                 ? "Cancelado"
-                                                : "Atendido"
+                                                : item.estado == 1
+                                                ? "Atendido"
+                                                : "En espera"
                                         }}
+
                                     </n-button>
                                 </n-dropdown>
                             </td>
-
                         </tr>
                     </tbody>
                 </n-table>
@@ -118,6 +118,8 @@ const page = ref(props.reservas.current_page);
 const totalPages = computed(() => props.reservas.last_page);
 const totalResults = computed(() => props.reservas.total);
 
+const btnEstadoLoading = ref(false);
+
 const options = [
     {
         label: "Marcar como atendido",
@@ -137,15 +139,19 @@ const cambiarEstado = (val, id) => {
         "/admin/reservas/estado",
         { estado: val, id: id },
         {
+            onStart: () => {
+                btnEstadoLoading.value = true;
+            },
+            onFinish: () => {
+                btnEstadoLoading.value = false;
+            },
             onError: (e) => {
                 for (const property in e) {
                     toast.error(e[property]);
                 }
-                console.log(e);
             },
             onSuccess: (e) => {
                 toast.success("Estado actualizado");
-                console.log(e);
             },
         }
     );
