@@ -255,7 +255,7 @@ const collapsed_width = computed(() => {
 initialize();
 </script>
 
-<style>
+<style lang="scss">
 .wrapper {
     padding: 1rem 2rem;
 }
@@ -275,8 +275,38 @@ initialize();
     opacity: 1;
     transform: translateX(0);
 }
+* {
+    font-family: $font-raj;
+    letter-spacing: 0.2px;
+    font-weight: 600;
+}
+th {
+    font-weight: 900;
+}
+td {
+    font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-teko;
+    letter-spacing: 1px;
+}
+
+.n-button__content {
+    font-family: $font-raj;
+    font-weight: 500;
+    text-transform: uppercase;
+}
 
 .n-form-item-feedback__line {
     font-size: 0.7rem;
+}
+.n-input__input-el{
+    font-weight: 500;
 }
 </style>

@@ -33,7 +33,7 @@
                             <td>{{ item.id }}</td>
                             <td>{{ item.name }}</td>
                             <td>{{ item.email }}</td>
-                            <td style="width: 180px">
+                            <td style="max-width: 200px">
                                 <n-space justify="end">
                                     <FormularioUsuarioComponent
                                         btn_text="Editar"

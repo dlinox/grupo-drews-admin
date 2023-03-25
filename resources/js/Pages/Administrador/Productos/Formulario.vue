@@ -5,7 +5,7 @@
             <n-divider />
 
             <n-card>
-                <n-form ref="formRef" :model="formData">
+                <n-form ref="formRef" :model="formData" :rules="rules">
                     <n-grid cols="1 600:3" :x-gap="20" :y-gap="20">
                         <n-grid-item span="1  600:2">
                             <div class="light-green">
@@ -83,6 +83,7 @@
                                                     formData.categoria
                                                 "
                                                 :options="categorias"
+                                                placeholder="Seleccione uno"
                                             />
                                         </n-form-item>
                                     </n-grid-item>
@@ -94,6 +95,7 @@
                                                 value-field="detalle"
                                                 v-model:value="formData.tipo"
                                                 :options="tipos"
+                                                placeholder="Seleccione uno"
                                             />
                                         </n-form-item>
                                     </n-grid-item>
@@ -110,6 +112,7 @@
                                                     formData.combustible
                                                 "
                                                 :options="combustibles"
+                                                placeholder="Seleccione uno"
                                             />
                                         </n-form-item>
                                     </n-grid-item>
@@ -186,6 +189,7 @@
                                                         formData.seguridad
                                                     "
                                                     placeholder="Implementos de seguridad"
+                                                    show-sort-button
                                                     :min="1"
                                                     :max="15"
                                                 />
@@ -204,15 +208,30 @@
                                             :key="index"
                                         >
                                             <n-space>
-                                                <CropCompressImageComponent
-                                                    @onCropper="
-                                                        (blob_imgs[index] =
-                                                            $event.blob),
-                                                            file_imgs.push(
-                                                                $event.file
-                                                            )
+                                                <n-form-item
+                                                    :path="`imagenes[${index}]`"
+                                                    :label="
+                                                        'Imagen ' + (index + 1)
                                                     "
-                                                />
+                                                    :rule="{
+                                                        required: producto.id
+                                                            ? false
+                                                            : true,
+                                                        message: `Imagen ${
+                                                            index + 1
+                                                        } obligatorio`,
+                                                    }"
+                                                >
+                                                    <CropCompressImageComponent
+                                                        @onCropper="
+                                                            (blob_imgs[index] =
+                                                                $event.blob),
+                                                                file_imgs.push(
+                                                                    $event.file
+                                                                )
+                                                        "
+                                                    />
+                                                </n-form-item>
 
                                                 <n-image
                                                     :src="blob_imgs[index]"
@@ -311,38 +330,82 @@ const file_imgs = ref([]);
 
 /*************************** */
 
-const guardar = () => {
+const rules = {
+    detalle: {
+        required: true,
+        message: "Titulo obligatorio",
+        trigger: ["input", "blur"],
+    },
+    marca: {
+        required: true,
+        message: "Marca obligatorio",
+        trigger: ["input", "blur"],
+    },
+    modelo: {
+        required: true,
+        message: "Modelo obligatorio",
+        trigger: ["input", "blur"],
+    },
+
+    categoria: {
+        required: true,
+        message: "Categoria obligatorio",
+        trigger: ["input", "blur"],
+    },
+
+    tipo: {
+        required: true,
+        message: "Tipo obligatorio",
+        trigger: ["input", "blur"],
+    },
+
+    aire_acondicionado: {
+        required: true,
+        message: "Aire acondicionado obligatorio",
+        trigger: ["input", "blur"],
+    },
+};
+
+const guardar = async () => {
     formData.imagenes = file_imgs.value;
 
-    console.log("****************");
-    console.log(formData.imagenes);
-    console.log("****************");
+    await formRef.value?.validate((errors) => {
+        if (!errors) {
+            formData.post("/admin/productos", {
+                preserveScroll: true,
+                onError: (e) => {
+                    for (const property in e) {
+                        console.log(e[property]);
+                        toast.error(e[property]);
+                    }
+                    console.log(e);
+                },
+                onSuccess: (e) => {
+                    console.log(e);
+                    toast.success(
+                        props.producto?.id
+                            ? "Producto actualizado"
+                            : "Producto Creado"
+                    );
+                    formData.reset();
+                },
+            });
+        } else {
+            errors.forEach((element) => {
+                console.log(element);
 
-    console.log(formData);
-
-    formData.post("/admin/productos", {
-        preserveScroll: true,
-        onError: (e) => {
-            for (const property in e) {
-                console.log(e[property]);
-                toast.error(e[property]);
-            }
-            console.log(e);
-        },
-        onSuccess: (e) => {
-            console.log(e);
-            toast.success(
-                props.producto?.id ? "Producto actualizado" : "Producto Creado"
-            );
-            formData.reset();
-        },
+                element.forEach((item) => {
+                    toast.error(item.message);
+                });
+            });
+        }
     });
 };
 </script>
 
 <style>
 .n-form-item-label__text {
-    text-transform: capitalize;
+    text-transform: uppercase;
 }
 
 .n-input__placeholder {
