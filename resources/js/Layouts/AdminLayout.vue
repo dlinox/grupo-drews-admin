@@ -255,16 +255,14 @@ const collapsed_width = computed(() => {
 initialize();
 </script>
 
-<style scoped>
-.wrapper{
-    padding: 1rem 2rem
+<style>
+.wrapper {
+    padding: 1rem 2rem;
 }
 @media (max-width: 600px) {
-  .wrapper {
-    padding: 1rem .5rem
-
-  }
-
+    .wrapper {
+        padding: 1rem 0.5rem;
+    }
 }
 .committee-enter-from {
     opacity: 0;
@@ -276,5 +274,9 @@ initialize();
 .committee-enter-to {
     opacity: 1;
     transform: translateX(0);
+}
+
+.n-form-item-feedback__line {
+    font-size: 0.7rem;
 }
 </style>

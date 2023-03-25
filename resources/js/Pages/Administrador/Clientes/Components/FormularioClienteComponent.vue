@@ -217,7 +217,6 @@ const rules = {
     logo: {
         required: true,
         message: "Logo  obligaorio",
-
     },
 };
 

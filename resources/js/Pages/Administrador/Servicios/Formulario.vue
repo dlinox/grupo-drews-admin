@@ -4,7 +4,7 @@
             <PageHeaderComponent :title="'Servicios - ' + text_form" />
 
             <n-card class="mt-1">
-                <n-form ref="formRef" :model="formData">
+                <n-form ref="formRef" :model="formData" :rules="rules">
                     <n-grid cols="1 600:5" :x-gap="20" :y-gap="20">
                         <n-grid-item span="1  600:3">
                             <n-form-item path="titulo" label="titulo">
@@ -18,7 +18,7 @@
                                 <n-input
                                     type="textarea"
                                     v-model:value="formData.descripcion"
-                                    placeholder="Contamos con una variedad..."
+                                    placeholder="Descripción corta..."
                                 />
                             </n-form-item>
 
@@ -108,22 +108,37 @@
                                     />
                                 </n-form-item>
 
-                                <n-form-item path="imagenes" label="Imagenes">
+                                <n-form-item label="Imagenes">
                                     <n-space vertical>
                                         <n-card
                                             v-for="(item, index) in 3"
                                             :key="index"
                                         >
                                             <n-space>
-                                                <CropCompressImageComponent
-                                                    @onCropper="
-                                                        (blob_imgs[index] =
-                                                            $event.blob),
-                                                            file_imgs.push(
-                                                                $event.file
-                                                            )
+                                                <n-form-item
+                                                    :path="`imagenes[${index}]`"
+                                                    :label="
+                                                        'Imagen ' + (index + 1)
                                                     "
-                                                />
+                                                    :rule="{
+                                                        required: servicio.id
+                                                            ? false
+                                                            : true,
+                                                        message: `Imagen ${
+                                                            index + 1
+                                                        } obligatorio`,
+                                                    }"
+                                                >
+                                                    <CropCompressImageComponent
+                                                        @onCropper="
+                                                            (blob_imgs[index] =
+                                                                $event.blob),
+                                                                file_imgs.push(
+                                                                    $event.file
+                                                                )
+                                                        "
+                                                    />
+                                                </n-form-item>
 
                                                 <n-image
                                                     :src="blob_imgs[index]"
@@ -152,7 +167,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import { useForm, router } from "@inertiajs/vue3";
+import { useForm } from "@inertiajs/vue3";
 
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
@@ -179,7 +194,8 @@ const text_form = computed(() => (props.servicio.id ? "Editar" : "Crear"));
 const text_btn = computed(() => (props.servicio.id ? "Actualizar" : "Guardar"));
 
 const formRef = ref(null);
-const imagenes = ref(props.servicio.imagenes ?? []);
+
+//const imagenes = ref(props.servicio.imagenes ?? []);
 
 const formData = useForm({ ...props.servicio });
 
@@ -188,18 +204,49 @@ const blob_imgs = ref(props.servicio.imagenes ?? [null, null, null]);
 const file_imgs = ref([]);
 /*************************** */
 
-const submit = () => {
+const rules = {
+    titulo: {
+        required: true,
+        message: "Titulo obligatorio",
+        trigger: ["input", "blur"],
+    },
+    figura: {
+        required: true,
+        message: "Icono obligatorio",
+        trigger: ["input", "blur"],
+    },
+    descripcion: {
+        required: true,
+        message: "Descripción obligatorio",
+        trigger: ["input", "blur"],
+    },
+};
+
+const submit = async () => {
     formData.imagenes = file_imgs.value;
     console.log(formData.imagenes);
     // return;
-    console.log(formData);
-    if (props.servicio.id) {
-        console.log("editar");
-        editar();
-    } else {
-        console.log("nuevo");
-        guardar();
-    }
+
+    await formRef.value?.validate((errors) => {
+        if (!errors) {
+            console.log(formData);
+            if (props.servicio.id) {
+                console.log("editar");
+                editar();
+            } else {
+                console.log("nuevo");
+                guardar();
+            }
+        } else {
+            errors.forEach((element) => {
+                console.log(element);
+
+                element.forEach((item) => {
+                    toast.error(item.message);
+                });
+            });
+        }
+    });
 };
 
 const guardar = () => {
