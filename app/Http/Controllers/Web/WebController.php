@@ -40,6 +40,11 @@ class WebController extends Controller
         $clientes = Cliente::select('id', 'r_social', 'logo')->where('publico', 1)->get();
 
         $sliders = Slider::all();
+
+
+    
+
+        
         return Inertia::render('Web/Inicio/index', [
             'servicios'  => $servicios,
             'vehiculos' => $vehiculos,

@@ -1,6 +1,7 @@
 <template>
     <section class="inicio-galeria">
         <swiper
+            @swiper="onSwiperSider"
             :slides-per-view="1"
             :loop="false"
             :space-between="0"
@@ -17,12 +18,14 @@
                 },
             }"
         >
-            <swiper-slide v-for="(item, index) in galeria.flat()" :key="index">
+            <swiper-slide v-for="(item, index) in galeria" :key="index">
                 <div class="img-wrapper">
-                    <img :src="item" alt="" />
+                    <img :src="item.src" alt="" />
                     <div class="detalle">
                         <div class="content text-center">
-                            <span class="text-center">Toyota Hlux </span>
+                            <span class="text-center">
+                                {{ item.detalle }}
+                            </span>
 
                             <button
                                 class="btn-view-img"
@@ -39,6 +42,22 @@
             </swiper-slide>
         </swiper>
 
+        <div class="w-100 text-center">
+            <button
+                class="btn btn-sm btn-outline-dark rounded-0"
+                @click="swiperSider.slidePrev()"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+            <button
+                class="btn btn-sm btn-outline-dark rounded-0"
+                @click="swiperSider.slideNext()"
+            >
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+
         <transition name="fade">
             <div v-if="showGalery" class="modal-gallery">
                 <div class="overlay" @click="showGalery = !showGalery"></div>
@@ -51,11 +70,11 @@
                             :loop="true"
                         >
                             <swiper-slide
-                                v-for="(item, index) in galeria.flat()"
+                                v-for="(item, index) in galeria"
                                 :key="index"
                             >
                                 <div class="img-gallery">
-                                    <img :src="item" alt="" />
+                                    <img :src="item.src" alt="" />
                                 </div>
                             </swiper-slide>
                         </swiper>
@@ -97,7 +116,7 @@ const props = defineProps({
     vehiculos: Array,
 });
 
-const galeria = props.vehiculos.map((item) => item.imagenes);
+const galeria = ref([]);
 
 const initial = ref(null);
 
@@ -105,9 +124,26 @@ const showGalery = ref(false);
 
 const swiperGallery = ref(null);
 
+const swiperSider = ref(null);
+
 const onSwiper = (swiper) => {
     swiperGallery.value = swiper;
 };
+
+const onSwiperSider = (swiper) => {
+    swiperSider.value = swiper;
+};
+
+const init = () => {
+    props.vehiculos.forEach((item) => {
+        //console.log(item.imagenes);
+        item.imagenes.forEach((element) => {
+            galeria.value.push({ src: element, detalle: item.detalle });
+        });
+    });
+};
+
+init();
 
 //const galeria2 = Array.flat(galeria);
 </script>
