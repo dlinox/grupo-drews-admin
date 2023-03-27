@@ -56,13 +56,12 @@
                                 >Transmisión</label
                             >
                             <select
-                                class=""
                                 aria-label="Default select example"
-                                id="transmision"
+                                v-model="filters.transmision"
                             >
                                 <option selected>-- Transmisión --</option>
-                                <option value="1">Manual</option>
-                                <option value="2">Automática</option>
+                                <option value="Manual">Manual</option>
+                                <option value="Automatico">Automática</option>
                             </select>
                         </div>
 
@@ -80,6 +79,7 @@
                     </div>
                 </div>
             </section>
+
             <section class="container py-5">
                 <div class="row g-4">
                     <div
@@ -137,6 +137,7 @@ const filterVehiculo = () => {
     }
 
     if (filters.value.transmision) {
+        console.log(filters.value.transmision);
         temp = temp.filter((item) => item.tipo == filters.value.transmision);
     }
 
