@@ -29,7 +29,7 @@
                         <img
                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAArElEQVR4nO2UPQrCQBBG3/GMbKGkNFXOJHaCbbT2DpIb2MYLWBmxWQlMICy7IssMKfSDr1jm580y7MKvqAV84IsmwCesDhiVBVgCtw/T+i899ChiAI3mXtzFAGPQicOzSzhVNz/AZVoFcAR6oLEC9JL7sAI0wQ0qYGWxgw1wAp7AVhNQA2fgNam7agL2k/w7cABKTUApE++AtcWSXc47MP+LCgloNF/EAH/NozczkM4nImzfogAAAABJRU5ErkJggg=="
                         />
-                        <span> {{ item.equipaje }} Equipa.</span>
+                        <span> {{ item.equipaje }} KG</span>
                     </div>
                     <div class="col-3">
                         <img
@@ -103,7 +103,7 @@
                 </n-gi>
 
                 <n-gi>
-                    <n-statistic label="Equipaje." :value="item.equipaje" />
+                    <n-statistic label="Equipaje." :value="item.equipaje + 'KG'" />
                 </n-gi>
             </n-grid>
 
