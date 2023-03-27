@@ -150,6 +150,25 @@
                                                 </n-form-item>
 
                                                 <n-form-item
+                                                    path="web_social_linkedin"
+                                                >
+                                                    <n-input
+                                                        v-model:value="
+                                                            formData.web_social_linkedin
+                                                        "
+                                                        placeholder="Linkedin"
+                                                    >
+                                                        <template #prefix>
+                                                            <n-icon
+                                                                :component="
+                                                                    LogoLinkedin
+                                                                "
+                                                            />
+                                                        </template>
+                                                    </n-input>
+                                                </n-form-item>
+
+                                                <n-form-item
                                                     path="web_social_instagram"
                                                 >
                                                     <n-input
@@ -243,7 +262,6 @@ import { useToast } from "vue-toastification";
 import { QuillEditor } from "@vueup/vue-quill";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
-import UploadImageComponent from "@/Components/UploadImageComponent.vue";
 import FormSedesComponent from "./components/FormSedesComponent.vue";
 import FormSlideComponent from "./components/FormSlideComponent.vue";
 import CropCompressImageComponent from "../../../Components/CropCompressImageComponent.vue";
@@ -253,6 +271,7 @@ import {
     LogoInstagram,
     LogoYoutube,
     LogoTwitter,
+    LogoLinkedin,
 } from "@vicons/ionicons5";
 
 const toast = useToast();

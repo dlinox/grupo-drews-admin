@@ -3,7 +3,6 @@
         <div class="container">
             <PageHeaderComponent title="Productos - Nuevo" />
             <n-divider />
-
             <n-card>
                 <n-form ref="formRef" :model="formData" :rules="rules">
                     <n-grid cols="1 600:3" :x-gap="20" :y-gap="20">
@@ -167,9 +166,7 @@
                                             label="aire acondicionado"
                                         >
                                             <n-switch
-                                                v-model:value="
-                                                    formData.aire_acondicionado
-                                                "
+                                                v-model:value="formData.aire_acondicionado"
                                             />
                                         </n-form-item>
                                     </n-grid-item>
@@ -359,11 +356,7 @@ const rules = {
         trigger: ["input", "blur"],
     },
 
-    aire_acondicionado: {
-        required: true,
-        message: "Aire acondicionado obligatorio",
-        trigger: ["input", "blur"],
-    },
+
 };
 
 const guardar = async () => {

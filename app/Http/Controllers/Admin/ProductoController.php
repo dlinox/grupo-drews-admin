@@ -90,7 +90,7 @@ class ProductoController extends Controller
             'cilindrada' => $request->cilindrada,
             'puertas' => $request->puertas,
             'capacidad' => $request->capacidad,
-            'aire_acondicionado' => $request->aire_acondicionado ?? false,
+            'aire_acondicionado' => $request->aire_acondicionado,
             'equipaje' => $request->equipaje,
             //'contenido' => $request->contenido,
 

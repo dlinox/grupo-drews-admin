@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('web_social_facebook', 150)->nullable();
             $table->string('web_social_instagram', 150)->nullable();
             $table->string('web_social_youtube', 150)->nullable();
+            $table->string('web_social_linkedin', 150)->nullable();
             $table->string('web_social_twitter', 150)->nullable();
             $table->string('web_update')->default(Uuid::uuid4());
             $table->timestamps();

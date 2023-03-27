@@ -68,7 +68,7 @@ class ReservaController extends Controller
     {
         $res = Reserva::find($request->id);
 
-        $estado = $request->estado == 'atender' ? 1 :0;
+        $estado = $request->estado == 'atender' ? 1 : ($request->estado == 'espera' ? NULL : 0);
 
         $res->estado = $estado;
 

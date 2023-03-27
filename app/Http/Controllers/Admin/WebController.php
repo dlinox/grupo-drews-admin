@@ -33,6 +33,7 @@ class WebController extends Controller
             'web_social_instagram' => $res->web_social_instagram,
             'web_social_youtube' => $res->web_social_youtube,
             'web_social_twitter' => $res->web_social_twitter,
+            'web_social_linkedin' => $res->web_social_linkedin,
             'sedes' => Sede::all(['id', 'ubigeo', 'direccion', 'telefono', 'celulares', 'principal', 'estado']),
 
         ];
@@ -79,6 +80,7 @@ class WebController extends Controller
             'web_social_instagram' => $request->web_social_instagram,
             'web_social_youtube' => $request->web_social_youtube,
             'web_social_twitter' => $request->web_social_twitter,
+            'web_social_linkedin' => $request->web_social_linkedin,
         ];
 
         if ($res->update($configuracion)) {

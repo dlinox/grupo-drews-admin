@@ -48,11 +48,20 @@ class Producto extends Model
     }
 
 
+
     protected function seguridad(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value ? explode('|-|', $value) :null,
+            get: fn ($value) => $value ? explode('|-|', $value) : null,
             set: fn ($value) => $value ? implode('|-|', $value) : null,
+        );
+    }
+
+    protected function aireAcondicionado(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value  == 1 ? true : false,
+            set: fn ($value) => $value ? 1 : 0,
         );
     }
 }

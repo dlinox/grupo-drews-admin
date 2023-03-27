@@ -24,7 +24,15 @@
                                 <i class="fa-brands fa-square-facebook"></i>
                             </a>
 
-                            <a class="item-link" href="#" target="_blank">
+                            <a
+                                class="item-link"
+                                :href="web.social.linkedin"
+                                target="_blank"
+                            >
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+
+                            <a class="item-link" target="_blank">
                                 <i class="fa-solid fa-location-dot me-2"></i>
                                 <small>{{ web?.sedes[0]?.direccion }}</small>
                             </a>
@@ -281,6 +289,11 @@ $h-header-top: 50px;
                             transition: color 0.3s ease;
                             &:hover {
                                 color: $app-color1;
+                            }
+
+                            small {
+                                font-weight: 400;
+                                font-size: 1rem;
                             }
                         }
                     }
@@ -540,18 +553,13 @@ $h-header-top: 50px;
 @media (max-width: 992px) {
     .web-header {
         .header-top {
-           
             .container {
-               
                 .top-right.top-social {
                     ul.social-list {
-            
-
                         li.social-item {
                             a.item-link {
-    
-                                small{
-                                    font-size: .8rem;
+                                small {
+                                    font-size: 0.8rem;
                                 }
                             }
                         }
@@ -591,29 +599,22 @@ $h-header-top: 50px;
 
 @media (max-width: 768px) {
     .web-header {
-
         .header-top {
-           
-           .container {
-              
-               .top-right.top-social {
-                   ul.social-list {
-           
-
-                       li.social-item {
-                           a.item-link {
-
-                            
-                               small{
-                                display: none;
-                                   font-size: .8rem;
-                               }
-                           }
-                       }
-                   }
-               }
-           }
-       }
+            .container {
+                .top-right.top-social {
+                    ul.social-list {
+                        li.social-item {
+                            a.item-link {
+                                small {
+                                    display: none;
+                                    font-size: 0.8rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         .header-bot {
             height: 80px;

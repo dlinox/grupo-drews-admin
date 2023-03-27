@@ -75,7 +75,6 @@
                                                 ? "Atendido"
                                                 : "En espera"
                                         }}
-
                                     </n-button>
                                 </n-dropdown>
                             </td>
@@ -121,6 +120,11 @@ const totalResults = computed(() => props.reservas.total);
 const btnEstadoLoading = ref(false);
 
 const options = [
+    {
+        label: "En espera",
+        key: "espera",
+    },
+
     {
         label: "Marcar como atendido",
         key: "atender",

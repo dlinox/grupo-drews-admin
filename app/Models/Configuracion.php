@@ -27,6 +27,7 @@ class Configuracion extends Model
         'web_social_instagram',
         'web_social_youtube',
         'web_social_twitter',
+        'web_social_linkedin',
         'web_update',
 
     ];
@@ -53,6 +54,7 @@ class Configuracion extends Model
                 'instagram' => $res->web_social_instagram ?? null,
                 'youtube' => $res->web_social_youtube ?? null,
                 'twitter' => $res->web_social_twitter ?? null,
+                'linkedin' => $res->web_social_linkedin ?? null,
             ],
             'sedes' => Sede::all(['id', 'ubigeo', 'direccion', 'telefono', 'celulares', 'principal', 'estado']),
 
