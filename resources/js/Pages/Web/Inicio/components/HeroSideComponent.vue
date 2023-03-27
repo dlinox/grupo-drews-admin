@@ -2,7 +2,6 @@
     <section class="hero-side">
         <swiper
             :modules="[Autoplay, EffectCube]"
-          
             :slides-per-view="1"
             :loop="true"
             :autoplay="{
@@ -10,7 +9,6 @@
                 disableOnInteraction: true,
             }"
             :space-between="0"
-           
         >
             <swiper-slide
                 v-for="(item, index) in sliders"
@@ -89,7 +87,7 @@ const props = defineProps({
             background: rgb(12, 127, 64);
             background: linear-gradient(
                 54deg,
-                rgba(12, 127, 64, .5) 0%,
+                rgba(12, 127, 64, 0.5) 0%,
                 rgba(4, 183, 190, 0.2) 59%,
                 rgba(0, 212, 255, 0.1) 100%
             );
@@ -107,6 +105,46 @@ const props = defineProps({
                     font-size: 2rem;
                     font-family: $font-teko;
                     letter-spacing: 1.5px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-side {
+        .side-wrapper {
+            aspect-ratio: 19 / 9;
+            .slide-content {
+                .container {
+                    .slide-title {
+                        font-size: 2rem;
+                    }
+                    .slide-subtitle {
+                        font-size: 1.5rem;
+
+                        letter-spacing: 1.3px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-side {
+        .side-wrapper {
+            aspect-ratio: 19 / 9;
+            .slide-content {
+                .container {
+                    .slide-title {
+                        font-size: 1.5rem;
+                    }
+                    .slide-subtitle {
+                        font-size: 1rem;
+
+                        letter-spacing: 1px;
+                    }
                 }
             }
         }

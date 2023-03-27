@@ -25,8 +25,14 @@
                 <div class="col-12 col-lg-7 slide-services">
                     <swiper
                         @swiper="onSwiper"
-                        :slides-per-view="2"
+                        :slides-per-view="1"
                         :space-between="10"
+                        :breakpoints="{
+                    
+                            500: {
+                                slidesPerView: 2,
+                            },
+                        }"
                     >
                         <swiper-slide
                             v-for="(item, index) in servicios"
@@ -38,7 +44,7 @@
 
                     <div class="slider-actions">
                         <div class="view-all">
-                            <Link href="/servicios"> Ver todos </Link>
+                            <Link href="/servicios"> Ver todo </Link>
                         </div>
                         <div class="navigation-buttons">
                             <button
@@ -121,7 +127,6 @@ const onSwiper = (swiper) => {
                     }
                 }
             }
-      
         }
     }
 }

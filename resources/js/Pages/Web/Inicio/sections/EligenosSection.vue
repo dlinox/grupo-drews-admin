@@ -6,9 +6,9 @@
                 descripcion="Por qué alquilar en DREWS"
             />
 
-            <div class="row">
+            <div class="row g-3">
                 <div
-                    class="col-6 col-md-3 col-lg-4 "
+                    class="col-12 col-md-6 col-lg-4"
                     v-for="(item, index) in items"
                 >
                     <div class="card-eligenos rounded-3 shadow-sm">

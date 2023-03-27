@@ -15,13 +15,18 @@
 
                 <div class="top-right top-social">
                     <ul class="social-list">
-                        <li
-                            class="social-item"
-                            v-for="(item, index) in web.social"
-                            :key="index"
-                        >
-                            <a v class="item-link" :href="item" target="_blank">
-                                <i :class="'fa-brands fa-square-' + index"></i>
+                        <li class="social-item">
+                            <a
+                                class="item-link"
+                                :href="web.social.facebook"
+                                target="_blank"
+                            >
+                                <i class="fa-brands fa-square-facebook"></i>
+                            </a>
+
+                            <a class="item-link" href="#" target="_blank">
+                                <i class="fa-solid fa-location-dot me-2"></i>
+                                <small>{{ web?.sedes[0]?.direccion }}</small>
                             </a>
                         </li>
                     </ul>
@@ -216,20 +221,16 @@ const menu_items = [
         name: "Vehiculos",
         href: "/vehiculos",
         icon: "fa-solid fa-car-side",
-
-        
     },
     {
         name: "Clientes",
         href: "/clientes",
         icon: "fa-solid fa-users-between-lines",
-
     },
     {
         name: "Contactanos",
         href: "/contactanos",
         icon: "fa-solid fa-phone-volume",
-
     },
 ];
 </script>
@@ -435,7 +436,7 @@ $h-header-top: 50px;
 
                                 i {
                                     font-size: 0.8rem;
-                                    margin-right: .5rem;
+                                    margin-right: 0.5rem;
                                 }
                             }
                         }
@@ -538,6 +539,27 @@ $h-header-top: 50px;
 
 @media (max-width: 992px) {
     .web-header {
+        .header-top {
+           
+            .container {
+               
+                .top-right.top-social {
+                    ul.social-list {
+            
+
+                        li.social-item {
+                            a.item-link {
+    
+                                small{
+                                    font-size: .8rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         .header-bot {
             .container {
                 .bot-left {
@@ -569,6 +591,30 @@ $h-header-top: 50px;
 
 @media (max-width: 768px) {
     .web-header {
+
+        .header-top {
+           
+           .container {
+              
+               .top-right.top-social {
+                   ul.social-list {
+           
+
+                       li.social-item {
+                           a.item-link {
+
+                            
+                               small{
+                                display: none;
+                                   font-size: .8rem;
+                               }
+                           }
+                       }
+                   }
+               }
+           }
+       }
+
         .header-bot {
             height: 80px;
             .container {

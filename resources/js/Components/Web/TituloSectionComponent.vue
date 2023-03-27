@@ -47,4 +47,22 @@ const props = defineProps({
         color: #333;
     }
 }
+
+@media (max-width: 992px) {
+}
+
+@media (max-width: 768px) {
+    .title-section {
+        padding: 35px 0 25px 0;
+        .titulo {
+            font-size: 1rem;
+        }
+        .big-text {
+            font-size: 4rem;
+        }
+        .descripcion {
+            font-size: 1.2rem;
+        }
+    }
+}
 </style>

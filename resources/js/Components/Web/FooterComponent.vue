@@ -1,9 +1,9 @@
 <template>
     <footer class="footer">
         <div class="container py-5">
-            <div class="row">
+            <div class="row g-3">
                 <div
-                    class="col-6 col-lg-4 d-flex justify-content-start align-items-center"
+                    class="col-12 col-lg-4 d-flex justify-content-center align-items-center  justify-md-content-start  mb-3"
                 >
                     <img width="150" :src="logo" alt="" />
                 </div>
