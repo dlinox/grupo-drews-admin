@@ -186,7 +186,11 @@
             aria-modal="true"
             :title="item.detalle"
         >
-            <FormCotizacionComponent :producto="item.id" tipo="Vehiculo" />
+            <FormCotizacionComponent
+                :producto="item.id"
+                tipo="Vehiculo"
+                @onSubmit="showFormCotizar = false"
+            />
         </n-card>
     </n-modal>
 </template>

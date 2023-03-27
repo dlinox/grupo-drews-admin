@@ -25,7 +25,6 @@ import VehiculosSection from "./sections/VehiculosSection.vue";
 import EligenosSection from "./sections/EligenosSection.vue";
 import GaleriaSection from "./sections/GaleriaSection.vue";
 import ClientesSection from "./sections/ClientesSection.vue";
-import { onUnmounted } from "vue";
 
 const props = defineProps({
     servicios: Array,
@@ -34,9 +33,6 @@ const props = defineProps({
     sliders: Array,
 });
 
-onUnmounted(()=>{
-
-})
 </script>
 <style lang="scss">
 .page-inicio {

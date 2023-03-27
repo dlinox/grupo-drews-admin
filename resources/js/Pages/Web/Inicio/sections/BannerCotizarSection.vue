@@ -11,7 +11,10 @@
                 <div class="right">
                     <Link
                         class="btn btn-color1"
-                        href="https://api.whatsapp.com/send?phone=051989124060"
+                        :href="
+                            'https://api.whatsapp.com/send?phone=051' +
+                            web.whatsapp
+                        "
                     >
                         <i class="fa-brands fa-whatsapp"></i> Escribenos
                     </Link>
@@ -19,9 +22,13 @@
             </div>
         </div>
     </section>
+
 </template>
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
+
+const web = computed(() => usePage().props.web_data);
 </script>
 
 <style lang="scss">

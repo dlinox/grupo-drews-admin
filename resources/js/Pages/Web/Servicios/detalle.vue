@@ -46,8 +46,6 @@
                             >
                                 <i class="fa-brands fa-whatsapp"></i> Whatsapp
                             </a>
-
-                         
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 right">
@@ -77,6 +75,7 @@
                 <FormCotizacionComponent
                     :producto="servicio.id"
                     tipo="Servicio"
+                    @onSubmit="showFormCotizar = false"
                 />
             </n-card>
         </n-modal>

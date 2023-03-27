@@ -182,7 +182,7 @@
             role="dialog"
             aria-modal="true"
         >
-            <FormCotizacionComponent />
+            <FormCotizacionComponent @onSubmit="showModal = false" />
         </n-card>
     </n-modal>
 </template>

@@ -170,6 +170,8 @@ const props = defineProps({
     tipo: String,
 });
 
+const emits = defineEmits(["onSubmit"]);
+
 const vehiculos = computed(() => usePage().props.vehiculos);
 const servicios = computed(() => usePage().props.servicios);
 
@@ -204,6 +206,8 @@ const enviarCotizacion = () => {
             console.log("enviado");
             toast.success("Solicitud Enviada");
             formData.reset();
+
+            emits("onSubmit");
         },
     });
 };
