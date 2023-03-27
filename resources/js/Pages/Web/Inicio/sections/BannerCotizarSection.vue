@@ -9,20 +9,20 @@
                     </span>
                 </div>
                 <div class="right">
-                    <Link
+                    <a
                         class="btn btn-color1"
                         :href="
                             'https://api.whatsapp.com/send?phone=051' +
                             web.whatsapp
                         "
+                        target="_blank"
                     >
                         <i class="fa-brands fa-whatsapp"></i> Escribenos
-                    </Link>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
-
 </template>
 <script setup>
 import { Link, usePage } from "@inertiajs/vue3";
