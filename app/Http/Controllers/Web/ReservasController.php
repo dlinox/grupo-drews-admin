@@ -69,8 +69,6 @@ class ReservasController extends Controller
 
         Mensaje::create($request->all());
 
-        Mail::to('nearlino20@gmail.com')->send(new CotizacionEmail($message));
+        Mail::to('richardluz2307@gmail.com')->send(new CotizacionEmail($message));
     }
-
-   
 }
