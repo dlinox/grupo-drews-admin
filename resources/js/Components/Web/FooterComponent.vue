@@ -3,7 +3,7 @@
         <div class="container py-5">
             <div class="row g-3">
                 <div
-                    class="col-12 col-lg-4 d-flex justify-content-center align-items-center  justify-md-content-start  mb-3"
+                    class="col-12 col-lg-4 d-flex justify-content-center align-items-center justify-md-content-start mb-3"
                 >
                     <img width="150" :src="logo" alt="" />
                 </div>
@@ -69,12 +69,12 @@
             </div>
         </div>
         <div class="footer-copy w-100 bg-white">
-            <div class="container text-center py-3 text-muted">
-                <small
-                    >© Copyright
-                    <span class="text-color1 fw-bold">GrupoDrews</span> . All
-                    Rights Reserved</small
-                >
+            <div
+                class="container text-center py-3 text-muted d-flex justify-content-center"
+            >
+                Copyright - Todos los derchos reservados 2023 © 
+
+                <a href="https://caripperu.com/" target="_blank" class="text-color1"> CARIP PERU</a>
             </div>
         </div>
     </footer>
