@@ -11,6 +11,7 @@
         </div>
         <div class="card-content">
             <div class="card-title">{{ item.detalle }}</div>
+
             <div class="card-descripcion">
                 <div class="row">
                     <div class="col-3">
@@ -66,6 +67,11 @@
             aria-modal="true"
             class="modal-detalles"
         >
+            <div class="mb-4">
+                {{ item.descripcion }}
+                <hr />
+            </div>
+
             <n-grid cols="2 300:3" :y-gap="20">
                 <n-gi>
                     <n-statistic label="Marca" :value="item.marca" />
@@ -103,7 +109,10 @@
                 </n-gi>
 
                 <n-gi>
-                    <n-statistic label="Equipaje." :value="item.equipaje + 'KG'" />
+                    <n-statistic
+                        label="Equipaje."
+                        :value="item.equipaje + 'KG'"
+                    />
                 </n-gi>
             </n-grid>
 
