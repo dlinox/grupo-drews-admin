@@ -79,7 +79,10 @@ class WebController extends Controller
                 'aire_acondicionado',
                 'equipaje',
                 'contenido',
+
                 'imagenes',
+                'seguridad',
+                'tipo_v'
             ]
         );
 
