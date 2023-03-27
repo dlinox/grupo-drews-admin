@@ -85,6 +85,7 @@
                     <n-grid-item>
                         <n-form-item path="logo" label="Logo">
                             <CropCompressImageComponent
+                            
                                 @onCropper="
                                     (preview_img = $event.blob),
                                         (formData.logo = $event.file)

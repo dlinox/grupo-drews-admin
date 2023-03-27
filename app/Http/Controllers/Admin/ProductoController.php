@@ -56,7 +56,9 @@ class ProductoController extends Controller
     {
         $res = Producto::find($id);
 
-        return Inertia::render('Administrador/Productos/Formulario', ['producto' => $res]);
+        $categorias = Categoria::all(['id', 'detalle']);
+
+        return Inertia::render('Administrador/Productos/Formulario', ['producto' => $res, 'categorias' => $categorias]);
     }
 
     public function store(Request $request)
