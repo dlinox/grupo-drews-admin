@@ -49,7 +49,7 @@
                                                                 item, index
                                                             ) in web.sedes"
                                                         >
-                                                            <a v-if="index < 3" href="">
+                                                            <a v-if="index < 2" href="">
                                                                 {{
                                                                     item.celulares
                                                                 }}
