@@ -92,7 +92,7 @@ watch(
     debounce(async (val) => {
         page.value = 1;
         await getIconos();
-    }, 100)
+    }, 400)
 );
 
 watch(page, () => getIconos());
