@@ -23,55 +23,57 @@
             </n-space>
         </n-card>
         <div class="table-wrapper">
-        <n-table :bordered="false" :single-line="false">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Titulo</th>
-                    <th>Descripcion</th>
-                    <th>Icono</th>
-                    <th>Op.</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in servicios.data">
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.titulo }}</td>
-                    <td>{{ item.descripcion }}</td>
-                    <td>{{ item.figura }}</td>
-                    <td style="width: 180px">
-                        <n-space justify="end">
-                            <n-button
-                                type="info"
-                                tertiary
-                                @click="
-                                    router.get(
-                                        '/admin/servicios/' + item.id + '/edit'
-                                    )
-                                "
-                            >
-                                Editar
-                            </n-button>
+            <n-table :bordered="false" :single-line="false">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Titulo</th>
+                        <th>Descripcion</th>
+                        <th>Icono</th>
+                        <th>Op.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in servicios.data">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.titulo }}</td>
+                        <td>{{ item.descripcion }}</td>
+                        <td>{{ item.figura }}</td>
+                        <td style="width: 180px">
+                            <n-space justify="end">
+                                <n-button
+                                    type="info"
+                                    tertiary
+                                    @click="
+                                        router.get(
+                                            '/admin/servicios/' +
+                                                item.id +
+                                                '/edit'
+                                        )
+                                    "
+                                >
+                                    Editar
+                                </n-button>
 
-                            <n-popconfirm
-                                :show-icon="false"
-                                negative-text="No"
-                                positive-text="Si"
-                                @positive-click="eliminarUsuario(item.id)"
-                            >
-                                <template #activator>
-                                    <n-button type="error" tertiary>
-                                        Eliminar
-                                    </n-button>
-                                </template>
-                                ¿ Seguro de elimnar al usuario ?
-                            </n-popconfirm>
-                        </n-space>
-                    </td>
-                </tr>
-            </tbody>
-        </n-table>
-</div>
+                                <n-popconfirm
+                                    :show-icon="false"
+                                    negative-text="No"
+                                    positive-text="Si"
+                                    @positive-click="eliminarUsuario(item.id)"
+                                >
+                                    <template #activator>
+                                        <n-button type="error" tertiary>
+                                            Eliminar
+                                        </n-button>
+                                    </template>
+                                    ¿ Seguro de elimnar al usuario ?
+                                </n-popconfirm>
+                            </n-space>
+                        </td>
+                    </tr>
+                </tbody>
+            </n-table>
+        </div>
         <n-card>
             <n-space justify="end">
                 <n-pagination

@@ -59,7 +59,8 @@ import {
     NPagination,
     NRadioGroup,
     NRadio,
-    NDynamicInput
+    NDynamicInput,
+    NPopover,
 } from "naive-ui";
 
 const options = {
@@ -139,6 +140,7 @@ createInertiaApp({
             .component("NRadioGroup", NRadioGroup)
             .component("NRadio", NRadio)
             .component("NDynamicInput", NDynamicInput)
+            .component("NPopover", NPopover)
             .use(Toast, options)
             .use(plugin)
             .mount(el);

@@ -93,6 +93,10 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
 
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('servicios', ServicioController::class);
+
+    Route::get('iconos', [ServicioController::class, 'getIcons'])->name('iconos');
+
+    //ICONOS FA 5
     Route::resource('productos', ProductoController::class); // VEHICULOS TEMPORAL
     Route::resource('categorias', CategoriasController::class);
 
@@ -107,7 +111,6 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::controller(ReservaController::class)->name('reservas.')->prefix('reservas')->group(function () {
         Route::get('', 'index')->name('index');
         Route::post('estado', 'cambiarEstado')->name('estado');
-
     });
 
     Route::controller(ReservaController::class)->name('mensajes.')->prefix('mensajes')->group(function () {
@@ -122,5 +125,3 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     //Route::resource('oficinas', OficinaController::class);
 
 });
-
-

@@ -17,8 +17,17 @@ class ClientesController extends Controller
         $search = $request->search ?? '';
 
         $clientes = Cliente::select('id', 'r_social', 'tipo_doc', 'nombre', 'apellidos', 'web', 'num_doc', 'logo', 'publico')
-            ->orWhere('r_social', 'LIKE', '%' . $search . '%')
-            ->orWhere('num_doc', 'LIKE', '%' . $search . '%')
+            ->where('publico', '=', 1)
+            ->where(function ($query) use ($search) {
+
+                //var_dump($request->rol);
+
+                return $query
+                    ->orWhere('r_social', 'LIKE', '%' . $search . '%')
+                    ->orWhere('num_doc', 'LIKE', '%' . $search . '%');
+            })
+
+
             ->paginate(10);
 
         return Inertia::render('Administrador/Clientes/index',  [
@@ -45,7 +54,7 @@ class ClientesController extends Controller
 
         if ($request->id) {
 
-            if ($this->actualizar($request, $request->id)) { 
+            if ($this->actualizar($request, $request->id)) {
                 //Todo: Pasar al modelo 
 
                 return redirect('/admin/clientes');

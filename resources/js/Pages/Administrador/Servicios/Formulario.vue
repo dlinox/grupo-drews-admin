@@ -105,6 +105,14 @@
                                     <n-input
                                         v-model:value="formData.figura"
                                         placeholder="fa-light fa-bell-concierge"
+                                    >
+                                        <template #prefix>
+                                           <i :class="formData.figura"></i>
+                                        </template>
+                                    </n-input>
+
+                                    <IconsComponent
+                                        @iconSelected="formData.figura = $event"
                                     />
                                 </n-form-item>
 
@@ -174,6 +182,7 @@ import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
 import CropCompressImageComponent from "../../../Components/CropCompressImageComponent.vue";
 
 import { useToast } from "vue-toastification";
+import IconsComponent from "../../../Components/IconsComponent.vue";
 const toast = useToast();
 
 const props = defineProps({

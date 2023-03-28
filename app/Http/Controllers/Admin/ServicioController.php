@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Configuracion;
+use App\Models\IconosFa;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -25,9 +26,18 @@ class ServicioController extends Controller
             'filters' => $request->all('search'),
             'servicios' => $servicios
         ]);
-
-
     }
+
+    public function getIcons(Request $request)
+    {
+        $search = $request->search ?? '';
+        $iconos = IconosFa::select('id', 'class', 'name')
+            ->orWhere('name', 'LIKE', '%' . $search . '%')
+            ->paginate(50);
+        return response()->json( $iconos, 200);
+    }
+
+
 
     public function create() //FORMULARIO PARA CREAR SERVICIO
     {

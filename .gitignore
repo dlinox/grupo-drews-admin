@@ -20,5 +20,5 @@ yarn-error.log
 # Local Netlify folder
 .netlify
 /dist
-
+/database/seeders/IconosSeeder.php
 .vercel

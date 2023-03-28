@@ -2,7 +2,8 @@
     <AdminLayout>
         <div class="container">
             <PageHeaderComponent title="Dashboard" />
-
+           
+            
             <div class="contenido">
                 <n-grid
                     cols="1  300:2 800:4 "
@@ -15,7 +16,6 @@
                             <div class="shapes">
                                 <div class="shape shape-1"></div>
                                 <div class="shape shape-2"></div>
-                                
                             </div>
                             <n-icon class="card-icon"> <Car /> </n-icon>
                             <h1>{{ vehiculos }}</h1>
@@ -41,7 +41,6 @@
                             <div class="shapes">
                                 <div class="shape shape-1"></div>
                                 <div class="shape shape-2"></div>
-
                             </div>
                             <n-icon class="card-icon"> <PeopleSharp /> </n-icon>
                             <h1>{{ clientes }}</h1>
@@ -122,6 +121,8 @@ import {
     PeopleSharp,
     PersonSharp,
 } from "@vicons/ionicons5";
+import IconsComponent from "../../Components/IconsComponent.vue";
+
 
 const props = defineProps({
     vehiculos: Number,
