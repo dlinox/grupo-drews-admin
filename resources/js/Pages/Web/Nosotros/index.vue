@@ -17,7 +17,7 @@
                                 Perú S.A.C., Esbril S.A.C., Intermotors S.A.C. y
                                 Tamawi S.A.C. con amplia experiencia en el
                                 sector Automotriz. Somos un grupo empresarial
-                                con más de 10 años de experiencia en la Región
+                                con más de 17 años de experiencia en la Región
                                 Puno y el Sur del Perú con el objetivo de
                                 brindar servicios de alquiler de Camionetas 4X4,
                                 Alquiler de maquinaria pesada y otros Vehículos
@@ -75,14 +75,14 @@
                     </div>
                     <div class="col-md-5 col-12">
                         <div class="w-100 text-end anios-experiencia mt-5">
-                            <span>10 +</span>
+                            <span>17 +</span>
                             <small>Experiencia</small>
                         </div>
                         <div class="img-wrapper">
                             <img
                                 class="rounded-4"
                                 width="100%"
-                                src="https://www.grupodrews.com.pe/wp-content/uploads/2019/06/quienes-somos2.jpg"
+                                src="https://www.grupodrews.com.pe/assets/image/bg-login-1"
                                 alt=""
                             />
                         </div>
