@@ -148,12 +148,7 @@
                                 :value="detalleProducto.combustible"
                             />
                         </n-gi>
-                        <n-gi>
-                            <n-statistic
-                                label="Cilindrada"
-                                :value="detalleProducto.cilindrada"
-                            />
-                        </n-gi>
+
                         <n-gi>
                             <n-statistic
                                 label="Puertas"

@@ -275,10 +275,6 @@
                 </n-form>
             </n-card>
         </div>
-
-        <pre>
-            {{ formData }}
-        </pre>
     </AdminLayout>
 </template>
 

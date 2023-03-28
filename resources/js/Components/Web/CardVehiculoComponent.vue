@@ -91,9 +91,7 @@
                         :value="item.combustible"
                     />
                 </n-gi>
-                <n-gi>
-                    <n-statistic label="Cilindrada" :value="item.cilindrada" />
-                </n-gi>
+        
                 <n-gi>
                     <n-statistic label="Puertas" :value="item.puertas" />
                 </n-gi>
