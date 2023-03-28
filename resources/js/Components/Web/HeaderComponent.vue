@@ -34,7 +34,10 @@
 
                             <a class="item-link" target="_blank">
                                 <i class="fa-solid fa-location-dot me-2"></i>
-                                <small>{{ web?.sedes[0]?.direccion }}</small>
+                                <small
+                                    >{{ web?.sedes[0]?.direccion }} -
+                                    {{ setSede(web?.sedes[0]?.ubigeo) }}
+                                </small>
                             </a>
                         </li>
                     </ul>
@@ -192,7 +195,7 @@ import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
 import { computed } from "vue";
 import { usePage } from "@inertiajs/vue3";
-
+import ubigeoJson from "@/../assets/data/ubigeo.json";
 import { useElementVisibility } from "@vueuse/core";
 import FormCotizacionComponent from "./FormCotizacionComponent.vue";
 const header = ref(null);
@@ -241,6 +244,13 @@ const menu_items = [
         icon: "fa-solid fa-phone-volume",
     },
 ];
+
+const getSede = (ubigeo) => ubigeoJson.filter((item) => item.ubigeo == ubigeo);
+
+const setSede = (ubigeo) => {
+    let aux = getSede(ubigeo)[0];
+    return aux.departamento;
+};
 </script>
 
 <style lang="scss">
