@@ -61,7 +61,6 @@
                 </n-grid>
             </n-card>
         </n-form>
-
         <template #action>
             <n-space justify="space-between">
                 <n-button @click="agregarSlide"> Agregar Slide </n-button>
@@ -102,6 +101,7 @@ const agregarSlide = () => {
 
 const eliminarSlideDB = (id, index) => {
     router.delete("/admin/sliders/" + id, {
+        only: ["sliders"],
         onError: (e) => {
             for (const property in e) {
                 toast.error(e[property]);
@@ -110,7 +110,8 @@ const eliminarSlideDB = (id, index) => {
         },
         onSuccess: (e) => {
             toast.success("Eliminado con exito");
-            formData.sliders.splice(index, 1);
+            // formData.sliders.splice(index, 1);
+            formData.sliders = props.sliders;
             console.log(e);
         },
     });
@@ -128,8 +129,10 @@ const eliminarSlide = (item, index) => {
 
 const submit = () => {
     console.log(formData);
+
     formData.post("/admin/sliders", {
         preserveScroll: true,
+        only: ["sliders"],
         onError: (e) => {
             for (const property in e) {
                 toast.error(e[property]);
@@ -137,8 +140,10 @@ const submit = () => {
             console.log(e);
         },
         onSuccess: (e) => {
+            console.log(e);
             toast.success("Datos Actualizados");
             console.log("creado");
+            formData.sliders = props.sliders;
             //formSedes.reset();
         },
     });

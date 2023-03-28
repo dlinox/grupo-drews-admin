@@ -126,7 +126,10 @@ const eliminarSedeDB = (id, index) => {
         },
         onSuccess: (e) => {
             toast.success("Eliminado con exito");
-            formSedes.sedes.splice(index, 1);
+           // formSedes.sedes.splice(index, 1);
+
+            formSedes.sedes = props.sedes;
+
             console.log(e);
         },
     });
@@ -150,10 +153,14 @@ const submit = () => {
                 toast.error(e[property]);
             }
             console.log(e);
+
+            
         },
         onSuccess: (e) => {
             toast.success("Datos Actualizados");
             console.log("creado");
+
+            formSedes.sedes = props.sedes;
             //formSedes.reset();
         },
     });
