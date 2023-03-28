@@ -39,7 +39,9 @@
                             <a
                                 class="btn btn-color1"
                                 :href="
-                                    'https://api.whatsapp.com/send?phone=051951208106&text=Quiero mas información de: ' +
+                                    'https://api.whatsapp.com/send?phone=051' +
+                                    web.whatsapp +
+                                    '&text=Quiero mas información de: ' +
                                     servicio.titulo
                                 "
                                 target="_blank"
@@ -83,10 +85,13 @@
 </template>
 
 <script setup>
+import { ref, computed } from "vue";
+import { usePage } from "@inertiajs/vue3";
 import WebLayout from "@/Layouts/WebLayout.vue";
-import { ref } from "vue";
 import FormCotizacionComponent from "../../../Components/Web/FormCotizacionComponent.vue";
 import HeadingPageComponent from "../../../Components/Web/HeadingPageComponent.vue";
+
+const web = computed(() => usePage().props.web_data);
 
 const props = defineProps({
     servicio: Object,

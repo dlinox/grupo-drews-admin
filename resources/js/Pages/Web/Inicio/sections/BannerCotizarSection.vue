@@ -25,9 +25,8 @@
     </section>
 </template>
 <script setup>
-import { Link, usePage } from "@inertiajs/vue3";
+import {  usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
-
 const web = computed(() => usePage().props.web_data);
 </script>
 

@@ -136,8 +136,10 @@
                     <a
                         class="btn btn-color1"
                         :href="
-                            'https://api.whatsapp.com/send?phone=051951208106&text=Quiero mas información de: ' +
-                            item.detalle
+                            'https://api.whatsapp.com/send?phone=051' +
+                            web.whatsapp +
+                            '&text=Quiero mas información de: ' +
+                            servicio.detalle
                         "
                         target="_blank"
                     >
@@ -195,8 +197,11 @@
     </n-modal>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { usePage } from "@inertiajs/vue3";
 import FormCotizacionComponent from "@/components/Web/FormCotizacionComponent.vue";
+
+const web = computed(() => usePage().props.web_data);
 
 const props = defineProps({
     item: Object,
