@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use PhpParser\Node\Expr\Cast\Object_;
 
 class SlidersController extends Controller
 {
@@ -18,9 +17,12 @@ class SlidersController extends Controller
             $request,
             [
                 'sliders.*.titulo' => 'required',
+                'sliders.*.tipo' => 'required',
             ],
             [
-                'sliders.*.titulo' =>  'Titulo :index  obligatorio',
+                'sliders.*.titulo.required' =>  'Titulo :index  obligatorio',
+                'sliders.*.tipo.required' =>  'Tipo :index  obligatorio',
+              
 
             ]
         );
@@ -53,7 +55,7 @@ class SlidersController extends Controller
         }
 
 
-        return back();
+        return back()->withInput($request->all());
     }
 
     public function show(string $id)

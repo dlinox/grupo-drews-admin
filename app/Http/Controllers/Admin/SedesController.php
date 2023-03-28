@@ -34,9 +34,11 @@ class SedesController extends Controller
             $request,
             [
                 'sedes.*.ubigeo' => 'required',
+               
             ],
             [
                 'sedes.*.ubigeo' =>  'Ubigeo :index  obligatorio',
+
 
             ]
         );

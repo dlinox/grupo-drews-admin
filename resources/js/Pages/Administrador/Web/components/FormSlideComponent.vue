@@ -61,6 +61,7 @@
                 </n-grid>
             </n-card>
         </n-form>
+
         <template #action>
             <n-space justify="space-between">
                 <n-button @click="agregarSlide"> Agregar Slide </n-button>
