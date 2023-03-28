@@ -37,7 +37,7 @@
                                                 <div class="card-content">
                                                     <ul>
                                                         <li>
-                                                            <a href="">
+                                                            <a >
                                                                 {{
                                                                     web.whatsapp
                                                                 }}
@@ -49,7 +49,7 @@
                                                                 item, index
                                                             ) in web.sedes"
                                                         >
-                                                            <a v-if="index < 2" href="">
+                                                            <a v-if="index < 2">
                                                                 {{
                                                                     item.celulares
                                                                 }}

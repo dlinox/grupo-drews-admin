@@ -68,13 +68,13 @@ class ProductoController extends Controller
             $request,
             [
                 'imagenes.*' => 'nullable|mimes:jpg,jpeg,png|max:20000',
-                'detalle.*' => 'required',
-                'descripcion.*' => 'required',
+                'detalle' => 'required',
+                'descripcion' => 'required',
             ],
             [
                 //'imagenes.*.required' => 'Please upload an image',
-                'imagenes.*.mimes' => 'Only jpeg,png and bmp images are allowed',
-                'imagenes.*.max' => 'Sorry! Maximum allowed size for an image is 20MB',
+                'imagenes.*.mimes' => 'Formato de la imagen no es permitido',
+                'imagenes.*.max' => 'Tamaño maximo de imagenes 2MB',
                 'detalle.required' => 'El detalle es obligatorio',
                 'descripcion.required' => 'La descripcion es obligatorio',
             ]

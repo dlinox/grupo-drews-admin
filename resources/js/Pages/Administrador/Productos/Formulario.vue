@@ -1,5 +1,6 @@
 <template>
     <AdminLayout>
+        
         <div class="container">
             <PageHeaderComponent title="Productos - Nuevo" />
             <n-divider />
@@ -274,6 +275,10 @@
                 </n-form>
             </n-card>
         </div>
+
+        <pre>
+            {{ formData }}
+        </pre>
     </AdminLayout>
 </template>
 
