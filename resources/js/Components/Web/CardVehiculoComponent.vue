@@ -139,7 +139,7 @@
                             'https://api.whatsapp.com/send?phone=051' +
                             web.whatsapp +
                             '&text=Quiero mas información de: ' +
-                            servicio.detalle
+                            item.detalle
                         "
                         target="_blank"
                     >
