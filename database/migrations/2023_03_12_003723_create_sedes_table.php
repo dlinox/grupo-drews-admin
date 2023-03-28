@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sedes', function (Blueprint $table) {
             $table->id();
-            $table->char('ubigeo', 6)->unique();
+            $table->char('ubigeo', 6);
             $table->string('direccion', 180)->nullable();
             $table->string('telefono', 50)->nullable();
             $table->string('celulares', 50)->nullable();

@@ -60,6 +60,7 @@ class SlidersController extends Controller
 
     public function destroy(string $id)
     {
-        //
+        Slider::find($id)->delete();
+        return back();
     }
 }

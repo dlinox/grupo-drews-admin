@@ -30,11 +30,21 @@ class SedesController extends Controller
     public function store(Request $request)
     {
 
+        $this->validate(
+            $request,
+            [
+                'sedes.*.ubigeo' => 'required',
+            ],
+            [
+                'sedes.*.ubigeo' =>  'Ubigeo :index  obligatorio',
+
+            ]
+        );
+
         foreach ($request->sedes as  $value) {
 
             if ($value['id']) {
                 Sede::where('id', $value['id'])->update($value);
-                
             } else {
                 Sede::create($value);
             }
@@ -71,8 +81,11 @@ class SedesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
+
     public function destroy(string $id)
     {
-        //
+        Sede::find($id)->delete();
+        return back();
     }
 }

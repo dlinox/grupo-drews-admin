@@ -99,7 +99,7 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::resource('clientes', ClientesController::class);
 
     Route::resource('sedes', SedesController::class);
-    Route::resource('sliders', SlidersController::class)->only('store');
+    Route::resource('sliders', SlidersController::class)->only('store', 'destroy');
 
     Route::resource('configuraciones', WebController::class);
     Route::post('configuraciones/update-logo', [WebController::class, 'updateLogo']);

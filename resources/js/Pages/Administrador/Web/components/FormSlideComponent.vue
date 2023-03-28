@@ -6,7 +6,12 @@
                 :key="index"
                 class="card-slide"
             >
-                <n-button secondary type="error" class="btn-slide">
+                <n-button
+                    secondary
+                    type="error"
+                    class="btn-slide"
+                    @click="eliminarSlide(item, index)"
+                >
                     Eliminar
                 </n-button>
 
@@ -29,7 +34,9 @@
                         <n-form-item path="web_telefonos" label="Imagen">
                             <n-radio-group v-model:value="item.tipo">
                                 <n-space>
-                                    <n-radio disabled value="V"> Video </n-radio>
+                                    <n-radio disabled value="V">
+                                        Video
+                                    </n-radio>
                                     <n-radio value="I"> Imagen </n-radio>
                                 </n-space>
                             </n-radio-group>
@@ -65,7 +72,7 @@
     </n-card>
 </template>
 <script setup>
-import { useForm } from "@inertiajs/vue3";
+import { useForm, router } from "@inertiajs/vue3";
 import CropCompressImageComponent from "@/Components/CropCompressImageComponent.vue";
 import { ref } from "vue";
 
@@ -91,6 +98,32 @@ const agregarSlide = () => {
         tipo: null,
         blob: null,
     });
+};
+
+const eliminarSlideDB = (id, index) => {
+    router.delete("/admin/sliders/" + id, {
+        onError: (e) => {
+            for (const property in e) {
+                toast.error(e[property]);
+            }
+            console.log(e);
+        },
+        onSuccess: (e) => {
+            toast.success("Eliminado con exito");
+            formData.sliders.splice(index, 1);
+            console.log(e);
+        },
+    });
+};
+
+const eliminarSlide = (item, index) => {
+    if (item.id) {
+        console.log("eliminar en la base de datos");
+        eliminarSlideDB(item.id, index);
+    } else {
+        console.log("eliminar con javascrippt");
+        formData.sliders.splice(index, 1);
+    }
 };
 
 const submit = () => {

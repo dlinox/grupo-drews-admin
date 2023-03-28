@@ -11,47 +11,60 @@
 
             <n-grid-item span="1 600:3">
                 <n-form ref="formRefSedes">
-                    <n-card
-                        v-for="(item, index) in formSedes.sedes"
-                        :key="index"
-                        class="mb-1"
-                    >
-                        <n-divider title-placement="left">
-                            <template v-if="item.ubigeo == null">
-                                <ModalUbigeoComponent
-                                    @on-select="item.ubigeo = $event"
+                    <n-space vertical>
+                        <n-card
+                            v-for="(item, index) in formSedes.sedes"
+                            :key="index"
+                            class="mb-1"
+                        >
+                            <n-divider title-placement="left">
+                                <template v-if="item.ubigeo == null">
+                                    <ModalUbigeoComponent
+                                        @on-select="item.ubigeo = $event"
+                                    />
+                                </template>
+                                <template v-else>
+                                    <ModalUbigeoComponent
+                                        @on-select="item.ubigeo = $event"
+                                    />
+                                    <span style="margin-left: 1rem">
+                                        {{ setSede(item?.ubigeo) }}
+                                    </span>
+                                </template>
+                            </n-divider>
+                            <n-form-item path="web_telefonos" label="Direccion">
+                                <n-input
+                                    v-model:value="item.direccion"
+                                    placeholder="Direccion"
                                 />
-                            </template>
-                            <template v-else>
-                                <ModalUbigeoComponent
-                                    @on-select="item.ubigeo = $event"
+                            </n-form-item>
+
+                            <n-form-item path="web_telefonos" label="Telefono">
+                                <n-input
+                                    v-model:value="item.telefono"
+                                    placeholder="Telefono"
                                 />
-                                <span style="margin-left: 1rem">
-                                    {{ setSede(item?.ubigeo) }}
-                                </span>
-                            </template>
-                        </n-divider>
-                        <n-form-item path="web_telefonos" label="Direccion">
-                            <n-input
-                                v-model:value="item.direccion"
-                                placeholder="Direccion"
-                            />
-                        </n-form-item>
+                            </n-form-item>
 
-                        <n-form-item path="web_telefonos" label="Telefono">
-                            <n-input
-                                v-model:value="item.telefono"
-                                placeholder="Telefono"
-                            />
-                        </n-form-item>
+                            <n-form-item path="web_telefonos" label="Celulares">
+                                <n-input
+                                    v-model:value="item.celulares"
+                                    placeholder="Celulares"
+                                />
+                            </n-form-item>
 
-                        <n-form-item path="web_telefonos" label="Celulares">
-                            <n-input
-                                v-model:value="item.celulares"
-                                placeholder="Celulares"
-                            />
-                        </n-form-item>
-                    </n-card>
+                            <n-space justify="end">
+                                <n-button
+                                    secondary
+                                    type="error"
+                                    class="btn-slide"
+                                    @click="eliminarSede(item, index)"
+                                >
+                                    Eliminar
+                                </n-button>
+                            </n-space>
+                        </n-card>
+                    </n-space>
 
                     <n-card class="">
                         <n-space justify="end">
@@ -72,7 +85,7 @@
 
 <script setup>
 import ModalUbigeoComponent from "@/Components/ModalUbigeoComponent.vue";
-import { useForm } from "@inertiajs/vue3";
+import { useForm, router } from "@inertiajs/vue3";
 import ubigeoJson from "../../../../../assets/data/ubigeo.json";
 
 import { useToast } from "vue-toastification";
@@ -103,8 +116,30 @@ const agregarSede = () => {
     });
 };
 
-const quitarSede = (index) => {
-    formSedes.detalles.splice(index, 1);
+const eliminarSedeDB = (id, index) => {
+    router.delete("/admin/sedes/" + id, {
+        onError: (e) => {
+            for (const property in e) {
+                toast.error(e[property]);
+            }
+            console.log(e);
+        },
+        onSuccess: (e) => {
+            toast.success("Eliminado con exito");
+            formSedes.sedes.splice(index, 1);
+            console.log(e);
+        },
+    });
+};
+
+const eliminarSede = (item, index) => {
+    if (item.id) {
+        console.log("eliminar en la base de datos");
+        eliminarSedeDB(item.id, index);
+    } else {
+        console.log("eliminar con javascrippt");
+        formSedes.sedes.splice(index, 1);
+    }
 };
 
 const submit = () => {
