@@ -82,7 +82,7 @@
                             <img
                                 class="rounded-4"
                                 width="100%"
-                                src="https://www.grupodrews.com.pe/assets/image/bg-login-1"
+                                src="https://www.grupodrews.com.pe/assets/image/bg-login-1.jpeg"
                                 alt=""
                             />
                         </div>
