@@ -25,7 +25,7 @@
                     <h6 class="text-white mb-3 title-footer">Servicios</h6>
                     <ul>
                         <li>
-                            <Link href="/">
+                            <Link href="/servicios">
                                 <i
                                     class="fa-solid fa-circle-arrow-right text-color1"
                                 ></i>
@@ -33,7 +33,7 @@
                             </Link>
                         </li>
                         <li>
-                            <Link href="/">
+                            <Link href="/servicios">
                                 <i
                                     class="fa-solid fa-circle-arrow-right text-color1"
                                 ></i>
@@ -41,7 +41,7 @@
                             >
                         </li>
                         <li>
-                            <Link href="/">
+                            <Link href="/servicios">
                                 <i
                                     class="fa-solid fa-circle-arrow-right text-color1"
                                 ></i>
@@ -49,7 +49,7 @@
                             >
                         </li>
                         <li>
-                            <Link href="/">
+                            <Link href="/servicios">
                                 <i
                                     class="fa-solid fa-circle-arrow-right text-color1"
                                 ></i>
@@ -57,7 +57,7 @@
                             >
                         </li>
                         <li>
-                            <Link href="/">
+                            <Link href="/servicios">
                                 <i
                                     class="fa-solid fa-circle-arrow-right text-color1"
                                 ></i>
