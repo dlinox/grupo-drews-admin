@@ -39,7 +39,7 @@
                             <a
                                 class="btn btn-color1"
                                 :href="
-                                    'https://api.whatsapp.com/send?phone=051' +
+                                    'https://api.whatsapp.com/send?phone=%2B51' +
                                     web.whatsapp +
                                     '&text=Quiero mas información de: ' +
                                     servicio.titulo

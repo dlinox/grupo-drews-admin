@@ -12,8 +12,9 @@
                     <a
                         class="btn btn-color1"
                         :href="
-                            'https://api.whatsapp.com/send?phone=051' +
+                            'https://api.whatsapp.com/send?phone=%2B51' +
                             web.whatsapp
+                   
                         "
                         target="_blank"
                     >
@@ -25,7 +26,7 @@
     </section>
 </template>
 <script setup>
-import {  usePage } from "@inertiajs/vue3";
+import { usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 const web = computed(() => usePage().props.web_data);
 </script>
