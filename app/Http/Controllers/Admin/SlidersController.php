@@ -14,6 +14,19 @@ class SlidersController extends Controller
     public function store(Request $request)
     {
 
+        $this->validate(
+            $request,
+            [
+                'sliders.*.titulo' => 'required',
+            ],
+            [
+                'sliders.*.titulo' =>  'Titulo :index  obligatorio',
+
+            ]
+        );
+
+
+
         foreach ($request->sliders as $key => $value) {
 
             $data = [
