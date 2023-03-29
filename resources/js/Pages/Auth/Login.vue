@@ -3,13 +3,13 @@
         <div class="login-page">
             <div class="img-login"></div>
             <div class="form-login">
-                <div>
-                    <a href="#" class="py-1">IR A LA WEB</a>
+                <div class="header">
+                    <a href="/">IR A LA WEB</a>
                 </div>
 
                 <div class="form-wrapper">
                     <div class="logo">
-                        <img src="/assets/image/logo.png" alt="" />
+                        <img :src="$page.props.web.logo" alt="" />
                     </div>
                     <n-form ref="formRef" :model="formData">
                         <n-form-item path="email" label="Correo">
@@ -52,18 +52,23 @@
                         </div>
                     </n-form>
                 </div>
-
-                <small class="py-1"
-                    >© Copyright GrupoDrews . All Rights Reserved</small
-                >
+                <div class="footer-login">
+                    © Copyright
+                    <a href="https://caripperu.com/" target="_blank">
+                        CARIP-PERU.
+                    </a>
+                    All Rights Reserved
+                </div>
             </div>
         </div>
     </n-spin>
 </template>
 <script setup>
 import { ref, computed } from "vue";
-import { useForm, router } from "@inertiajs/vue3";
+import { useForm, router, Link } from "@inertiajs/vue3";
 import { MailOutline, KeyOutline } from "@vicons/ionicons5";
+import { useToast } from "vue-toastification";
+const toast = useToast();
 
 const show = ref(false);
 const formRef = ref(null);
@@ -89,7 +94,15 @@ const options = computed(() => {
 });
 
 const submit = () => {
-    formData.post("auth/sign-in");
+    formData.post("auth/sign-in", {
+        onError: (e) => {
+            toast.error("Credenciales incorrectas.");
+        },
+        onSuccess: (e) => {
+            console.log(e);
+            toast.success("Ingresando ...");
+        },
+    });
 };
 
 const withLogin = async () => {
@@ -105,13 +118,39 @@ const withLogin = async () => {
 withLogin();
 </script>
 
-<style lang="css">
+<style lang="scss">
 .login-page {
     display: block;
     width: 100vw;
     height: 100vh;
     background-color: #eeeeee;
     display: flex;
+    .header {
+        background-color: $app-color1;
+        width: 100%;
+        padding: 1rem;
+        text-align: center;
+        a {
+            text-decoration: none;
+            color: white;
+            font-family: $font-teko;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+    }
+
+    .footer-login {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        background-color: #eeeeee;
+        padding: 1rem;
+        display: flex;
+        a {
+            margin: 0 0.5rem;
+            color: $app-color1;
+        }
+    }
 }
 .login-page .img-login {
     width: 60%;
@@ -120,6 +159,7 @@ withLogin();
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    transition: width .3s ease;
 }
 .login-page .form-login {
     width: 40%;
@@ -131,6 +171,7 @@ withLogin();
     align-items: center;
     overflow-y: auto;
     overflow-x: hidden;
+    transition: width .3s ease;
 }
 .login-page .form-login .form-wrapper {
     max-width: 350px;
@@ -139,6 +180,31 @@ withLogin();
 .login-page .form-login .form-wrapper .logo {
     display: flex;
     justify-content: center;
-    padding-bottom: 1rem;
+    padding-bottom: 3rem;
+    margin: 0 auto;
+    width: 200px;
+    img {
+        width: 100%;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 1024px) {
+    .login-page .img-login {
+        width: 50%;
+    }
+    .login-page .form-login {
+        width:50%;
+    }
+}
+
+
+@media (max-width:880px) {
+    .login-page .img-login {
+        width: 0;
+    }
+    .login-page .form-login {
+        width: 100%;
+    }
 }
 </style>
