@@ -11,7 +11,7 @@
                     <div class="logo">
                         <img :src="$page.props.web.logo" alt="" />
                     </div>
-                    <n-form ref="formRef" :model="formData">
+                    <n-form ref="formRef" :model="formData" :rules="rules">
                         <n-form-item path="email" label="Correo">
                             <n-auto-complete
                                 v-model:value="formData.email"
@@ -78,6 +78,20 @@ const formData = useForm({
     password: "",
 });
 
+const rules = {
+    email: {
+        type: "email",
+        required: true,
+        message: "Correo no valido",
+        trigger: ["input", "blur"],
+    },
+    password: {
+        required: true,
+        message: "Obligaorio",
+        trigger: ["input", "blur"],
+    },
+};
+
 const options = computed(() => {
     return [
         "@gmail.com",
@@ -93,15 +107,22 @@ const options = computed(() => {
     });
 });
 
-const submit = () => {
-    formData.post("auth/sign-in", {
-        onError: (e) => {
-            toast.error("Credenciales incorrectas.");
-        },
-        onSuccess: (e) => {
-            console.log(e);
-            toast.success("Ingresando ...");
-        },
+const submit = async () => {
+    await formRef.value?.validate(async (errors) => {
+        if (!errors) {
+            formData.post("auth/sign-in", {
+                onError: (e) => {
+                    toast.error("Credenciales incorrectas.");
+                },
+                onSuccess: (e) => {
+                    console.log(e);
+                    toast.success("Bienvenido ...");
+                },
+            });
+        } else {
+            console.log(errors);
+            toast.error("Datos ingresado no validos");
+        }
     });
 };
 
@@ -159,7 +180,7 @@ withLogin();
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    transition: width .3s ease;
+    transition: width 0.3s ease;
 }
 .login-page .form-login {
     width: 40%;
@@ -171,7 +192,7 @@ withLogin();
     align-items: center;
     overflow-y: auto;
     overflow-x: hidden;
-    transition: width .3s ease;
+    transition: width 0.3s ease;
 }
 .login-page .form-login .form-wrapper {
     max-width: 350px;
@@ -194,12 +215,11 @@ withLogin();
         width: 50%;
     }
     .login-page .form-login {
-        width:50%;
+        width: 50%;
     }
 }
 
-
-@media (max-width:880px) {
+@media (max-width: 880px) {
     .login-page .img-login {
         width: 0;
     }

@@ -65,7 +65,7 @@ import {
 
 const options = {
     position: "top-right",
-    timeout: 3000,
+    timeout: 2000,
     closeOnClick: true,
     pauseOnFocusLoss: true,
     pauseOnHover: true,
