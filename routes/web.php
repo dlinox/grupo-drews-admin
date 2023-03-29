@@ -13,25 +13,13 @@ use App\Http\Controllers\Admin\SedesController;
 use App\Http\Controllers\Admin\SlidersController;
 use App\Http\Controllers\Web\ReservasController as WebReservasController;
 use App\Http\Controllers\Web\WebController as WebWebController;
-use App\Mail\CotizacionEmail;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-
-
-
+Route::get('/offline', function () {
+    return view('vendor/laravelpwa/offline');
+});
 
 Route::get('/user-auth', function () {
     $user = Auth::user();
@@ -83,9 +71,6 @@ Route::name('web.')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])
         ->name('logout');
 });
-
-
-
 
 Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::get('', [AdminController::class, 'index'])
