@@ -85,7 +85,6 @@
                     <n-grid-item>
                         <n-form-item path="logo" label="Logo">
                             <CropCompressImageComponent
-                            
                                 @onCropper="
                                     (preview_img = $event.blob),
                                         (formData.logo = $event.file)
@@ -102,21 +101,21 @@
                         />
                     </n-grid-item>
                 </n-grid>
-
-                <n-row :gutter="[0, 24]">
-                    <n-col :span="24">
-                        <div style="display: flex; justify-content: flex-end">
-                            <n-button
-                                :loading="formData.processing"
-                                type="primary"
-                                @click="submit"
-                            >
-                                Guardar
-                            </n-button>
-                        </div>
-                    </n-col>
-                </n-row>
             </n-form>
+
+            <n-space justify="end">
+                <n-button @click="showModal = false" type="error" secondary>
+                    Cancelar
+                </n-button>
+
+                <n-button
+                    :loading="formData.processing"
+                    type="primary"
+                    @click="submit"
+                >
+                    Guardar
+                </n-button>
+            </n-space>
         </n-card>
     </n-modal>
 </template>

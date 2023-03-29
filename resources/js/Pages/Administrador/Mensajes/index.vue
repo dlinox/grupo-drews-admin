@@ -68,7 +68,7 @@ import { router } from "@inertiajs/vue3";
 
 import { ref, computed, watch } from "vue";
 import { Search } from "@vicons/ionicons5";
-import debounce from "lodash/debounce";
+import throttle from "lodash/throttle";
 
 const props = defineProps({
     mensajes: Object,
@@ -82,7 +82,7 @@ const totalResults = computed(() => props.mensajes.total);
 
 watch(
     search,
-    debounce((val) => {
+    throttle((val) => {
         router.get(
             "/admin/mensajes",
             { search: val },
@@ -90,7 +90,7 @@ watch(
                 preserveState: true,
             }
         );
-    }, 300)
+    }, 600)
 );
 
 const goPage = () => {

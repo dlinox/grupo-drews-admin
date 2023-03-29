@@ -32,7 +32,9 @@ class ProductoController extends Controller
             'aire_acondicionado',
             'equipaje',
             'contenido',
-            'imagenes'
+            'imagenes',
+            'tipo_v',
+            'seguridad',
         )->orWhere('detalle', 'LIKE', '%' . $search . '%')
             ->orWhere('marca', 'LIKE', '%' . $search . '%')
             ->orWhere('modelo', 'LIKE', '%' . $search . '%')

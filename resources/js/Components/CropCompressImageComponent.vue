@@ -23,7 +23,7 @@
 
     <n-modal v-model:show="showModal">
         <n-card
-            style="width: 600px"
+            style="width: 600px; max-width: 100%; max-height: 100vh;"
             title="Modal"
             :bordered="false"
             size="huge"
@@ -70,7 +70,9 @@
                 </n-button-group>
             </template>
 
+            
             <cropper
+            
                 ref="cropperRef"
                 class="upload-example-cropper"
                 :src="image.src"
@@ -83,6 +85,10 @@
 
             <template #footer>
                 <n-space justify="flex-end">
+                    <n-button @click="showModal = false"  type="error" secondary>
+                        Cancelar
+                    </n-button>
+
                     <n-button @click="cropAndOptimize" type="primary">
                         <template #icon>
                             <n-icon><Crop /></n-icon>
@@ -191,5 +197,10 @@ const cargarImagen = async (e) => {
         cursor: pointer;
         opacity: 0;
     }
+}
+.upload-example-cropper{
+    overflow: auto;
+    width: 100%;
+    max-width: 100%;
 }
 </style>

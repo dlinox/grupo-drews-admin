@@ -76,7 +76,7 @@
     </AdminLayout>
 </template>
 <script setup>
-import debounce from "lodash/debounce";
+import throttle from "lodash/throttle";
 import { ref, watch, computed } from "vue";
 import { router } from "@inertiajs/vue3";
 import { useToast } from "vue-toastification";
@@ -100,7 +100,7 @@ const totalResults = computed(() => props.usuarios.total);
 
 watch(
     search,
-    debounce((val) => {
+    throttle((val) => {
         router.get(
             "/admin/usuarios",
             { search: val },
@@ -108,7 +108,7 @@ watch(
                 preserveState: true,
             }
         );
-    }, 300)
+    }, 600)
 );
 
 const goPage = () => {

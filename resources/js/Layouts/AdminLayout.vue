@@ -244,6 +244,7 @@ const collapsed_width = computed(() => {
     if (widthScreen.value < 768) {
         sider.value = false;
         sider_position.value = "absolute";
+        sider_collapse.value = true;
         return 0;
     } else {
         sider.value = true;
@@ -306,7 +307,7 @@ h6 {
 .n-form-item-feedback__line {
     font-size: 0.7rem;
 }
-.n-input__input-el{
+.n-input__input-el {
     font-weight: 500;
 }
 </style>

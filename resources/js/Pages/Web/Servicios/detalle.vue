@@ -74,6 +74,16 @@
                 aria-modal="true"
                 :title="servicio.titulo"
             >
+                <template #header-extra>
+                    <n-button
+                        @click="showFormCotizar = false"
+                        type="error"
+                        secondary
+                    >
+                        <i class="fa-solid fa-x"></i>
+                    </n-button>
+                </template>
+
                 <FormCotizacionComponent
                     :producto="servicio.id"
                     tipo="Servicio"
@@ -179,4 +189,42 @@ const showFormCotizar = ref(false);
         }
     }
 }
+
+@media (max-width: 768px) {
+    .detalle-servicio {
+        .right {
+            .images-group {
+                .image {
+                    border: 2px solid white;
+
+
+                    &:nth-child(1) {
+                        width: calc(100% - 100px);
+                        height: 200px;
+                        z-index: 3;
+                    }
+                    &:nth-child(2) {
+                        margin-top: -100px;
+                        width: calc(100% - 50px);
+                        height: 250px;
+                        margin-left: auto;
+                        z-index: 2;
+                    }
+
+                    &:nth-child(3) {
+                        margin-top: -50px;
+                        width: calc(100% - 100px);
+                        z-index: 1;
+                        height: 200px;
+                    }
+
+                    &:hover {
+                        z-index: 5;
+                    }
+                }
+            }
+        }
+    }
+}
+
 </style>

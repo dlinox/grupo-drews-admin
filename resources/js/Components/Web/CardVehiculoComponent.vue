@@ -67,6 +67,12 @@
             aria-modal="true"
             class="modal-detalles"
         >
+            <template #header-extra>
+                <n-button @click="showModal = false" type="error" secondary>
+                    <i class="fa-solid fa-x"></i>
+                </n-button>
+            </template>
+
             <div class="mb-4">
                 {{ item.descripcion }}
                 <hr />
@@ -91,7 +97,7 @@
                         :value="item.combustible"
                     />
                 </n-gi>
-        
+
                 <n-gi>
                     <n-statistic label="Puertas" :value="item.puertas" />
                 </n-gi>
@@ -165,7 +171,14 @@
             size="huge"
             role="dialog"
             aria-modal="true"
+            :title="item.detalle"
         >
+            <template #header-extra>
+                <n-button @click="showGaleria = false" type="error" secondary>
+                    <i class="fa-solid fa-x"></i>
+                </n-button>
+            </template>
+
             <n-carousel :loop="false" show-arrow draggable>
                 <img
                     class="carousel-img"
@@ -186,6 +199,15 @@
             aria-modal="true"
             :title="item.detalle"
         >
+            <template #header-extra>
+                <n-button
+                    @click="showFormCotizar = false"
+                    type="error"
+                    secondary
+                >
+                    <i class="fa-solid fa-x"></i>
+                </n-button>
+            </template>
             <FormCotizacionComponent
                 :producto="item.id"
                 tipo="Vehiculo"
@@ -209,23 +231,13 @@ const showModal = ref(false);
 const showGaleria = ref(false);
 const showFormCotizar = ref(false);
 
-const options = [
-    {
-        label: "Escribenos",
-        key: "email",
-    },
 
-    {
-        label: "Whatsapp",
-        key: "whatsapp",
-    },
-];
 </script>
 <style lang="scss">
 .carousel-img {
     width: 100%;
-    height: 500px;
-    object-fit: cover;
+
+    object-fit: contain;
 }
 
 .card-vehiculo {

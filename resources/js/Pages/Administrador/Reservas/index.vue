@@ -58,7 +58,10 @@
                                     @select="cambiarEstado($event, item.id)"
                                 >
                                     <n-button
-                                        :loading="btnEstadoLoading"
+                                        :loading="
+                                            btnEstadoLoading &&
+                                            btnEstadoLoadingID == item.id
+                                        "
                                         secondary
                                         :type="
                                             item.estado == 0
@@ -102,7 +105,7 @@ import { router } from "@inertiajs/vue3";
 
 import { ref, computed, watch } from "vue";
 import { Search } from "@vicons/ionicons5";
-import debounce from "lodash/debounce";
+import throttle from "lodash/throttle";
 
 import { useToast } from "vue-toastification";
 const toast = useToast();
@@ -118,6 +121,7 @@ const totalPages = computed(() => props.reservas.last_page);
 const totalResults = computed(() => props.reservas.total);
 
 const btnEstadoLoading = ref(false);
+const btnEstadoLoadingID = ref(false);
 
 const options = [
     {
@@ -144,9 +148,11 @@ const cambiarEstado = (val, id) => {
         { estado: val, id: id },
         {
             onStart: () => {
+                btnEstadoLoadingID.value = id;
                 btnEstadoLoading.value = true;
             },
             onFinish: () => {
+                btnEstadoLoadingID.value = id;
                 btnEstadoLoading.value = false;
             },
             onError: (e) => {
@@ -163,7 +169,7 @@ const cambiarEstado = (val, id) => {
 
 watch(
     search,
-    debounce((val) => {
+    throttle((val) => {
         router.get(
             "/admin/reservas",
             { search: val },
@@ -171,7 +177,7 @@ watch(
                 preserveState: true,
             }
         );
-    }, 300)
+    }, 600)
 );
 
 const goPage = () => {

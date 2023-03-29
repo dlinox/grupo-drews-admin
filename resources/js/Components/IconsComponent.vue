@@ -58,7 +58,7 @@
 </template>
 <script setup>
 import { ref, watch } from "vue";
-import debounce from "lodash/debounce";
+import throttle from "lodash/throttle";
 import { Search } from "@vicons/ionicons5";
 
 const emit = defineEmits(["iconSelected"]);
@@ -89,10 +89,10 @@ const getIconos = async () => {
 
 watch(
     iconoSearch,
-    debounce(async (val) => {
+    throttle( (val) => {
         page.value = 1;
-        await getIconos();
-    }, 400)
+         getIconos();
+    }, 800)
 );
 
 watch(page, () => getIconos());

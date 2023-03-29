@@ -94,7 +94,7 @@ import { useToast } from "vue-toastification";
 
 import { ref, computed, watch } from "vue";
 import { Search } from "@vicons/ionicons5";
-import debounce from "lodash/debounce";
+import throttle from "lodash/throttle";
 
 const toast = useToast();
 const props = defineProps({
@@ -109,7 +109,7 @@ const totalResults = computed(() => props.servicios.total);
 
 watch(
     search,
-    debounce((val) => {
+    throttle((val) => {
         router.get(
             "/admin/servicios",
             { search: val },
@@ -117,7 +117,7 @@ watch(
                 preserveState: true,
             }
         );
-    }, 300)
+    }, 600)
 );
 
 const goPage = () => {

@@ -86,7 +86,7 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
 import PageHeaderComponent from "@/Components/PageHeaderComponent.vue";
 import FormularioClienteComponent from "./Components/FormularioClienteComponent.vue";
 import { Search } from "@vicons/ionicons5";
-import debounce from "lodash/debounce";
+import throttle from "lodash/throttle";
 
 const toast = useToast();
 
@@ -102,7 +102,7 @@ const totalResults = computed(() => props.clientes.total);
 
 watch(
     search,
-    debounce((val) => {
+    throttle((val) => {
         router.get(
             "/admin/clientes",
             { search: val },
@@ -110,7 +110,7 @@ watch(
                 preserveState: true,
             }
         );
-    }, 300)
+    }, 600)
 );
 
 const goPage = () => {

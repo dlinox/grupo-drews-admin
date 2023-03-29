@@ -117,6 +117,11 @@
                     role="dialog"
                     aria-modal="true"
                 >
+                    <p>
+                        {{ detalleProducto.descripcion }}
+                    </p>
+                    <hr />
+
                     <n-grid cols="2 300:3" :y-gap="20">
                         <n-gi>
                             <n-statistic
@@ -180,8 +185,34 @@
                             />
                         </n-gi>
                     </n-grid>
-                    <template #action>
-                        <div v-html="detalleProducto.contenido"></div>
+
+
+
+                    <div v-if="detalleProducto.tipo_v == 'Empresa'">
+                        <hr />
+                        <h4>Implementos de Seguridad</h4>
+                        <div class="row">
+                            <div class="col-12">
+                                <ul>
+                                    <li v-for="j in detalleProducto.seguridad">
+                                   
+                                        {{ j }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <template #footer>
+                        <n-space justify="end">
+                            <n-button
+                                @click="detalleModal = false"
+                                type="error"
+                                secondary
+                            >
+                                Cancelar
+                            </n-button>
+                        </n-space>
                     </template>
                 </n-card>
             </n-modal>
@@ -271,7 +302,7 @@ import { Add, Pencil, Trash } from "@vicons/ionicons5";
 
 import { useToast } from "vue-toastification";
 import { Search } from "@vicons/ionicons5";
-import debounce from "lodash/debounce";
+import throttle from "lodash/throttle";
 
 const toast = useToast();
 const props = defineProps({
@@ -289,7 +320,7 @@ const detalleProducto = ref({});
 
 watch(
     search,
-    debounce((val) => {
+    throttle((val) => {
         router.get(
             "/admin/productos",
             { search: val },
@@ -297,7 +328,7 @@ watch(
                 preserveState: true,
             }
         );
-    }, 300)
+    }, 600)
 );
 
 const goPage = () => {
