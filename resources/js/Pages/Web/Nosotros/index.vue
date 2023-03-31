@@ -143,9 +143,7 @@ const web = computed(() => usePage().props.web_data);
             color: $app-color1;
         }
         .content {
-            p{
-                margin-bottom: 0;
-            }
+          
             font-family: $font-raj;
             text-align: justify;
         }
