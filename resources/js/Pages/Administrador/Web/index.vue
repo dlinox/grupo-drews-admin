@@ -89,33 +89,26 @@
                                                     path="web_mision"
                                                     label="Mision"
                                                 >
-                                                    <n-space>
-                                                        <QuillEditor
-                                                            theme="snow"
-                                                            v-model:content="
-                                                                formData.web_mision
-                                                            "
-                                                            contentType="html"
-                                                        />
-                                                    </n-space>
+                                                    <n-input
+                                                        type="textarea"
+                                                        v-model:value="
+                                                            formData.web_mision
+                                                        "
+                                                        placeholder="..."
+                                                    />
                                                 </n-form-item>
-
-                                                <br />
-                                                <br />
 
                                                 <n-form-item
                                                     path="web_vision"
                                                     label="Visión"
                                                 >
-                                                    <n-space>
-                                                        <QuillEditor
-                                                            theme="snow"
-                                                            v-model:content="
-                                                                formData.web_vision
-                                                            "
-                                                            contentType="html"
-                                                        />
-                                                    </n-space>
+                                                    <n-input
+                                                        type="textarea"
+                                                        v-model:value="
+                                                            formData.web_vision
+                                                        "
+                                                        placeholder="..."
+                                                    />
                                                 </n-form-item>
                                             </n-form>
                                         </n-card>
