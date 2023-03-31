@@ -10,7 +10,7 @@
                             descripcion=" Alquiler de camionetas 4x4 y otros veiculos motorizados"
                         />
                         <div class="descripcion-nosotros">
-                            <p>
+                            <p class="text-justify">
                                 Grupo Drews forma parte de un grupo empresarial
                                 conformado por Servicios Múltiples Drews S.A.C.
                                 - (Drews Rent A Car), Servicios Generales Drews
@@ -27,7 +27,7 @@
                                 tierras, Líneas de media tensión, Ejecución de
                                 obras y otros.
                             </p>
-                            <p>
+                            <p class="text-justify">
                                 Drews Rent A Car, inicia sus labores en la
                                 región puno en el año 2007, con el objetivo de
                                 brindar servicio de camionetas 4x4, en los
@@ -107,6 +107,7 @@ const web = computed(() => usePage().props.web_data);
 .page-nosotros {
     .descripcion-nosotros {
         font-family: $font-raj;
+        text-align: justify;
     }
     .text-end {
         span {
@@ -143,6 +144,8 @@ const web = computed(() => usePage().props.web_data);
         }
         .content {
             font-family: $font-raj;
+            text-align: justify;
+            line-height: .8rem;
         }
     }
     .valores-wrapper {

@@ -6,7 +6,7 @@
                     <!-- Button trigger modal -->
                     <button
                         type="button"
-                        class="btn btn-color1 rounded-0"
+                        class="btn btn-color1 rounded-0 text-white"
                         @click="showModal = !showModal"
                     >
                         Cotizacion
@@ -108,9 +108,14 @@
                                 </button>
                             </li>
                             <li
-                                class="menu-item d-none d-md-flex"
                                 v-for="(item, index) in menu_items"
                                 :key="index"
+                                class="menu-item d-none d-md-flex"
+                                :class="
+                                    router.page.url == item.href
+                                        ? 'current'
+                                        : ''
+                                "
                             >
                                 <Link class="item" :href="item.href">
                                     <i :class="item.icon"></i>
@@ -188,11 +193,23 @@
             <FormCotizacionComponent @onSubmit="showModal = false" />
         </n-card>
     </n-modal>
+
+    <a
+        class="btn-floating text-white"
+        :href="
+            'https://api.whatsapp.com/send?phone=%2B51' +
+            web.whatsapp +
+            '&text=Hola Grupo Drews:'
+        "
+        target="_blank"
+    >
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
 import { computed } from "vue";
 import { usePage } from "@inertiajs/vue3";
 import ubigeoJson from "@/../assets/data/ubigeo.json";
@@ -254,14 +271,18 @@ const setSede = (ubigeo) => {
 </script>
 
 <style lang="scss">
+$bg-color-header-bot: white;
+$bg-color-menu: rgb(240, 255, 244);
+$color-menu-a: #858585;
+
 $h-header-top: 50px;
 
 .web-header {
     position: relative;
-    background-color: aqua;
+    background-color: aliceblue;
     z-index: 10;
     .header-top {
-        background-color: black;
+        background-color: #1c1c1c;
         .container {
             display: flex;
             justify-content: space-between;
@@ -313,7 +334,7 @@ $h-header-top: 50px;
     }
     .header-bot {
         position: relative;
-        background-color: aliceblue;
+        background-color: $bg-color-header-bot;
         .container {
             height: 120px;
             display: flex;
@@ -384,7 +405,7 @@ $h-header-top: 50px;
                 position: fixed;
                 top: 0;
                 transform: translateY(0px);
-                background-color: aliceblue;
+                background-color: $bg-color-header-bot;
 
                 .container {
                     justify-content: space-between;
@@ -402,7 +423,7 @@ $h-header-top: 50px;
                 right: 0;
                 height: 100%;
                 width: 35vw;
-                background-color: $app-color1;
+                background-color: $bg-color-menu;
             }
             .container {
                 height: 100%;
@@ -430,7 +451,7 @@ $h-header-top: 50px;
                         display: flex;
                         justify-content: center;
                         height: 100%;
-                        background-color: $app-color1;
+                        background-color: $bg-color-menu;
                         clip-path: polygon(
                             40px 0%,
                             100% 0%,
@@ -450,16 +471,26 @@ $h-header-top: 50px;
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
-                                color: white;
+                                color: $color-menu-a;
                                 height: 100%;
                                 padding: 0 1rem;
                                 font-family: $font-raj;
                                 font-weight: 600;
-                                font-size: 1.2rem;
+                                font-size: 1.1rem;
+                                transition: all 0.3s ease-in-out;
+                                border-bottom: 3px solid transparent;
 
                                 i {
                                     font-size: 0.8rem;
                                     margin-right: 0.5rem;
+                                }
+                            }
+
+                            &.current,
+                            &:hover {
+                                a.item {
+                                    color: $app-color1;
+                                    border-bottom: 3px solid $app-color1;
                                 }
                             }
                         }
@@ -671,6 +702,27 @@ $h-header-top: 50px;
                 }
             }
         }
+    }
+}
+
+.btn-floating {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 10;
+    border-radius: 50%;
+    background-color: #25d366;
+    height: 3.5em;
+    width: 3.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i {
+        font-size: 2rem;
+    }
+
+    &:hover {
+        background-color: rgba($color: #000000, $alpha: 0.8);
     }
 }
 </style>
