@@ -84,12 +84,12 @@ const props = defineProps({
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgb(12, 127, 64);
+            background: rgb(192, 248, 216);
             background: linear-gradient(
                 54deg,
-                rgba(12, 127, 64, 0.5) 0%,
-                rgba(4, 183, 190, 0.2) 59%,
-                rgba(0, 212, 255, 0.1) 100%
+                rgba(12, 12, 12, 0.5) 0%,
+                rgba(73, 77, 77, 0.2) 59%,
+                rgba(154, 157, 157, 0.1) 100%
             );
             .container {
                 .slide-title {

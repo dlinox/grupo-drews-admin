@@ -1,4 +1,9 @@
 <template>
+    <Head>
+        <title>Vehículos | Grupo Drews</title>
+        <meta name="description" content="Más sobre Grupo Drews" />
+    </Head>
+
     <WebLayout>
         <HeadingPageComponent titulo="Vehiculos" />
         <main class="main">
@@ -100,6 +105,7 @@ import { ref, reactive, watch } from "vue";
 import WebLayout from "@/Layouts/WebLayout.vue";
 import CardVehiculoComponent from "../../../Components/Web/CardVehiculoComponent.vue";
 import HeadingPageComponent from "../../../Components/Web/HeadingPageComponent.vue";
+import { Head } from "@inertiajs/vue3";
 
 const props = defineProps({
     vehiculos: Array,

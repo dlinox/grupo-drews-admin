@@ -1,4 +1,12 @@
 <template>
+    <Head>
+        <title>Contactanos | Grupo Drews</title>
+        <meta
+            name="description"
+            content="Contactanos con nosotros - Grupo Drews"
+        />
+    </Head>
+
     <WebLayout>
         <HeadingPageComponent titulo="Contactanos" />
         <main class="main">
@@ -22,7 +30,6 @@
                                     <hr />
                                 </div>
                                 <div class="row gy-3 px-3 pb-4">
-
                                     <div class="col-12 item-contact">
                                         <div class="card">
                                             <div class="card-body">
@@ -37,7 +44,7 @@
                                                 <div class="card-content">
                                                     <ul>
                                                         <li>
-                                                            <a >
+                                                            <a>
                                                                 {{
                                                                     web.whatsapp
                                                                 }}
@@ -106,7 +113,9 @@
                                                             <a href="">
                                                                 <h4>
                                                                     {{
-                                                                       setSede(item.ubigeo)
+                                                                        setSede(
+                                                                            item.ubigeo
+                                                                        )
                                                                     }}
                                                                 </h4>
                                                                 <span>
@@ -143,14 +152,12 @@ import WebLayout from "@/Layouts/WebLayout.vue";
 import HeadingPageComponent from "../../../Components/Web/HeadingPageComponent.vue";
 import FormContactoComponent from "./components/FormContactoComponent.vue";
 
-
 import { computed } from "vue";
-import { usePage } from "@inertiajs/vue3";
+import { Head, usePage } from "@inertiajs/vue3";
 
 import ubigeoJson from "@/../assets/data/ubigeo.json";
 
 const web = computed(() => usePage().props.web_data);
-
 
 const getSede = (ubigeo) => ubigeoJson.filter((item) => item.ubigeo == ubigeo);
 
@@ -158,8 +165,6 @@ const setSede = (ubigeo) => {
     let aux = getSede(ubigeo)[0];
     return aux.departamento + " - " + aux.provincia + " - " + aux.distrito;
 };
-
-
 </script>
 <style lang="scss">
 .section-info-contacto {
@@ -210,12 +215,10 @@ const setSede = (ubigeo) => {
 
                                     font-family: $font-raj;
                                     font-weight: 500;
-                                    h4{
+                                    h4 {
                                         font-size: 1rem;
                                         font-weight: 600;
-
                                     }
-                                   
                                 }
                                 margin-bottom: 1rem;
                             }

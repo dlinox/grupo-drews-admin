@@ -271,9 +271,18 @@ const setSede = (ubigeo) => {
 </script>
 
 <style lang="scss">
-$bg-color-header-bot: white;
-$bg-color-menu: rgb(240, 255, 244);
-$color-menu-a: #858585;
+$bg-color-header-bot: aliceblue;
+
+/******  MENU ********* */
+$bg-color-menu: $app-color1;
+$color-menu-a: rgb(194, 249, 211);
+$color-menu-a_hover: white;
+$border-menu-a_hover: white;
+/******  MENU:HOVER ********* */
+
+/******  MENU ********* */
+//$bg-color-menu: rgb(240, 255, 244);
+//$color-menu-a: #858585;
 
 $h-header-top: 50px;
 
@@ -489,8 +498,8 @@ $h-header-top: 50px;
                             &.current,
                             &:hover {
                                 a.item {
-                                    color: $app-color1;
-                                    border-bottom: 3px solid $app-color1;
+                                    color: $color-menu-a_hover;
+                                    border-bottom: 3px solid $border-menu-a_hover;
                                 }
                             }
                         }
@@ -717,6 +726,7 @@ $h-header-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.3s ease-in;
     i {
         font-size: 2rem;
     }

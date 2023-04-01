@@ -5,15 +5,22 @@
     "src": "resources/assets/styles/scss/app.scss"
   },
   "resources/js/app.css": {
-    "file": "assets/app-6a94cf17.css",
+    "file": "assets/app-7a34a4af.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
-    "css": [
-      "assets/app-6a94cf17.css"
+    "assets": [
+      "assets/bg-footer-0a4276cc.jpg"
     ],
-    "file": "assets/app-e74f38b9.js",
+    "css": [
+      "assets/app-7a34a4af.css"
+    ],
+    "file": "assets/app-f3f2cca7.js",
     "isEntry": true,
     "src": "resources/js/app.js"
+  },
+  "resources/js/assets/static/img/bg-footer.jpg": {
+    "file": "assets/bg-footer-0a4276cc.jpg",
+    "src": "resources/js/assets/static/img/bg-footer.jpg"
   }
 }

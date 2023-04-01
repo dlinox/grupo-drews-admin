@@ -3,8 +3,8 @@
         <div class="polygon">
             <div class="container">
                 <div class="left">
-                    <strong class="text1"> ¿NECESITAS AYUDA? </strong>
-                    <span class="text2">
+                    <strong class="text1 text-secondary"> ¿NECESITAS AYUDA? </strong>
+                    <span class="text2 text-color1">
                         Estamos Siempre Listos Para Ayudarte
                     </span>
                 </div>
@@ -14,7 +14,6 @@
                         :href="
                             'https://api.whatsapp.com/send?phone=%2B51' +
                             web.whatsapp
-                   
                         "
                         target="_blank"
                     >
@@ -52,8 +51,8 @@ const web = computed(() => usePage().props.web_data);
             top: 0;
             width: 100%;
             height: 100%;
-            clip-path: polygon(0 0, 70% 0, 50% 100%, 0 100%);
-            background-color: rgba($app-color1, 0.9);
+            clip-path: polygon(0 0, 55% 0, 70% 100%, 0 100%);
+            background-color: rgba(aliceblue, 0.9);
         }
 
         .container {

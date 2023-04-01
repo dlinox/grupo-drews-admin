@@ -72,9 +72,15 @@
             <div
                 class="container text-center py-3 text-muted d-flex justify-content-center"
             >
-                Copyright - Todos los derchos reservados 2023 © 
+                Copyright - Todos los derchos reservados 2023 ©
 
-                <a href="https://caripperu.com/" target="_blank" class="text-color1"> CARIP PERU</a>
+                <a
+                    href="https://caripperu.com/"
+                    target="_blank"
+                    class="text-color1"
+                >
+                    CARIP PERU</a
+                >
             </div>
         </div>
     </footer>
@@ -113,8 +119,31 @@ const menu_items = [
 
 <style lang="scss">
 .footer {
+    position: relative;
     background-color: rgb(20, 20, 20);
-
+    background-image: url(../../assets/static/img/bg-footer.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    .container{
+        position: relative;
+        z-index: 6;
+    }
+    .footer-copy{
+        position: relative;
+        z-index: 7;
+    }
+    &::after{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(20, 20, 20, .95);
+        z-index: 5;
+    }
     .title-footer {
         font-family: $font-teko;
         letter-spacing: 1px;

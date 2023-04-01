@@ -1,4 +1,9 @@
 <template>
+    <Head>
+        <title>Servicios | Grupo Drews</title>
+        <meta name="description" content="Más sobre Grupo Drews" />
+    </Head>
+
     <WebLayout>
         <HeadingPageComponent titulo="Servicios" />
         <main class="main py-5">
@@ -23,10 +28,10 @@
 import WebLayout from "@/Layouts/WebLayout.vue";
 import HeadingPageComponent from "../../../Components/Web/HeadingPageComponent.vue";
 import CardServiceComponent from "./components/CardServiceComponent.vue";
+import { Head } from "@inertiajs/vue3";
 
 const props = defineProps({
     servicios: Array,
 });
-
 </script>
 <style lang="scss"></style>

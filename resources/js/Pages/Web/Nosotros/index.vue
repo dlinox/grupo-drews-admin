@@ -1,4 +1,9 @@
 <template>
+    <Head>
+        <title>Nosotros | Grupo Drews</title>
+        <meta name="description" content="Más sobre Grupo Drews" />
+    </Head>
+
     <WebLayout>
         <HeadingPageComponent titulo="Nosotros" />
         <main class="page-nosotros py-5">
@@ -98,7 +103,7 @@ import WebLayout from "@/Layouts/WebLayout.vue";
 import HeadingPageComponent from "../../../Components/Web/HeadingPageComponent.vue";
 import TituloSectionComponent from "../../../Components/Web/TituloSectionComponent.vue";
 
-import { usePage } from "@inertiajs/vue3";
+import { Head, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 
 const web = computed(() => usePage().props.web_data);
@@ -143,7 +148,6 @@ const web = computed(() => usePage().props.web_data);
             color: $app-color1;
         }
         .content {
-          
             font-family: $font-raj;
             text-align: justify;
         }

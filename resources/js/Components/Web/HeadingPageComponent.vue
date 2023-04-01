@@ -39,7 +39,7 @@ const props = defineProps({
     background-position: center;
     padding: 40px 0px;
     position: relative;
-    border-bottom: 10px solid $app-color1;
+    border-bottom: 10px solid rgba($color: $app-color1, $alpha: .8);
     &::before {
         position: absolute;
         content: "";
