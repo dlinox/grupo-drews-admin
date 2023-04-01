@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-5">
-                    <div class="border-0 bg-white shadow my-0 my-lg-3 p-3 rounded-3">
+                    <div class="border-0 bg-light shadow my-0 my-lg-3 p-3 rounded-3">
                         <div class="card-body  p-3">
                             <div class="card-title text-color1">
                                 <h1>GRUPO DREWS</h1>

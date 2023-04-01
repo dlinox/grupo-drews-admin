@@ -52,7 +52,7 @@ const web = computed(() => usePage().props.web_data);
             width: 100%;
             height: 100%;
             clip-path: polygon(0 0, 55% 0, 70% 100%, 0 100%);
-            background-color: rgba(aliceblue, 0.9);
+            background-color: rgba(#f8f9fa, 0.9);
         }
 
         .container {

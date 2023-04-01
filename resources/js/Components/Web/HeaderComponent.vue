@@ -6,7 +6,7 @@
                     <!-- Button trigger modal -->
                     <button
                         type="button"
-                        class="btn btn-color1 rounded-0 text-white"
+                        class="btn btn-light rounded-0 text-color1 fw-semibold"
                         @click="showModal = !showModal"
                     >
                         Cotizacion
@@ -85,7 +85,7 @@
             </div>
 
             <div
-                class="header-bot-menu"
+                class="header-bot-menu "
                 :class="[
                     targetIsVisible ? '' : 'fixed shadow',
                     headerTopVisible ? '' : 'fixed-small shadow',
@@ -271,31 +271,47 @@ const setSede = (ubigeo) => {
 </script>
 
 <style lang="scss">
-$bg-color-header-bot: aliceblue;
+
+
+/******  TEMA 1 ********* */
+$bg-color-header-top: #1c1c1c;
+$bg-color-header-bot: white;
 
 /******  MENU ********* */
-$bg-color-menu: $app-color1;
-$color-menu-a: rgb(194, 249, 211);
-$color-menu-a_hover: white;
-$border-menu-a_hover: white;
+$bg-color-menu: #f8f9fa;
+$color-menu-a: #757575;
 /******  MENU:HOVER ********* */
+$color-menu-a_hover: $app-color1;
+$border-menu-a_hover: $app-color1;
+/******  TEMA 1 ********* */
 
-/******  MENU ********* */
-//$bg-color-menu: rgb(240, 255, 244);
-//$color-menu-a: #858585;
+
+// /******  TEMA 1 ********* */
+// $bg-color-header-top: #1c1c1c;
+// $bg-color-header-bot: aliceblue;
+
+// /******  MENU ********* */
+// $bg-color-menu: $app-color1;
+// $color-menu-a: rgb(194, 249, 211);
+// /******  MENU:HOVER ********* */
+// $color-menu-a_hover: white;
+// $border-menu-a_hover: white;
+// /******  TEMA 1 ********* */
 
 $h-header-top: 50px;
 
 .web-header {
     position: relative;
-    background-color: aliceblue;
+    background-color: white;
     z-index: 10;
+ 
     .header-top {
-        background-color: #1c1c1c;
+        background-color: $bg-color-header-top;
         .container {
             display: flex;
             justify-content: space-between;
-            //.top-left{}
+
+
             .top-right.top-social {
                 ul.social-list {
                     height: 100%;
@@ -499,7 +515,8 @@ $h-header-top: 50px;
                             &:hover {
                                 a.item {
                                     color: $color-menu-a_hover;
-                                    border-bottom: 3px solid $border-menu-a_hover;
+                                    border-bottom: 3px solid
+                                        $border-menu-a_hover;
                                 }
                             }
                         }
