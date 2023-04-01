@@ -47,9 +47,9 @@
         <div class="header-bot">
             <div class="container">
                 <div class="bot-left">
-                    <div class="bot-logo">
+                    <Link class="bot-logo" href="/">
                         <img :src="logo" alt="" />
-                    </div>
+                    </Link>
                 </div>
                 <div ref="header" class="bot-right">
                     <div class="bot-contact">
@@ -92,16 +92,16 @@
                 ]"
             >
                 <div class="container">
-                    <div class="bot-fixed-logo">
+                    <Link class="bot-fixed-logo" href="/">
                         <img :src="logo" alt="" />
-                    </div>
+                    </Link>
 
                     <nav class="nav-menu">
                         <ul class="menu">
-                            <li class="btn-menu d-md-none">
+                            <li class="btn-menu d-lg-none">
                                 <button
                                     type="button"
-                                    class="btn btn-outline-light"
+                                    class="btn btn-outline-dark"
                                     @click="showMenu = !showMenu"
                                 >
                                     <i class="fa-solid fa-bars"></i>
@@ -110,7 +110,7 @@
                             <li
                                 v-for="(item, index) in menu_items"
                                 :key="index"
-                                class="menu-item d-none d-md-flex"
+                                class="menu-item d-none d-lg-flex"
                                 :class="
                                     router.page.url == item.href
                                         ? 'current'
@@ -367,10 +367,12 @@ $h-header-top: 50px;
             align-items: flex-start;
             .bot-left {
                 height: 100%;
-                .bot-logo {
+                a.bot-logo {
+                    display: block;
                     height: 100%;
                     width: 180px;
                     padding: 1rem 1rem 1rem 0rem;
+             
                     img {
                         width: 100%;
                         height: 100%;
@@ -664,7 +666,7 @@ $h-header-top: 50px;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .web-header {
         .header-top {
             .container {
