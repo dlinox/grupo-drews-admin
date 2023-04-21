@@ -49,12 +49,7 @@
                             <label for="pasajeros" class="form-label">
                                 Pasajeros
                             </label>
-                            <input
-                                v-model="filters.pasajeros"
-                                type="number"
-                                class=""
-                                min="1"
-                            />
+                            <input type="number" v-model="filters.pasajeros">
                         </div>
                         <div class="col-8 col-md-4 col-lg-4">
                             <label for="transmision" class="form-label"
@@ -65,6 +60,7 @@
                                 v-model="filters.transmision"
                             >
                                 <option selected>-- Transmisión --</option>
+                                <option :value="null">Todo</option>
                                 <option value="Manual">Manual</option>
                                 <option value="Automatico">Automática</option>
                             </select>

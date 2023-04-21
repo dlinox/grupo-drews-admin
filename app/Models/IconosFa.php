@@ -25,16 +25,16 @@ class IconosFa extends Model
     }
 
 
-    public function listIcons($search)
-    {
-        $_search = $request->search ?? '';
-        $categorias = Categoria::select('id', 'detalle')
-            ->orWhere('detalle', 'LIKE', '%' . $_search . '%')
-            ->paginate(10);
+    // public function listIcons($search)
+    // {
+    //     $_search = $request->search ?? '';
+    //     $categorias = Categoria::select('id', 'detalle')
+    //         ->orWhere('detalle', 'LIKE', '%' . $_search . '%')
+    //         ->paginate(10);
 
-        return Inertia::render('Administrador/Categorias/index', [
-            'filters' => $request->all('search'),
-            'categorias' => $categorias
-        ]);
-    }
+    //     return Inertia::render('Administrador/Categorias/index', [
+    //         'filters' => $request->all('search'),
+    //         'categorias' => $categorias
+    //     ]);
+    // }
 }
