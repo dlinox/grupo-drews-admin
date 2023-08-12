@@ -1,6 +1,41 @@
 <template>
     <n-config-provider :theme-overrides="themeOverrides">
         <n-dialog-provider>
+            <n-modal v-model:show="showModal">
+                <n-card
+                    style="width: 500px"
+                    title="Cambiar contraseña"
+                    :bordered="false"
+                    size="huge"
+                    role="dialog"
+                    aria-modal="true"
+                >
+                    <n-input
+                        type="text"
+                        placeholder="Nueva contraseña"
+                        v-model:value="formPass.newPassword"
+                    />
+           
+                      <small style="color: red;">
+
+                          {{ formPass.errors.newPassword }}
+                      </small>
+                    
+        
+                    <template #footer>
+                        <n-space justify="space-between" size="large">
+                            <n-button @click="showModal = !showModal"
+                                >Cancelar</n-button
+                            >
+
+                            <n-button type="success" @click="changePassword"
+                                >Guardar</n-button
+                            >
+                        </n-space>
+                    </template>
+                </n-card>
+            </n-modal>
+
             <div style="height: 100vh; position: relative">
                 <n-layout position="absolute">
                     <n-layout-header
@@ -104,7 +139,7 @@ import {
     GlobeOutline,
 } from "@vicons/ionicons5";
 
-import { router, usePage } from "@inertiajs/vue3";
+import { router, useForm, usePage } from "@inertiajs/vue3";
 
 import { createGlobalState, useStorage } from "@vueuse/core";
 
@@ -115,6 +150,12 @@ const useState = createGlobalState(() =>
 );
 
 const state = useState();
+
+const showModal = ref(false);
+
+const formPass = useForm({
+    newPassword: "",
+});
 
 const user = computed(() => usePage().props?.auth?.user);
 const themeOverrides = {
@@ -232,7 +273,23 @@ const onMenuDropdown = (val) => {
     console.log(val);
     if (val == "logout") {
         router.post("/auth/logout");
+    } else if (val === "profile") {
+        showModal.value = true;
     }
+};
+
+const changePassword = () => {
+    formPass.post("/admin/change-password", {
+        preserveScroll: true,
+        onError: (e) => {
+            // message.error("Ocurrio un error, vuelva a intentarlo");
+        },
+        onSuccess: () => {
+            showModal.value = false;
+            // message.success("Contraseña actualizada");
+            formPass.reset();
+        },
+    });
 };
 
 const initialize = () => {

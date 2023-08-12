@@ -9,6 +9,7 @@ use App\Models\Reserva;
 use App\Models\Servicio;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class AdminController extends Controller
@@ -44,5 +45,27 @@ class AdminController extends Controller
 
             'reservas' => $reservas
         ]);
+    }
+    public function changePassword(Request $request)
+    {
+
+
+        $this->validate(
+            $request,
+            [
+                'newPassword' => 'required',
+            ],
+            [
+
+                'newPassword.required' => 'Ingrese un catraseña valida',
+            ]
+        );
+
+        $auth = Auth::user();
+        $user = User::find($auth->id);
+        $user->password = $request->newPassword;
+        $user->save();
+
+        return back();
     }
 }

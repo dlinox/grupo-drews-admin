@@ -92,9 +92,6 @@
                     />
                 </n-form-item>
 
-                
-
-
                 <n-form-item path="descripcion" label="Descripcion">
                     <n-input
                         type="textarea"

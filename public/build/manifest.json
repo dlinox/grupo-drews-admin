@@ -5,7 +5,7 @@
     "src": "resources/assets/styles/scss/app.scss"
   },
   "resources/js/app.css": {
-    "file": "assets/app-ae152e7b.css",
+    "file": "assets/app-7e300424.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -13,9 +13,9 @@
       "assets/bg-footer-0a4276cc.jpg"
     ],
     "css": [
-      "assets/app-ae152e7b.css"
+      "assets/app-7e300424.css"
     ],
-    "file": "assets/app-1a01e7b9.js",
+    "file": "assets/app-bc31390b.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },

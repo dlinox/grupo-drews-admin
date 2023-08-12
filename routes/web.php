@@ -76,6 +76,8 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::get('', [AdminController::class, 'index'])
         ->name('index');
 
+    Route::post('change-password',  [AdminController::class, 'changePassword']);
+
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('servicios', ServicioController::class);
 

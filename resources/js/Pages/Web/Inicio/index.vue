@@ -8,9 +8,11 @@
             <HeroSideComponent :sliders="sliders" />
             <ServicesCarouselComponent :servicios="servicios" />
             <VehiculosSection :vehiculos="vehiculos" />
+            <BrandsSecction />
             <EligenosSection />
             <GaleriaSection :vehiculos="vehiculos" />
             <ClientesSection :clientes="clientes" />
+
     
         </main>
     </WebLayout>
@@ -25,6 +27,7 @@ import VehiculosSection from "./sections/VehiculosSection.vue";
 import EligenosSection from "./sections/EligenosSection.vue";
 import GaleriaSection from "./sections/GaleriaSection.vue";
 import ClientesSection from "./sections/ClientesSection.vue";
+import BrandsSecction from "./sections/BrandsSecction.vue";
 
 const props = defineProps({
     servicios: Array,

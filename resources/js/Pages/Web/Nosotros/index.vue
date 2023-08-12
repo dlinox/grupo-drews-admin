@@ -12,34 +12,36 @@
                     <div class="col-md-7 col-12">
                         <TituloSectionComponent
                             titulo="GRUPO DREWS"
-                            descripcion=" Alquiler de camionetas 4x4 y otros veiculos motorizados"
+                            descripcion=" ALQUILER DE CAMIONETAS 4X4 PARA PROYECTOS DE MINERÍA, ENERGÍA Y CONSTRUCCIÓN "
                         />
                         <div class="descripcion-nosotros">
                             <p class="text-justify">
                                 Grupo Drews forma parte de un grupo empresarial
-                                conformado por Servicios Múltiples Drews S.A.C.
-                                - (Drews Rent A Car), Servicios Generales Drews
-                                Perú S.A.C., Esbril S.A.C., Intermotors S.A.C. y
-                                Tamawi S.A.C. con amplia experiencia en el
-                                sector Automotriz. Somos un grupo empresarial
-                                con más de 17 años de experiencia en la Región
-                                Puno y el Sur del Perú con el objetivo de
-                                brindar servicios de alquiler de Camionetas 4X4,
-                                Alquiler de maquinaria pesada y otros Vehículos
-                                motorizados. Servicio de taller mecánico,
-                                Auxilio mecánico, Venta de repuestos, Asesoría y
-                                venta de seguros, Consultorías, Movimiento de
-                                tierras, Líneas de media tensión, Ejecución de
-                                obras y otros.
+                                conformado por
+                                <b>
+                                    Drews Rent A Car, Agara Logis tic, Esbril,
+                                    Gairs, A&E Vital y Runner Track,</b
+                                >
+                                con amplia experiencia en el sector Automotriz.
                             </p>
                             <p class="text-justify">
-                                Drews Rent A Car, inicia sus labores en la
+                                Somos un grupo empresarial con más de 17 años de
+                                experiencia en la Región Sur del Perú con el
+                                objetivo de brindar servicios de transporte de
+                                movilidad, transporte de personal, servicio de
+                                taller mecánico, auxilio mecánico, venta de
+                                repuestos, asesoría y venta de seguros,
+                                monitoreo de gps.
+                            </p>
+                            <p class="text-justify">
+                                <b>Drews Rent A Car</b>, inicia sus labores en la
                                 región puno en el año 2007, con el objetivo de
-                                brindar servicio de camionetas 4x4, en los
-                                diferentes sectores y actividades de desarrollo
-                                en la región, centrándonos con mayor interés en
-                                los sectores de minería, exploraciones, energía,
-                                construcción, ingeniería, etc.
+                                brindar servicio de camionetas pick up 4x4, en
+                                los diferentes sectores y actividades de
+                                desarrollo en la región, centrándonos con mayor
+                                interés en los sectores de minería,
+                                exploraciones, energía, construcción,
+                                ingeniería, etc.
                             </p>
                         </div>
 
@@ -87,7 +89,7 @@
                             <img
                                 class="rounded-4"
                                 width="100%"
-                                src="/assets/image/bg-login-1.jpeg"
+                                src="/assets/image/nosotros.jpeg"
                                 alt=""
                             />
                         </div>
