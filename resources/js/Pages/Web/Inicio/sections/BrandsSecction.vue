@@ -7,31 +7,33 @@
             />
 
             <swiper
-            class="px-5"
+            class="px-5 pb-4"
                 :modules="[Autoplay, Pagination]"
                 :slides-per-view="2"
                 :loop="true"
+                :pagination="true"
                 :breakpoints="{
                     1200: {
-                        slidesPerView: 4,
-                        spaceBetween: 150,
+                        slidesPerView: 7,
+                        spaceBetween: 30,
                     },
-                    576: {
-                        slidesPerView: 2,
-                        spaceBetween: 150,
+                    720: {
+                        slidesPerView: 4,
+                        spaceBetween: 50,
                     },
                 }"
                 :autoplay="{
                     delay: 3000,
                     disableOnInteraction: true,
                 }"
+                :space-between="50"
             >
                 <swiper-slide
                     v-for="(item, index) in items"
                     :key="index"
                     class="clientes-slide"
                 >
-                    <div class="card-item">
+                    <div class="card-item mb-3">
                         <img :src="item" alt="" />
                     </div>
                 </swiper-slide>
@@ -49,10 +51,13 @@ const props = defineProps({
 });
 
 const items = [
+    "/assets/image/brands/toyota.webp",
     "/assets/image/brands/hyundai.webp",
     "/assets/image/brands/renault.webp",
-    "/assets/image/brands/toyota.webp",
-    "/assets/image/brands/volkswagen.webp",
+    "/assets/image/brands/Hino.png",
+    "/assets/image/brands/Mitsubishi.png",
+    "/assets/image/brands/Ram.png",
+    "/assets/image/brands/Nissan.png",
 ];
 </script>
 
@@ -64,6 +69,7 @@ const items = [
     .clientes-slide {
         margin: auto;
         .card-item {
+            
             border: none;
             background-color: transparent;
             img {
